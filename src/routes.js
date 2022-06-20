@@ -7,7 +7,9 @@ import Registration from "./pages/Registration"
 export default(
     <Router>
         <Routes>
-            <Route path='/' element={<Main/>}></Route>
+            <Route path='/' element={<Main/>}>
+                <Route index element={<h1>default page</h1>}/>  
+            </Route>
             <Route path='/login' element={<LoginForm/>}></Route>
             <Route path='/register' element={<Registration/>}></Route>
         </Routes>

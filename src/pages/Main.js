@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Outlet } from 'react-router-dom'
 
 export default class Main extends Component {
   render() {
@@ -10,6 +11,7 @@ export default class Main extends Component {
         <div className='m-content'>
             <div>top</div>
             {/**dynamic page */}
+            <Outlet/>
         </div>
       </div>
     )
