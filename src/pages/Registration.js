@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import axios from "axios";
+import "../css/register.css"
+
 export default class Registration extends Component {
 	constructor(props){
 		super(props)
@@ -36,7 +38,6 @@ export default class Registration extends Component {
     return(
       <div id="bigBox">
         <div id="left">
-
         </div>
         <div id="right">
           <form onSubmit={this.submitHandler}>

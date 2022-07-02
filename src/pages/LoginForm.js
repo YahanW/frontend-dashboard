@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 
+import "../css/login.css"
 class LoginForm extends Component{
 	constructor(props){
 		super(props)
@@ -25,7 +26,6 @@ class LoginForm extends Component{
 	}
 	submitHandler = e =>{
 		e.preventDefault()
-		//console.log(this.state)
 		axios.post("https://easyevent.azurewebsites.net/api/user/login",this.state)
 		.then(response => {
 			console.log(response)
@@ -40,8 +40,8 @@ class LoginForm extends Component{
   render(){
 	const {email,password} = this.state
     return(
-      <div id="bigBox">
-			<form onSubmit={this.submitHandler}>
+      <div id="LoginBack">
+		<form onSubmit={this.submitHandler}>
 			<h3>Welcome</h3>
 			<div class="form">
 				<div class="item">
@@ -53,14 +53,13 @@ class LoginForm extends Component{
 					value={password} onChange={this.changeHandler}/>
 				</div>
 			</div>
-			
 			<div class="sending">
 				<button type="submit" class="submit">Login</button>
 				<p class="desc"><a href="#">forget password?</a></p>
 			</div>
-			</form>
-			<button onClick={this.clickGETHandle}>GET</button>
-		</div>
+		</form>
+		<button onClick={this.clickGETHandle}>GET</button>
+	  </div>
 	
     )
   }
