@@ -2,7 +2,9 @@ body{
 	background: url(./background_letter.jpg);
 	background-size: cover;
 }
+
 #loginBack{
+
 	width: 28%;
 	height: 600px;
 	margin: 5% auto;/*上右下左*/
