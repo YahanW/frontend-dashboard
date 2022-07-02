@@ -40,10 +40,10 @@ class LoginForm extends Component{
   render(){
 	const {email,password} = this.state
     return(
-      <div id="LoginBack">
+      <div id="loginBack">
 		<form onSubmit={this.submitHandler}>
 			<h3>Welcome</h3>
-			<div class="form">
+			<div class="loginForm">
 				<div class="item">
 					<input name="email" type="text" placeholder="email" 
 					value={email} onChange={this.changeHandler}/>
@@ -53,7 +53,7 @@ class LoginForm extends Component{
 					value={password} onChange={this.changeHandler}/>
 				</div>
 			</div>
-			<div class="sending">
+			<div class="logSend">
 				<button type="submit" class="submit">Login</button>
 				<p class="desc"><a href="#">forget password?</a></p>
 			</div>

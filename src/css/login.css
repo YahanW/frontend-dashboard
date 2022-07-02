@@ -2,8 +2,8 @@ body{
 	background: url(./background_letter.jpg);
 	background-size: cover;
 }
-#LoginBack{
-	width: 25%;
+#loginBack{
+	width: 28%;
 	height: 600px;
 	margin: 5% auto;/*上右下左*/
 	
@@ -12,13 +12,13 @@ body{
 	padding: 1px 50px;
     color: #000000;
 }
-#LoginBack h3{
+#loginBack h3{
 	color: #FFFFFF;
    font-size: 55px;
   
 }
 
-#LoginBack .form .item input{
+#loginBack .loginForm .item input{
 	width: 330px;
 	font-size: 30px;
 	border: 0;
@@ -27,18 +27,18 @@ body{
 	background: #ffffff00;
 	color: #000000; /*直接color就是字体颜色*/
 }
-#LoginBack .form{
+#loginBack .loginForm{
     margin-top: 10%;
 }
  ::placeholder{
     color: #00000070;
 }
-#LoginBack .form .item{
+#loginBack .loginForm .item{
 	margin-top: 15px; /*上间距*/
 }
 
-.sending .submit{
-	margin-top: 125px;
+.logSend .submit{
+	margin-top: 125px;	
 	width: 180px;
 	height: 50px;
 	font-size: 20px;
@@ -49,7 +49,7 @@ body{
 	border-radius: 30px;
 	cursor: pointer;
 }
-.sending .desc{
+.logSend .desc{
 	color: #00000060;
 }
 
