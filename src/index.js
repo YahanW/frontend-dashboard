@@ -8,7 +8,7 @@ import './global.css'
 import routes from './routes';
 
 const store=createStore(()=>{},composeWithDevTools(applyMiddleware(thunk)))
-
+//hello
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
