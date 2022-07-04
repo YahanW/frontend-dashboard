@@ -9,11 +9,15 @@
 .m-slide{
     width: 256px;
     height: 100%;
-    background-color: aqua;
+   
 }
 .m-content{
     flex:1;
     height: 100%;
     overflow: auto;
-    background-color:beige;
+   
+}
+
+.ant-menu{
+    height: 100%;
 }
