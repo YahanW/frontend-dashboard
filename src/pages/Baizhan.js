@@ -10,6 +10,7 @@ export default class Baizhan extends Component {
         </div>
         <div className='m-content'>
             <div>top</div>
+  
             {/**dynamic page */}
             <Outlet/>
         </div>
