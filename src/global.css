@@ -21,3 +21,8 @@
 .ant-menu{
     height: 100%;
 }
+
+.m-operate{
+    text-align: right;
+    padding-bottom: 10px;
+}
