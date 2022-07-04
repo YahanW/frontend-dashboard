@@ -5,10 +5,18 @@ export default class Header extends Component {
   render() {
     return (
       <div className='m-header'>
-        <Space>
-            <span>hi, xxx</span>
-            <a>Log Out</a>
-        </Space>
+        
+        <div className='location'> 
+            <span className="item">TAS | Hobart</span>
+            <a className="item">Change Location ?</a>
+        </div>
+        <div className='trolley'>
+            <a className="item">Samantha</a>
+            <a className="item">History</a>
+            <a className="item">Inbox</a>
+            <a className="item">Bookings</a>
+            <a className="item">Trolley</a>
+        </div>
       </div>
     )
   }

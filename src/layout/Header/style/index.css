@@ -2,8 +2,24 @@
     height:48px;
     line-height: 48px;
     padding-right: 30px;
-    text-align: right;
+    display: flex;
     background-color: #fff;
     box-shadow: 0 1px 6px #aaa;
     font-size: 14px;
+}
+.m-header .location{
+    text-align: left;
+    width: 500px;
+}
+
+.m-header .trolley{
+    text-align: center;
+    width: 100%;
+}
+
+.m-header .trolley .item{
+    margin-left: 100px;
+}
+.m-header .location .item{
+    margin-left: 50px;
 }
