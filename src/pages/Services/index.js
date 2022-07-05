@@ -73,7 +73,7 @@ getTableProps=()=>{
                 {/**component */}
                 <Table {...this.getTableProps()}/>
             </Card>
-            {modalForm&&<ModalForm {...modalForm}/>}
+            {modalForm&&<ModalForm {...modalForm} {...this.props}/>}
            </Panel>
     
   }

@@ -7,7 +7,9 @@ export default (state=initState,action)=>{
     switch(type){
         case 'show':
             return {...state,modalForm:data}
-            default:
-                return initState
+        case 'hide':
+            return {...state,modalForm:null}
+        default:
+            return initState
     }
 }

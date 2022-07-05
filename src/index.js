@@ -8,12 +8,16 @@ import './global.css'
 import routes from './routes';
 import rootReducer from './reducer'
 
+//import ru_RU from 'antd/lib/locale/ru_RU' change language example russian
+//import { ConfigProvider } from 'antd';
 const store=createStore(rootReducer,composeWithDevTools(applyMiddleware(thunk)))
 //hello
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <Provider store={store}>
+ //<ConfigProvider locale={ru_RU}>
+   <Provider store={store}>
    {routes}
   </Provider>
+ //</ConfigProvider>
  
 );
