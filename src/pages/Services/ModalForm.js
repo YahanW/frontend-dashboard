@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Modal,Form,Input,Select,InputNumber,Dropdown,Radio,Space,Pagination} from 'antd'
 import { Icons } from '../../commons'
 import _ from 'lodash'
+import axios from 'axios'
 
 class ModalForm extends Component {
 
@@ -17,9 +18,7 @@ onCancel=()=>{ //user clicks on the cancel button, close modal
         type:'hide'
     })
 }
-onSave=(values)=>{
-    console.log(values)
-}
+
 layout={ 
     //form layout
     labelCol:{span:6},
@@ -50,23 +49,29 @@ onSelected=(e)=>{
     //console.log(e.target)
     this.setState({icons:value}) //passing icons icon value
     //manually set input
-    this.formRef.current.setFieldsValue({icons:value})
+    this.formRef.current.setFieldsValue({icons:value})  //forminstance
     
 }
-
+/**
+ * make http request and send data to database
+ */
+onSave=(values)=>{
+    console.log(values)
+    axios.post('/api/service/add',values).then((data)=>{
+        //console.log(data)
+        //post form to backend
+        this.onCancel() //close modal
+    })
+}
 
 
 render() {
     return (
     <Modal visible width={600} title={this.props.title}
         onCancel={this.onCancel}
-        onOk={()=>this.formRef.current.submit()}
-    >
+        onOk={()=>this.formRef.current.submit()}>
     
         <Form {...this.layout} ref={this.formRef} onFinish={this.onSave}>
-            <Form.Item label="Access Level">
-                {'Merchant'}
-            </Form.Item>
             <Form.Item label="Service Name" name='sname' 
                 rules={[{required:true, message: 'Please input your Service Name!'}]}>
                 <Input/>
