@@ -5,6 +5,7 @@ import { Panel } from '../../commons'
 import { connect } from 'react-redux'
 import ModalForm from './ModalForm'
 
+
 class Service extends Component {
 constructor(props){
   super(props)
@@ -21,9 +22,9 @@ onCreate = () =>{
     type:'show',
     data:{
       title:'Add Service',
-      data:{
-
-      }
+      data:{ },
+      refreshList:this.onGetServices  
+      //passing service list so as to be used later
     }
   })
 }
@@ -63,6 +64,17 @@ getTableProps=()=>{
     pagination:false
   }
 }
+
+onGetServices=()=>{
+
+  global.Request.get('/api/services/list').then(data=>{
+    console.log(data)
+  })
+}
+componentDidMount(){ //once render done, make new request
+  this.onGetServices()
+}
+
   render() {
     const {modalForm}=this.props.serviceState
     return <Panel title="Service List">

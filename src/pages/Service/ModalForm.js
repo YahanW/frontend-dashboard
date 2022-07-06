@@ -57,10 +57,11 @@ onSelected=(e)=>{
  */
 onSave=(values)=>{
     console.log(values)
-    axios.post('/api/service/add',values).then((data)=>{
+    axios.post('/api/services/add',values).then((data)=>{
         //console.log(data)
         //post form to backend
         this.onCancel() //close modal
+        this.props.refreshList()  //reloading data
     })
 }
 

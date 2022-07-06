@@ -5,7 +5,7 @@ class Slider extends React.Component{
     constructor(props){
         super(props)
         this.state={menus:[
-            {name:'Services',id:'1',linkUrl:'/services'},
+            {name:'Service',id:'1',linkUrl:'/service'},
             {name:'Members',id:'2',
                 children:[{name:"Users",id:'21',
                     linkUrl:"/user/member"
