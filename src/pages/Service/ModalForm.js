@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Modal,Form,Input,Select,InputNumber,Dropdown,Radio,Space,Pagination} from 'antd'
+import { Modal,Form,Input,Select,InputNumber,Dropdown,Radio,Space,Pagination, message} from 'antd'
 import { Icons } from '../../commons'
 import _ from 'lodash'
 import axios from 'axios'
@@ -52,13 +52,18 @@ onSelected=(e)=>{
     this.formRef.current.setFieldsValue({icons:value})  //forminstance
     
 }
+componentDidMount(){
+    this.formRef.current.setFieldsValue(this.props.data)  //forminstance
+    this.setState({icons:this.props.data.icons})
+}
 /**
  * make http request and send data to database
  */
 onSave=(values)=>{
     console.log(values)
-    axios.post('/api/services/add',values).then((data)=>{
-        //console.log(data)
+    axios.post('/api/service/add',values).then((data)=>{
+        console.log(data)
+        message.success('operation success')
         //post form to backend
         this.onCancel() //close modal
         this.props.refreshList()  //reloading data
@@ -67,16 +72,23 @@ onSave=(values)=>{
 
 
 render() {
+    const readOnly=this.props.title=='Details'?true:false
     return (
     <Modal visible width={600} title={this.props.title}
         onCancel={this.onCancel}
-        onOk={()=>this.formRef.current.submit()}>
-    
-        <Form {...this.layout} ref={this.formRef} onFinish={this.onSave}>
+        onOk={()=>this.formRef.current.submit()}
+        className={readOnly?'m-readonly-modal':''}
+    >
+            
+        <Form {...this.layout} ref={this.formRef} onFinish={this.onSave}   initialValues={{["access"]: 2 }}>
+            <Form.Item label="Access Level" name='access'>
+                {'Merchant'} {/**this.props.data.name||'' */}
+            </Form.Item>
             <Form.Item label="Service Name" name='sname' 
                 rules={[{required:true, message: 'Please input your Service Name!'}]}>
                 <Input/>
             </Form.Item>
+      
             <Form.Item label="Merchant Name" name='mname' 
                 rules={[{required:true,message: 'Please input your Merchant Name!'}]}>
                 <Input/>

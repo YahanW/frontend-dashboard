@@ -1,3 +1,4 @@
+import { message } from "antd";
 import axios from "axios";
 
 const doAxios=(url,method='get',params)=>{
@@ -15,6 +16,10 @@ const doAxios=(url,method='get',params)=>{
             }
             return data
         }
+    }).catch(e=>{
+        //debugger
+        const {response={}}=e;
+        message.error(response.data||e.message)
     })
 }
 

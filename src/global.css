@@ -26,3 +26,11 @@
     text-align: right;
     padding-bottom: 10px;
 }
+
+.m-readonly-modal .ant-form-item{
+    pointer-events: none;
+}
+
+.m-readonly-modal .ant-modal-footer{
+    display: none;
+}

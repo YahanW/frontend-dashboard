@@ -1,5 +1,6 @@
 import React from "react";
 import {Menu} from 'antd'
+
 import {Link} from 'react-router-dom'
 class Slider extends React.Component{
     constructor(props){
@@ -17,10 +18,12 @@ class Slider extends React.Component{
     }
     onRenderMenu=(menus)=>{
         return menus.map(menu=>{
+            
             if(menu.children&&menu.children.length){
                 return <Menu.SubMenu key={menu.id} title={menu.name}>
+                   
                     {this.onRenderMenu(menu.children)}
-                </Menu.SubMenu>
+                    </Menu.SubMenu>
             }else{
                 return <Menu.Item key={menu.id}><Link to={menu.linkUrl}>{menu.name}</Link></Menu.Item>
             }
@@ -29,6 +32,7 @@ class Slider extends React.Component{
     render(){
         return <Menu theme="dark" mode="inline">
             {this.onRenderMenu(this.state.menus)}
+            
         </Menu>
     }
 }

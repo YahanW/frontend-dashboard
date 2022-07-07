@@ -9,12 +9,7 @@ import ModalForm from './ModalForm'
 class Service extends Component {
 constructor(props){
   super(props)
-  this.state={dataSource:[
-    {sid:'1',category:'corporate function',merchant:'Business Events Tasmania',name:'Hotel Grand Chancellor Hobart'},
-    {sid:'2',category:'wedding', merchant:'Weddings Tasmania Magazine',name:'ISLE WEDDINGS'},
-    {sid:'3',category:'private&birthday',merchant:'Private Dining',name:'Mures Upper Deck'},
-   
-]}
+  this.state={dataSource:[]}
 }
 onCreate = () =>{
   //pop up window
@@ -29,16 +24,28 @@ onCreate = () =>{
   })
 }
 
+onDetail=(record)=>{
+  return ()=>{
+    this.props.dispatch({
+      type:'show',
+      data:{
+        title:'Details',
+        data:record
+        //passing service list so as to be used later
+      }
+    })
+  }
+}
 getTableProps=()=>{
   return {
     columns:[
       {
         title:'Service ID',
-        dataIndex:'sid'
+        dataIndex:'id'
       },
       {
         title:'Service name',
-        dataIndex:'name'
+        dataIndex:'sname'
       },
       {
         title:'Service type',
@@ -46,16 +53,15 @@ getTableProps=()=>{
       },
       {
         title:'Merchant',
-        dataIndex:'merchant'
+        dataIndex:'mname'
       },
       {
         title:'Operate',
         render:(record)=>(
           <Space>
-          <a>details</a>
+          <a onClick={this.onDetail(record)}>details</a>
           <a>edit</a>
           <a>delete</a>
-          <a>create</a>
         </Space>
         )
       }
@@ -64,22 +70,23 @@ getTableProps=()=>{
     pagination:false
   }
 }
-
 onGetServices=()=>{
 
-  global.Request.get('/api/services/list').then(data=>{
+  global.request.get('/api/service/list').then(data=>{
     console.log(data)
+    this.setState({dataSource:data.records})
   })
+  
 }
 componentDidMount(){ //once render done, make new request
   this.onGetServices()
 }
-
   render() {
     const {modalForm}=this.props.serviceState
     return <Panel title="Service List">
                 <div className='m-operate'>
                     <Button type='primary' icon={<PlusOutlined/>} onClick={this.onCreate}>ADD</Button>
+                    {/** <Button type='primary' icon={<PlusOutlined/>} onClick={this.onCreate()}>ADD</Button> */}
                 </div>
             <Card>
                 {/**component */}
