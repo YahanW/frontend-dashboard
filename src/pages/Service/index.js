@@ -36,6 +36,20 @@ onDetail=(record)=>{
     })
   }
 }
+
+onEdit=(record)=>{
+  return ()=>{
+    this.props.dispatch({
+      type:'show',
+      data:{
+        title:'Edit',
+        data:record,
+        //passing service list so as to be used later
+        refreshList:this.onGetServices  //data need to be refreshed after being edited
+      }
+    })
+  }
+}
 getTableProps=()=>{
   return {
     columns:[
@@ -60,7 +74,7 @@ getTableProps=()=>{
         render:(record)=>(
           <Space>
           <a onClick={this.onDetail(record)}>details</a>
-          <a>edit</a>
+          <a onClick={this.onEdit(record)}>edit</a>
           <a>delete</a>
         </Space>
         )
