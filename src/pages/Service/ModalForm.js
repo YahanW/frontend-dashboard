@@ -62,15 +62,25 @@ componentDidMount(){
 onSave=(values)=>{
     console.log(values)
     if(this.props.title=='Add Service'){
+        //checking if it is a add action
         axios.post('/api/service/add',values).then((data)=>{
             console.log(data)
-            message.success('operation success')
+            message.success('Add Success')
             //post form to backend
             this.onCancel() //close modal
             this.props.refreshList()  //reloading data
+            window.dispatchEvent(new Event('refreshService'))
         })
         return
     }
+    axios.post('/api/service/edit',{...values,id:this.props.data.id}).then((data)=>{
+        console.log(data)
+        message.success('Edit Success')
+        //post form to backend
+        this.onCancel() //close modal
+        this.props.refreshList()  //reloading data
+        window.dispatchEvent(new Event('refreshService'))
+    })
 
 }
 

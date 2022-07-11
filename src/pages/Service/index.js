@@ -23,7 +23,6 @@ onCreate = () =>{
     }
   })
 }
-
 onDetail=(record)=>{
   return ()=>{
     this.props.dispatch({
@@ -36,7 +35,6 @@ onDetail=(record)=>{
     })
   }
 }
-
 onEdit=(record)=>{
   return ()=>{
     this.props.dispatch({
@@ -87,8 +85,8 @@ getTableProps=()=>{
 onGetServices=()=>{
 
   global.request.get('/api/service/list').then(data=>{
-    console.log(data)
-    this.setState({dataSource:data.records})
+  console.log(data)
+  this.setState({dataSource:data.records})
   })
   
 }
