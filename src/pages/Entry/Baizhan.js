@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Outlet } from 'react-router-dom'
-import Slider from '../layout/slider'
-import Header from '../layout/Header'
+import Slider from '../../layout/slider'
+import Header from '../../layout/Header'
 
 export default class Baizhan extends Component {
   render() {

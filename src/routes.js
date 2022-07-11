@@ -1,7 +1,7 @@
 import React from "react";
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
-import LoginForm from "./pages/LoginForm"
-import Baizhan from "./pages/Baizhan"
+import LoginForm from "./pages/Login/LoginForm"
+import Baizhan from "./pages/Entry/Baizhan"
 import welcome from "./assets/imgs/welcome.jpg"
 import Service from "./pages/Service";
 export default(
