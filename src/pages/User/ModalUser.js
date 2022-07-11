@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {Modal,Form,Input} from 'antd'
-
+import {Location} from '../../commons'
 class ModalUser extends Component {
 formRef=React.createRef()
 
@@ -20,10 +20,10 @@ onCancel=()=>{
     return (<Modal visible width={700} title={this.props.title}
     onOk={()=>this.formRef.current.submit()} onCancel={this.onCancel}>
       <Form {...this.layout} onFinish={this.onSave} ref={this.formRef}>
-        <Form.Item label='firstname' name='firstname' rules={[{required:true}]}>
-            <Input/>
+        <Form.Item label='Area' name='location' rules={[{required:true}]}>
+            <Location/>
         </Form.Item>
-        <Form.Item label='lastname' name='lastname' rules={[{required:true}]}>
+        <Form.Item label='Upload Profile' name='profile' rules={[{required:true}]}>
             <Input/>
         </Form.Item>
         <Form.Item label='username' name='username' rules={[{required:true}]}>
