@@ -9,9 +9,9 @@ class Slider extends React.Component{
             {name:'Service',id:'1',linkUrl:'/service'},
             {name:'Members',id:'2',
                 children:[{name:"Users",id:'21',
-                    linkUrl:"/user/member"
+                    linkUrl:"/member/user"
                 },{name:"Merchants",id:'22',
-                    linkUrl:"/merchant/member"},]},
+                    linkUrl:"/member/merchant"},]},
             {name:'Booking Requests',id:'3',
                     linkUrl:"/booking"}
         ]}
