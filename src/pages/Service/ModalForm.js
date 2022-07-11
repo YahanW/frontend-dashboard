@@ -46,11 +46,9 @@ onTyping = (e) =>{
 
 onSelected=(e)=>{
     const {value}=e.target   //get select Icons value
-    //console.log(e.target)
     this.setState({icons:value}) //passing icons icon value
     //manually set input
     this.formRef.current.setFieldsValue({icons:value})  //forminstance
-    
 }
 componentDidMount(){
     this.formRef.current.setFieldsValue(this.props.data)  //forminstance
@@ -64,7 +62,6 @@ onSave=(values)=>{
     if(this.props.title=='Add Service'){
         //checking if it is a add action
         axios.post('/api/service/add',values).then((data)=>{
-            console.log(data)
             message.success('Add Success')
             //post form to backend
             this.onCancel() //close modal

@@ -113,18 +113,19 @@ componentDidMount(){ //once render done, make new request
 }
   render() {
     const {modalForm}=this.props.serviceState
-    return <Panel title="Service List">
-                <div className='m-operate'>
-                    <Button type='primary' icon={<PlusOutlined/>} onClick={this.onCreate}>ADD</Button>
-                    {/** <Button type='primary' icon={<PlusOutlined/>} onClick={this.onCreate()}>ADD</Button> */}
-                </div>
-            <Card>
-                {/**component */}
-                <Table {...this.getTableProps()}/>
-            </Card>
-            {modalForm&&<ModalForm {...modalForm} {...this.props}/>}
-           </Panel>
-    
+    return (
+      <Panel title="Service List">
+        <div className='m-operate'>
+          <Button type='primary' icon={<PlusOutlined/>} onClick={this.onCreate}>ADD</Button>
+            {/** <Button type='primary' icon={<PlusOutlined/>} onClick={this.onCreate()}>ADD</Button> */}
+        </div>
+        <Card>
+          {/**component */}
+          <Table {...this.getTableProps()}/>
+        </Card>
+        {modalForm&&<ModalForm {...modalForm} {...this.props}/>}
+      </Panel>
+    )
   }
 }
 const mapStateToProps=(store)=>({serviceState:store.service})
