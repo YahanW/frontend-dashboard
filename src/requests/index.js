@@ -16,10 +16,6 @@ const doAxios=(url,method='get',params)=>{
             }
             return data
         }
-    }).catch(e=>{
-        //debugger
-        const {response={}}=e;
-        message.error(response.data||e.message)
     })
 }
 

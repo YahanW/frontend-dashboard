@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Card, Table, Space } from 'antd'
+import { Button, Card, Table, Space, Modal, message } from 'antd'
 import {PlusOutlined} from '@ant-design/icons'
 import { Panel } from '../../commons'
 import { connect } from 'react-redux'
@@ -48,6 +48,24 @@ onEdit=(record)=>{
     })
   }
 }
+onDelete=(record)=>{
+  return ()=>{
+    Modal.confirm({
+      //a pop up window
+      title:'Warning',
+      content:'Are you sure to delete this record?',
+      onOk:()=>
+      {
+        global.request.post('/api/service/delete',{id:record.id}).then(data=>{
+          message.success('Deletion Success')
+          this.onGetServices()  //reloading
+          window.dispatchEvent(new Event('refreshService'))
+        })
+      
+      }
+    })
+  }
+}
 getTableProps=()=>{
   return {
     columns:[
@@ -71,9 +89,9 @@ getTableProps=()=>{
         title:'Operate',
         render:(record)=>(
           <Space>
-          <a onClick={this.onDetail(record)}>details</a>
-          <a onClick={this.onEdit(record)}>edit</a>
-          <a>delete</a>
+          <a onClick={this.onDetail(record)}>Details</a>
+          <a onClick={this.onEdit(record)}>Edit</a>
+          <a onClick={this.onDelete(record)}>Delete</a>
         </Space>
         )
       }
@@ -84,7 +102,7 @@ getTableProps=()=>{
 }
 onGetServices=()=>{
 
-  global.request.get('/api/service/list').then(data=>{
+  global.request.get('/api/service/fetching').then(data=>{
   console.log(data)
   this.setState({dataSource:data.records})
   })

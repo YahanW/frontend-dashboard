@@ -110,9 +110,9 @@ render() {
             <Form.Item label="Service Type" name='category' 
                 rules={[{required:true,message: 'Please select your Service type!'}]}>
                 <Select>
-                    <Select.Option value='1'>corporate function</Select.Option>
-                    <Select.Option value='2'>wedding</Select.Option>
-                    <Select.Option value='3'>private birthday</Select.Option>
+                    <Select.Option value='corporate function'>corporate function</Select.Option>
+                    <Select.Option value='wedding'>wedding</Select.Option>
+                    <Select.Option value='private birthday'>private birthday</Select.Option>
                 </Select>
             </Form.Item>
             <Form.Item label="Capacity 1-100" name='capacity' rules={[{required:true}]}>

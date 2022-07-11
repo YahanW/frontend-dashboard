@@ -8,12 +8,16 @@ import Request from './requests';
 import './global.css'
 import routes from './routes';
 import rootReducer from './reducer'
+import { message } from 'antd';
 
 //import ru_RU from 'antd/lib/locale/ru_RU' change language example russian
 //import { ConfigProvider } from 'antd';
 const store=createStore(rootReducer,composeWithDevTools(applyMiddleware(thunk)))
 global.request=Request
-//hello
+window.addEventListener('unhandledrejection',e=>{
+  const {response={},reason={}}=e;
+  message.error(response.data||reason.message)
+})
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
  //<ConfigProvider locale={ru_RU}>
