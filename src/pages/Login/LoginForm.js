@@ -1,22 +1,15 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import {Modal} from 'antd'
+import { useNavigate } from "react-router-dom";
 import {CheckOutlined} from '@ant-design/icons';
-
-
 import "./login.css"
-class LoginForm extends Component{
-	
-	constructor(props){
-		super(props)
-		this.state={
-			email:'',
-			password:''
-		}
-	}
 
+function LoginForm(){
+	const [details,setDetails] = useState({email:"",password:""});
+	const history = useNavigate();
 	//GET method
-	clickGETHandle=()=>
+	const clickGETHandle=()=>
 	{
 	  fetch("https://easyevent.azurewebsites.net/api/user/getall")
 	  .then(res=>res.json())
@@ -25,23 +18,19 @@ class LoginForm extends Component{
 	  }) //default GET
 	}  
 
-	changeHandler = e =>{
-		this.setState({[e.target.name]:e.target.value})
-	}
-	submitHandler = e =>{
-	
-		e.preventDefault()
-		axios.post("https://easyevent.azurewebsites.net/api/user/login",this.state)
+	const submitHandler = e =>{
+		e.preventDefault();	//avoid page re-render
+		axios.post("https://easyevent.azurewebsites.net/api/user/login",details)
 		.then(response => {
 			console.log(response)
-
+			
 			Modal.confirm({
 				//a pop up window
 				icon:<CheckOutlined />,
 				title:'Congradulations',
 				content:'Your Identity was Identified, Welcome !!!',
 				onOk:()=>{
-					
+					history("/")
 				}
 			  })
 			
@@ -53,22 +42,19 @@ class LoginForm extends Component{
 		})
 	}
 
-  render(){
-	
-	const {email,password} = this.state
     return(
       <div class="loginBase">
 		<div id="loginBox">
-		<form onSubmit={this.submitHandler}>
+		<form onSubmit={submitHandler}>
 			<h3>Welcome</h3>
 			<div class="loginForm">
 				<div class="item">
 					<input name="email" type="text" placeholder="email" 
-					value={email} onChange={this.changeHandler} required/>
+					value={details.email} onChange={e=>setDetails({...details,email:e.target.value})} required/>
 				</div>
 				<div class="item">
 					<input type="password" name="password" placeholder="password"
-					value={password} onChange={this.changeHandler} required/>
+					value={details.password} onChange={e=>setDetails({...details,password:e.target.value})} required/>
 				</div>
 			</div>
 			<div class="logSend">
@@ -76,12 +62,11 @@ class LoginForm extends Component{
 				<p class="desc"><a href="#">forget password?</a></p>
 			</div>
 		</form>
-		<button onClick={this.clickGETHandle}>GET</button>
+		<button onClick={clickGETHandle}>GET</button>
 	  	</div>
 	  </div>
 	
     )
-  }
 }
 
 export default LoginForm
