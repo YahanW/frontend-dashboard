@@ -29,6 +29,7 @@ class LoginForm extends Component{
 		this.setState({[e.target.name]:e.target.value})
 	}
 	submitHandler = e =>{
+	
 		e.preventDefault()
 		axios.post("https://easyevent.azurewebsites.net/api/user/login",this.state)
 		.then(response => {
@@ -40,7 +41,7 @@ class LoginForm extends Component{
 				title:'Congradulations',
 				content:'Your Identity was Identified, Welcome !!!',
 				onOk:()=>{
-					this.props.history.push("/")
+					
 				}
 			  })
 			
