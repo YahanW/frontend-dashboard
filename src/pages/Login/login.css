@@ -1,0 +1,57 @@
+body{
+	background: url(./background_letter.jpg);
+	background-size: cover;
+}
+
+#loginBack{
+
+	width: 28%;
+	height: 600px;
+	margin: 5% auto;/*上右下左*/
+	
+	text-align: center;
+	background: #FFFFFF60;
+	padding: 1px 50px;
+    color: #000000;
+}
+#loginBack h3{
+	color: #FFFFFF;
+   font-size: 55px;
+  
+}
+
+#loginBack .loginForm .item input{
+	width: 330px;
+	font-size: 30px;
+	border: 0;
+	border-bottom: 2px solid #ffffff;
+	padding: 5px 10px; /*上下左右*/
+	background: #ffffff00;
+	color: #000000; /*直接color就是字体颜色*/
+}
+#loginBack .loginForm{
+    margin-top: 10%;
+}
+ ::placeholder{
+    color: #00000070;
+}
+#loginBack .loginForm .item{
+	margin-top: 15px; /*上间距*/
+}
+
+.logSend .submit{
+	margin-top: 125px;	
+	width: 180px;
+	height: 50px;
+	font-size: 20px;
+	font-weight: 700;
+	background-color: #2B394E;
+    color: #FFFFFF;
+	border: 0;
+	border-radius: 30px;
+	cursor: pointer;
+}
+.logSend .desc{
+	color: #00000060;
+}
+

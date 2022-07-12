@@ -1,13 +1,13 @@
 import React from 'react'
 import { Button } from './Button'
 import './HeroSection.css'
-import '../../css/home.css'
+import './home.css'
 
 
 function HeroSection() {
   return (
     <div className='hero-container'>
-      <video src='/videos/video-3.mp4' autoPlay loop muted />
+      <video src='./videos/video-3.mp4' autoPlay loop muted />
       <h1>Event Easy</h1>
       <p>Making events easy.</p>
       <div className='search'>

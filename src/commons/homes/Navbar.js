@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom'
 import { Button } from './Button';
 import axios from 'axios'
 import './Navbar.css';
-import routes from '../../routes';
 
 function Navbar(){
 
@@ -42,11 +41,11 @@ window.addEventListener('resize', showButton);
                 </li>
                 <li className='nav-item'>
                     <Link
-                        to='/venues'
+                        to='/dashboard'
                         className='nav-links'
                         onClick={closeMobileMenu}
                     >
-                        Venues
+                        Dashboard
                     </Link>
                 </li>
                 <li className='nav-item'>

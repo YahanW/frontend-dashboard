@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../css/home.css'
+import '../../commons/homes/home.css'
 import Cards from '../../commons/homes/Cards';
 import Footer from '../../commons/homes/Footer';
 import HeroSection from '../../commons/homes/HeroSection'
