@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
-import {Redirect} from "react-router-dom"
+import {Modal} from 'antd'
+import {CheckOutlined} from '@ant-design/icons';
+
+
 import "./login.css"
 class LoginForm extends Component{
+	
 	constructor(props){
 		super(props)
 		this.state={
@@ -29,7 +33,18 @@ class LoginForm extends Component{
 		axios.post("https://easyevent.azurewebsites.net/api/user/login",this.state)
 		.then(response => {
 			console.log(response)
-			alert("Congradulations!! Login Success !!!");
+
+			Modal.confirm({
+				//a pop up window
+				icon:<CheckOutlined />,
+				title:'Congradulations',
+				content:'Your Identity was Identified, Welcome !!!',
+				onOk:()=>{
+					this.props.history.push("/")
+				}
+			  })
+			
+
 		})
 		.catch(error=>{
 			console.log(error)
@@ -38,6 +53,7 @@ class LoginForm extends Component{
 	}
 
   render(){
+	
 	const {email,password} = this.state
     return(
       <div class="loginBase">

@@ -1,10 +1,10 @@
 import React from 'react';
-import './homes/home.css'
-import Cards from './homes/Cards';
-import Footer from './homes/Footer';
-import HeroSection from './homes/HeroSection'
-import User from './homes/User';
-import Navbar from './homes/Navbar'
+import '../../layout/homes/home.css'
+import Cards from '../../layout/homes/Cards';
+import Footer from '../../layout/homes/Footer';
+import HeroSection from '../../layout/homes/HeroSection'
+import User from '../../layout/homes/User';
+import Navbar from '../../layout/homes/Navbar'
 
 
 function Home () {
