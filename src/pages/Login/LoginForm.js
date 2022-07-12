@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-
+import {Redirect} from "react-router-dom"
 import "./login.css"
 class LoginForm extends Component{
 	constructor(props){
@@ -40,17 +40,18 @@ class LoginForm extends Component{
   render(){
 	const {email,password} = this.state
     return(
-      <div id="loginBack">
+      <div class="loginBase">
+		<div id="loginBox">
 		<form onSubmit={this.submitHandler}>
 			<h3>Welcome</h3>
 			<div class="loginForm">
 				<div class="item">
 					<input name="email" type="text" placeholder="email" 
-					value={email} onChange={this.changeHandler}/>
+					value={email} onChange={this.changeHandler} required/>
 				</div>
 				<div class="item">
 					<input type="password" name="password" placeholder="password"
-					value={password} onChange={this.changeHandler}/>
+					value={password} onChange={this.changeHandler} required/>
 				</div>
 			</div>
 			<div class="logSend">
@@ -59,6 +60,7 @@ class LoginForm extends Component{
 			</div>
 		</form>
 		<button onClick={this.clickGETHandle}>GET</button>
+	  	</div>
 	  </div>
 	
     )

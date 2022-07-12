@@ -1,26 +1,28 @@
-body{
-	/*background: url(./background_letter.jpg);*/
+.loginBase{
+	background: url('../../assets/JPGs/background_letter.jpg');
 	background-size: cover;
+	height: 100%;
+	padding-top: 35px;
 }
 
-#loginBack{
+.loginBase #loginBox{
 
 	width: 28%;
 	height: 600px;
-	margin: 5% auto;/*上右下左*/
+	margin-left: 37%;
 	
 	text-align: center;
-	background: #FFFFFF60;
+	background: #00000060;
 	padding: 1px 50px;
     color: #000000;
 }
-#loginBack h3{
+.loginBase #loginBox h3{
 	color: #FFFFFF;
    font-size: 55px;
   
 }
 
-#loginBack .loginForm .item input{
+.loginBase #loginBox .loginForm .item input{
 	width: 330px;
 	font-size: 30px;
 	border: 0;
@@ -29,13 +31,13 @@ body{
 	background: #ffffff00;
 	color: #000000; /*直接color就是字体颜色*/
 }
-#loginBack .loginForm{
+.loginBase #loginBox .loginForm{
     margin-top: 10%;
 }
  ::placeholder{
     color: #00000070;
 }
-#loginBack .loginForm .item{
+#loginBox .loginForm .item{
 	margin-top: 15px; /*上间距*/
 }
 
