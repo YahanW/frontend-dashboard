@@ -7,7 +7,7 @@ import './home.css'
 function HeroSection() {
   return (
     <div className='hero-container'>
-      <video src='./videos/video-3.mp4' autoPlay loop muted />
+      <video src='https://alacritas.cis.utas.edu.au/~mingked/kit301/Video/video-3.mp4' autoPlay loop muted />
       <h1>Event Easy</h1>
       <p>Making events easy.</p>
       <div className='search'>

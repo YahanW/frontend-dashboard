@@ -81,7 +81,6 @@ onSave=(values)=>{
 
 }
 
-
 render() {
     const readOnly=this.props.title=='Details'?true:false
     return (

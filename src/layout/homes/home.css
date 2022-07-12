@@ -17,7 +17,7 @@
 }
 
 .services {
-    background-image: url('../../assets/JPGs/img-2.jpg');
+    background-image: url('https://alacritas.cis.utas.edu.au/~mingked/kit301/JPGs/img-2.jpg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -26,7 +26,7 @@
 }
 
 .products {
-    background-image: url('../../assets/JPGs/img-1.jpg');
+    background-image: url('https://alacritas.cis.utas.edu.au/~mingked/kit301/JPGs/img-1.jpg');
     background-position: center;
     background-size: fill;
     background-repeat: no-repeat;
@@ -35,7 +35,7 @@
 }
 
 .sign-up {
-    background-image: url('../../assets/JPGs/img-8.jpg');
+    background-image: url('https://alacritas.cis.utas.edu.au/~mingked/kit301/JPGs/img-8.jpg');
     
     background-position: center;
     background-size: cover;

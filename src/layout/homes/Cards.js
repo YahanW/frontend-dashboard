@@ -11,25 +11,26 @@ function Cards() {
   
           <ul className='cards__items'>
             <CardItem
-              src='./img/wedding2.jpg'
+              src='https://alacritas.cis.utas.edu.au/~mingked/kit301/JPGs/wedding2.jpg'
               text="The most romantic wedding With WonderfulWedding. Free quote, ask our friendly stuff now."
               label='Wedding'
               path='/services' />
           </ul>
           <ul className='cards__items'>
             <CardItem
-              src='./img/kids_bd2.jpeg'
+              src='https://alacritas.cis.utas.edu.au/~mingked/kit301/JPGs/kids_bd2.jpg'
               text="Plan your kids next birthday party with PartyRus! PartyRus have everything you need. call now."
               label='Birthday'
               path='/services' />
           </ul>
           <ul className='cards__items'>
             <CardItem
-              src='./img/meeting.jpg'
+              src='https://alacritas.cis.utas.edu.au/~mingked/kit301/JPGs/business_meeting.jpg'
               text="IBM held their conference meeting at this venue, click here to explore more."
               label='Conference'
               path='/services' />
           </ul>
+          
         </div>
       </div>
     </div>

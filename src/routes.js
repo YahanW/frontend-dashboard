@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 
 //Dashboard and its sub-routing
 import MainDash from "./pages/Dashboard/Entry"
-import WelcomeDash from "./assets/JPGs/welcome.jpg"
+import WelcomeDash from "./pages/Dashboard/welcome.jpg"
 import ServiceDash from "./pages/Dashboard/Service";
 import UserDash from "./pages/Dashboard/User";
 //login page
