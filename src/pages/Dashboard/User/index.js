@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Panel } from '../../commons'
+import { Panel } from '../../../commons'
 import { Card,Form,Input,Button,Table,Space } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import { connect } from 'react-redux'

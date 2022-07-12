@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 
-export default class Venus extends Component {
+export default class HomeService extends Component {
   render() {
     return (
       <div>
-        <h3>Venus List</h3>
+        <h3>Service Intro</h3>
       </div>
     )
   }

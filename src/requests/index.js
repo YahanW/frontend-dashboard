@@ -1,4 +1,3 @@
-import { message } from "antd";
 import axios from "axios";
 
 const doAxios=(url,method='get',params)=>{

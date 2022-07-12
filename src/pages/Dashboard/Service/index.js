@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Card, Table, Space, Modal, message } from 'antd'
 import {PlusOutlined} from '@ant-design/icons'
-import { Panel } from '../../commons'
+import { Panel } from '../../../commons'
 import { connect } from 'react-redux'
 import ModalForm from './ModalForm'
 
