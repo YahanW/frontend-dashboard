@@ -1,14 +1,18 @@
 import React from "react";
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
-import LoginForm from "./pages/Login/LoginForm"
+import LoginForm from "./pages/Login"
 import Baizhan from "./pages/Entry/Baizhan"
 import welcome from "./assets/imgs/welcome.jpg"
 import Service from "./pages/Service";
 import User from "./pages/User";
+import Home from "./pages/Home/Home";
+
+
 export default(
     <Router>
         <Routes>
-            <Route path='/' element={<Baizhan/>}>
+            <Route path='/' element={<Home/>}></Route>
+            <Route path='/dashboard' element={<Baizhan/>}>
                 <Route index element={<img src={welcome} style={{width:'100%'}}/>}/>
                 <Route path='/service' element={<Service/>}/>
                 <Route path="/member/user" element={<User/>}/>
