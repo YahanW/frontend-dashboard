@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {Space} from 'antd'
+import { Link } from 'react-router-dom'
 import './style/index.css'
 export default class Header extends Component {
   render() {
@@ -12,7 +13,7 @@ export default class Header extends Component {
         </div>
         <div className='trolley'>
             <a className="item">Samantha</a>
-            <a className="item">History</a>
+            <a className="item"><Link to='/'>Home</Link></a>
             <a className="item">Inbox</a>
             <a className="item">Bookings</a>
             <a className="item">Trolley</a>
