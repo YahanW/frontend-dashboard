@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {Modal,Form,Input} from 'antd'
 import {Location} from '../../../commons'
+
 class ModalUser extends Component {
 formRef=React.createRef()
 
