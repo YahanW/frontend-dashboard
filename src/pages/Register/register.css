@@ -1,8 +1,10 @@
 .regiBase{
 	background: url('https://alacritas.cis.utas.edu.au/~mingked/kit301/JPGs/back-register.png');
 	background-size: cover;
-	height: 100%;
-	padding-top: 35px;
+	height:100%;
+	padding-top: 15px;
+	padding-bottom: 25px;
+	background-repeat: no-repeat;
 }
 #regiBox{
 	display: flex;
@@ -27,7 +29,8 @@
 
 #regiBox .form .item input{
 	border-radius: 1pc;
-	width: 330px;
+	width: 500px;
+	height: 40px;
 	font-size: 20px;
 	border: 2;
 	padding: 10px 10px; /*上下左右*/
@@ -45,9 +48,7 @@
 }
 
 .sending .submit{
-	margin-top: 15px;
-	margin-left: 150px;
-	width: 180px;
+	width: 500px;
 	height: 50px;
 	font-size: 20px;
 	font-weight: 700;
@@ -55,5 +56,19 @@
     color: #FFFFFF;
 	border: 0;
 	border-radius: 30px;
+	
+	margin-top: 35px;
 	cursor: pointer;
 }
+
+.hello{
+	display: flex;
+}
+.hello .home{
+	height: 100px;
+	font-size: small;
+	margin-top: 10px;
+	margin-bottom: 0px;
+	margin-left: 10px;
+}
+

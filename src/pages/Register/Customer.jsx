@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from "axios";
 import './register.css'
+import { Link } from 'react-router-dom';
 
 export default class Customer extends Component {
 	constructor(props){
@@ -36,12 +37,15 @@ export default class Customer extends Component {
   render(){
     const {userName, firstName,lastName,dob,email,password,phoneNumber} = this.state
     return(
-      <div clas="regiBase">
+      <div class="regiBase">
         <div id="regiBox">
           <div id="left"></div>
           <div id="right">
             <form onSubmit={this.submitHandler}>
-              <h3>Hi Customer</h3>
+              <div className='hello'>
+                <h3>Hi Customer</h3>
+                <div className='home'><a><Link to="/">home</Link></a></div>
+              </div>
               <div class="form">
                 <div class="item">
                   <input name="userName" type="text" placeholder="username" 
