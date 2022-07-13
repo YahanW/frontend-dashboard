@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import {Modal} from 'antd'
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import {CheckOutlined} from '@ant-design/icons';
 import "./login.css"
 
@@ -44,9 +44,10 @@ function LoginForm(){
 
     return(
       <div class="loginBase">
+		
 		<div id="loginBox">
 		<form onSubmit={submitHandler}>
-			<h3>Welcome</h3>
+            <h3>Welcome</h3>
 			<div class="loginForm">
 				<div class="item">
 					<input name="email" type="text" placeholder="email" 
@@ -62,7 +63,7 @@ function LoginForm(){
 				<p class="desc"><a href="#">forget password?</a></p>
 			</div>
 		</form>
-		<button onClick={clickGETHandle}>GET</button>
+		{/*<button onClick={clickGETHandle}>GET</button>*/}
 	  	</div>
 	  </div>
 	
