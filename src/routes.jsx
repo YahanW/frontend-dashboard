@@ -15,13 +15,17 @@ import Home from "./pages/Home/Home";
 import HomeService from "./pages/Home/HomeService";
 import HomeVenues from "./pages/Home/HomeVenues";
 
+//searching result related
+import Result from "./pages/Result/Result";
+
 export default(
     <Router>
         <Routes>
             <Route path='/' element={<Home/>}></Route>
             <Route exact path='/service' element={<HomeService/>}></Route>
             <Route exact path='/venue' element={<HomeVenues/>}></Route>
-            <Route exact path='sign-up' element={<Register/>}></Route>
+            <Route exact path='/sign-up' element={<Register/>}></Route>
+            <Route exact path='/result' element={<Result/>}></Route>
             <Route path='/login' element={<LoginForm/>}></Route>
             <Route path='/dashboard' element={<MainDash/>}>
                 <Route index element={<img src={WelcomeDash} style={{width:'100%'}}/>}/>

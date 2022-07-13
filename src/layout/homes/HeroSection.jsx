@@ -2,7 +2,7 @@ import React from 'react'
 import { Button } from './Button'
 import './HeroSection.css'
 import './home.css'
-
+import {Link} from 'react-router-dom'
 
 function HeroSection() {
   return (
@@ -22,7 +22,7 @@ function HeroSection() {
           <input type="number" className="guest" id="Number of Guests" placeholder="Number of Guest" required />
             
           <Button type='submit' className='btn' buttonStyle="btn--outline" buttonSize='btn--large'>
-            Search
+            <Link to="/result">Search</Link>
           </Button>
       </div>
       {/* <div className='hero-btns'>
