@@ -1,11 +1,11 @@
 import axios from "axios";
 
-const doAxios=(url,method='get',params)=>{
+const doAxios=(url,method,value)=>{
     return axios({
         method,
         url,
-        paraps:method=='get'?params:undefined,
-        data:method=='post'?params:undefined
+        params:method=='get'? value:undefined,
+        data:method=='post'? value:undefined
     }).then((res)=>{
         if(res.status==200){
             const {data}=res;
@@ -13,6 +13,7 @@ const doAxios=(url,method='get',params)=>{
                 return Promise.reject(data)
 
             }
+            
             return data
         }
     })

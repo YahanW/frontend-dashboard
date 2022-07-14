@@ -30,7 +30,7 @@ onCancel=()=>{
         <Form.Item label='username' name='username' rules={[{required:true}]}>
             <Input/>
         </Form.Item>
-        <Form.Item label='passwprd' name='password' rules={[{required:true}]}>
+        <Form.Item label='password' name='password' rules={[{required:true}]}>
             <Input/>
         </Form.Item>
         <Form.Item label='email' name='email' rules={[{required:true}]}>
