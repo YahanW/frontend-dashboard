@@ -35,9 +35,9 @@ render() {
         onCancel={this.onCancel}
     >
       <Form {...this.layout} onFinish={this.onSave} ref={this.formRef}>
-        {/*<Form.Item label='Area' name='location' rules={[{required:true}]}>
+        <Form.Item label='Area' name='location' rules={[{required:true}]}>
             <Location onChange={this.onGeoChange}/>
-    </Form.Item>*/}
+        </Form.Item>
         <Form.Item label='Profile' name='profile' rules={[{required:true}]}>
            <Uploads onChange={this.onPictureChange} />
         </Form.Item>

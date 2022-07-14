@@ -11,19 +11,19 @@ export default class extends Component{
         global.request.get('/api/area/state').then( ({records=[]})=>{
             records.map(item=>item.isLeaf=false)
             this.setState({options:records})
-            console.log("componentDidMount")
-            console.log(records)
+            //console.log("componentDidMount")
+            //console.log(records)
         })
     }
 
     onRequestCode=(parent)=>{
-        const isLeaf=parent.isCode==1?true:false
-        
+        //const fetchPost=parent.isCode==3?true:false
+        const isLeaf=String(parent.id).length==2?true:false
         global.request.get(`/api/area/${isLeaf?'city':'postcode'}`,{pid:parent.id}).then(data=>{
             data.records.map(item=>item.isLeaf=isLeaf)
             parent.children=data.records
-            
             this.setState({options:[...this.state.options]})
+           
         })
         
        
