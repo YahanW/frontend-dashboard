@@ -15,6 +15,7 @@ onSave=(value)=>{
 }
 onGeoChange=(value)=>{
     this.formRef.current.setFieldsValue({location:value})
+    console.log(value)
 }
 onCancel=()=>{
     this.props.dispatch({
@@ -27,14 +28,18 @@ onPictureChange=(value)=>{
 }
 
 render() {
-    return (<Modal visible width={700} title={this.props.title}
-    onOk={()=>this.formRef.current.submit()} onCancel={this.onCancel}>
+    return (
+    <Modal visible width={700} 
+        title={this.props.title}
+        onOk={()=>this.formRef.current.submit()} 
+        onCancel={this.onCancel}
+    >
       <Form {...this.layout} onFinish={this.onSave} ref={this.formRef}>
-        <Form.Item label='Area' name='location' rules={[{required:true}]}>
+        {/*<Form.Item label='Area' name='location' rules={[{required:true}]}>
             <Location onChange={this.onGeoChange}/>
-        </Form.Item>
-        <Form.Item label='Upload Profile' name='profile' rules={[{required:true}]}>
-           <Uploads onChange={this.onPictureChange}/>
+    </Form.Item>*/}
+        <Form.Item label='Profile' name='profile' rules={[{required:true}]}>
+           <Uploads onChange={this.onPictureChange} />
         </Form.Item>
         <Form.Item label='username' name='username' rules={[{required:true}]}>
             <Input/>
