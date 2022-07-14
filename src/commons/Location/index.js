@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Cascader } from 'antd'
-import axios from 'axios'
+
 export default class extends Component{
     constructor(props){
         super(props)
@@ -11,13 +11,11 @@ export default class extends Component{
         global.request.get('/api/area/state').then( ({records=[]})=>{
             records.map(item=>item.isLeaf=false)
             this.setState({options:records})
-            //console.log("componentDidMount")
-            //console.log(records)
         })
     }
 
     onRequestCode=(parent)=>{
-        //const fetchPost=parent.isCode==3?true:false
+       
         const isLeaf=String(parent.id).length==2?true:false
         global.request.get(`/api/area/${isLeaf?'city':'postcode'}`,{pid:parent.id}).then(data=>{
             data.records.map(item=>item.isLeaf=isLeaf)
@@ -25,8 +23,6 @@ export default class extends Component{
             this.setState({options:[...this.state.options]})
            
         })
-        
-       
     }
 
     loadState=(states=[])=>{
@@ -37,6 +33,7 @@ export default class extends Component{
         return <Cascader placeholder='State/PostCode/Suburb'
         options={this.state.options}
         loadData={this.loadState}
+        onChange={this.props.onChange}  //passing onChange data
         />
     }
 }
