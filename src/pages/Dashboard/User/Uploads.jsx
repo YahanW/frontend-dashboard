@@ -6,10 +6,14 @@ import _ from 'lodash'
 export default class Uploads extends Component {
   constructor(props){
     super(props)
-    this.state={
-        defaultFileList:this.props.defaultFileList
-    }
     this.fileUrlList=[]
+    this.state={
+        defaultFileList:this.props.defaultFileList.map((item,index)=>{
+          this.fileUrlList.push(item)
+          return {uid:index,url:item}
+        }) || []
+    }
+   
   }
   render() {
     const uploadProps = {

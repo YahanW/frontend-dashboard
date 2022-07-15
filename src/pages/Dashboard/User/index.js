@@ -6,10 +6,10 @@ import { connect } from 'react-redux'
 import ModalUser from './ModalUser'
 
 class User extends Component {
-constructor(props){
+    constructor(props){
     super(props);
-    this.state ={
-        dataSource:[]
+    this.state = {
+        dataSource:[],pagination:{},filters:{}
     }
 }
 componentDidMount(){
@@ -18,15 +18,17 @@ componentDidMount(){
 onGetUsers=(params={})=>{
     global.request.get('/api/user/all',params).then(
         data=>{
-            this.setState({dataSource:data.records})
+            this.setState({dataSource:data.records,pagination:data.pagination})
+            //get pagination wihle fetching records
         }
     )
 }
 
 onSearch=(values)=>{
-    console.log(values)
+    this.setState({filters:values})
     this.onGetUsers(values)
 }
+
 onAddUser=()=>{
     this.props.dispatch({
         type:'show',
@@ -37,8 +39,27 @@ onAddUser=()=>{
         }
     })
 }
+onView=(record)=>{
+    return ()=>{
+        this.props.dispatch({
+            type:'show',
+            data:{
+                title:'User Details',
+                data:record
+            }
+        })
+    }
+}
 //Username Password Phonenumber Email 
-fetchUsers=()=>({
+layoutUserTable=()=>({
+    onChange:(pagination)=>{
+        //passing paging and filter condition
+        this.onGetUsers({...pagination, ...this.state.filters})
+    },
+    pagination:{
+        ...this.state.pagination,
+        showTotal:(total)=>`total ${total} user records`
+    },
     columns:[
         {
             title:"username",
@@ -66,7 +87,7 @@ fetchUsers=()=>({
             title:'operate',
             render:(record)=>{
                 return <Space>
-                    <a>View</a>
+                    <a onClick={this.onView(record)}>View</a>
                     <a>Edit</a>
                     <a>Delete</a>
                     <a>LevelUp</a>
@@ -96,7 +117,7 @@ render() {
             <div className='m-operate'>
                 <Button type='primary' icon={<PlusOutlined/>} onClick={this.onAddUser}>Add User</Button>
             </div>
-            <Table {...this.fetchUsers()}/>
+            <Table {...this.layoutUserTable()}/>
         </Card>
         {userModal&&<ModalUser {...userModal} {...this.props}/>} {/**passing dispatch by props since it is in props */}
     </Panel>
