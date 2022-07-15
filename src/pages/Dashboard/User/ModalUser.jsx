@@ -15,8 +15,9 @@ componentDidMount(){
     this.formRef.current.setFieldsValue(this.props.data)
 }
 onSave=(value)=>{
-    //console.log(value)
-    global.request.post('/api/user/add',
+    console.log(value)
+    if(this.props.title=='New User'){
+        global.request.post('/api/user/add',
         {...value,location:value.location.join(',')}).then(
             //location is an array from form, need converted to be string
             data=>{
@@ -24,9 +25,24 @@ onSave=(value)=>{
                 this.onCancel() //close modal
                 //refresh user list
                 this.props.refreshList()  //reloading data
-               
+                return
             }
         )
+    }
+        global.request.post('/api/user/edit',
+        {...value,location:value.location.join(','),id:this.props.data.id}).then(
+            //location is an array from form, need converted to be string
+            data=>{
+                message.success('User Update Success')
+                this.onCancel() //close modal
+                //refresh user list
+                this.props.refreshList()  //reloading data
+                return
+            }
+        )
+
+    
+    
 }
 onGeoChange=(value)=>{
     this.formRef.current.setFieldsValue({location:value})

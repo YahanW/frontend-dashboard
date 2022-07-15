@@ -4,7 +4,7 @@ import _ from 'lodash'
 export default class extends Component{
     constructor(props){
         super(props)
-        this.state={options:[],defaultValue:props.defaultValue.split(',')}
+        this.state={options:[],defaultValue:props.defaultValue}
     }
 
     componentDidMount(){

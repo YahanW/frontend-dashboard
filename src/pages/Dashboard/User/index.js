@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Panel } from '../../../commons'
-import { Card,Form,Input,Button,Table,Space, Avatar } from 'antd'
+import { Card,Form,Input,Button,Table,Space, Avatar,Modal,message } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import { connect } from 'react-redux'
 import ModalUser from './ModalUser'
@@ -45,9 +45,39 @@ onView=(record)=>{
             type:'show',
             data:{
                 title:'User Details',
-                data:record
+                data:{...record,location:record.location.split(',')},
             }
         })
+    }
+}
+onEdit=(record)=>{
+    return ()=>{
+        this.props.dispatch({
+            type:'show',
+            data:{
+                title:'Edit',
+                data:{...record,location:record.location.split(',')},
+                refreshList:this.onGetUsers
+            }
+        })
+    }
+}
+onDelete=(record)=>{
+    return ()=>{
+        Modal.confirm({
+            //a pop up window
+            title:'Warning',
+            content:'Are you sure to delete this record?',
+            onOk:()=>
+            {
+              global.request.post('/api/user/delete',{id:record.id}).then(data=>{
+                message.success('Deletion Success')
+                this.onGetUsers()
+                
+              })
+            
+            }
+          })
     }
 }
 //Username Password Phonenumber Email 
@@ -88,8 +118,8 @@ layoutUserTable=()=>({
             render:(record)=>{
                 return <Space>
                     <a onClick={this.onView(record)}>View</a>
-                    <a>Edit</a>
-                    <a>Delete</a>
+                    <a onClick={this.onEdit(record)}>Edit</a>
+                    <a onClick={this.onDelete(record)}>Delete</a>
                     <a>LevelUp</a>
                 </Space>
             }
