@@ -1,21 +1,39 @@
 import React, { Component } from 'react'
 import { Panel } from '../../../commons'
-import { Card,Form,Input,Button,Table,Space } from 'antd'
+import { Card,Form,Input,Button,Table,Space, Avatar } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import { connect } from 'react-redux'
 import ModalUser from './ModalUser'
 
 class User extends Component {
+constructor(props){
+    super(props);
+    this.state ={
+        dataSource:[]
+    }
+}
+componentDidMount(){
+    this.onGetUsers();  //fetching users once upon the element are rendered
+}
+onGetUsers=(params={})=>{
+    global.request.get('/api/user/all',params).then(
+        data=>{
+            this.setState({dataSource:data.records})
+        }
+    )
+}
 
 onSearch=(values)=>{
     console.log(values)
+    this.onGetUsers(values)
 }
 onAddUser=()=>{
     this.props.dispatch({
         type:'show',
         data:{
             title:'New User',
-            data:{}
+            data:{},
+            refreshList:this.onGetUsers
         }
     })
 }
@@ -23,12 +41,14 @@ onAddUser=()=>{
 fetchUsers=()=>({
     columns:[
         {
-        title:"userID",
-        dataIndex:'userId'
-        },
-        {
             title:"username",
-            dataIndex:'username'
+            dataIndex:'username',
+            render:(text,record)=>{
+                return <Space>
+                    <Avatar src={record.profile}/>
+                    {text}
+                </Space>
+            }
         },
         {
             title:"email",
@@ -37,6 +57,10 @@ fetchUsers=()=>({
         {
             title:"phone",
             dataIndex:'phonenumber'
+        },
+        {
+            title:"userID",
+            dataIndex:'id'
         },
         {
             title:'operate',
@@ -49,7 +73,9 @@ fetchUsers=()=>({
                 </Space>
             }
         }
-]
+    ],
+    dataSource:this.state.dataSource
+
 })
 
 render() {

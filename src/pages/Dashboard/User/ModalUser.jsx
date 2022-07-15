@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Modal,Form,Input} from 'antd'
+import {Modal,Form,Input, message} from 'antd'
 import {Location} from '../../../commons'
 import Uploads from './Uploads'
 
@@ -11,7 +11,18 @@ layout={
     wrapperCol:{span:20}
 }
 onSave=(value)=>{
-    console.log(value)
+    //console.log(value)
+    global.request.post('/api/user/add',
+        {...value,location:value.location.join(',')}).then(
+            //location is an array from form, need converted to be string
+            data=>{
+                message.success('User Insertion Success')
+                this.onCancel() //close modal
+                //refresh user list
+                this.props.refreshList()  //reloading data
+                window.dispatchEvent(new Event('refreshUsers'))
+            }
+        )
 }
 onGeoChange=(value)=>{
     this.formRef.current.setFieldsValue({location:value})
@@ -45,9 +56,9 @@ render() {
             <Input/>
         </Form.Item>
         <Form.Item label='password' name='password' rules={[{required:true}]}>
-            <Input/>
+            <Input.Password/>
         </Form.Item>
-        <Form.Item label='email' name='email' rules={[{required:true}]}>
+        <Form.Item label='email' name='email' rules={[{required:true, type: 'email'}]}>
             <Input/>
         </Form.Item>
         <Form.Item label='phone number' name='phonenumber' rules={[{required:true}]}>
