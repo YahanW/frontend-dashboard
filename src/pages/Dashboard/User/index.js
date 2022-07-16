@@ -4,6 +4,7 @@ import { Card,Form,Input,Button,Table,Space, Avatar,Modal,message } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import { connect } from 'react-redux'
 import ModalUser from './ModalUser'
+import LevelModal from './LevelModal'
 
 class User extends Component {
     constructor(props){
@@ -80,6 +81,19 @@ onDelete=(record)=>{
           })
     }
 }
+onLeverage=(record)=>{
+    return ()=>{
+        this.props.dispatch({
+            //passing type 'showLevelModal' to visiable level modal
+            type:'showLevelModal',  //calling level management modal
+            data:{
+                title:'Level Up',   //give title
+                data:record,     //passing user record
+                refreshList:this.onGetUsers //after level configuration, refresh data list required
+            }
+        })
+    }
+}
 //Username Password Phonenumber Email 
 layoutUserTable=()=>({
     onChange:(pagination)=>{
@@ -120,7 +134,7 @@ layoutUserTable=()=>({
                     <a onClick={this.onView(record)}>View</a>
                     <a onClick={this.onEdit(record)}>Edit</a>
                     <a onClick={this.onDelete(record)}>Delete</a>
-                    <a>LevelUp</a>
+                    <a onClick={this.onLeverage(record)}>LevelUp</a>
                 </Space>
             }
         }
@@ -130,7 +144,7 @@ layoutUserTable=()=>({
 })
 
 render() {
-    const {userModal}=this.props.userState
+    const {userModal,levelModal}=this.props.userState
     return <Panel title="User">
         <Card className='m-filter'>
             <Form layout="inline" onFinish={this.onSearch}>
@@ -150,6 +164,7 @@ render() {
             <Table {...this.layoutUserTable()}/>
         </Card>
         {userModal&&<ModalUser {...userModal} {...this.props}/>} {/**passing dispatch by props since it is in props */}
+        {levelModal&&<LevelModal {...levelModal} {...this.props}/>}
     </Panel>
   }
 }

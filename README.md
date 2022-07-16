@@ -2,6 +2,8 @@
 
 2.when tarn start front-end Proxy created with a specific port. if change port proxy at backend, then refresh frontend
 
+3. start frontend: npm/yarn start
+4. start backend: nodemon index.js
 Entry->
     Home: Dashboard/Corporate   Services   Login/profile   Venus   Sign-up/sign-out    
     Dashoboard: Service     User    Bookings    

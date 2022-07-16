@@ -13,8 +13,11 @@ layout={
 
 componentDidMount(){
     this.formRef.current.setFieldsValue(this.props.data)
+    this.formRef.current.setFieldsValue({access:5})
+    //assign access level 5 to user, 5 means user
 }
 onSave=(value)=>{
+    
     console.log(value)
     if(this.props.title=='New User'){
         global.request.post('/api/user/add',
@@ -28,6 +31,7 @@ onSave=(value)=>{
                 return
             }
         )
+       
     }
         global.request.post('/api/user/edit',
         {...value,location:value.location.join(','),id:this.props.data.id}).then(
@@ -69,6 +73,13 @@ render() {
         className={readOnly?'m-readonly-modal':''}
     >
       <Form {...this.layout} onFinish={this.onSave} ref={this.formRef}>
+        
+        <Form.Item label='Access Level' name='access'>
+            {
+                this.props.data.access == 5 ? 'Normal User' : (this.props.data.access==3 ? 'Merchant':this.props.access==1?'Admin':'New User')
+            }
+        </Form.Item>
+        
         <Form.Item label='Area' name='location' rules={[{required:true}]}>
             <Location onChange={this.onGeoChange}
                 defaultValue={data.location}
