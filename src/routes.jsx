@@ -27,7 +27,7 @@ export default(
             <Route exact path='/sign-up' element={<Register/>}></Route>
             <Route exact path='/result' element={<Result/>}></Route>
             <Route path='/login' element={<LoginForm/>}></Route>
-            <Route path='/dashboard' element={<MainDash/>}>
+            <Route path='/dashboard' element={<MainDash />}>
                 <Route index element={<img src={WelcomeDash} style={{width:'100%'}}/>}/>
                 <Route exact path='/dashboard/service' element={<ServiceDash/>}/>
                 <Route exact path="/dashboard/member/user" element={<UserDash/>}/>

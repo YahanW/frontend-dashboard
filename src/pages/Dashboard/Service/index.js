@@ -114,6 +114,8 @@ componentDidMount(){ //once render done, make new request
   render() {
     const {modalForm}=this.props.serviceState
     return (
+      //this.props.isLogged == true
+      1 + 1 == 2 ?
       <Panel title="Service List">
         <div className='m-operate'>
           <Button type='primary' icon={<PlusOutlined/>} onClick={this.onCreate}>ADD</Button>
@@ -125,6 +127,11 @@ componentDidMount(){ //once render done, make new request
         </Card>
         {modalForm&&<ModalForm {...modalForm} {...this.props}/>}
       </Panel>
+      :
+      <h2>
+        YOU HAVE NO PERMISSION TO THIS PAGE
+      </h2>
+      
     )
   }
 }

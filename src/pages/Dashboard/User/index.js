@@ -151,7 +151,10 @@ layoutUserTable=()=>({
 
 render() {
     const {userModal,levelModal}=this.props.userState
-    return <Panel title="User">
+    return (
+    1 + 1 == 2 ?
+    
+    <Panel title="User">
         <Card className='m-filter'>
             <Form layout="inline" onFinish={this.onSearch}>
                 <Form.Item label="username" name="uname">
@@ -172,6 +175,11 @@ render() {
         {userModal&&<ModalUser {...userModal} {...this.props}/>} {/**passing dispatch by props since it is in props */}
         {levelModal&&<LevelModal {...levelModal} {...this.props}/>}
     </Panel>
+    :
+    <h2>
+    YOU HAVE NO PERMISSION TO THIS PAGE
+    </h2>
+    )
   }
 }
 const mapStateToProps=(store)=>({userState:store.user})
