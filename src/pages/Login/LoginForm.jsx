@@ -63,11 +63,11 @@ function LoginForm(){
 				<p class="desc"><a href="#">forget password?</a></p>
 			</div>
 		</form>
-		{/*
+		
 		<button onClick={clickGETHandle}>
 		GET
 		</button>
-		*/}
+	
 	  	</div>
 	  </div>
 	
