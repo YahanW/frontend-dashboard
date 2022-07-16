@@ -15,8 +15,10 @@ class User extends Component {
 }
 componentDidMount(){
     this.onGetUsers();  //fetching users once upon the element are rendered
+    console.log(this.props.records)
 }
 onGetUsers=(params={})=>{
+    
     global.request.get('/api/user/all',params).then(
         data=>{
             this.setState({dataSource:data.records,pagination:data.pagination})
@@ -41,6 +43,7 @@ onAddUser=()=>{
     })
 }
 onView=(record)=>{
+    console.log(record)
     return ()=>{
         this.props.dispatch({
             type:'show',
@@ -88,7 +91,7 @@ onLeverage=(record)=>{
             type:'showLevelModal',  //calling level management modal
             data:{
                 title:'Level Up',   //give title
-                data:record,     //passing user record
+                data:{...record},     //passing user record
                 refreshList:this.onGetUsers //after level configuration, refresh data list required
             }
         })
@@ -124,8 +127,11 @@ layoutUserTable=()=>({
             dataIndex:'phonenumber'
         },
         {
-            title:"userID",
-            dataIndex:'id'
+            title:"Access",
+            dataIndex:'access',
+            render:(record)=>{
+                return record==3?'Merchant':(record==5?'Customer':record==1?'Admin':'Something Wrong')
+            }
         },
         {
             title:'operate',

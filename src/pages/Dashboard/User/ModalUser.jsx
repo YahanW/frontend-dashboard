@@ -65,6 +65,7 @@ onPictureChange=(value)=>{
 render() {
     const readOnly=this.props.title=='User Details'?true:false
     const {data={}}=this.props
+    
     return (
     <Modal visible width={700} 
         title={this.props.title}
@@ -75,9 +76,9 @@ render() {
       <Form {...this.layout} onFinish={this.onSave} ref={this.formRef}>
         
         <Form.Item label='Access Level' name='access'>
-            {
-                this.props.data.access == 5 ? 'Normal User' : (this.props.data.access==3 ? 'Merchant':this.props.access==1?'Admin':'New User')
-            }
+            <p>{data.access==3?'Merchant':(data.access==5?'Customer':data.access==1?'Admin':'New User')}</p>
+                
+            
         </Form.Item>
         
         <Form.Item label='Area' name='location' rules={[{required:true}]}>
