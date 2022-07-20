@@ -102,7 +102,7 @@ getTableProps=()=>{
 }
 onGetServices=()=>{
 
-  global.request.get('/api/service/fetching').then(data=>{
+  global.request.get('/api/service/fetching',{email:sessionStorage.getItem('email')}).then(data=>{
   console.log(data)
   this.setState({dataSource:data.records})
   })

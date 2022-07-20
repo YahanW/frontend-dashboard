@@ -63,7 +63,9 @@ window.addEventListener('resize', showButton);
                         className='nav-links'
                         onClick={closeMobileMenu}
                     >
-                        Login
+                       { 
+                       sessionStorage.getItem('logged') ? 'LogOut' : 'Login'
+                        }
                     </Link>
                 </li>
 

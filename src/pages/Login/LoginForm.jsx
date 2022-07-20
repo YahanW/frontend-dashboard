@@ -52,6 +52,8 @@ function LoginForm(){
 		global.request.post('/api/login',{...details,password:CryptoJs.AES.encrypt(details.password,'mingke').toString()})
 		.then(data=>{
 			setDetails({...details,logging:true})
+			
+			
 			if(details.logging)
 			{
 				Modal.confirm({
@@ -60,7 +62,9 @@ function LoginForm(){
 				title:'Congradulations',
 				content:'Your Identity was Identified, Welcome !!!',
 				onOk:()=>{
-					history("/")
+					sessionStorage.setItem('email',details.email)
+					sessionStorage.setItem('logged',true)
+					history("/dashboard")
 				}
 			  })
 			}
