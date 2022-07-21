@@ -24,7 +24,7 @@ useEffect(() => {
 window.addEventListener('resize', showButton);
 const logUserOut = () =>{
     sessionStorage.removeItem('token');
-    //history("/")
+    history("/")
 }
     return ( 
 
@@ -64,12 +64,14 @@ const logUserOut = () =>{
                 { 
                     sessionStorage.getItem('token') 
                     ?
-                    <li className='nav-links'
-                      
-                        onClick={logUserOut}>
-                    
-                        LogOut
-                       
+                    <li>
+                      <Link
+                            to='/'
+                            className='nav-links'
+                            onClick={logUserOut}
+                        >
+                        Logout
+                        </Link>  
                     </li>
                     :
                     <li>
