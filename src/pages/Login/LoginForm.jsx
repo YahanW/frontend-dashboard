@@ -51,23 +51,22 @@ function LoginForm(){
 		e.preventDefault();	//avoid page re-render
 		global.request.post('/api/login',{...details,password:CryptoJs.AES.encrypt(details.password,'mingke').toString()})
 		.then(data=>{
-			setDetails({...details,logging:true})
-			
-			if(details.logging)
-			{
+		
+
 				Modal.confirm({
 				//a pop up window
 				icon:<CheckOutlined />,
 				title:'Congradulations',
 				content:'Your Identity was Identified, Welcome !!!',
 				onOk:()=>{
+					sessionStorage.setItem('token',data.token)
 					sessionStorage.setItem('email',details.email)
-					sessionStorage.setItem('logged',true)
-					sessionStorage.setItem('access',data.records[0].access)
+					setDetails({...details,logging:true})
+					sessionStorage.setItem('access',data.access)
 					history("/")
 				}
 			  })
-			}
+			
 			
 		})
 	}

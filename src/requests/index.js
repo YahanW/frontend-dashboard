@@ -2,6 +2,7 @@ import axios from "axios";
 
 const doAxios=(url,method,value)=>{
     return axios({
+        //headers:{Authorization:sessionStorage.getItem('token')},
         method,
         url,
         params:method=='get'? value:undefined,
