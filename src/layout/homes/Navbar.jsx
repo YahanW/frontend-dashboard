@@ -3,9 +3,10 @@ import {Link} from 'react-router-dom'
 import { Button } from './Button';
 import axios from 'axios'
 import './Navbar.css';
+import { useNavigate } from "react-router-dom";
 
 function Navbar(){
-
+const history = useNavigate();
 const [click, setClick] = useState(false);
 const [button, setButton] = useState(true);
 const handleClick = () => setClick(!click);
@@ -21,7 +22,10 @@ useEffect(() => {
         showButton();
     }, []);
 window.addEventListener('resize', showButton);
-
+const logUserOut = () =>{
+    sessionStorage.removeItem('token');
+    //history("/")
+}
     return ( 
 
     <div>
@@ -57,18 +61,27 @@ window.addEventListener('resize', showButton);
                         Services
                     </Link>
                 </li>
-                <li className='nav-item'>
-                    <Link
-                        to='/login'
-                        className='nav-links'
-                        onClick={closeMobileMenu}
-                    >
-                       { 
-                       sessionStorage.getItem('logged') ? 'LogOut' : 'Login'
-                        }
-                    </Link>
-                </li>
-
+                { 
+                    sessionStorage.getItem('token') 
+                    ?
+                    <li className='nav-links'
+                      
+                        onClick={logUserOut}>
+                    
+                        LogOut
+                       
+                    </li>
+                    :
+                    <li>
+                      <Link
+                            to='/login'
+                            className='nav-links'
+                            onClick={closeMobileMenu}
+                        >
+                        Login
+                        </Link>  
+                    </li>
+                }
                 <li className='nav-item'>
                     <Link
                         to='/sign-up'

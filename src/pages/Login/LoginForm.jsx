@@ -61,7 +61,7 @@ function LoginForm(){
 				onOk:()=>{
 					sessionStorage.setItem('token',data.token)
 					sessionStorage.setItem('email',details.email)
-					setDetails({...details,logging:true})
+					//setDetails({...details,logging:true})
 					sessionStorage.setItem('access',data.access)
 					history("/")
 				}
