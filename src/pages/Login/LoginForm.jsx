@@ -53,7 +53,6 @@ function LoginForm(){
 		.then(data=>{
 			setDetails({...details,logging:true})
 			
-			
 			if(details.logging)
 			{
 				Modal.confirm({
@@ -64,7 +63,8 @@ function LoginForm(){
 				onOk:()=>{
 					sessionStorage.setItem('email',details.email)
 					sessionStorage.setItem('logged',true)
-					history("/dashboard")
+					sessionStorage.setItem('access',data.records[0].access)
+					history("/")
 				}
 			  })
 			}
