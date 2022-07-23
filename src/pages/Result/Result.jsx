@@ -1,7 +1,8 @@
 import React from 'react'
 import Header from '../../layout/Header'
-import './Result.css'
-import {useState} from 'react'
+import './Result.css';
+import {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 
 function Result() {
   const serType = [ "Venue Renting","Hosting","Decoration","Live Performance","Security","Car Rental",];
@@ -9,6 +10,7 @@ function Result() {
   const bgtType = [ "$50-$99","$100-$499","$500-$999","$1000+"];
   const [isActiveRight, setIsActive] = useState(false);
   const [isActiveLeft, setLeft] = useState(false);
+  const history = useNavigate();
   const results = [
     {
     image:"https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=PA1-3CnCcy-HwYCSsVvTOw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=123.645096&pitch=0&thumbfov=100",
@@ -31,24 +33,28 @@ function Result() {
       score:'4.7'
     }
   ]
-  var areaID = 1;
+  const goHome = () =>{
+    history("/")
+  }
   const handleSelect = () =>{
     setIsActive(!isActiveRight)
   }
     return (
       <div className='result'>
-        <Header/> {/**Navbar */}
-
-        <div className='find'> {/**Search bar and Home Logo */}
-          <div className='logo'></div>
+        {/**Navbar */}
+        <Header/> 
+        {/**Search bar and Home Logo */}
+        <div className='find'> 
+          <div className='logo' onClick={goHome}></div>
             <div className='formSearch'>
               <form><input placeholder='Searching by Merchant or Service'/></form>
               <div className='iconSearch'></div>
             </div>
         </div>
-
-        <div className='filter'>  {/**More specific filters*/}
-          <div className='selection'> {/**Service type filter*/}
+        {/**More specific filters*/}
+        <div className='filter'>  
+          {/**Service type filter*/}
+          <div className='selection'> 
             <div className='left' >
               <p>Service Type</p>
               <p className='all'>All</p>
@@ -70,8 +76,8 @@ function Result() {
            
           </div>
           <hr className='hrSearch'/>
-          
-          <div className='selection'> {/**Area filter*/}
+          {/**Area filter*/}
+          <div className='selection'> 
             <div className='left'>
               <p>Area</p>
               <p className='all'>All</p>
@@ -90,8 +96,8 @@ function Result() {
            </div>
           </div>
           <hr className='hrSearch'/>
-
-          <div className='selection'> {/**Budget filter*/}
+          {/**Budget filter*/}
+          <div className='selection'> 
             <div className='left'>
                 <p>Budget</p>
                 <p className='all'>All</p>
@@ -139,9 +145,9 @@ function Result() {
                     </div>
                 </div>
                 )})
-              }
-           
+            }
         </div>
+
       </div>
     )
 }

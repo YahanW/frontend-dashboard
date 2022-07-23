@@ -14,6 +14,7 @@
     background-size: 90%;
     background-repeat: no-repeat;
     margin-left: -120px;
+    cursor: pointer;
 }
 .formSearch{
     display: flex;
