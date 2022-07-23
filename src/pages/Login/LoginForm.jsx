@@ -51,8 +51,9 @@ function LoginForm(){
 		e.preventDefault();	//avoid page re-render
 		global.request.post('/api/login',{...details,password:CryptoJs.AES.encrypt(details.password,'mingke').toString()})
 		.then(data=>{
-		
-
+		//console.log(data.records[0])
+				
+			
 				Modal.confirm({
 				//a pop up window
 				icon:<CheckOutlined />,
@@ -60,12 +61,13 @@ function LoginForm(){
 				content:'Your Identity was Identified, Welcome !!!',
 				onOk:()=>{
 					sessionStorage.setItem('token',data.token)
-					sessionStorage.setItem('email',details.email)
+					sessionStorage.setItem('email',data.records[0].email)
 					//setDetails({...details,logging:true})
-					sessionStorage.setItem('access',data.access)
+					sessionStorage.setItem('access',data.records[0].access)
 					history("/")
 				}
 			  })
+			  
 			
 			
 		})

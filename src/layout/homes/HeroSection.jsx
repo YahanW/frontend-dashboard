@@ -3,8 +3,25 @@ import { Button } from './Button'
 import './HeroSection.css'
 import './home.css'
 import {Link} from 'react-router-dom'
+import {Modal} from 'antd'
+import { useNavigate } from "react-router-dom";
 
 function HeroSection() {
+  const history = useNavigate();
+
+  const loginWarn = () =>{
+   if(!sessionStorage.getItem('token'))
+   {
+    Modal.confirm({
+      //a pop up window
+      title:'Login Required',
+      content:'Please To Login or Signup before make a Search!!!',
+      onOk:()=>{ 
+        history('/login')
+      }
+      })
+  }
+  }
   return (
     <div className='hero-container'>
       <video src='https://alacritas.cis.utas.edu.au/~mingked/kit301/Video/video-3.mp4' autoPlay loop muted />
@@ -21,8 +38,17 @@ function HeroSection() {
           <input type='date' id='checkin' className='checkin' required />
           <input type="number" className="guest" id="Number of Guests" placeholder="Number of Guest" required />
             
-          <Button type='submit' className='btn' buttonStyle="btn--outline" buttonSize='btn--large'>
-            <Link to="/result">Search</Link>
+          <Button type='submit' 
+          className='btn' buttonStyle="btn--outline" buttonSize='btn--large'
+          onClick={loginWarn}
+          >
+            {
+              sessionStorage.getItem('token') ?
+              <Link to="/result"> Search</Link>
+              :
+              <Link to="/"> Search</Link>
+            }
+           
           </Button>
       </div>
       {/* <div className='hero-btns'>

@@ -23,7 +23,7 @@ useEffect(() => {
     }, []);
 window.addEventListener('resize', showButton);
 const logUserOut = () =>{
-    sessionStorage.removeItem('token');
+    sessionStorage.clear();
     history("/")
 }
     return ( 
@@ -43,15 +43,7 @@ const logUserOut = () =>{
                         Home
                     </Link>
                 </li>
-                <li className='nav-item'>
-                    <Link
-                        to='/dashboard'
-                        className='nav-links'
-                        onClick={closeMobileMenu}
-                    >
-                        Dashboard
-                    </Link>
-                </li>
+               
                 <li className='nav-item'>
                     <Link
                         to='/service'
@@ -84,7 +76,21 @@ const logUserOut = () =>{
                         </Link>  
                     </li>
                 }
-                <li className='nav-item'>
+
+                {
+                    sessionStorage.getItem('token')
+                    ?
+                    <li className='nav-item'>
+                    <Link
+                        to='/dashboard'
+                        className='nav-links'
+                        onClick={closeMobileMenu}
+                    >
+                        Dashboard
+                    </Link>
+                    </li>
+                    :
+                    <li className='nav-item'>
                     <Link
                         to='/sign-up'
                         className='nav-links'
@@ -92,7 +98,10 @@ const logUserOut = () =>{
                     >
                         Sign Up
                     </Link>
-                </li>
+                    </li>
+
+                }
+                
              </ul>
                 {/* button && <Button buttonStyle='btn--outline'>SIGN UP</Button>*/}
              </div>

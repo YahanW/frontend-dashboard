@@ -12,7 +12,13 @@ export default class Header extends Component {
             <a className="item">Change Location ?</a>
         </div>
         <div className='trolley'>
-            <a className="item">Samantha</a>
+        <a className="item">
+             <Link to='/profile'> 
+             {
+                sessionStorage.getItem('email')
+              }
+              </Link>
+            </a>
             <a className="item"><Link to='/'>Home</Link></a>
             <a className="item">Inbox</a>
             <a className="item">Bookings</a>
