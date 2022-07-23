@@ -1,0 +1,45 @@
+.find{
+    /*background-color: #80808030;*/
+    background-image: url("https://alacritas.cis.utas.edu.au/~mingked/kit301/JPGs/search_back.jpg");
+    background-size: cover;
+    display: flex;
+    padding: 30px;
+    justify-content:center;
+    opacity: 0.6;
+}
+.find .logo{
+    width:260px;
+    height: 100px;
+    background-image: url("https://alacritas.cis.utas.edu.au/~mingked/kit301/PNGs/logo.png");
+    background-size: 90%;
+    background-repeat: no-repeat;
+    margin-left: -120px;
+}
+.formSearch{
+    display: flex;
+    width: 700px;
+    margin-left: 90px;
+    margin-top: 10px;
+}
+
+input{
+    margin-top: 10px;
+    height:55px;
+    width: 560px;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #ffffff60;
+    font-size: medium;
+    color: white;
+}
+
+.iconSearch{
+    background-image: url("https://alacritas.cis.utas.edu.au/~mingked/kit301/JPGs/search.png");
+    width: 90px;height: 90px;
+    background-repeat: no-repeat;
+    background-size: 85%;
+    margin: 5px 30px;
+}
+.filter .selection {
+    justify-content: center;
+}
