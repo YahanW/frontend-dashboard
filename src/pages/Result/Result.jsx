@@ -4,8 +4,8 @@ import './Result.css'
 import {useState} from 'react'
 
 function Result() {
-  const serType = [ "Venues","Hosts","Decoration","Performance","Security","Rental","Venues","Hosts","Decoration","Performance","Security",];
-  const areType = [ "Hobart","SandyBay","Kinston","NewTown","South Hobart"];
+  const serType = [ "Venue Renting","Hosting","Decoration","Live Performance","Security","Car Rental",];
+  const areType = [ "Hobart","SandyBay","Kinston","NewTown","South Hobart","North Hobart","Dynnyrne"];
   const bgtType = [ "$50-$99","$100-$499","$500-$999","$1000+"];
   const [isActiveRight, setIsActive] = useState(false);
   const [isActiveLeft, setLeft] = useState(false);
@@ -16,7 +16,8 @@ function Result() {
     return (
       <div className='result'>
         <Header/> {/**Navbar */}
-        <div className='find'>
+
+        <div className='find'> {/**Search bar and Home Logo */}
           <div className='logo'></div>
             <div className='formSearch'>
               <form><input placeholder='Searching by Merchant or Service'/></form>
@@ -24,9 +25,8 @@ function Result() {
             </div>
         </div>
 
-        <div className='filter'> 
-
-          <div className='selection'>
+        <div className='filter'>  {/**More specific filters*/}
+          <div className='selection'> {/**Service type filter*/}
             <div className='left'>
               <p>Service Type</p>
               <p className='all'>All</p>
@@ -48,7 +48,8 @@ function Result() {
            
           </div>
           <hr className='hrSearch'/>
-          <div className='selection'>
+          
+          <div className='selection'> {/**Area filter*/}
             <div className='left'>
               <p>Area</p>
               <p className='all'>All</p>
@@ -67,7 +68,8 @@ function Result() {
            </div>
           </div>
           <hr className='hrSearch'/>
-          <div className='selection'>
+
+          <div className='selection'> {/**Budget filter*/}
             <div className='left'>
                 <p>Budget</p>
                 <p className='all'>All</p>
@@ -85,9 +87,30 @@ function Result() {
             </div>
           </div>
           <hr className='hrSearch'/>
-          <div className='itemList'>
-            <div className='item'></div>
-          </div>
+        </div>
+
+        <div className='itemList'> {/**Item Results*/}
+            <div className='item'>
+              {/**Left hand side for representive picture*/}
+                <div className='item-left'></div>
+              {/**right hand side for some basic item info*/}
+                <div className='item-right'>
+                  <h2> Flowers for Home </h2>
+                  <h4>187 Warwick St, West Hobart TAS 7000</h4>
+                  <div className='merchant'>
+                    <h3>Botanical Kate Sice</h3>
+                    <div className='avatar'></div>
+                  </div>
+                </div>
+              {/**very right side for marking*/}
+                <div className='item-star'>
+                  <div className="star"><h2>4.5</h2></div>
+                  
+                  <h4>average price</h4>
+                  <h3>$100</h3>
+                </div>
+            </div>
+            
         </div>
       </div>
     )

@@ -34,8 +34,10 @@ export default(
                 <Route path="/dashboard/member/merchant" element={<h1>Merchant List</h1>}/>
                 <Route path="/dashboard/booking" element={<h1>Bookings</h1>}/>
             </Route>
-            <Route path='/profile' element={<Profile/>}/>
             <Route path='/result' element={<Result/>}/>
+            
+            <Route path='/profile' element={<Profile/>}/>
+           
             <Route path='/service' element={<HomeService/>}/>
            
             <Route path='/sign-up' element={<Register/>}/>
