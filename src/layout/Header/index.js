@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import {Space} from 'antd'
 import { Link } from 'react-router-dom'
 import './style/index.css'
 export default class Header extends Component {

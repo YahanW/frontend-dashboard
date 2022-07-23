@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 
-export default class HomeVenues extends Component {
+export default class NotFound extends Component {
   render() {
     return (
       <div>
-        <h3>Venues</h3>
+        <h3>404 NOT FOUND</h3>
       </div>
     )
   }

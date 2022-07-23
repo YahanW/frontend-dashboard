@@ -13,23 +13,20 @@ import Register from "./pages/Register/Register";
 //home page and its sub-routing
 import Home from "./pages/Home/Home";
 import HomeService from "./pages/Home/HomeService";
-import HomeVenues from "./pages/Home/HomeVenues";
+
 
 //searching result related
 import Result from "./pages/Result/Result";
 
 //profile related
 import Profile from "./pages/Profile";
+import NotFound from "./pages/NotFound";
 
 export default(
     <Router>
         <Routes>
-            <Route exact path='/' element={<Home/>}></Route>
-            <Route path='/search' element={<Result/>}></Route>
-            <Route path='/service' element={<HomeService/>}></Route>
-            <Route path='/venue' element={<HomeVenues/>}></Route>
-            <Route path='/sign-up' element={<Register/>}></Route>
-            <Route path='/login' element={<LoginForm/>}></Route>
+            <Route exact path='/' element={<Home/>}/>
+            
             <Route path='/dashboard' element={<MainDash />}>
                 <Route index element={<img src={WelcomeDash} style={{width:'100%'}}/>}/>
                 <Route path='/dashboard/service' element={<ServiceDash/>}/>
@@ -37,9 +34,13 @@ export default(
                 <Route path="/dashboard/member/merchant" element={<h1>Merchant List</h1>}/>
                 <Route path="/dashboard/booking" element={<h1>Bookings</h1>}/>
             </Route>
-            <Route path='/profile' element={<Profile/>}></Route>
+            <Route path='/profile' element={<Profile/>}/>
+            <Route path='/result' element={<Result/>}/>
+            <Route path='/service' element={<HomeService/>}/>
            
-        
+            <Route path='/sign-up' element={<Register/>}/>
+            <Route path='/login' element={<LoginForm/>}/>
+            <Route path="*"element={<NotFound/>}/>
         </Routes>
     </Router>   
 )

@@ -3,6 +3,7 @@ import axios from 'axios';
 //import Logger from 'simple-console-logger';
 
 function User() {
+    /*
     const [user, setUser] = useState(null);
     const url = "https://easyevent.azurewebsites.net/api/User/GetAll";
 
@@ -23,7 +24,7 @@ function User() {
     } else {
         return null;
     };
-
+    */
 
 }
 

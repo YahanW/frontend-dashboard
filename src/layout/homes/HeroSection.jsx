@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 function HeroSection() {
   const history = useNavigate();
 
-  const loginWarn = () =>{
+  const onLogCheck = () =>{
    
    if(!sessionStorage.getItem('token'))
    {
@@ -18,10 +18,12 @@ function HeroSection() {
       title:'Login Required',
       content:'Please To Login or Signup before make a Search!!!',
       onOk:()=>{ 
-        history('/')
+        history("/")
+        
       }
       })
     }
+    return
   }
   return (
     <div className='hero-container'>
@@ -41,11 +43,11 @@ function HeroSection() {
             
           <Button type='submit' 
           className='btn' buttonStyle="btn--outline" buttonSize='btn--large'
-          onClick={loginWarn}
+          onClick={onLogCheck}
           >
             {
               sessionStorage.getItem('token') ?
-              <Link to="/search">Search</Link>
+              <Link to="/result">Search</Link>
               :
               <Link to="/">Search</Link>
             }

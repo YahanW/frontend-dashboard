@@ -1,8 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
+import Header from '../../layout/Header'
 
 function Result() {
     return (
       <div>
+        <Header/>
         <h2>
         Searching Result
         </h2>
