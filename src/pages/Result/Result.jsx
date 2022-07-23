@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 
-export default class Result extends Component {
-  render() {
+function Result() {
     return (
       <div>
+        <h2>
         Searching Result
+        </h2>
       </div>
     )
-  }
 }
+
+export default Result

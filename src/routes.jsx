@@ -16,7 +16,7 @@ import HomeService from "./pages/Home/HomeService";
 import HomeVenues from "./pages/Home/HomeVenues";
 
 //searching result related
-import Result from "./pages/Result";
+import Result from "./pages/Result/Result";
 
 //profile related
 import Profile from "./pages/Profile";
@@ -24,21 +24,21 @@ import Profile from "./pages/Profile";
 export default(
     <Router>
         <Routes>
-            <Route path='/' element={<Home/>}></Route>
-            <Route exact path='/service' element={<HomeService/>}></Route>
-            <Route exact path='/venue' element={<HomeVenues/>}></Route>
-            <Route exact path='/sign-up' element={<Register/>}></Route>
-           
+            <Route exact path='/' element={<Home/>}></Route>
+            <Route path='/search' element={<Result/>}></Route>
+            <Route path='/service' element={<HomeService/>}></Route>
+            <Route path='/venue' element={<HomeVenues/>}></Route>
+            <Route path='/sign-up' element={<Register/>}></Route>
             <Route path='/login' element={<LoginForm/>}></Route>
             <Route path='/dashboard' element={<MainDash />}>
                 <Route index element={<img src={WelcomeDash} style={{width:'100%'}}/>}/>
-                <Route exact path='/dashboard/service' element={<ServiceDash/>}/>
-                <Route exact path="/dashboard/member/user" element={<UserDash/>}/>
-                <Route exact path="/dashboard/member/merchant" element={<h1>Merchant List</h1>}/>
-                <Route exact path="/dashboard/booking" element={<h1>Bookings</h1>}/>
+                <Route path='/dashboard/service' element={<ServiceDash/>}/>
+                <Route path="/dashboard/member/user" element={<UserDash/>}/>
+                <Route path="/dashboard/member/merchant" element={<h1>Merchant List</h1>}/>
+                <Route path="/dashboard/booking" element={<h1>Bookings</h1>}/>
             </Route>
             <Route path='/profile' element={<Profile/>}></Route>
-            <Route path='/result' element={<Result/>}></Route>
+           
         
         </Routes>
     </Router>   

@@ -10,6 +10,7 @@ function HeroSection() {
   const history = useNavigate();
 
   const loginWarn = () =>{
+   
    if(!sessionStorage.getItem('token'))
    {
     Modal.confirm({
@@ -17,10 +18,10 @@ function HeroSection() {
       title:'Login Required',
       content:'Please To Login or Signup before make a Search!!!',
       onOk:()=>{ 
-        history('/login')
+        history('/')
       }
       })
-  }
+    }
   }
   return (
     <div className='hero-container'>
@@ -44,9 +45,9 @@ function HeroSection() {
           >
             {
               sessionStorage.getItem('token') ?
-              <Link to="/result"> Search</Link>
+              <Link to="/search">Search</Link>
               :
-              <Link to="/"> Search</Link>
+              <Link to="/">Search</Link>
             }
            
           </Button>
