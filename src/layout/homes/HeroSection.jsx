@@ -43,7 +43,7 @@ function HeroSection() {
 
           
       </div>
-      <Button type='submit' className='btn' buttonStyle="btn--outline" buttonSize='btn--large' onClick={onLogCheck}>
+      <Button type='submit' className='btn btnHero' buttonStyle="btn--outline" buttonSize='btn--large' onClick={onLogCheck}>
         Search
       </Button>
       <a>Advanced Search</a>

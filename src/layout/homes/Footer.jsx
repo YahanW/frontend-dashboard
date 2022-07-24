@@ -21,7 +21,7 @@ function Footer() {
                             type='email'
                             placeholder='Your Email'
                         />
-                        <Button buttonStyle='btn--outline'>Subscribe</Button>
+                        <Button className='btnFooter' buttonSize='btn--large' buttonStyle='btn--outline'>Subscribe</Button>
                     </form>
                 </div>
             </section>
