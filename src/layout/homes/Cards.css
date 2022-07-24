@@ -3,7 +3,7 @@
     background: #fff;
 }
 
-h1 {
+.cards h1 {
     text-align: center;
 }
 
@@ -13,7 +13,8 @@ h1 {
     align-items: center;
     max-width: 1120px;
     width: 90%;
-    margin: 0 auto;
+    margin-top: 10px;
+    margin-left: -70px;
 }
 
 .cards__wrapper {
