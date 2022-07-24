@@ -93,5 +93,7 @@
 
 .hero-container a{
    position: relative;
-   bottom:95px
+   bottom:75px;
+   color:#7691C6;
+   font-size: 20px;
 }
