@@ -44,3 +44,11 @@
     color: #242424;
     transition: all 0.3s ease-out;
 }
+
+.decorate{
+    background-color: #ffffff00;
+    width: 280px;
+    height: 100px;
+    margin-top: -112px;
+    border: #fff solid 5px;
+}
