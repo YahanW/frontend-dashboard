@@ -40,7 +40,9 @@ export default(
            
             <Route path='/service' element={<HomeService/>}/>
            
-            <Route path='/sign-up' element={<Register/>}/>
+            <Route path='/sign-user' element={<Register/>}/>
+            <Route path='/sign-merchant' element={<Register mode={'m'}/>}/>
+            
             <Route path='/login' element={<LoginForm/>}/>
             <Route path="*"element={<NotFound/>}/>
         </Routes>

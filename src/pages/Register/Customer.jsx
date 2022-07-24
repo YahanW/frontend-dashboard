@@ -1,12 +1,10 @@
-import React, { Component } from 'react'
+import React, { useState }  from 'react'
 import axios from "axios";
 import './register.css'
 import { Link } from 'react-router-dom';
 
-export default class Customer extends Component {
-	constructor(props){
-		super(props)
-		this.state={
+function Customer() {
+  const [details,setDetails] = useState({
       userName: '',
       firstName: '',
       lastName: '',
@@ -14,34 +12,27 @@ export default class Customer extends Component {
 			email:'',
 			password:'',
       phoneNumber: ''
-		}
-	}
-
-	changeHandler = e =>{
-		this.setState({[e.target.name]:e.target.value})
-	}
-	submitHandler = e =>{
+		})
+	
+	const submitHandler = e =>{
 		e.preventDefault()
-		console.log(this.state)
-		axios.post("https://easyevent.azurewebsites.net/api/user/create",this.state)
+		axios.post("https://easyevent.azurewebsites.net/api/user/create",details)
 		.then(response => {
 			console.log(response)
-			alert("Congradulations!! Register Finished !!!");
+			//alert("Congradulations!! Register Finished !!!");
 		})
 		.catch(error=>{
 			console.log(error)
-			alert("Something went wrong");
+			//alert("Something went wrong");
 		})
 	}
 
-  render(){
-    const {userName, firstName,lastName,dob,email,password,phoneNumber} = this.state
     return(
       <div class="regiBase">
         <div id="regiBox">
           <div id="left"></div>
           <div id="right">
-            <form onSubmit={this.submitHandler}>
+            <form onSubmit={submitHandler}>
               <div className='hello'>
                 <h3>Hi Customer</h3>
                 <div className='home'><a><Link to="/">home</Link></a></div>
@@ -49,31 +40,31 @@ export default class Customer extends Component {
               <div class="form">
                 <div class="item">
                   <input name="userName" type="text" placeholder="username" 
-                  value={userName} onChange={this.changeHandler} required/>
+                  value={details.userName} onChange={e=>setDetails({...details,userName:e.target.value})} required/>
                 </div>
                 <div class="item">
                   <input name="firstName" type="text" placeholder="firstname" 
-                  value={firstName} onChange={this.changeHandler} required/>
+                  value={details.firstName} onChange={e=>setDetails({...details,firstName:e.target.value})} required/>
                 </div>
                 <div class="item">
                   <input name="lastName" type="text" placeholder="lastname" 
-                  value={lastName} onChange={this.changeHandler} required/>
+                  value={details.lastName} onChange={e=>setDetails({...details,lastName:e.target.value})} required/>
                 </div>
                 <div class="item">
                   <input name="dob" type="date" placeholder="date of birth" 
-                  value={dob} onChange={this.changeHandler} required/>
+                  value={details.dob} onChange={e=>setDetails({...details,dob:e.target.value})} required/>
                 </div>
                 <div class="item">
                   <input name="email" type="text" placeholder="email" 
-                  value={email} onChange={this.changeHandler} required/>
+                  value={details.email} onChange={e=>setDetails({...details,email:e.target.value})} required/>
                 </div>
                 <div class="item">
                   <input type="password" name="password" placeholder="password"
-                  value={password} onChange={this.changeHandler} required/>
+                  value={details.password} onChange={e=>setDetails({...details,password:e.target.value})} required/>
                 </div>
                 <div class="item">
                   <input name="phoneNumber" type="text" placeholder="phone number" 
-                  value={phoneNumber} onChange={this.changeHandler} required/>
+                  value={details.phoneNumber} onChange={e=>setDetails({...details,phoneNumber:e.target.value})} required/>
                 </div>
               </div>
                 <div class="sending">
@@ -85,6 +76,8 @@ export default class Customer extends Component {
       </div>
 	
     )
-  }
+  
 }
 
+
+export default Customer

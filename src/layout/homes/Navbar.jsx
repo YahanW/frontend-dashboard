@@ -9,6 +9,7 @@ function Navbar(){
 const history = useNavigate();
 const [click, setClick] = useState(false);
 const [button, setButton] = useState(true);
+const [selectShow, setSelectShow] = useState(true);
 const handleClick = () => setClick(!click);
 const closeMobileMenu = () => setClick(false);
 const showButton = () => {
@@ -26,7 +27,13 @@ const logUserOut = () =>{
     sessionStorage.clear();
     history("/")
 }
-    return ( 
+const setSelection = () =>{
+    setSelectShow(!selectShow);
+    return
+}    
+
+
+return ( 
 
     <div>
         <nav className='navbar'>
@@ -91,13 +98,24 @@ const logUserOut = () =>{
                     </li>
                     :
                     <li className='nav-item'>
-                    <Link
-                        to='/sign-up'
-                        className='nav-links'
-                        onClick={closeMobileMenu}
-                    >
-                        Sign Up
-                    </Link>
+                        <p className='nav-links' onClick={setSelection}
+                        style={{display:selectShow?'':'none'}}>
+                            Sign Up
+                        </p>
+                            <selection className="register"
+                             style={{display:selectShow?'none':''}}>
+                                <option>
+                                <Link to='/sign-user' className='nav-links reg-it' onClick={closeMobileMenu}>
+                                    Sign User
+                                </Link>
+                                </option>
+                                <option>
+                                <Link to='/sign-merchant' className='nav-links reg-it' onClick={closeMobileMenu}>
+                                    Sign Merchant
+                                </Link>
+                                </option>
+                            </selection>
+                       
                     </li>
 
                 }
