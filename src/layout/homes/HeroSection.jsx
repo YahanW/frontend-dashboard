@@ -19,9 +19,10 @@ function HeroSection() {
       content:'Please To Login or Signup before make a Search!!!',
       onOk:()=>{ 
         history("/")
-        
       }
       })
+    }else{
+      history("/result")
     }
     return
   }
@@ -45,13 +46,7 @@ function HeroSection() {
           className='btn' buttonStyle="btn--outline" buttonSize='btn--large'
           onClick={onLogCheck}
           >
-            {
-              sessionStorage.getItem('token') ?
-              <Link to="/result">Search</Link>
-              :
-              <Link to="/">Search</Link>
-            }
-           
+            Search
           </Button>
       </div>
       {/* <div className='hero-btns'>

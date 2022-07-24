@@ -94,10 +94,6 @@ function LoginForm(){
 			</div>
 		</form>
 		
-		<button>
-		GET
-		</button>
-	
 	  	</div>
 	  </div>
 	

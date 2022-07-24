@@ -2,7 +2,7 @@
 	background: url('https://alacritas.cis.utas.edu.au/~mingked/kit301/JPGs/background_letter.jpg');
 	background-size: cover;
 	height: 100%;
-	padding-top: 35px;
+	padding-top: 95px;
 }
 
 .loginBase #loginBox{
@@ -10,10 +10,9 @@
 	width: 28%;
 	height: 600px;
 	margin-left: 37%;
-	
 	text-align: center;
 	background: #FFFFFF60;
-	padding: 1px 50px;
+	padding: 15px 50px;
     color: #000000;
 }
 .loginBase #loginBox h3{

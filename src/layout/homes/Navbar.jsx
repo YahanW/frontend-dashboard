@@ -50,16 +50,30 @@ return (
                         Home
                     </Link>
                 </li>
-               
+               {
+                sessionStorage.getItem('token') 
+                ?
                 <li className='nav-item'>
-                    <Link
-                        to='/service'
-                        className='nav-links'
-                        onClick={closeMobileMenu}
-                    >
-                        Services
-                    </Link>
+                <Link
+                    to='/profile'
+                    className='nav-links'
+                    onClick={closeMobileMenu}
+                >
+                    Profile
+                </Link>
                 </li>
+                :
+                <li className='nav-item'>
+                <Link
+                    to='/service'
+                    className='nav-links'
+                    onClick={closeMobileMenu}
+                >
+                    Services
+                </Link>
+                </li>
+               }
+               
                 { 
                     sessionStorage.getItem('token') 
                     ?
