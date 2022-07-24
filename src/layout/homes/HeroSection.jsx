@@ -22,7 +22,7 @@ function HeroSection() {
       }
       })
     }else{
-      history("/result")
+        history("/result")
     }
     return
   }

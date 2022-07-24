@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import {BrowserRouter as Router, Routes, Route,Navigate} from 'react-router-dom'
 
 //Dashboard and its sub-routing
 import MainDash from "./pages/Dashboard/Entry"
@@ -25,8 +25,7 @@ import NotFound from "./pages/NotFound";
 export default(
     <Router>
         <Routes>
-            <Route exact path='/' element={<Home/>}/>
-            
+            <Route index exact path='/' element={<Home/>}/>
             <Route path='/dashboard' element={<MainDash />}>
                 <Route index element={<img src={WelcomeDash} style={{width:'100%'}}/>}/>
                 <Route path='/dashboard/service' element={<ServiceDash/>}/>
@@ -35,15 +34,17 @@ export default(
                 <Route path="/dashboard/booking" element={<h1>Bookings</h1>}/>
             </Route>
             <Route path='/result' element={<Result/>}/>
-            
-            <Route path='/profile' element={<Profile/>}/>
-           
+            <Route path='/profile' element={<Profile/>}/>   
             <Route path='/service' element={<HomeService/>}/>
-           
             <Route path='/sign-user' element={<Register/>}/>
             <Route path='/sign-merchant' element={<Register mode={'m'}/>}/>
-            
-            <Route path='/login' element={<LoginForm/>}/>
+            {
+                sessionStorage.getItem('token') ?
+                <Route path='/login' element={<Navigate to='/result'/>}/>
+                :
+                <Route path='/login' element={<LoginForm/>}/>
+            }
+           
             <Route path="*"element={<NotFound/>}/>
         </Routes>
     </Router>   
