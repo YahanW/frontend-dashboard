@@ -15,6 +15,7 @@ function Cards() {
               text="The most romantic wedding With WonderfulWedding. Free quote, ask our friendly stuff now."
               label='Wedding'
               path='/service' />
+              <div className='desc'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</div>
           </ul>
           <ul className='cards__items'>
             <CardItem
@@ -22,6 +23,7 @@ function Cards() {
               text="Plan your kids next birthday party with PartyRus! PartyRus have everything you need. call now."
               label='Birthday'
               path='/service' />
+              <div className='desc'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</div>
           </ul>
           <ul className='cards__items'>
             <CardItem
@@ -29,6 +31,7 @@ function Cards() {
               text="IBM held their conference meeting at this venue, click here to explore more."
               label='Conference'
               path='/service' />
+              <div className='desc'>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</div>
           </ul>
           
         </div>
