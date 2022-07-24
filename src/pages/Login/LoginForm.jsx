@@ -22,7 +22,7 @@ function LoginForm(){
 	const passwdChecking = e =>{
 		
 		e.preventDefault();	//avoid page re-render
-		axios.post("https://easyevent.azurewebsites.net/api/User/Login",details)
+		axios.post("https://eventeasynew.azurewebsites.net/api/user/login",details)
 		.then(response => {
 			console.log(response)
 			Modal.confirm({
@@ -76,7 +76,7 @@ function LoginForm(){
       <div class="loginBase">
 		
 		<div id="loginBox">
-		<form onSubmit={submitLocal}>
+		<form onSubmit={passwdChecking}>
             <h3>Welcome</h3>
 			<div class="loginForm">
 				<div class="item">

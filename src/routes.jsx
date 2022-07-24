@@ -38,12 +38,9 @@ export default(
             <Route path='/service' element={<HomeService/>}/>
             <Route path='/sign-user' element={<Register/>}/>
             <Route path='/sign-merchant' element={<Register mode={'m'}/>}/>
-            {
-                sessionStorage.getItem('token') ?
-                <Route path='/login' element={<Navigate to='/result'/>}/>
-                :
+           
                 <Route path='/login' element={<LoginForm/>}/>
-            }
+                
            
             <Route path="*"element={<NotFound/>}/>
         </Routes>
