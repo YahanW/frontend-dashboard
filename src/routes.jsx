@@ -20,6 +20,10 @@ import Result from "./pages/Result/Result";
 
 //profile related
 import Profile from "./pages/Profile";
+import Personals from "./pages/Profile/Personals";
+import Booking from "./pages/Profile/Booking";
+
+//warning 404
 import NotFound from "./pages/NotFound";
 
 export default(
@@ -33,8 +37,13 @@ export default(
                 <Route path="/dashboard/member/merchant" element={<h1>Merchant List</h1>}/>
                 <Route path="/dashboard/booking" element={<h1>Bookings</h1>}/>
             </Route>
+            <Route path='/profile' element={<Profile/>}> 
+                <Route path='/profile/booking' index element={<Booking/>} />
+                <Route path='/profile/personal' element={<Personals/>}/>
+            
+            </Route>
             <Route path='/result' element={<Result/>}/>
-            <Route path='/profile' element={<Profile/>}/>   
+              
             <Route path='/service' element={<HomeService/>}/>
             <Route path='/sign-user' element={<Register/>}/>
             <Route path='/sign-merchant' element={<Register mode={'m'}/>}/>

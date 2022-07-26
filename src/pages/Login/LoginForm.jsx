@@ -72,11 +72,20 @@ function LoginForm(){
 			
 		})
 	}
+
+
+	const onTest = () =>{
+		fetch("https://eventeasynew.azurewebsites.net/api/Event/GetAllDetail")
+		.then(res=>res.json())
+		.then(data=>{
+			console.log(data)
+		}) //default 
+	}
     return(
       <div class="loginBase">
 		
 		<div id="loginBox">
-		<form onSubmit={passwdChecking}>
+		<form onSubmit={submitLocal}>
             <h3>Welcome</h3>
 			<div class="loginForm">
 				<div class="item">
@@ -93,7 +102,7 @@ function LoginForm(){
 				<p class="desc"><a href="#">forget password?</a></p>
 			</div>
 		</form>
-		
+		<button onClick={onTest}>URL Test</button>
 	  	</div>
 	  </div>
 	

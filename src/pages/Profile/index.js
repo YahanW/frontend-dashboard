@@ -1,13 +1,16 @@
-import React, { useState } from 'react'
-import Header from '../../layout/Header'
+import React, { useState } from 'react';
+import Header from '../../layout/Header';
 import './profile.css';
-import {Link} from 'react-router-dom'
-import Booking from './Booking';
-import Personals from './Personals';
+import {Link, Outlet} from 'react-router-dom';
 
 function Profile(){
-  const {bookSelect} = true;
-
+  const [bookSelect,setBookSelect] = useState(false);
+  const changeSelectA = () =>{
+    setBookSelect(true)
+  }
+  const changeSelectB = () =>{
+    setBookSelect(false)
+  }
     return (
       <div className='profile'>
         <Header/>
@@ -22,16 +25,19 @@ function Profile(){
           </div>
         </div>
         <div className='navies'>
-          <div className='nav-sub'>Booking History</div>
-          <div className='nav-sub'>Personal Details</div>
+          <div className='nav-sub'
+          style={{borderBottom:bookSelect?'3px solid rgb(161, 72, 181)':''}}
+          onClick={changeSelectA}
+          >
+            <Link to="/profile/booking">Booking History</Link>
+          </div>
+          <div className='nav-sub'
+           style={{borderBottom:bookSelect?'':'3px solid rgb(161, 72, 181)'}}
+           onClick={changeSelectB}>
+            <Link to="/profile/personal">Personal Details</Link>
+          </div>
         </div>
-        {
-          bookSelect ? 
-          <Personals/>
-          :
-          <Booking/>
-        }
-
+        <Outlet/>
 
       </div>
     )

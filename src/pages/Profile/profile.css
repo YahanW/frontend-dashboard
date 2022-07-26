@@ -51,7 +51,9 @@
     width: 170px;
     cursor: pointer;
     padding-bottom: 30px;
+    /*
     border-bottom: 3px solid rgb(161, 72, 181);
+    */
     font-size: medium;
     font-weight: 400;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -66,7 +68,7 @@
    
 }
 
-.booking{
+.booking .book-link  {
     width: 100%;
     height: 23%;
     background-color: #ffffff70;
@@ -77,14 +79,14 @@
     padding-top: 15px;
     padding-left:35px ;
 }
-.booking h3{
-    margin-top: -5pxfgh;
+.booking .book-link h3{
+    margin-top: -5px;
     margin-left: 175px;
 }
-.booking h4{
+.booking .book-link h4{
     margin-left: 175px;
 }
-.booking h2{
+.booking .book-link h2{
     margin-top: -5px;
 }
 .bookBTN{
