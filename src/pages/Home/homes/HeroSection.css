@@ -8,32 +8,39 @@
     flex-direction: column;
 }
 
-/* .hero-container  h1 {
+.hero-container  h1 {
     color: white;
     font-size: 100px;
-    margin-top: 60px;
+    margin-left: 32vw;
+    
 }
 .hero-container  p {
-    margin-top: -35px;
+    margin-top: -11vh;
     color: white;
     font-size: 32px;
+    margin-left: 37vw;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.search{
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 9vw;
+    /* margin-top: -22vh;  */
 }
 .requires{
     text-align: center;
     background-color:#ffffff00 ;
-    border: 5px solid white;
+    border: 0.3rem solid white;
     border-radius: 5px;
     color: white;
     font-size: 30px;
     font-style: italic;
     padding: 5px 10px;
-    display: inline-block;
-    margin-top: 170px;
-    margin-left: 15px;
-    width: 300px;
-    height: 135px;
-    
+    width: 20vw;
+    height: 20vh;
+    margin-left:0.5vw;
+    margin-right:0.5vw;
+
 }
 
 .eventType option{
@@ -45,20 +52,36 @@
     margin-left: 4px;
 }
 
-@media screen and (max-width: 960px) {
+.btnHero{
+    font-size: 1rem;
+    font-style: italic;
+    
+}
+
+.hero-container a{
+   position: relative;
+   bottom:10vh; 
+   color:#7691C6;
+   font-size: 20px;
+} 
+
+/* @media screen and (max-width: 960px) {
     .hero-container > h1 {
         font-size: 70px;
-        margin-top: -150px;
+        
+    }
+    .hero-container > p {
+        margin-top: -6vh;
+        font-size: 1.5rem;
     }
 }
 
 @media screen and (max-width: 768px) {
     .hero-container > h1 {
             font-size: 50px;
-            margin-top: -100px;
         }
     .hero-container > p {
-        font-size: 30px;
+        font-size: 1rem;
     }
     .btn-mobile {
         display: block;
@@ -67,21 +90,14 @@
     .btn {
         width: 100%;
     }
+    .requires{
+        flex: 49%;
+        
+    }
+    .search{
+        margin-left:-7vw ;
+        margin: 1vw 1vw;
+    }
+   
 }
-
-.search{
-    display: flex;
-    padding: 15px;
-    margin-top: -120px;
-}
-.btnHero{
-    font-size: 30px;
-    font-style: italic;
-}
-
-.hero-container a{
-   position: relative;
-   bottom:75px;
-   color:#7691C6;
-   font-size: 20px;
-} */
+ */

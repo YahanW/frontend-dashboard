@@ -1,7 +1,8 @@
 import React from 'react'
 import {Modal} from 'antd'
 import { useNavigate } from "react-router-dom";
-
+import {Button} from './Button'
+import './HeroSection.css'
 function HeroSection() {
   const history = useNavigate();
   const onLogCheck = () =>{
@@ -28,24 +29,21 @@ function HeroSection() {
         <p>Making events easy.</p>
       
 
-      {/* <div className='search'>
+        <div className='search'>
           <select className="requires eventType" required>
               <option value="">Event Type</option>
               <option value="1">Wedding</option>
               <option value="2">Business Meeting</option>
               <option value="3">Other</option>
           </select>
-
           <input type='date' className='requires checkin' required />
           <input type="number" className="requires guest" placeholder="Number of Guest" required />
           <input type='number' className='requires budget' placeholder="BUDGET" required />
-
-          
-      </div>
-      <Button type='submit' className='btn btnHero' buttonStyle="btn--outline" buttonSize='btn--large' onClick={onLogCheck}>
-        Search
-      </Button>
-      <a>Want Advanced Search ? Click Here</a> */}
+        </div>
+        <Button type='submit' className='btn btnHero' buttonStyle="btn--outline" buttonSize='btn--large' onClick={onLogCheck}>
+          Search
+        </Button>
+        <a>Want Advanced Search ? Click Here</a> 
     </div>
     
     )

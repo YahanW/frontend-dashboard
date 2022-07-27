@@ -22,9 +22,10 @@ function LoginForm(){
 	const passwdChecking = e =>{
 		
 		e.preventDefault();	//avoid page re-render
-		axios.post("https://eventeasynew.azurewebsites.net/api/user/login",details)
+		axios.post("https://eventeasynew.azurewebsites.net/api/user/login/",details)
 		.then(response => {
-			console.log(response)
+			console.log(response.config.validateStatus.name)
+			sessionStorage.setItem('token',response.config.validateStatus.name)
 			Modal.confirm({
 				//a pop up window
 				icon:<CheckOutlined />,
@@ -84,7 +85,7 @@ function LoginForm(){
     return(
       <div class="loginBase">
 		<div class="loginBox">
-			<form onSubmit={submitLocal} >
+			<form onSubmit={passwdChecking} >
 				<h3>Welcome</h3>
 				<h5><Link to="/">home</Link></h5>
 				<div class="loginForm">
