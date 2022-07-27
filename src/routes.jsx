@@ -9,7 +9,7 @@ import UserDash from "./pages/Dashboard/User";
 //login and Register page
 import LoginForm from "./pages/Login/LoginForm"
 import Register from "./pages/Register/Register";
-
+import ResetPass from "./pages/Login/ResetPass";
 //home page and its sub-routing
 import Home from "./pages/Home/Home";
 import HomeService from "./pages/Home/HomeService";
@@ -51,8 +51,8 @@ export default(
             <Route path='/sign-user' element={<Register/>}/>
             <Route path='/sign-merchant' element={<Register mode={'m'}/>}/>
            
-                <Route path='/login' element={<LoginForm/>}/>
-                
+            <Route path='/login' element={<LoginForm/>}/>
+            <Route path='reset' element={<ResetPass/>}/>
            
             <Route path="*"element={<NotFound/>}/>
         </Routes>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import {Modal} from 'antd'
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import {CheckOutlined} from '@ant-design/icons';
 import "./login.css"
 import CryptoJs from 'crypto-js'
@@ -86,6 +86,7 @@ function LoginForm(){
 		<div class="loginBox">
 			<form onSubmit={submitLocal} >
 				<h3>Welcome</h3>
+				<h5><Link to="/">home</Link></h5>
 				<div class="loginForm">
 					<div class="item">
 						<input name="email" type="text" placeholder="email" 
@@ -98,10 +99,10 @@ function LoginForm(){
 				</div>
 				<div class="logSend">
 					<button type="submit" class="submit">Login</button>
-					<p class="desc"><a href="#">forget password?</a></p>
+					<p class="desc"><Link to='/reset'>forget password?</Link></p>
 				</div>
 			</form>
-			<button onClick={onTest}>URL Test</button>
+			
 	  	</div>
 	  </div>
 	

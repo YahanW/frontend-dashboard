@@ -5,15 +5,14 @@
 	height: 100vh;
 	justify-content: center;
 	align-items: center;
-	padding-left: 37vw;
+	padding-left: 30vw;
 	padding-top: 10vh;
-	width: 100vw;
+	width: 100%;
 }
 .loginBox{
 	background: #FFFFFF60;
-	width: 45vw;
-	max-width: 455px;
-	max-height: 635px;
+	
+	width: 40vw;
 	padding-top: 3vw;
 	height: 80vh;
 	padding-left: 3vw;
@@ -25,6 +24,10 @@
 .loginBase .loginBox h3{
    color: #FFFFFF;
    font-size: max(35px,calc(0.6rem + 3vw));
+}
+.loginBase .loginBox h5{
+	position: relative;
+	top:-20px
 }
 .loginBase .loginBox .loginForm .item input{
 	width: 100%;
@@ -46,7 +49,7 @@
 }
 .logSend .submit{
 	margin-top: 12vh;
-	width: 180px;
+	width: 25vw;
 	height:  max(35px,7vh);
 	font-size: max(20px,calc(0.1rem + 1vw));
 	font-weight: 700;
@@ -55,17 +58,19 @@
 	border: 0;
 	border-radius: 30px;
 	cursor: pointer;
+	min-height: 33px;
 }
 
 
-@media only screen and (max-width: 390px) {
+@media (max-width: 414px) {
 	/*Iphone 12 Pro*/
 	.loginBase{
-		padding-left: 10vw;
+		padding-left: 5vw;
 		padding-top: 15vw;
 	}
+	
 	.loginBox{
-		width: 80vw;
+		width: 90vw;
 		padding-top: 6vh;
 		height: 60vh;
 	}
@@ -73,15 +78,15 @@
 		margin-top:4vh;
 	}
 }
-@media only screen and (max-width: 1024px) and (min-width: 391px) {
+@media only screen and (max-width: 1024px) and (min-width: 415px) {
 	/* Ipad */
 	.loginBase{
-		padding-left: 30vw;
+		padding-left: 15vw;
 		padding-top: 7vw;
 	}
 	.loginBox{
 		padding-top: 3vh;
-		height: 40vh;
+		width: 70vw;
 	}
 	.logSend .submit{
 		height:  4vh;
