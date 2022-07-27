@@ -1,31 +1,18 @@
-.hero-container {
-    /* background: url('images/img-home.jpg') center center/cover no-repeat; */
-    height: 810px;
-    width: 100%;
+
+.hero-container{
+    width: 100vw;
+    height: 100vh;
+    background-image: url("https://alacritas.cis.utas.edu.au/~mingked/kit301/JPGs/bg.jpg");
+    background-size: cover;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-shadow: inset 0 0 0 1000px rgba(0,0,0,0.2);
-    
-    
 }
 
-.hero-container video {
-    object-fit: cover;
-    width: 100%;
-    height: inherit;
-    position: fixed;
-    z-index: -1;
-    margin-top: 110px;
-}
-
-.hero-container  h1 {
+/* .hero-container  h1 {
     color: white;
     font-size: 100px;
     margin-top: 60px;
 }
-
 .hero-container  p {
     margin-top: -35px;
     color: white;
@@ -48,6 +35,7 @@
     height: 135px;
     
 }
+
 .eventType option{
     background-color:#6495ed60;
 }
@@ -96,4 +84,4 @@
    bottom:75px;
    color:#7691C6;
    font-size: 20px;
-}
+} */

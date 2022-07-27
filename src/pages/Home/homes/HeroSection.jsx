@@ -1,7 +1,4 @@
 import React from 'react'
-import {Button} from './Button'
-import './HeroSection.css'
-import './home.css'
 import {Modal} from 'antd'
 import { useNavigate } from "react-router-dom";
 
@@ -26,10 +23,12 @@ function HeroSection() {
   }
   return (
     <div className='hero-container'>
-      <video src='https://alacritas.cis.utas.edu.au/~mingked/kit301/Video/video-3.mp4' autoPlay loop muted />
-      <h1>Event Easy</h1>
-      <p>Making events easy.</p>
-      <div className='search'>
+      
+        <h1>Event Easy</h1>
+        <p>Making events easy.</p>
+      
+
+      {/* <div className='search'>
           <select className="requires eventType" required>
               <option value="">Event Type</option>
               <option value="1">Wedding</option>
@@ -46,7 +45,10 @@ function HeroSection() {
       <Button type='submit' className='btn btnHero' buttonStyle="btn--outline" buttonSize='btn--large' onClick={onLogCheck}>
         Search
       </Button>
-      <a>Want Advanced Search ? Click Here</a>
+      <a>Want Advanced Search ? Click Here</a> */}
+    </div>
+    
+    )
       {/* <div className='hero-btns'>
         <Button className='btns' buttonStyle="btn--outline" buttonSize='btn--large'>
             Get Started
@@ -54,9 +56,9 @@ function HeroSection() {
         <Button className='btns' buttonStyle="btn--primary" buttonSize='btn--large'>
             Watch Trailer <i className='far fa-play-circle' />       
         </Button>
-      </div> */}
-    </div>
-  )
+      </div>  */}
+   
+  
 }
 
 export default HeroSection
