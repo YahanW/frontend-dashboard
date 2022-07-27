@@ -39,11 +39,15 @@ function HeroSection() {
           <input type='date' className='requires checkin' required />
           <input type="number" className="requires guest" placeholder="Number of Guest" required />
           <input type='number' className='requires budget' placeholder="BUDGET" required />
+         
         </div>
-        <Button type='submit' className='btn btnHero' buttonStyle="btn--outline" buttonSize='btn--large' onClick={onLogCheck}>
-          Search
-        </Button>
-        <a>Want Advanced Search ? Click Here</a> 
+       
+        <div className='twoSearch'>
+            <Button type='submit' id='goResult' className='btn' buttonStyle="btn--outline" buttonSize='btn--large' onClick={onLogCheck}>
+            Search
+            </Button>
+            <a>Want Advanced Search ? Click Here</a> 
+        </div>
     </div>
     
     )

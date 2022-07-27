@@ -5,14 +5,13 @@
     display: flex;
 }
 .btn {
-    padding: 8px 20px;
     border-radius: 2px;
     outline: none;
     border: 5px solid white;
-    font-size: 40px;
+    font-size: 1rem;
     cursor: pointer;
-    width:270px;
-    
+    width:35vw;
+    position: relative;
 }
 
 .btn--primary {
@@ -37,9 +36,9 @@
 
 .btn--large {
     padding: 12px 26px;
-    font-size: 40px;
-    width: 280px;
-    height: 110px;
+    font-size: 3rem;
+    width: 25vw;
+    height: 17vh;
     border: 5px solid white;
 }
 
@@ -50,11 +49,13 @@
     transition: all 0.3s ease-out;
 }
 
-.decorate{
+.btn .decorate{
     background-color: #ffffff00;
-    width: 310px;
-    height: 130px;
+    width: 95%;
+    height: 95%;
     border: #fff solid 5px;
     border-radius: 5px;
-    
+    position: absolute;
+    left:0.5vw;
+    top:0.2vh;
 }
