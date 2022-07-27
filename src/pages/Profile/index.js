@@ -4,7 +4,7 @@ import './profile.css';
 import {Link, Outlet} from 'react-router-dom';
 
 function Profile(){
-  const [bookSelect,setBookSelect] = useState(false);
+  const [bookSelect,setBookSelect] = useState(true); //default to open booking list sub routing
   const changeSelectA = () =>{
     setBookSelect(true)
   }

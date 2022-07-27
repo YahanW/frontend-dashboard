@@ -22,6 +22,7 @@ import Result from "./pages/Result/Result";
 import Profile from "./pages/Profile";
 import Personals from "./pages/Profile/Personals";
 import Booking from "./pages/Profile/Booking";
+import BookHsitory from "./pages/Profile/BookHistory";
 
 //warning 404
 import NotFound from "./pages/NotFound";
@@ -38,10 +39,12 @@ export default(
                 <Route path="/dashboard/booking" element={<h1>Bookings</h1>}/>
             </Route>
             <Route path='/profile' element={<Profile/>}> 
-                <Route path='/profile/booking' index element={<Booking/>} />
+                <Route index element={<Booking/>}/>
+                <Route path='/profile/booking' element={<Booking/>} />
                 <Route path='/profile/personal' element={<Personals/>}/>
             
             </Route>
+            <Route path='/profile/booking/details' element={<BookHsitory/>}/>
             <Route path='/result' element={<Result/>}/>
               
             <Route path='/service' element={<HomeService/>}/>

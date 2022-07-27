@@ -1,50 +1,54 @@
+
 .loginBase{
 	background: url('https://alacritas.cis.utas.edu.au/~mingked/kit301/JPGs/background_letter.jpg');
 	background-size: cover;
-	height: 100%;
-	padding-top: 95px;
+	height: 100vh;
+	justify-content: center;
+	align-items: center;
+	padding-left: 37vw;
+	padding-top: 10vh;
+	width: 100vw;
 }
-
-.loginBase #loginBox{
-
-	width: 28%;
-	height: 600px;
-	margin-left: 37%;
-	text-align: center;
+.loginBox{
 	background: #FFFFFF60;
-	padding: 15px 50px;
-    color: #000000;
-}
-.loginBase #loginBox h3{
-	color: #FFFFFF;
-   font-size: 55px;
-  
-}
+	width: 45vw;
+	max-width: 455px;
+	max-height: 635px;
+	padding-top: 3vw;
+	height: 80vh;
+	padding-left: 3vw;
+	padding-right: 3vw;
+	color: #000000;
+	text-align: center;
 
-.loginBase #loginBox .loginForm .item input{
-	width: 330px;
-	font-size: 30px;
+}
+.loginBase .loginBox h3{
+   color: #FFFFFF;
+   font-size: max(35px,calc(0.6rem + 3vw));
+}
+.loginBase .loginBox .loginForm .item input{
+	width: 100%;
+	font-size: max(25px,calc(0.1rem + 1vw));
 	border: 0;
 	border-bottom: 2px solid #ffffff;
-	padding: 5px 10px; /*上下左右*/
+	padding: 5px 10px; 
 	background: #ffffff00;
-	color: #000000; /*直接color就是字体颜色*/
+	color: #000000;
 }
-.loginBase #loginBox .loginForm{
-    margin-top: 10%;
+.loginBase .loginBox .loginForm{
+	margin-top:6vh;
 }
- ::placeholder{
+::placeholder{
     color: #00000070;
 }
-#loginBox .loginForm .item{
-	margin-top: 15px; /*上间距*/
+.loginBox .loginForm .item{
+	margin-top: 5%;
 }
-
 .logSend .submit{
-	margin-top: 125px;	
+	margin-top: 12vh;
 	width: 180px;
-	height: 50px;
-	font-size: 20px;
+	height:  max(35px,7vh);
+	font-size: max(20px,calc(0.1rem + 1vw));
 	font-weight: 700;
 	background-color: #2B394E;
     color: #FFFFFF;
@@ -52,7 +56,38 @@
 	border-radius: 30px;
 	cursor: pointer;
 }
-.logSend .desc{
-	color: #00000060;
-}
 
+
+@media only screen and (max-width: 390px) {
+	/*Iphone 12 Pro*/
+	.loginBase{
+		padding-left: 10vw;
+		padding-top: 15vw;
+	}
+	.loginBox{
+		width: 80vw;
+		padding-top: 6vh;
+		height: 60vh;
+	}
+	.loginBase .loginBox .loginForm{
+		margin-top:4vh;
+	}
+}
+@media only screen and (max-width: 1024px) and (min-width: 391px) {
+	/* Ipad */
+	.loginBase{
+		padding-left: 30vw;
+		padding-top: 7vw;
+	}
+	.loginBox{
+		padding-top: 3vh;
+		height: 40vh;
+	}
+	.logSend .submit{
+		height:  4vh;
+		margin-top: 9vh;
+	}
+	.loginBase .loginBox .loginForm{
+		margin-top:4vh;
+	}
+}

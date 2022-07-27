@@ -83,26 +83,25 @@ function LoginForm(){
 	}
     return(
       <div class="loginBase">
-		
-		<div id="loginBox">
-		<form onSubmit={submitLocal}>
-            <h3>Welcome</h3>
-			<div class="loginForm">
-				<div class="item">
-					<input name="email" type="text" placeholder="email" 
-					value={details.email} onChange={e=>setDetails({...details,email:e.target.value})} required/>
+		<div class="loginBox">
+			<form onSubmit={submitLocal} >
+				<h3>Welcome</h3>
+				<div class="loginForm">
+					<div class="item">
+						<input name="email" type="text" placeholder="email" 
+						value={details.email} onChange={e=>setDetails({...details,email:e.target.value})} required/>
+					</div>
+					<div class="item">
+						<input type="password" name="password" placeholder="password"
+						value={details.password} onChange={e=>setDetails({...details,password:e.target.value})} required/>
+					</div>
 				</div>
-				<div class="item">
-					<input type="password" name="password" placeholder="password"
-					value={details.password} onChange={e=>setDetails({...details,password:e.target.value})} required/>
+				<div class="logSend">
+					<button type="submit" class="submit">Login</button>
+					<p class="desc"><a href="#">forget password?</a></p>
 				</div>
-			</div>
-			<div class="logSend">
-				<button type="submit" class="submit">Login</button>
-				<p class="desc"><a href="#">forget password?</a></p>
-			</div>
-		</form>
-		<button onClick={onTest}>URL Test</button>
+			</form>
+			<button onClick={onTest}>URL Test</button>
 	  	</div>
 	  </div>
 	
