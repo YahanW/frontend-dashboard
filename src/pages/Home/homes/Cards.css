@@ -38,8 +38,9 @@
 }
 .cards__items .desc{
    
-    width:95vw;
-    
+    width:45vw;
+    margin-left: 5vw;
+    font-size: 1.4rem;
     
 }
 .cards__item__link {

@@ -26,13 +26,13 @@ function Profile(){
         </div>
         <div className='navies'>
           <div className='nav-sub'
-          style={{borderBottom:bookSelect?'3px solid rgb(161, 72, 181)':''}}
+          style={{borderBottom:bookSelect?'3px solid #fb850060':''}}
           onClick={changeSelectA}
           >
             <Link to="/profile/booking">Booking History</Link>
           </div>
           <div className='nav-sub'
-           style={{borderBottom:bookSelect?'':'3px solid rgb(161, 72, 181)'}}
+           style={{borderBottom:bookSelect?'':'3px solid #fb850060'}}
            onClick={changeSelectB}>
             <Link to="/profile/personal">Personal Details</Link>
           </div>

@@ -1,25 +1,31 @@
 .m-header{
-    height:48px;
-    line-height: 48px;
-    padding-right: 30px;
+    height:7vh;
+    line-height: 7vh;
+    padding-right: 7vw;
     display: flex;
-    background-color: #fff;
-    box-shadow: 0 1px 6px #aaa;
-    font-size: 14px;
+    background-color: #53835B;
+    font-size: 1rem;
+    color: #A9DDD6;
+    box-shadow: 0px 5px #B63E1C80;
 }
 .m-header .location{
     text-align: left;
-    width: 500px;
+    width: 30vw;
+    display: flex;
 }
 
 .m-header .trolley{
-    text-align: center;
-    width: 100%;
+    width: 70vw;
+    display: flex;
+    margin-left: 5vw;
 }
 
 .m-header .trolley .item{
-    margin-left: 100px;
+    margin-left: 5vw;
+}
+.item .selec{
+    color: #A9DDD6;
 }
 .m-header .location .item{
-    margin-left: 50px;
+    margin-left: 5vw;
 }
