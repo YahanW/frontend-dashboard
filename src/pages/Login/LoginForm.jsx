@@ -85,7 +85,7 @@ function LoginForm(){
     return(
       <div class="loginBase">
 		<div class="loginBox">
-			<form onSubmit={passwdChecking} >
+			<form onSubmit={submitLocal} >
 				<h3>Welcome</h3>
 				<h5><Link to="/">home</Link></h5>
 				<div class="loginForm">
