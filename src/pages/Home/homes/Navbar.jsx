@@ -115,19 +115,25 @@ return (
                         style={{display:selectShow?'':'none'}}>
                             Sign Up
                         </p>
-                            <selection className="register"
-                             style={{display:selectShow?'none':''}}>
-                                <option>
-                                <Link to='/sign-user' className='nav-links reg-it' onClick={closeMobileMenu}>
+                        <div className="register" style={{display:selectShow?'':''}}>
+                                
+                                <Link to='/sign-user' 
+                                className=' reg-it' onClick={closeMobileMenu}
+                                style={{display:selectShow?'none':''}}
+                                >
                                     Sign User
                                 </Link>
-                                </option>
-                                <option>
-                                <Link to='/sign-merchant' className='nav-links reg-it' onClick={closeMobileMenu}>
+                                
+                               
+                                <Link to='/sign-merchant' 
+                                className=' reg-it' 
+                                onClick={closeMobileMenu}
+                                style={{display:selectShow?'none':''}}
+                                >
                                     Sign Merchant
                                 </Link>
-                                </option>
-                            </selection>
+                                
+                        </div>
                        
                     </li>
 

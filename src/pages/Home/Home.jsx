@@ -8,8 +8,8 @@ import Footer from './homes/Footer';
 function Home () {
     return(
         <div className='Home'>
-           <Navbar/>
-           <HeroSection />
+            <Navbar/>
+            <HeroSection />
             <Card />
             <Footer />
         </div>
