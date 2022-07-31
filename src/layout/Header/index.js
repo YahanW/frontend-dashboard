@@ -9,23 +9,36 @@ export default class Header extends Component {
             <span className="item">TAS | Hobart</span>
             <div className="item">Change Location ?</div>
         </div>
+
+        <input type="checkbox" class="nav-toggle" id="nav-toggle"></input>
         <div className='trolley'>
-          <div className="item">
+          <ul>
+            <li>
               <Link to='/profile' className="selec"> 
               {
-                  sessionStorage.getItem('email')
-                }
-                </Link>
-          </div>
-          <div className="item">
-            <Link to='/' className="selec">
-              Home
-            </Link>
-          </div>
-          <div className="item">Inbox</div>
-          <div className="item">Bookings</div>
-          <div className="item">Trolley</div>
+                sessionStorage.getItem('email')
+              }
+              </Link>
+            </li>
+            <li>
+              <Link to='/' className="selec">
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link to="#">Inbox</Link>
+            </li>
+            <li>
+              <Link to="#">Bookings</Link>
+            </li>
+            <li>
+              <Link to="#">Trolley</Link>
+            </li>
+          </ul>
         </div>
+        <label for="nav-toggle" class="nav-toggle-label">
+          <span></span>
+        </label>
 
       </div>
     )

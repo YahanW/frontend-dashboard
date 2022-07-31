@@ -1,34 +1,139 @@
+:root{
+    /* define variable at root in case of later using */
+    --background-color:black;
+}
 .m-header{
-    height:7vh;
-    line-height: 7vh;
-    padding-right: 7vw;
-    display: flex;
-    background-color: #9fbfc380;
-    font-size: 1rem;
-    color: #ffffff;
-    box-shadow: 0px 5px #9bbac7;
+    background-color: var(--background-color);
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    z-index: 999; /* very top layer */
+   
 }
-.m-header .location{
+.trolley{
+    position: absolute;
     text-align: left;
-    width: 30vw;
+    top: 100%;
+    left:0;
+    background:var(--background-color);
+    width: 100%;
+    /* fancy way to appear  */
+    transform: scale(1,0);
+    transform-origin: top ;
+    transition:transform 400ms ease-in-out;
+}
+.trolley ul{
+    margin:0;
+    padding:0;
+    list-style: none;
+}
+.trolley li{
+    margin-bottom: 1em;
+    margin-left: 1em;
+}
+.trolley Link{  
+    /* remove a tag feature */
+    color:white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    opacity: 0; /*default does't appear*/
+    transition: opacity 150ms ease-in-out; /*last one is animation delay*/
+}
+.trolley Link:hover{
+    color:#000;
+}.nav-toggle:checked ~ nav{
+    /* ~ first sibling, doesn't have to be immediatelt after */
+    display: block;
+    transform: scale(1,1);  /*control lenght width */
+}
+.nav-toggle:checked ~ nav a{
+    /* ~ first sibling, doesn't have to be immediatelt after */
+   opacity: 1;
+   transition: opacity 250ms ease-in-out 250ms; /*last one is animation delay*/
+}
+.nav-toggle{
+    display: none;
+}
+.nav-toggle-label{
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: 1em;
+    /* center items by following three */
+    height: 100%;
     display: flex;
+    align-items: center;
+}
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after{
+    display: block;
+    background-color: aliceblue;
+    height: 2px;
+    width: 2em;
+    border-radius: 2px;
+    position:relative;
+    cursor: pointer;
 }
 
-.m-header .trolley{
-    width: 70vw;
-    display: flex;
-    margin-left: 5vw;
+.nav-toggle-label span::before,
+.nav-toggle-label span::after{
+    content: '';
+    position: absolute;
+
 }
 
-.m-header .trolley .item{
-    margin-left: 5vw;
+.nav-toggle-label span::before{
+    bottom:7px;
 }
-.item .selec{
-    color: #ffffff;
+.nav-toggle-label span::after{
+    top:7px;
 }
-.m-header .location .item{
-    margin-left: 5vw;
-}
-@media only screen and (max-width: 810px){
-    
+
+@media screen and (min-width:800px){
+    .nav-toggle-label{
+        display: none;
+    }
+    .m-header{
+        display: grid;
+        grid-template-columns: 1fr auto minmax(600px,1fr) 1fr; /*setting 4 columns*/
+    }
+    .logo{
+        grid-column: 2 / 3;
+    }
+    .trolley{
+        grid-column: 3 / 4;
+        all:unset;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+    .trolley ul{
+        display: flex;
+        justify-content:flex-end;
+    }
+    .trolley Link{
+        opacity: 1;
+        position: relative;
+    }
+    .trolley Link::before{
+        content: '';
+        display: block;
+        height: 5px;
+        background-color: #000;
+        position: absolute;
+        top: -.75em; /*alternarive: bottom:-.75em*/
+        left: 0;right: 0;
+        transform: scale(0,1);
+        /* transform-origin:left ; grow from left */
+        transition:transform ease-in-out 250ms;
+    }
+    .trolley Link:hover::before{
+        transform: scale(1,1);
+    }
+    .trolley li{
+        margin-left: 3em;
+        margin-bottom: 0;
+    }
 }
