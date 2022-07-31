@@ -5,11 +5,10 @@ export default class Header extends Component {
   render() {
     return (
       <div className='m-header'>
-        <div className='location'> 
-            <span className="item">TAS | Hobart</span>
-            <div className="item">Change Location ?</div>
-        </div>
-
+       <div className='location'>
+        <h1>Hobart</h1> 
+        <a>Change Location ?</a>
+       </div>
         <input type="checkbox" class="nav-toggle" id="nav-toggle"></input>
         <div className='trolley'>
           <ul>
@@ -36,6 +35,7 @@ export default class Header extends Component {
             </li>
           </ul>
         </div>
+
         <label for="nav-toggle" class="nav-toggle-label">
           <span></span>
         </label>

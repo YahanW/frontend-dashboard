@@ -66,3 +66,10 @@
 .detail h2{
     font-size: 1.4rem;
 }
+
+@media screen and (max-width:800px){
+    .history-book .history-title{
+        padding-left: 25.5vw;
+       
+    }
+}

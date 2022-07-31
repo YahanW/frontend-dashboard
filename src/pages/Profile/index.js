@@ -12,6 +12,7 @@ function Profile(){
     setBookSelect(false)
   }
     return (
+
       <div className='profile'>
         <Header/>
         <div className='upper'>
@@ -37,7 +38,6 @@ function Profile(){
           </div>
         </div>
         <Outlet/>
-
       </div>
     )
   
