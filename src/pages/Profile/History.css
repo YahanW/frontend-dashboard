@@ -49,20 +49,20 @@
 }
 .Details .detail{
     height: 85%;
-    width: 30%;
+    width: 25%;
     margin: 1vw;
-    padding-left: 10%;
+    padding-left: 9%;
 }
 .history-book button{
     z-index: 15;
     margin-top: -10.5vh;
-    width: 165px;
-    height: 75px;
+    width: 15vw;
+    height: 10vh;
     margin-left: 75vw;
     background-color: brown;
     color: aliceblue;
-    font-size: xx-large;
+    font-size: 1rem;
 }
 .detail h2{
-    font-size: xx-large;
+    font-size: 1.4rem;
 }
