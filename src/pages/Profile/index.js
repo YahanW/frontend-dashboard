@@ -4,7 +4,7 @@ import './profile.css';
 import {Link, Outlet} from 'react-router-dom';
 
 function Profile(){
-  const [bookSelect,setBookSelect] = useState(true); //default to open booking list sub routing
+  const [bookSelect,setBookSelect] = useState(false); //default to open booking list sub routing
   const changeSelectA = () =>{
     setBookSelect(true)
   }
@@ -27,14 +27,13 @@ function Profile(){
         <div className='navies'>
           <div className='nav-sub'
           style={{borderBottom:bookSelect?'3px solid #33A1C9':''}}
-          onClick={changeSelectA}
           >
-            <Link to="/profile/booking">Booking History</Link>
+            <Link onClick={changeSelectA} to="/profile/booking">Booking History</Link>
           </div>
           <div className='nav-sub'
            style={{borderBottom:bookSelect?'':'3px solid #33A1C9'}}
-           onClick={changeSelectB}>
-            <Link to="/profile/personal">Personal Details</Link>
+           >
+            <Link onClick={changeSelectB} to="/profile/personal">Personal Details</Link>
           </div>
         </div>
         <Outlet/>
