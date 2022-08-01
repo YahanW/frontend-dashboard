@@ -5,8 +5,14 @@
 3. start frontend: npm/yarn start
 4. start backend: nodemon index.js
 5. Entry->
-    Home: Dashboard/Corporate   Services   Login/profile   Venus   Sign-up/sign-out    
+    Home: Dashboard/Corporate   Services   Login/profile   Sign-up/sign-out    
     Dashoboard: Service     User    Bookings    
     Search:     Result      Inbox   Trolley     Location    Bookings
     Item:   Overview    Review
     Profile:    Overview    past-events
+6.  results.map((ele,index)=>{
+    <tag key={index}>{ele.attribute}</tag>
+})
+7. Expression ? : Link->routes
+8. backend-> npm install nodemon -g --save
+9. backend references to "https://github.com/Mingke1999/backend-dashboard"
