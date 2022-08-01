@@ -1,8 +1,7 @@
 .checkout{
     height: auto;
     display: flex;
-    background-image: url("https://assets-global.website-files.com/5e39e095596498a8b9624af1/5f6e93d250a6d04f4eae9f02_Backgrounds-WFU-thumbnail-(size).jpg");
-    background-size: cover;
+    background-color:#a9a9a910;
 }
 
 .checkout .left{
@@ -17,21 +16,22 @@
     width: 90%;
     height: 35vh;
     margin-bottom: 5vh;
+    
 }
 .payContainer{
     width: 90%;
     height: 23vh;
     margin-bottom: 5vh;
+    
 }
 .cardContainer{
-   
     width: 90%;
     height: 50vh;
 }
 .itemCheck{
     width: 100%;
     height: 85%;
-    background-color: aliceblue;
+    background-color:#a9a9a930;
 }
 .itemCheck .first{
     display: flex;
