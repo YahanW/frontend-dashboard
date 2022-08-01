@@ -4,7 +4,7 @@
 
 3. start frontend: npm/yarn start
 4. start backend: nodemon index.js
-Entry->
+5. Entry->
     Home: Dashboard/Corporate   Services   Login/profile   Venus   Sign-up/sign-out    
     Dashoboard: Service     User    Bookings    
     Search:     Result      Inbox   Trolley     Location    Bookings

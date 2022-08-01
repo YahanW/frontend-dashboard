@@ -7,8 +7,9 @@ function CheckOut(){
         <>
             <Header/>   
             <div className="checkout">
-           
+            {/* REVIEW these are static code now, later would implement more with backend */}
                 <div className="left">
+                    {/* REVIEW the checkout item details */}
                     <div className="itemContainer">
                         <h1>CHECK OUT</h1>
                         <div className="itemCheck">
@@ -18,12 +19,15 @@ function CheckOut(){
 
                         </div>
                     </div>
+                    {/* REVIEW payment method selection
+                        TODO put three popular payment below later
+                    */}
                     <div className="payContainer">
                         <h1>Payment Method</h1>
                         <div className="itemCheck">
                         </div>
                     </div>
-
+                    {/* REVIEW bankcard or other payment details */}
                     <div className="cardContainer">
                         <h1>Card Details</h1>
                         <form>
@@ -51,10 +55,12 @@ function CheckOut(){
                 </div>
                 <div className="right">
                     <div className="vouBox">
+                        {/*TODO if voucher code valid then button valid and calculate new checkout amount */}
                         <form className="voucher">
                             <input type="text" placeholder="Place Your Discount Code Here"/>
                             <button disabled >Apply</button>
                         </form>
+                        {/* REVIEW final checkout calculation */}
                         <div className="calc">
                             <h3>Subtotal</h3>
                             <p>7820</p>
