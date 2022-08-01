@@ -23,6 +23,8 @@ import Profile from "./pages/Profile";
 import Personals from "./pages/Profile/Personals";
 import Booking from "./pages/Profile/Booking";
 import BookHsitory from "./pages/Profile/BookHistory";
+//trolley and checkout
+import CheckOut from "./pages/CheckOut/CheckOut"
 
 //warning 404
 import NotFound from "./pages/NotFound";
@@ -46,7 +48,7 @@ export default(
             </Route>
             <Route path='/profile/booking/details' element={<BookHsitory/>}/>
             <Route path='/result' element={<Result/>}/>
-              
+            <Route path="/checkout" element={<CheckOut/>}></Route>
             <Route path='/service' element={<HomeService/>}/>
             <Route path='/sign-user' element={<Register/>}/>
             <Route path='/sign-merchant' element={<Register mode={'m'}/>}/>

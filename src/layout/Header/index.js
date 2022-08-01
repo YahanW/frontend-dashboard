@@ -1,8 +1,14 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState} from 'react';
+import { Link } from 'react-router-dom';
+import { Modal,Button} from 'antd';
+
 import './style/index.css'
-export default class Header extends Component {
-  render() {
+function Header(){
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const showModal = () => {setIsModalVisible(true);};
+  const handleOk = () => {setIsModalVisible(false);};
+  const handleCancel = () => {setIsModalVisible(false);};
+
     return (
       <div className='m-header'>
        <div className='location'>
@@ -31,7 +37,12 @@ export default class Header extends Component {
               <Link to="#">Bookings</Link>
             </li>
             <li>
-              <Link to="#">Trolley</Link>
+              <a  onClick={showModal}>Trolley</a>
+              <Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk}>
+                <Button type="primary">
+                  <Link to="/checkout" type='primary'>CheckOut</Link>
+                </Button>
+              </Modal>
             </li>
           </ul>
         </div>
@@ -39,8 +50,8 @@ export default class Header extends Component {
         <label for="nav-toggle" class="nav-toggle-label">
           <span></span>
         </label>
-
       </div>
+      
     )
-  }
 }
+export default Header;
