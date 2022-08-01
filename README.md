@@ -22,3 +22,4 @@
     const mapStateToProps=(store)=>({userState:store.user})
     const mapDispatchToProps=(dispatch)=>({dispatch})
     export default connect(mapStateToProps,mapDispatchToProps)(User)
+11. relative value, responsive css use number% or @medium screen and(){  }
