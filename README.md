@@ -27,3 +27,5 @@
     first use <Outlet/> occupy a position, and use <Link/>  routing page
     configure routing path by <Route> <Route/> </Route>
 13. if the path not exit, * could be used to response 404
+14. npm install @mui/material @emotion/react @emotion/styled MaterialUI
+15. npm install @date-io/date-fns date component
