@@ -23,3 +23,7 @@
     const mapDispatchToProps=(dispatch)=>({dispatch})
     export default connect(mapStateToProps,mapDispatchToProps)(User)
 11. relative value, responsive css use number% or @medium screen and(){  }
+12. User <Outlet/> same page sub routing
+    first use <Outlet/> occupy a position, and use <Link/>  routing page
+    configure routing path by <Route> <Route/> </Route>
+13. if the path not exit, * could be used to response 404
