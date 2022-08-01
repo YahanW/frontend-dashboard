@@ -2,7 +2,7 @@ import React from 'react'
 import Header from '../../layout/Header'
 import './Result.css';
 import {useState} from 'react';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate,Link} from 'react-router-dom';
 
 function Result() {
   const serType = [ "Venue Renting","Hosting","Decoration","Live Performance","Security","Car Rental",];
@@ -126,7 +126,7 @@ function Result() {
                       style={{backgroundImage:`url(${ele.image})`}}>
                       </div>
                       <div className='item-right'>
-                        <h2>{ele.title}</h2>
+                        <h2><Link to="/result/details">{ele.title}</Link></h2>
                         <h4>{ele.address}</h4>
                         <div className='merchant'>
                           <h3>{ele.merchant}</h3>

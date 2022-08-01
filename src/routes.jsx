@@ -17,6 +17,9 @@ import HomeService from "./pages/Home/HomeService";
 
 //searching result related
 import Result from "./pages/Result/Result";
+import ItemIntro from "./pages/ItemIntro/ItemIntro";
+import Intro from "./pages/ItemIntro/Intro";
+import Review from "./pages/ItemIntro/Review";
 
 //profile related
 import Profile from "./pages/Profile";
@@ -48,6 +51,12 @@ export default(
             </Route>
             <Route path='/profile/booking/details' element={<BookHsitory/>}/>
             <Route path='/result' element={<Result/>}/>
+            <Route path='/result/details' element={<ItemIntro/>}>
+                <Route path='/result/details/intro' element={<Intro/>}/>
+                <Route path='/result/details/review' element={<Review/>}/>
+            </Route>
+           
+
             <Route path="/checkout" element={<CheckOut/>}></Route>
             <Route path='/service' element={<HomeService/>}/>
             <Route path='/sign-user' element={<Register/>}/>
