@@ -49,12 +49,12 @@
     height: 52.5vh;
     padding-top: 5vh;
 }
-.right Button{
+.selc-shop .right Button{
     position: absolute;
     bottom: 0;
     width: 100%;
 }
-.right p{
+.selc-shop  .right p{
     font-size: medium;
     font-family:'Times New Roman', Times, serif ;
 }
