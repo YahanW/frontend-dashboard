@@ -6,7 +6,6 @@ import './style/index.css'
 function Header(){
   const [isModalVisible, setIsModalVisible] = useState(false);
   const showModal = () => {setIsModalVisible(true);};
-  const handleOk = () => {setIsModalVisible(false);};
   const handleCancel = () => {setIsModalVisible(false);};
 
     return (
@@ -36,12 +35,27 @@ function Header(){
             <li>
               <Link to="#">Bookings</Link>
             </li>
+
             <li>
               <a  onClick={showModal}>Trolley</a>
-              <Modal title="Basic Modal" visible={isModalVisible} onOk={handleOk}>
-                <Button type="primary">
-                  <Link to="/checkout" type='primary'>CheckOut</Link>
-                </Button>
+              <Modal title="EVENT TROLLEY" 
+                     visible={isModalVisible} footer={false}onCancel={handleCancel}
+                     className="shop-list"
+              >
+                <ul>
+                  <li>
+                    <Link to="/checkout">
+                      <h3>SERVICE NAME</h3>
+                      <h4>MERCHANT</h4>
+                      <h4>accept</h4>
+                    </Link>
+                  </li>
+                  <li>
+                    <h3>SERVICE NAME</h3>
+                    <h4>MERCHANT</h4>
+                    <h4>accept</h4>
+                  </li>
+                </ul>
               </Modal>
             </li>
           </ul>

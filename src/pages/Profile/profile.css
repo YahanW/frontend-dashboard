@@ -84,6 +84,9 @@
     padding-top: 1vh;
     padding-left:3vw ;
 }
+.booking .book-link:hover {
+    background-color: #d78bc4;
+}
 .booking .book-link h3{
     margin-top: -0.5vh;
     margin-left: 12vw;
