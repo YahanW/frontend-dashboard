@@ -13,11 +13,19 @@ export default function Review() {
       value: 'image',
     },
     {
-      label: 'Video',
-      value: 'video',
+      label: 'Video',value: 'video',},];
+  const reviewList = [
+    {
+      content:'I was in Hobart Last year for few hours of business and meetings in Salamanca, decided to go inside LUC while I was ...',
+      date:'04-03-2022',
+      username:'a***z(anonymous)'
     },
-  ];
-  
+    {
+      content:'I was in Hobart Last year for few hours of business and meetings in Salamanca, decided to go inside LUC while I was ...',
+      date:'04-03-2022',
+      username:'a***z(anonymous)'
+    },
+  ]
   return (
     <div className='review'>
       <div className='cate-review'>
@@ -41,19 +49,22 @@ export default function Review() {
       </div>
       <div className='review-container'>
         <ul>
-            <li>
+          {
+            reviewList.map((ele,index)=>{
+              return <li key={index}>
                 <div className='rates'>
                   <div className='left'>
-                    <p className='content'>I was in Hobart Last year for few hours of business and meetings in Salamanca, decided to go inside LUC while I was ...</p>
-                    <h4 className='date'>04-03-2022</h4>
+                    <p className='content'>{ele.content}</p>
+                    <h4 className='date'>{ele.date}</h4>
                   </div>
                   <div className='right'>
-                    <h5>a***z(anonymous)</h5>
+                    <h5>{ele.date}</h5>
                   </div>
                   
                 </div>
             </li>
-            
+          })
+        }
         </ul>
 
       </div>
