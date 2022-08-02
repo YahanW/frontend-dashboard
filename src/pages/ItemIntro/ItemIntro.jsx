@@ -1,4 +1,4 @@
-import React , {useState} from "react";
+import React , {useState,useEffect} from "react";
 import FormControl from '@mui/material/FormControl';
 import Header from "../../layout/Header";
 import moment from 'moment';
@@ -6,24 +6,42 @@ import { DatePicker,Button,Select} from 'antd';
 import {Link, Outlet} from 'react-router-dom';
 import './ItemIntro.css'
 function ItemIntro(){
+    //const docRef = React.createRef();
     const [reviewOrSale,setRS] = useState(false);
+    const [imgIndex,setImgIndex] = useState(0);
+    
     const changeRS = () =>{ setRS(!reviewOrSale);}
     const dateFormat = 'YYYY/MM/DD';
     const { Option, OptGroup } = Select;
+    const imgDemo = [{
+        source:'https://i.pinimg.com/736x/3c/36/26/3c3626b67e7fb484f309166568417dd4.jpg'
+    },{
+        source:'https://i.pinimg.com/236x/fd/95/01/fd9501f45318863d7902c57d5c5ec20e--artist-art-michelangelo.jpg'
+    },{
+        source:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfTEuYlNEL85uQ_FBTfqqk0WgyjI2GIOrMP0ipr4JU5_mA8ZpyfRMxdN7u9WZetzL0IIs&usqp=CAU'
+    }];
+    
+    const incre = (n) => {
+        setImgIndex(n)
+    }
+    
     return (
         <div>
             <Header/>
             <div className="selecBox">
                 <div className="selection">
                     <h1>Wedding Decorations: Homewares, Lighting, LUCASA, Jewellery,Clothing</h1>
-                    <div className="selc-shop">
+                    <div className="selc-shop" >
                         <div className="imagesub">
-                            <div className="imgsub" style={{backgroundImage:`url('https://i.pinimg.com/736x/3c/36/26/3c3626b67e7fb484f309166568417dd4.jpg')`}}></div>
-                            <div className="imgsub" style={{backgroundImage:`url('https://i.pinimg.com/236x/fd/95/01/fd9501f45318863d7902c57d5c5ec20e--artist-art-michelangelo.jpg')`}}></div>
-                            <div className="imgsub" style={{backgroundImage:`url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfTEuYlNEL85uQ_FBTfqqk0WgyjI2GIOrMP0ipr4JU5_mA8ZpyfRMxdN7u9WZetzL0IIs&usqp=CAU')`}}></div>
-                            <div className="imgsub"></div>
+                        {
+                            imgDemo.map((ele,index)=>{
+                                return <div className="imgsub" onClick={()=>incre(index)}
+                                key={index} style={{backgroundImage:`url(${ele.source})`}}></div>
+                            })
+                        }
                         </div>
-                        <div className="imageShow"></div>
+                        <div className="imageShow" name="imageShow" style={{backgroundImage:`url(${imgDemo[imgIndex].source})`}}></div>
+                      
                        
                         <FormControl className="right">
                             <p>Event Date</p>
@@ -56,12 +74,12 @@ function ItemIntro(){
             </div>
             <div className="detail-review">
                 <div className='dr-sub'
-                style={{backgroundColor:reviewOrSale?'':'bisque',}}
+                style={{backgroundColor:reviewOrSale?'bisque':'',}}
                 >
                     <Link onClick={changeRS} to="/result/details/intro">DETAILS</Link>
                 </div>
                 <div className='dr-sub'
-                style={{ backgroundColor:reviewOrSale?'bisque':'',}}
+                style={{ backgroundColor:reviewOrSale?'':'bisque',}}
                 >
                     <Link onClick={changeRS} to="/result/details/review">REVIEWS</Link>
                 </div>
