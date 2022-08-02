@@ -6,6 +6,7 @@
     flex-direction: column;
     align-items: center;
     border: 1px solid rgb(156, 151, 141);
+    margin-bottom: 15vh;
 }
 
 .img-slice{
