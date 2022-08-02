@@ -1,6 +1,6 @@
 :root{
     /* define variable at root in case of later using */
-    --background-color:rgba(107, 190, 203, 0.6);
+    --background-color:#CAE7DF;
 }
 .m-header{
     background-color: var(--background-color);

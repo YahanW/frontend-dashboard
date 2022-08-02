@@ -42,20 +42,18 @@ export default function Review() {
       <div className='review-container'>
         <ul>
             <li>
-                <div>
-                   
+                <div className='rates'>
+                  <div className='left'>
+                    <p className='content'>I was in Hobart Last year for few hours of business and meetings in Salamanca, decided to go inside LUC while I was ...</p>
+                    <h4 className='date'>04-03-2022</h4>
+                  </div>
+                  <div className='right'>
+                    <h5>a***z(anonymous)</h5>
+                  </div>
+                  
                 </div>
             </li>
-            <li>
-                <div>
-                   
-                </div>
-            </li>
-            <li>
-                <div>
-                   
-                </div>
-            </li>
+            
         </ul>
 
       </div>

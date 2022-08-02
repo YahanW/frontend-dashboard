@@ -3,6 +3,7 @@ import Header from '../../layout/Header'
 import './Result.css';
 import {useState} from 'react';
 import {useNavigate,Link} from 'react-router-dom';
+import {Rate} from 'antd';
 
 function Result() {
   const serType = [ "Venue Renting","Hosting","Decoration","Live Performance","Security","Car Rental",];
@@ -138,7 +139,9 @@ function Result() {
                     <div className='item-star'>
                       <div className="star" 
                       style={{backgroundImage:`url(${ele.star})`}}
+                    
                       >
+                     
                         <h2>{ele.score}</h2></div>
                       <h4>average price</h4>
                       <h3>{ele.average}</h3>

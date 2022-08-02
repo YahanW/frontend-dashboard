@@ -8,7 +8,10 @@
     display: flex;
     width: 100%;
 } 
-
+.selc-shop Button{
+    background-color: rgb(238, 85, 116);
+    height: 7.5vh;
+}
 .selecBox .selection{
     display: flex;
     align-items: center;
@@ -60,7 +63,8 @@
 }
 .detail-review{
     display: flex;
-    padding-left: 1vw;
+    padding-left: 1.2vw;
+    font-weight: 600;
 }
 .sel-pick{
     margin-bottom: 2vh;
