@@ -118,8 +118,17 @@
 .nav-toggle-label span::after{
     top:7px;
 }
+.chatBox .ant-modal-content{
+    height: 100%;
+    margin-top: 12vh;
+    width: 40vw;
+    margin-left: 10vw;
+    display: flex;
+    flex-direction: column;
+    min-width: 370px;
+ }
  
-@media screen and (min-width:800px){
+@media screen and (min-width:790px){
     .nav-toggle-label{
         display: none;
     }
@@ -164,12 +173,9 @@
         margin-left: 3em;
         margin-bottom: 0;
     }
+    .chatBox .ant-modal-content{
+        width: 30vw;
+        margin-left: 33vw;
+     }
+     
 } 
-.chatBox .ant-modal-content{
-   height: 100%;
-   margin-top: 12vh;
-   width: 25vw;
-   margin-left: 40vw;
-   display: flex;
-   flex-direction: column;
-}
