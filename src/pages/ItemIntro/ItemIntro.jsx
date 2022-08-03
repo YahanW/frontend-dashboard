@@ -74,12 +74,12 @@ function ItemIntro(){
             </div>
             <div className="detail-review">
                 <div className='dr-sub'
-                style={{backgroundColor:reviewOrSale?'bisque':'',}}
+                style={{backgroundColor:reviewOrSale?'':'bisque',}}
                 >
                     <Link onClick={changeRS} to="/result/details/intro">DETAILS</Link>
                 </div>
                 <div className='dr-sub'
-                style={{ backgroundColor:reviewOrSale?'':'bisque',}}
+                style={{ backgroundColor:reviewOrSale?'bisque':'',}}
                 >
                     <Link onClick={changeRS} to="/result/details/review">REVIEWS</Link>
                 </div>

@@ -52,7 +52,8 @@ export default(
             <Route path='/profile/booking/details' element={<BookHsitory/>}/>
             <Route path='/result' element={<Result/>}/>
             <Route path='/result/details' element={<ItemIntro/>}>
-                <Route path='/result/details/intro' element={<Intro/>}/>
+                <Route index element={<Intro/>}/>
+                <Route path='/result/details/intro'  element={<Intro/>}/>
                 <Route path='/result/details/review' element={<Review/>}/>
             </Route>
            
