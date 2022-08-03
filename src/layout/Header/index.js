@@ -73,6 +73,13 @@ function Header(){
                                 sender: "Joe",
                               }}
                             />
+                            <Message model={{
+                              message: "Hi,Joe",
+                              sentTime: "just now",
+                              sender: "Akane",
+                              direction: "outgoing",
+                              position: "single"
+                            }} />
                           </MessageList>
                           <MessageInput placeholder="Type message here" />
                         </ChatContainer>
