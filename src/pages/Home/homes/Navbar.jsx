@@ -50,7 +50,7 @@ return (
                     </Link>
                 </li>
                {
-                sessionStorage.getItem('token') 
+                sessionStorage.getItem('username') 
                 ?
                 <li className='nav-item'>
                 <Link
@@ -74,7 +74,7 @@ return (
                }
                
                 { 
-                    sessionStorage.getItem('token') 
+                    sessionStorage.getItem('username') 
                     ?
                     <li>
                       <Link
@@ -98,7 +98,7 @@ return (
                 }
 
                 {
-                    sessionStorage.getItem('token')
+                    sessionStorage.getItem('username')
                     ?
                     <li className='nav-item'>
                     <Link

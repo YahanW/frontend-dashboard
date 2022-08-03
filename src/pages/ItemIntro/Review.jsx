@@ -35,7 +35,7 @@ export default function Review() {
     <div className='review'>
       <div className='cate-review'>
         <div className='total'>
-          <Rate disabled defaultValue={4.5}/>
+          <Rate defaultValue={4.5}/>
           <h2>4.5</h2>
         </div>
         <div className='marks'>

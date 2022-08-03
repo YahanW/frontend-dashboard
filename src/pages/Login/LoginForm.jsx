@@ -23,9 +23,10 @@ function LoginForm(){
 		
 		e.preventDefault();	//avoid page re-render
 		axios.post("https://eventeasynew.azurewebsites.net/api/user/login/",details)
-		.then(response => {
-			console.log(response.config.validateStatus.name)
-			sessionStorage.setItem('token',response.config.validateStatus.name)
+		.then(response => { //200
+			sessionStorage.setItem('username',response.data.userName)
+			sessionStorage.setItem('id',response.data.userId)
+			//console.log(response.data.userId)
 			Modal.confirm({
 				//a pop up window
 				icon:<CheckOutlined />,

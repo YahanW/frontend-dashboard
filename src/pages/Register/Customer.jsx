@@ -1,7 +1,9 @@
 import React, { useState }  from 'react'
 import axios from "axios";
-import './register.css'
-import { Link } from 'react-router-dom';
+import './register.css';
+import {Modal} from 'antd';
+import {CheckOutlined} from '@ant-design/icons';
+import { Link,useNavigate } from 'react-router-dom';
 
 function Customer() {
   const [details,setDetails] = useState({
@@ -13,12 +15,25 @@ function Customer() {
 			password:'',
       phoneNumber: ''
 		})
+    const history = useNavigate();
 	
 	const submitHandler = e =>{
 		e.preventDefault()
-		axios.post("https://easyevent.azurewebsites.net/api/user/create",details)
+		axios.post("https://eventeasynew.azurewebsites.net/api/user/create",details)
 		.then(response => {
-			console.log(response)
+      //sessionStorage.setItem('username',response.data.userName)
+      sessionStorage.setItem('id',response.data)
+			
+			Modal.confirm({
+				//a pop up window
+				icon:<CheckOutlined />,
+				title:'Congradulations',
+				content:'Your Identity was Identified, Welcome !!!',
+				onOk:()=>{
+					history("/")
+				}
+			  })
+			//console.log(response)
 			//alert("Congradulations!! Register Finished !!!");
 		})
 		.catch(error=>{

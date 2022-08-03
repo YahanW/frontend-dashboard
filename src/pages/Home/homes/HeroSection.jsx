@@ -7,19 +7,20 @@ function HeroSection() {
   const history = useNavigate();
   const onLogCheck = () =>{
    
-   if(!sessionStorage.getItem('token'))
-   {
-    Modal.confirm({
-      //a pop up window
-      title:'Login Required',
-      content:'Please To Login or Signup before make a Search!!!',
-      onOk:()=>{ 
-        history("/")
-      }
-      })
-    }else{
-        history("/result")
-    }
+  //  if(!sessionStorage.getItem('token'))
+  //  {
+  //   Modal.confirm({
+  //     //a pop up window
+  //     title:'Login Required',
+  //     content:'Please To Login or Signup before make a Search!!!',
+  //     onOk:()=>{ 
+  //       history("/")
+  //     }
+  //     })
+  //   }else{
+  //       history("/result")
+  //   }
+    history("/result")
     return
   }
   return (

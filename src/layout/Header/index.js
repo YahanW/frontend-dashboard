@@ -40,7 +40,7 @@ function Header(){
             <li>
               <Link to='/profile' className="tro-item"> 
               {
-                sessionStorage.getItem('email')
+                sessionStorage.getItem('username')
               }
               </Link>
             </li>
