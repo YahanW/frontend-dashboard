@@ -14,11 +14,11 @@ function ItemIntro(){
     const dateFormat = 'YYYY/MM/DD';
     const { Option, OptGroup } = Select;
     const imgDemo = [{
-        source:'https://www.aljazeera.com/wp-content/uploads/2022/08/000_32FN9JC.jpg?resize=770%2C513'
+        source:'https://www.christies.com/media-library/images/features/articles/2019/04/02/andrew-graham-dixon-on-the-night-watch-by-rembrandt/rembrandtharmenszvanrijnmilitiacompanyofdistrictiiunderthecommandofcaptainfransbanninckcocqknownasthenightwatch16422400.jpg?w=780'
     },{
-        source:'https://i.pinimg.com/236x/fd/95/01/fd9501f45318863d7902c57d5c5ec20e--artist-art-michelangelo.jpg'
+        source:'https://i1.lsqww.com/0b461f2c14cdba53c84c/551f5e74/561f5d75/09455d7049c6e649c812b2.png'
     },{
-        source:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfTEuYlNEL85uQ_FBTfqqk0WgyjI2GIOrMP0ipr4JU5_mA8ZpyfRMxdN7u9WZetzL0IIs&usqp=CAU'
+        source:'https://artnewsnet.com/wp-content/uploads/2018/10/3-15.jpg'
     }];
     
     const incre = (n) => {
@@ -30,7 +30,7 @@ function ItemIntro(){
             <Header/>
             <div className="selecBox">
                 <div className="selection">
-                    <h1>Wedding Decorations: Homewares, Lighting, LUCASA, Jewellery,Clothing</h1>
+                    <h1>Simple and True Art Workshop</h1>
                     <div className="selc-shop" >
                         <div className="imagesub">
                         {

@@ -16,14 +16,19 @@ export default function Review() {
       label: 'Video',value: 'video',},];
   const reviewList = [
     {
-      content:'I was in Hobart Last year for few hours of business and meetings in Salamanca, decided to go inside LUC while I was ...',
+      content:'Absolutely fantastic',
       date:'04-03-2022',
-      username:'a***z(anonymous)'
+      username:'S***n (anonymous)'
     },
     {
-      content:'I was in Hobart Last year for few hours of business and meetings in Salamanca, decided to go inside LUC while I was ...',
+      content:'Yes so much we say out of all the art galleries I’ve ever visited this one stands out is quite unique, varied, diverse, and really quite engaging. I would highly recommend you come visit this place, if not for the art just the hospitality itself is worth the visit alone. Do you check this out if you ever in the area, you will not be disappointed.',
       date:'04-03-2022',
-      username:'a***z(anonymous)'
+      username:'G***l (anonymous)'
+    },
+    {
+      content:'Lots of interesting pieces to look at and even some to buy! Nice spaces that have been tastefully fitted out to show off some wonderful art - the shop also has some amazing Tasmania items to buy!',
+      date:'04-03-2022',
+      username:'G***l (anonymous)'
     },
   ]
   return (
@@ -59,6 +64,7 @@ export default function Review() {
                   </div>
                   <div className='right'>
                     <h5>{ele.date}</h5>
+                    <h3>{ele.username}</h3>
                   </div>
                   
                 </div>

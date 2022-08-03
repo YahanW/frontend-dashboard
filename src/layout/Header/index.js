@@ -1,13 +1,24 @@
 import React, { useState} from 'react';
 import { Link } from 'react-router-dom';
-import { Modal,Button} from 'antd';
+import { Modal,Button,Input} from 'antd';
 
 import './style/index.css'
 function Header(){
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const showModal = () => {setIsModalVisible(true);};
-  const handleCancel = () => {setIsModalVisible(false);};
+  const [isMSGVisible, setMSGVisible] = useState(false);
+  const [isBookVisible, setBookVisible] = useState(false);
+  const [chatVisible, setChatVisible] = useState(false);
+  const CancelChat = () => {setChatVisible(false);};
+  const showModalChat = () => {setChatVisible(true);};
 
+  const CancelBook = () => {setBookVisible(false);};
+  const showModalBook = () => {setBookVisible(true)};
+  const showModalMSG = () => {setMSGVisible(true);};
+  const showModalCheck = () => {setIsModalVisible(true);};
+  const CancelCheck = () => {setIsModalVisible(false);};
+  const CancelMSG = () => {setMSGVisible(false);};
+
+  const [isAccept,setAccept] = useState(true);
     return (
       <div className='m-header'>
        <div className='location'>
@@ -30,30 +41,54 @@ function Header(){
               </Link>
             </li>
             <li>
-              <Link to="#" className="tro-item">Inbox</Link>
+            <a  onClick={showModalMSG} className="tro-item">Inbox</a>
+            <Modal title="MESSAGE LIST" mask={false}
+                   visible={isMSGVisible} footer={false} onCancel={CancelMSG}
+                   className="msg-list">
+                  <div onClick={showModalChat} style={{cursor:'pointer'}}>
+                    <h2>Pelosi</h2>
+                    <h4 style={{backgroundColor:'#FFEAC9'}}>Hi, There</h4>
+                  </div>
+                  <Modal title="Pelosi" mask={false}
+                   visible={chatVisible} footer={false} onCancel={CancelChat}
+                   className="chatBox"
+                   >
+                   <form className="chatForm">
+                    <Input style={{width:'70%'}}></Input>
+                    <Button type='primary'>Send</Button>
+                   </form>
+                  </Modal>
+            </Modal>
             </li>
             <li>
-              <Link to="#" className="tro-item">Bookings</Link>
+              <a  onClick={showModalBook} className="tro-item">Booking</a>
+              <Modal title="Booking LIST" mask={false}
+                    visible={isBookVisible} footer={false} onCancel={CancelBook}
+                    className="shop-list">
+
+              </Modal>
             </li>
 
             <li>
-              <a  onClick={showModal} className="tro-item">Trolley</a>
-              <Modal title="EVENT TROLLEY" 
-                     visible={isModalVisible} footer={false}onCancel={handleCancel}
+              <a  onClick={showModalCheck} className="tro-item">Trolley</a>
+              <Modal title="EVENT TROLLEY" mask={false}
+                     visible={isModalVisible} footer={false}onCancel={CancelCheck}
                      className="shop-list"
               >
                 <ul>
-                  <li>
+                  <li style={{backgroundColor:isAccept?'#80ED99':'red'}} >
                     <Link to="/checkout">
-                      <h3>SERVICE NAME</h3>
-                      <h4>MERCHANT</h4>
-                      <h4>accept</h4>
+                      <h3 style={{color:'#ffffff'}}>SERVICE NAME</h3>
+                      <h4>MERCHANT NAME</h4>
+                      <h4 style={{color:isAccept?'#B5FFD9':'red'}}>accept</h4>
                     </Link>
                   </li>
-                  <li>
-                    <h3>SERVICE NAME</h3>
-                    <h4>MERCHANT</h4>
-                    <h4>accept</h4>
+                  <li style={{backgroundColor:isAccept?'#80ED99':'red'}}>
+                    <Link to="/checkout">
+                        <h3 style={{color:'#ffffff'}}>SERVICE NAME</h3>
+                        <h4>MERCHANT NAME</h4>
+                        <h4 style={{color:isAccept?'#B5FFD9':'red'}}>accept</h4>
+                      </Link>
                   </li>
                 </ul>
               </Modal>
