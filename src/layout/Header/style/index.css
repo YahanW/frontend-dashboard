@@ -166,17 +166,10 @@
     }
 } 
 .chatBox .ant-modal-content{
-   height: 70vh;
-   margin-top: 15vh;
+   height: 100%;
+   margin-top: 12vh;
    width: 25vw;
    margin-left: 40vw;
    display: flex;
    flex-direction: column;
 }
-.chatForm{
-    width: 100%;
-    display: flex;
-    position: absolute;
-    bottom: 1%;
-}
-

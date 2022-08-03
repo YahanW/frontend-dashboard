@@ -1,6 +1,15 @@
 import React, { useState} from 'react';
 import { Link } from 'react-router-dom';
 import { Modal,Button,Input} from 'antd';
+import styles from "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
+import {
+  MainContainer,
+  ChatContainer,
+  MessageList,
+  Message,
+  MessageInput,
+} from "@chatscope/chat-ui-kit-react";
+
 
 import './style/index.css'
 function Header(){
@@ -53,10 +62,22 @@ function Header(){
                    visible={chatVisible} footer={false} onCancel={CancelChat}
                    className="chatBox"
                    >
-                   <form className="chatForm">
-                    <Input style={{width:'70%'}}></Input>
-                    <Button type='primary'>Send</Button>
-                   </form>
+                    <div style={{ position: "relative", height: "500px" }}>
+                      <MainContainer>
+                        <ChatContainer>
+                          <MessageList>
+                            <Message
+                              model={{
+                                message: "Hello my friend",
+                                sentTime: "just now",
+                                sender: "Joe",
+                              }}
+                            />
+                          </MessageList>
+                          <MessageInput placeholder="Type message here" />
+                        </ChatContainer>
+                      </MainContainer>
+                    </div>
                   </Modal>
             </Modal>
             </li>
