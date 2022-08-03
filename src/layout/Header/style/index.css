@@ -1,12 +1,16 @@
 :root{
     /* define variable at root in case of later using */
-    --background-color:#CAE7DF;
+    --background-color:#000000;
 }
 .m-header{
     background-color: var(--background-color);
     text-align: center;
     position: sticky;
     width: 100vw;
+    box-shadow:0 .5rem #98CBB475 ;
+    position: sticky;
+    top: 0;
+    z-index: 999;
 }
 .location{
     display: flex;
@@ -15,7 +19,7 @@
 .location a{
     margin-top: 15px;
     margin-left: 15px;
-    color:bisque;
+    color:#ffffff;
 }
 .trolley{
     position: absolute;
@@ -31,9 +35,19 @@
 }
 .trolley ul{
     margin:0;
-    /* padding-top: 1vh; */
     list-style: none;
+    
 }
+.trolley li{
+    padding-top: .75rem;
+    height: 7vh;
+    
+}
+.trolley li:hover{
+   
+    background-color: aqua;
+}
+
 .shop-list ul{
     list-style: none;
    
@@ -42,22 +56,21 @@
     margin-bottom: 1rem;
     background-color: rgb(135, 177, 169);
 }
-.trolley li{
-    margin-bottom: 1em;
-    margin-left: 1em;
-}
+
 .trolley Link{  
     /* remove a tag feature */
-    color:white;
     text-decoration: none;
     font-size: 1.2rem;
     text-transform: uppercase;
     opacity: 0; /*default does't appear*/
     transition: opacity 150ms ease-in-out; /*last one is animation delay*/
 }
-.trolley Link:hover{
-    color:#000;
-}.nav-toggle:checked ~ .trolley{
+
+.trolley .tro-item{
+    color: #ffffff;
+}
+
+.nav-toggle:checked ~ .trolley{
     /* ~ first sibling, doesn't have to be immediatelt after */
     display: block;
     transform: scale(1,1);  /*control lenght width */

@@ -23,7 +23,7 @@
 .imagesub{
     height: auto;
     width: 15vw;
-    border: 1px solid rgb(49, 52, 56);
+    /* border: 1px solid rgb(49, 52, 56); */
 }
 .imagesub .imgsub{
     width: 100%;
@@ -32,13 +32,13 @@
     background-size: cover;
     background-repeat: no-repeat;
     cursor: pointer;
-
+    border: 1px solid rgb(105, 103, 112);
 }
 .selection .imageShow{
     width: 25%;
     height: 50.5vh;
     /* background-image: url("https://mymodernmet.com/wp/wp-content/uploads/2022/05/gorams-people-drawing-tutorials-6.jpg"); */
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     margin-left: 6.5vw;
     

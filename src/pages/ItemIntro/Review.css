@@ -12,7 +12,7 @@
     width: 90%;
     display: flex;
     margin-top: 1vh;
-    border: 1px solid orange;
+    border: 1px solid rgb(73, 55, 20);
 }
 .cate-review .total{
     height: 100%;

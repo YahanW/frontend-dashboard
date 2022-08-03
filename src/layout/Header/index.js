@@ -11,33 +11,33 @@ function Header(){
     return (
       <div className='m-header'>
        <div className='location'>
-        <h1>Hobart</h1> 
+        <h1 style={{color:'#ffffff'}}>Hobart</h1> 
         <a>Change Location ?</a>
        </div>
         <input type="checkbox" class="nav-toggle" id="nav-toggle"></input>
         <div className='trolley'>
           <ul>
             <li>
-              <Link to='/profile' className="selec"> 
+              <Link to='/profile' className="tro-item"> 
               {
                 sessionStorage.getItem('email')
               }
               </Link>
             </li>
             <li>
-              <Link to='/' className="selec">
+              <Link to='/' className="tro-item">
                 Home
               </Link>
             </li>
             <li>
-              <Link to="#">Inbox</Link>
+              <Link to="#" className="tro-item">Inbox</Link>
             </li>
             <li>
-              <Link to="#">Bookings</Link>
+              <Link to="#" className="tro-item">Bookings</Link>
             </li>
 
             <li>
-              <a  onClick={showModal}>Trolley</a>
+              <a  onClick={showModal} className="tro-item">Trolley</a>
               <Modal title="EVENT TROLLEY" 
                      visible={isModalVisible} footer={false}onCancel={handleCancel}
                      className="shop-list"

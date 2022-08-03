@@ -14,7 +14,7 @@ function ItemIntro(){
     const dateFormat = 'YYYY/MM/DD';
     const { Option, OptGroup } = Select;
     const imgDemo = [{
-        source:'https://i.pinimg.com/736x/3c/36/26/3c3626b67e7fb484f309166568417dd4.jpg'
+        source:'https://www.aljazeera.com/wp-content/uploads/2022/08/000_32FN9JC.jpg?resize=770%2C513'
     },{
         source:'https://i.pinimg.com/236x/fd/95/01/fd9501f45318863d7902c57d5c5ec20e--artist-art-michelangelo.jpg'
     },{
