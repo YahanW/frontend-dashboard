@@ -1,9 +1,10 @@
 import React, { useState }  from 'react'
 import axios from "axios";
 import './register.css';
-import {Modal} from 'antd';
+import {Modal,Input} from 'antd';
 import {CheckOutlined} from '@ant-design/icons';
 import { Link,useNavigate } from 'react-router-dom';
+import PasswordStrengthBar from 'react-password-strength-bar';
 
 function Customer() {
   const [details,setDetails] = useState({
@@ -15,8 +16,21 @@ function Customer() {
 			password:'',
       phoneNumber: ''
 		})
-    const history = useNavigate();
-	
+  const history = useNavigate();
+
+	const phoneCheck = e => 
+  {
+    const reg = /^-?(04|[0-9][0-9]*)(\.[0-9]*)?$/;
+    if ((!Number.isNaN(e.target.value) && reg.test(e.target.value)) || e.target.value === '' || e.target.value === '-') 
+    {
+      console.log("ok")
+      setDetails({...details,phoneNumber:e.target.value})
+     
+    }else{
+      console.log("error")
+    }
+   
+  }
 	const submitHandler = e =>{
 		e.preventDefault()
 		axios.post("https://eventeasynew.azurewebsites.net/api/user/create",details)
@@ -77,9 +91,10 @@ function Customer() {
                   <input type="password" name="password" placeholder="password"
                   value={details.password} onChange={e=>setDetails({...details,password:e.target.value})} required/>
                 </div>
+                <PasswordStrengthBar password={details.password} />
                 <div class="item">
                   <input name="phoneNumber" type="text" placeholder="phone number" 
-                  value={details.phoneNumber} onChange={e=>setDetails({...details,phoneNumber:e.target.value})} required/>
+                  value={details.phoneNumber} onChange={phoneCheck} required/>
                 </div>
               </div>
                 <div class="sending">
