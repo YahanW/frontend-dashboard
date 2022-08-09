@@ -8,6 +8,10 @@ import "./login.css"
 function LoginForm(){
 	const [details,setDetails] = useState({email:"",password:"",logging:false});
 	const history = useNavigate();
+	const headers = {
+		'Access-Control-Allow-Origin': '*',
+		'Content-Type': 'application/json',
+    };
 	const passwdChecking = e =>{
 		
 		e.preventDefault();	//avoid page re-render
@@ -15,7 +19,7 @@ function LoginForm(){
 		.then(response => { //200
 			sessionStorage.setItem('username',response.data.userName)
 			sessionStorage.setItem('id',response.data.userId)
-			//console.log(response.data.userId)
+			
 			Modal.confirm({
 				//a pop up window
 				icon:<CheckOutlined />,

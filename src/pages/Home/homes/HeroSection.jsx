@@ -6,23 +6,14 @@ import './HeroSection.css'
 function HeroSection() {
   const history = useNavigate();
   const onLogCheck = () =>{
-   
-  //  if(!sessionStorage.getItem('token'))
-  //  {
-  //   Modal.confirm({
-  //     //a pop up window
-  //     title:'Login Required',
-  //     content:'Please To Login or Signup before make a Search!!!',
-  //     onOk:()=>{ 
-  //       history("/")
-  //     }
-  //     })
-  //   }else{
-  //       history("/result")
-  //   }
     history("/result")
     return
   }
+  // const [searchVisible, setSearchVisible] = useState(false);
+
+  // const CancelAdvance = () =>{
+  //   setSearchVisible(false)
+  // }
   return (
     <div className='hero-container'>
       
@@ -47,8 +38,16 @@ function HeroSection() {
             <Button type='submit' id='goResult' className='btn' buttonStyle="btn--outline" buttonSize='btn--large' onClick={onLogCheck}>
             Search
             </Button>
-            <a>Want Advanced Search ? Click Here</a> 
+            <a >Want Advanced Search ? Click Here</a> 
         </div>
+        {/* <Modal title="MESSAGE LIST" mask={false}
+                   visible={searchVisible} footer={false} onCancel={CancelAdvance}
+                   className="msg-list">
+                  <div onClick={showModalChat} style={{cursor:'pointer'}}>
+                    <h2>Pelosi</h2>
+                    <h4 style={{backgroundColor:'#FFEAC9'}}>Hi, There</h4>
+                  </div>
+        </Modal> */}
     </div>
     
     )
