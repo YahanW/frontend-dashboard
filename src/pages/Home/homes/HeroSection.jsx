@@ -32,10 +32,10 @@ function HeroSection() {
 
         <div className='search'>
           <select className="requires eventType" required>
-              <option value="">Event Type</option>
-              <option value="1">Wedding</option>
-              <option value="2">Business Meeting</option>
-              <option value="3">Other</option>
+              
+              <option value="1">BIRTHDAYS & PRIVATE</option>
+              <option value="2">CORPORATE FUNCTIONS</option>
+              <option value="3">WEDDINGS & ENGAGEMENTS</option>
           </select>
           <input type='date' className='requires checkin' required />
           <input type="number" className="requires guest" placeholder="Number of Guest" required />
