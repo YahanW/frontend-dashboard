@@ -4,16 +4,12 @@
     justify-content: center;
     align-items: center;
     margin-top: 12vh;
-}
-.events button{
-    width: 20vw;
-    height: 13vh;
-    background-color: rgb(237, 105, 141);
-    font-size: 1.5rem;
-    border: 0;
-    margin-top: 5vh;
+    min-height: 80vh;
 }
 
+.eve-ele h3{
+    font-size: 1.4rem;
+}
 .eve-col{
     width: 80vw;
     height: auto;
