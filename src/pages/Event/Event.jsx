@@ -1,44 +1,68 @@
-import React,{useState,useEffect} from "react";
+import React,{ Component} from "react";
 import Header from "../../layout/Header";
 import './Event.css';
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Footer from '../Home/homes/Footer';
-export default function Event(){
 
-const [events,setEvents] = useState("")
+export default class Event extends Component{
+constructor(){
+    super();
+    this.state = {
+        eveList:[]
+    }
+}
 
-useEffect(() => {
+componentDidMount (){
     axios.get("https://eventeasynew.azurewebsites.net/api/Event/GetAll")
 	.then(response => {
-        setEvents(response.data)
-        console.log(events)
+        this.setState({
+            eveList:response.data
+        })
     })
-    
-  },[]);
-
+}
+render(){
     return (
         <div>
             <Header/>
             <div className="events">
                 <ul className="eve-col">
-                    {/* <li className="eve-row">
+                    <li className="eve-row">
                     {
-                        events.list? 
-                        events.map((ele,index)=>{
-                        return <div key={index} className="eve-ele">
-                        {
+                        this.state.eveList ? this.state.eveList.map((ele,index)=>{
+                        return <div key={index} className="eve-ele">{
                             <Link className="getService" to='/result'>
                                 <h3>{ele.eventName}</h3>
-                            </Link>
-                        
-                        }
-                        </div>
-                        })
+                            </Link>}
+                        </div>})
                         :
-                        ''
+                        (
+                           <>
+                                <div className="eve-ele">
+                                <Link className="getService" to='/result'>
+                                        <h3>Default Events</h3>
+                                </Link>
+                                </div>
+                                <div className="eve-ele">
+                                <Link className="getService" to='/result'>
+                                        <h3>Default Events</h3>
+                                </Link>
+                                </div>
+                                <div className="eve-ele">
+                                <Link className="getService" to='/result'>
+                                        <h3>Default Events</h3>
+                                </Link>
+                                </div>
+                                <div className="eve-ele">
+                                <Link className="getService" to='/result'>
+                                        <h3>Default Events</h3>
+                                </Link>
+                                </div>
+                            </>
+                        )
+                        
                     } 
-                    </li> */}
+                    </li>
                     <li className="eve-row">
                         <div className="eve-ele">
                         <Link className="getService" to='/result'>
@@ -67,5 +91,5 @@ useEffect(() => {
             <Footer/>
         </div>
     )
-
+  }
 }
