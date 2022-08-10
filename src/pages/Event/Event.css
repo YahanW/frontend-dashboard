@@ -3,12 +3,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 12vh;
+    margin-top: 7vh;
     min-height: 80vh;
 }
 
 .eve-ele h3{
-    font-size: 1.4rem;
+    font-size: 1.6rem;
+    font-weight: 600;
 }
 .eve-col{
     width: 80vw;
@@ -21,7 +22,7 @@
 }
 .eve-row{
     width: 100%;
-    height: 25vh;
+    height: 35vh;
     background-color: aliceblue;
     display: flex;
     padding: 1rem;
@@ -31,5 +32,6 @@
     height: 100%;
     padding: 1rem;
     background-color: bisque;
+    border-radius: 1rem;
     margin-right: 1rem;
 }

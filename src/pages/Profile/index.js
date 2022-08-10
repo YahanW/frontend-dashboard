@@ -1,47 +1,42 @@
-import React, { useState,useEffect } from 'react';
-import Header from '../../layout/Header';
-import './profile.css';
-import {Link, Outlet} from 'react-router-dom';
+import React, { Component } from 'react';
 import axios from "axios";
+import Header from "../../layout/Header";
+import { Link,Outlet } from "react-router-dom";
+import './profile.css'
 
-function Profile(){
-  const [bookSelect,setBookSelect] = useState(true); //default to open booking list sub routing
-  const [userInfo,setInfo] = useState({
-    dob:"",email:"",firstName: "",lastName: "",
-    password: "",phoneNumber: 0,
-    status: 0,userId: 5,userName: ""
-})
-const setUser = (data) =>{
-  setInfo({firstName:data.firstName});
-}
-  const changeSelectA = () =>{
-    setBookSelect(true)
+export default class Profile extends Component{
+  constructor(){
+    super();
+    this.state ={
+      bookSelect:true,
+      userInfo:{},
+    }
   }
-  const changeSelectB = () =>{
-    setBookSelect(false)
+
+  changeSelectA = () =>{
+    this.setBookSelect(true);
   }
-  const uid = sessionStorage.getItem('id');
-  useEffect(() => {    
-     //render after every changes
-     //ComponentDidMount is a function for react class Running after every component rendered
-     userDetail()
-     console.log(uid)
+  changeSelectB = () =>{
+    this.setBookSelect(false);
+  }
+  
 
-  });
-
-  const userDetail = () =>{
-		axios.get(`https://eventeasynew.azurewebsites.net/api/user/get/${uid}`)
+  componentDidMount(){
+    //getDerivedStateFromProps(props,state)
+  
+    //var uid = sessionStorage.getItem('id');
+		axios.get(`https://eventeasynew.azurewebsites.net/api/user/get/1`)
 		.then(response => {
-     console.log(response.data.userName);
-		 setUser(response.data);
+      this.setState({userInfo:response.data});
 		})
 		.catch(error=>{
 			console.log(error)
-			//alert("Something went wrong");
 		})
+    
 	}
+  render(){
+    console.log(this.state.userInfo)
     return (
-
       <div className='profile'>
         <Header/>
         <div className='upper'>
@@ -50,25 +45,25 @@ const setUser = (data) =>{
             <button>change profile</button>
           </div>
           <div className='desc'>
-            <h1>ABCD</h1>
-            <h2>My name is Jordan Lin, and I’m a recent computer science graduate from Stanford University.I’m Avery Lucas, and I’m seeking an entry-level warehousing job that will use my organization, attention to detail and time management skills.My name is Rylan Curtis, and I’m chief engineer for Jacobs and Associates.</h2>
+            <h1>{this.state.userInfo.userName}</h1>
+            <h2>{this.state.userInfo?this.state.userInfo.email:'Nothing here'}</h2>
           </div>
         </div>
         <div className='navies'>
           <div className='nav-sub'
-          style={{borderBottom:bookSelect?'3px solid #33A1C9':''}}
+          style={{borderBottom:this.state.bookSelect?'3px solid #33A1C9':''}}
           >
-            <Link onClick={changeSelectA} to="/profile/booking">Booking History</Link>
+            <Link onClick={this.changeSelectA} to="/profile/booking">Booking History</Link>
           </div>
           <div className='nav-sub'
-           style={{borderBottom:bookSelect?'':'3px solid #33A1C9'}}
+           style={{borderBottom:this.state.bookSelect?'':'3px solid #33A1C9'}}
            >
-            <Link onClick={changeSelectB} to="/profile/personal">Personal Details</Link>
+            <Link onClick={this.changeSelectB} to="/profile/personal">Personal Details</Link>
           </div>
         </div>
         <Outlet/>
       </div>
     )
+ }
 }
 
-export default Profile

@@ -5,10 +5,9 @@
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@chatscope/chat-ui-kit-react": "^1.9.7",
-    "@date-io/date-fns": "^2.14.0",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
-    "@mui/material": "^5.9.2",
+    "@mui/material": "^5.10.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
