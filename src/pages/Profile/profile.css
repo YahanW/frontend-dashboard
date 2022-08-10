@@ -19,7 +19,7 @@
     width: 17vw;
     height: 32vh;
     max-height: 320px;
-    background-image: url("https://alacritas.cis.utas.edu.au/~mingked/kit301/JPGs/avartar%201.jpg");
+    background-image: url("https://s3.ap-southeast-2.amazonaws.com/cdn.greekherald.com.au/wp-content/uploads/2020/07/05194617/default-avatar.png");
     background-size: cover;
     border-radius: 15px;
 }

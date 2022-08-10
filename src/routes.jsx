@@ -13,9 +13,9 @@ import ResetPass from "./pages/Login/ResetPass";
 //home page and its sub-routing
 import Home from "./pages/Home/Home";
 import HomeService from "./pages/Home/HomeService";
+import Event from "./pages/Event/Event";
 
-
-//searching result related
+//Service result related
 import Result from "./pages/Result/Result";
 import ItemIntro from "./pages/ItemIntro/ItemIntro";
 import Intro from "./pages/ItemIntro/Intro";
@@ -47,8 +47,8 @@ export default(
                 <Route index element={<Booking/>}/>
                 <Route path='/profile/booking' element={<Booking/>} />
                 <Route path='/profile/personal' element={<Personals/>}/>
-            
             </Route>
+            <Route path='/event' element={<Event/>}/>
             <Route path='/profile/booking/details' element={<BookHsitory/>}/>
             <Route path='/result' element={<Result/>}/>
             <Route path='/result/details' element={<ItemIntro/>}>

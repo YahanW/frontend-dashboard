@@ -5,22 +5,15 @@ import {Button} from './Button'
 import './HeroSection.css'
 function HeroSection() {
   const history = useNavigate();
-  const onLogCheck = () =>{
-    history("/result")
+  const getEvents = () =>{
+    history("/event")
     return
   }
-  // const [searchVisible, setSearchVisible] = useState(false);
-
-  // const CancelAdvance = () =>{
-  //   setSearchVisible(false)
-  // }
   return (
     <div className='hero-container'>
       
         <h1>Event Easy</h1>
         <p>Making events easy.</p>
-      
-
         <div className='search'>
           <select className="requires eventType" required>
               
@@ -35,32 +28,15 @@ function HeroSection() {
         </div>
        
         <div className='twoSearch'>
-            <Button type='submit' id='goResult' className='btn' buttonStyle="btn--outline" buttonSize='btn--large' onClick={onLogCheck}>
+            <Button type='submit' id='goResult' className='btn' buttonStyle="btn--outline" buttonSize='btn--large' onClick={getEvents}>
             Search
             </Button>
             <a >Want Advanced Search ? Click Here</a> 
         </div>
-        {/* <Modal title="MESSAGE LIST" mask={false}
-                   visible={searchVisible} footer={false} onCancel={CancelAdvance}
-                   className="msg-list">
-                  <div onClick={showModalChat} style={{cursor:'pointer'}}>
-                    <h2>Pelosi</h2>
-                    <h4 style={{backgroundColor:'#FFEAC9'}}>Hi, There</h4>
-                  </div>
-        </Modal> */}
+       
     </div>
     
     )
-      {/* <div className='hero-btns'>
-        <Button className='btns' buttonStyle="btn--outline" buttonSize='btn--large'>
-            Get Started
-        </Button>
-        <Button className='btns' buttonStyle="btn--primary" buttonSize='btn--large'>
-            Watch Trailer <i className='far fa-play-circle' />       
-        </Button>
-      </div>  */}
-   
-  
 }
 
 export default HeroSection
