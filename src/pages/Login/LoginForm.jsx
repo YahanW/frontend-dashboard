@@ -8,10 +8,6 @@ import "./login.css"
 function LoginForm(){
 	const [details,setDetails] = useState({email:"",password:"",logging:false});
 	const history = useNavigate();
-	const headers = {
-		'Access-Control-Allow-Origin': '*',
-		'Content-Type': 'application/json',
-    };
 	const passwdChecking = e =>{
 		
 		e.preventDefault();	//avoid page re-render

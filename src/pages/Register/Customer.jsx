@@ -1,7 +1,7 @@
 import React, { useState }  from 'react'
 import axios from "axios";
 import './register.css';
-import {Modal,Input} from 'antd';
+import {Modal} from 'antd';
 import {CheckOutlined} from '@ant-design/icons';
 import { Link,useNavigate } from 'react-router-dom';
 import PasswordStrengthBar from 'react-password-strength-bar';
@@ -14,7 +14,8 @@ function Customer() {
       dob: '',
 			email:'',
 			password:'',
-      phoneNumber: ''
+      phoneNumber: '',
+      accessNumber:5  //5 means user
 		})
   const history = useNavigate();
 

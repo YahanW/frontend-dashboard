@@ -11,7 +11,8 @@ function Merchant() {
       dob: '',
 			email:'',
 			password:'',
-      phoneNumber: ''
+      phoneNumber: '',
+      accessNumbrt:3 //3 means merchant
 		})
 	
 	const submitHandler = e =>{
