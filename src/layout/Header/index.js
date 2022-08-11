@@ -118,7 +118,7 @@ function Header(){
             <li>
               <Link to='/profile' className="tro-item tro-name"> 
               {
-                sessionStorage.getItem('username')
+                sessionStorage.getItem('username').toUpperCase()
               }
               </Link>
             </li>
