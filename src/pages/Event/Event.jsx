@@ -20,73 +20,51 @@ componentDidMount (){
             eveList:response.data
         })
     })
+    // console.log("component did mounted")
+    // console.log(this.state.eveList)
 }
 render(){
+    var i = 0;
+    var finished = false;
     return (
         <div>
             <Header/>
             <div className="events">
                 <ul className="eve-col">
-                    <li className="eve-row">
+                {
+                    this.state.eveList //is there any data remains
+                    ? 
+                    this.state.eveList.map((ele,index)=>{
+                        return (    
+                            <li className="eve-row" key={index}>
+                                {   
+                                    <div className="eve-ele" key={index}>
+                                    <Link className="getService" to='/result'>
+                                            <h3>{ele.eventName}</h3>
+                                    </Link>
+                                    </div>                 
+
+                                }
+                            </li>
+                                )
+                    })
+                    :
+                    ''
+                }       
+
+                {/* { //abandon startegy
+                    this.state.eveList.map((ele,index)=>
                     {
-                        this.state.eveList ? this.state.eveList.map((ele,index)=>{
-                        return <div key={index} className="eve-ele">{
-                            <Link className="getService" to='/result'>
-                                <h3>{ele.eventName}</h3>
-                            </Link>}
-                        </div>})
-                        :
-                        (
-                           <>
-                                <div className="eve-ele">
+                        return <li className="eve-row" key={index}>
+                            <div className="eve-ele" key={index}>
                                 <Link className="getService" to='/result'>
-                                        <h3>Default Events</h3>
+                                    <h3>{ele.eventName}</h3>
                                 </Link>
-                                </div>
-                                <div className="eve-ele">
-                                <Link className="getService" to='/result'>
-                                        <h3>Default Events</h3>
-                                </Link>
-                                </div>
-                                <div className="eve-ele">
-                                <Link className="getService" to='/result'>
-                                        <h3>Default Events</h3>
-                                </Link>
-                                </div>
-                                <div className="eve-ele">
-                                <Link className="getService" to='/result'>
-                                        <h3>Default Events</h3>
-                                </Link>
-                                </div>
-                            </>
-                        )
-                        
-                    } 
-                    </li>
-                    <li className="eve-row">
-                        <div className="eve-ele">
-                        <Link className="getService" to='/result'>
-                                <h3>Default Events</h3>
-                        </Link>
-                        </div>
-                        <div className="eve-ele">
-                        <Link className="getService" to='/result'>
-                                <h3>Default Events</h3>
-                        </Link>
-                        </div>
-                        <div className="eve-ele">
-                        <Link className="getService" to='/result'>
-                                <h3>Default Events</h3>
-                        </Link>
-                        </div>
-                        <div className="eve-ele">
-                        <Link className="getService" to='/result'>
-                                <h3>Default Events</h3>
-                        </Link>
-                        </div>
-                    </li>
-                </ul>
-                {/* <button onClick={getEveList}>Test</button> */}
+                            </div>
+                        </li>
+                    })
+                }                                    */}
+                </ul>    
             </div>
             <Footer/>
         </div>

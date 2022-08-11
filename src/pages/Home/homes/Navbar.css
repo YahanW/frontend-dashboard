@@ -18,7 +18,9 @@
     height: 80px;
     max-width: 1500px;
 }
-
+.navbar-container ul{
+    list-style: none;
+}
 .navbar-logo {
     justify-self: start;
     cursor: pointer;
@@ -60,11 +62,13 @@
     text-decoration: none;
     padding: 0.5rem 1.85rem;
     height: 100%;
+    
 }
 
 .nav-links:hover {
     border-bottom: 4px solid #fff;
     transition: all 0.2s ease-out;
+   
 }
 
 .fa-bars {

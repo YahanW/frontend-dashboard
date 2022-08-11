@@ -22,7 +22,9 @@
     position: relative;
     
 }
-
+.cards__wrapper ul{
+    list-style: none;
+}
 .cards__items {
     margin-bottom: 10vh;
     display: flex;
