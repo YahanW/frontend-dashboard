@@ -152,7 +152,7 @@ layoutUserTable=()=>({
 render() {
     const {userModal,levelModal}=this.props.userState
     return (
-    1 + 1 == 2 ?
+   
     
     <Panel title="User">
         <Card className='m-filter'>
@@ -175,10 +175,7 @@ render() {
         {userModal&&<ModalUser {...userModal} {...this.props}/>} {/**passing dispatch by props since it is in props */}
         {levelModal&&<LevelModal {...levelModal} {...this.props}/>}
     </Panel>
-    :
-    <h2>
-    YOU HAVE NO PERMISSION TO THIS PAGE
-    </h2>
+   
     )
   }
 }

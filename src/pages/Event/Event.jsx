@@ -24,8 +24,7 @@ componentDidMount (){
     // console.log(this.state.eveList)
 }
 render(){
-    var i = 0;
-    var finished = false;
+    
     return (
         <div>
             <Header/>
@@ -39,7 +38,7 @@ render(){
                             <li className="eve-row" key={index}>
                                 {   
                                     <div className="eve-ele" key={index}>
-                                    <Link className="getService" to='/result'>
+                                    <Link className="getService" to={`/result/${ele.eventName}`}>
                                             <h3>{ele.eventName}</h3>
                                     </Link>
                                     </div>                 

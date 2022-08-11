@@ -15,7 +15,7 @@ function LoginForm(){
 		.then(response => { //200
 			sessionStorage.setItem('username',response.data.userName)
 			sessionStorage.setItem('id',response.data.userId)
-			
+			sessionStorage.setItem('access',response.data.accessNumber)
 			Modal.confirm({
 				//a pop up window
 				icon:<CheckOutlined />,

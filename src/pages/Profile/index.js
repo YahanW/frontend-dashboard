@@ -22,10 +22,8 @@ export default class Profile extends Component{
   
 
   componentDidMount(){
-    //getDerivedStateFromProps(props,state)
-  
-    //var uid = sessionStorage.getItem('id');
-		axios.get(`https://eventeasynew.azurewebsites.net/api/user/get/1`)
+    var uid = sessionStorage.getItem('id');
+		axios.get(`https://eventeasynew.azurewebsites.net/api/user/get/${uid}`)
 		.then(response => {
       this.setState({userInfo:response.data});
 		})

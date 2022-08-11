@@ -2,8 +2,9 @@ import React from 'react'
 import Header from '../../layout/Header'
 import './Result.css';
 import {useState} from 'react';
-import {useNavigate,Link} from 'react-router-dom';
+import {useNavigate,Link, useParams,useEffect} from 'react-router-dom';
 import {Rate} from 'antd';
+import axios from 'axios';
 
 function Result() {
   const serType = [ "Venue Renting","Hosting","Decoration","Live Performance","Security","Car Rental",];
@@ -12,6 +13,7 @@ function Result() {
   const [isActiveRight, setIsActive] = useState(false);
   const [isActiveLeft, setLeft] = useState(false);
   const history = useNavigate();
+  const {name} = useParams();
   const results = [
     {
     image:"https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=PA1-3CnCcy-HwYCSsVvTOw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=123.645096&pitch=0&thumbfov=100",
@@ -40,6 +42,12 @@ function Result() {
   const handleSelect = () =>{
     setIsActive(!isActiveRight)
   }
+  useEffect (()=>{
+    return ()=>{
+
+    }
+  })
+  console.log(name)
     return (
       <div className='result'>
         {/**Navbar */}
@@ -57,7 +65,7 @@ function Result() {
           {/**Service type filter*/}
           <div className='selection'> 
             <div className='left' >
-              <p>Service Type</p>
+              <p>Type</p>
               <p className='all'>All</p>
             </div>
 
