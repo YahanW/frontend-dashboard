@@ -37,13 +37,7 @@ function Header(){
         <input type="checkbox" class="nav-toggle" id="nav-toggle"></input>
         <div className='trolley'>
           <ul>
-            <li>
-              <Link to='/profile' className="tro-item"> 
-              {
-                sessionStorage.getItem('username')
-              }
-              </Link>
-            </li>
+            
             <li>
               <Link to='/' className="tro-item">
                 Home
@@ -120,6 +114,13 @@ function Header(){
                   </li>
                 </ul>
               </Modal>
+            </li>
+            <li>
+              <Link to='/profile' className="tro-item tro-name"> 
+              {
+                sessionStorage.getItem('username')
+              }
+              </Link>
             </li>
           </ul>
         </div>

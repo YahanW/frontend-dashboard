@@ -1,8 +1,8 @@
 import React from 'react'
 import Header from '../../layout/Header'
 import './Result.css';
-import {useState} from 'react';
-import {useNavigate,Link, useParams,useEffect} from 'react-router-dom';
+import {useState,useEffect} from 'react';
+import {useNavigate,Link, useParams} from 'react-router-dom';
 import {Rate} from 'antd';
 import axios from 'axios';
 
