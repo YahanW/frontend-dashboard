@@ -142,7 +142,7 @@ function Result() {
                       style={{backgroundImage:`url("https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=PA1-3CnCcy-HwYCSsVvTOw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=123.645096&pitch=0&thumbfov=100")`}}>
                       </div>
                       <div className='item-right'>
-                        <h2><Link to="/result/details">{ele.eventService.serviceName}</Link></h2>
+                        <h2><Link to={`/result/details/${ele.eventService.eventServiceId}`}>{ele.eventService.serviceName}</Link></h2>
                         <h4>{ele.eventService.address}</h4>
                         <div className='merchant'>
                           <h3>{ele.eventService.merchant}</h3>

@@ -1,39 +1,32 @@
-import React, { Component } from 'react';
+import React, {useState,useEffect} from 'react';
 import axios from "axios";
 import Header from "../../layout/Header";
-import { Link,Outlet } from "react-router-dom";
+import { Link,Outlet,useLocation } from "react-router-dom";
 import './profile.css'
 
-export default class Profile extends Component{
-  constructor(){
-    super();
-    this.state ={
-      bookSelect:true,
-      userInfo:{},
-    }
-  }
-
-  changeSelectA = () =>{
+export default function Profile(){
+  const [bookSelect,setBookSelect]=useState(true);
+  const [userInfo,setUserInfo]=useState([])
+  const changeSelectA = () =>{
     this.setBookSelect(true);
   }
-  changeSelectB = () =>{
+  const changeSelectB = () =>{
     this.setBookSelect(false);
   }
+  const uid = sessionStorage.getItem('id');
+  const location = useLocation(); //get current route path
   
+  const getProfile = async () => {
+      
+      const { data } = await axios.get(`https://eventeasynew.azurewebsites.net/api/user/get/${uid}`);
+      setUserInfo(data)
+    };
+  useEffect(() => {
+      getProfile();
+      //accroding current path highlight different marks
+      setBookSelect(location.pathname=='/profile/booking'?true:false);
+    }, []);
 
-  componentDidMount(){
-    var uid = sessionStorage.getItem('id');
-		axios.get(`https://eventeasynew.azurewebsites.net/api/user/get/${uid}`)
-		.then(response => {
-      this.setState({userInfo:response.data});
-		})
-		.catch(error=>{
-			console.log(error)
-		})
-    
-	}
-  render(){
-    console.log(this.state.userInfo)
     return (
       <div className='profile'>
         <Header/>
@@ -43,25 +36,24 @@ export default class Profile extends Component{
             <button>change profile</button>
           </div>
           <div className='desc'>
-            <h1>{this.state.userInfo.userName}</h1>
-            <h2>{this.state.userInfo?this.state.userInfo.email:'Nothing here'}</h2>
+            <h1>{userInfo.userName}</h1>
+            <h2>{userInfo?userInfo.email:'Nothing here'}</h2>
           </div>
         </div>
         <div className='navies'>
           <div className='nav-sub'
-          style={{borderBottom:this.state.bookSelect?'3px solid #33A1C9':''}}
+          style={{borderBottom:bookSelect?'3px solid #33A1C9':''}}
           >
-            <Link onClick={this.changeSelectA} to="/profile/booking">Booking History</Link>
+            <Link onClick={changeSelectA} to="/profile/booking">Booking History</Link>
           </div>
           <div className='nav-sub'
-           style={{borderBottom:this.state.bookSelect?'':'3px solid #33A1C9'}}
+           style={{borderBottom:bookSelect?'':'3px solid #33A1C9'}}
            >
-            <Link onClick={this.changeSelectB} to="/profile/personal">Personal Details</Link>
+            <Link onClick={changeSelectB} to="/profile/personal">Personal Details</Link>
           </div>
         </div>
         <Outlet/>
       </div>
     )
- }
 }
 

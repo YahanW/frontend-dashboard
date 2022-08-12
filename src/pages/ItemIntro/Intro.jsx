@@ -1,7 +1,12 @@
-import React from 'react'
-import './Intro.css'
-import { Divider } from 'antd'
+import React from 'react';
+import './Intro.css';
+import { Divider } from 'antd';
+import { useParams } from 'react-router-dom';
+
 export default function Intro() {
+
+  const {serviceId} = useParams();
+  
   return (
     <div className='intro-box'>
      <div className='img-slice'>

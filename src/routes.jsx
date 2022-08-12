@@ -43,22 +43,25 @@ export default(
                 <Route path="/dashboard/member/merchant" element={<h1>Merchant List</h1>}/>
                 <Route path="/dashboard/booking" element={<h1>Bookings</h1>}/>
             </Route>
-            <Route path='/profile' element={<Profile/>}> 
-                <Route index element={<Booking/>}/>
-                <Route path='/profile/booking' element={<Booking/>} />
-                <Route path='/profile/personal' element={<Personals/>}/>
+
+            <Route path='/profile/' element={<Profile/>}> 
+                <Route path='booking' index element={<Booking/>} />
+                <Route path='personal' element={<Personals/>}/>
             </Route>
             <Route path='/event' element={<Event/>}/>
             <Route path='/profile/booking/details' element={<BookHsitory/>}/>
-            <Route path='/result/:eventId' element={<Result/>}/>
 
-
-            <Route path='/result/details' element={<ItemIntro/>}>
-                <Route index element={<Intro/>}/>
-                <Route path='/result/details/intro'  element={<Intro/>}/>
-                <Route path='/result/details/review' element={<Review/>}/>
+            <Route path='/result/'>
+                <Route path=':eventId'  element={<Result/>}/>
             </Route>
-           
+
+        
+            <Route path='/result/details/' element={<ItemIntro/>}>
+                <Route path=':serviceId'  element={<ItemIntro/>}/>
+                <Route path='intro'  index element={<Intro/>}/>
+                <Route path='review' element={<Review/>}/>
+            </Route>
+       
 
             <Route path="/checkout" element={<CheckOut/>}></Route>
             <Route path='/service' element={<HomeService/>}/>
