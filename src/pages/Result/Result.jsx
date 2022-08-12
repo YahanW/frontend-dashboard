@@ -13,7 +13,7 @@ function Result() {
   const [isActiveRight, setIsActive] = useState(false);
   const [isActiveLeft, setLeft] = useState(false);
   const history = useNavigate();
-  const {name} = useParams();
+  const {eventId} = useParams();
   const results = [
     {
     image:"https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=PA1-3CnCcy-HwYCSsVvTOw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=123.645096&pitch=0&thumbfov=100",
@@ -36,18 +36,25 @@ function Result() {
       score:'4.7'
     }
   ]
+  const [data, setData] = useState([]);
   const goHome = () =>{
     history("/")
   }
   const handleSelect = () =>{
     setIsActive(!isActiveRight)
   }
-  useEffect (()=>{
-    return ()=>{
+  const getData = async () => {
+    const { data } = await axios.get(`https://eventeasynew.azurewebsites.net/api/ServicePackages/GetServicePackageDetail/${eventId}`);
+    //setData(response);
+    setData(data.$values)
+  };
+  useEffect(() => {
+    getData();
+    
+  }, []);
 
-    }
-  })
-  console.log(name)
+  console.log(data)
+  
     return (
       <div className='result'>
         {/**Navbar */}
@@ -128,31 +135,31 @@ function Result() {
 
         <div className='itemList'> {/**Item Results*/}
            {
-                results.map((ele,index)=>{
+                data.map((ele,index)=>{
                   return  (
                     <div className='item'>
                       <div className='item-left'
-                      style={{backgroundImage:`url(${ele.image})`}}>
+                      style={{backgroundImage:`url("https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=PA1-3CnCcy-HwYCSsVvTOw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=123.645096&pitch=0&thumbfov=100")`}}>
                       </div>
                       <div className='item-right'>
-                        <h2><Link to="/result/details">{ele.title}</Link></h2>
-                        <h4>{ele.address}</h4>
+                        <h2><Link to="/result/details">{ele.eventService.serviceName}</Link></h2>
+                        <h4>{ele.eventService.address}</h4>
                         <div className='merchant'>
-                          <h3>{ele.merchant}</h3>
+                          <h3>{ele.eventService.merchant}</h3>
                           <div className='avatar'
-                          style={{backgroundImage:`url(${ele.avatar})`}}></div>
+                          style={{backgroundImage:`url("https://cpp-prod-seek-company-image-uploads.s3.ap-southeast-2.amazonaws.com/813527/logo/653c2e81-bcca-11ea-86d1-e52bae5cc086.png")`}}></div>
                         </div>
                     </div>
                   {/**very right side for marking*/}
                     <div className='item-star'>
                       <div className="star" 
-                      style={{backgroundImage:`url(${ele.star})`}}
+                      style={{backgroundImage:`url("https://alacritas.cis.utas.edu.au/~mingked/kit301/PNGs/rating.png")`}}
                     
                       >
                      
-                        <h2>{ele.score}</h2></div>
+                        <h2>{ele.eventService.rate}</h2></div>
                       <h4>average price</h4>
-                      <h3>{ele.average}</h3>
+                      <h3>{ele.eventService.budget}</h3>
                     </div>
                 </div>
                 )})

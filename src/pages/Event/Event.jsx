@@ -17,11 +17,12 @@ componentDidMount (){
     axios.get("https://eventeasynew.azurewebsites.net/api/Event/GetAll")
 	.then(response => {
         this.setState({
-            eveList:response.data
+            eveList:response.data.$values
         })
+         //console.log("component did mounted")
+         //console.log(response.data.$values)
     })
-    // console.log("component did mounted")
-    // console.log(this.state.eveList)
+    
 }
 render(){
     
@@ -38,7 +39,7 @@ render(){
                             <li className="eve-row" key={index}>
                                 {   
                                     <div className="eve-ele" key={index}>
-                                    <Link className="getService" to={`/result/${ele.eventName}`}>
+                                    <Link className="getService" to={`/result/${ele.eventId}`}>
                                             <h3>{ele.eventName}</h3>
                                     </Link>
                                     </div>                 

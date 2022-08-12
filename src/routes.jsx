@@ -50,7 +50,7 @@ export default(
             </Route>
             <Route path='/event' element={<Event/>}/>
             <Route path='/profile/booking/details' element={<BookHsitory/>}/>
-            <Route path='/result/:name' element={<Result/>}/>
+            <Route path='/result/:eventId' element={<Result/>}/>
 
 
             <Route path='/result/details' element={<ItemIntro/>}>
