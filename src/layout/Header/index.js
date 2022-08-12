@@ -49,10 +49,10 @@ function Header(){
                    visible={isMSGVisible} footer={false} onCancel={CancelMSG}
                    className="msg-list">
                   <div onClick={showModalChat} style={{cursor:'pointer'}}>
-                    <h2>Pelosi</h2>
+                    <h2>Merchant</h2>
                     <h4 style={{backgroundColor:'#FFEAC9'}}>Hi, There</h4>
                   </div>
-                  <Modal title="Pelosi" mask={false}
+                  <Modal title="From Merchant" mask={false}
                    visible={chatVisible} footer={false} onCancel={CancelChat}
                    className="chatBox"
                    >
@@ -118,7 +118,11 @@ function Header(){
             <li>
               <Link to='/profile' className="tro-item tro-name"> 
               {
+                sessionStorage.getItem('username')
+                ?
                 sessionStorage.getItem('username').toUpperCase()
+                :
+                'username'
               }
               </Link>
             </li>

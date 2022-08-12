@@ -36,8 +36,8 @@ function Customer() {
 		e.preventDefault()
 		axios.post("https://eventeasynew.azurewebsites.net/api/user/create",details)
 		.then(response => {
-      //sessionStorage.setItem('username',response.data.userName)
-      sessionStorage.setItem('id',response.data)
+      console.log(response)
+      sessionStorage.setItem('id',response.data.userId)
 			
 			Modal.confirm({
 				//a pop up window

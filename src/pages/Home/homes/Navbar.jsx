@@ -12,6 +12,7 @@ const [button, setButton] = useState(true);
 const [selectShow, setSelectShow] = useState(true);
 const handleClick = () => setClick(!click);
 const closeMobileMenu = () => setClick(false);
+const uid = sessionStorage.getItem('id');
 const showButton = () => {
         if (window.innerWidth <= 960) {
             setButton(false);
@@ -19,6 +20,7 @@ const showButton = () => {
             setButton(true);
         }
     };
+
 useEffect(() => {
         showButton();
     }, []);
@@ -31,7 +33,6 @@ const setSelection = () =>{
     setSelectShow(!selectShow);
     return
 }    
-
 
 return ( 
 
@@ -50,7 +51,7 @@ return (
                     </Link>
                 </li>
                {
-                sessionStorage.getItem('username') 
+                sessionStorage.getItem('id') 
                 ?
                 <li className='nav-item'>
                 <Link
@@ -74,7 +75,7 @@ return (
                }
                
                 { 
-                    sessionStorage.getItem('username') 
+                    sessionStorage.getItem('id') 
                     ?
                     <li>
                       <Link
@@ -98,7 +99,7 @@ return (
                 }
 
                 {
-                    sessionStorage.getItem('username')
+                    sessionStorage.getItem('id')
                     ?
                     <li className='nav-item'>
                     <Link
