@@ -56,8 +56,7 @@ export default(
             </Route>
 
         
-            <Route path='/result/details/' element={<ItemIntro/>}>
-                <Route path=':serviceId'  element={<ItemIntro/>}/>
+            <Route path='/result/details/:serviceId' element={<ItemIntro/>}>
                 <Route path='intro'  index element={<Intro/>}/>
                 <Route path='review' element={<Review/>}/>
             </Route>

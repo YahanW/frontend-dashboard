@@ -3,7 +3,7 @@ import FormControl from '@mui/material/FormControl';
 import Header from "../../layout/Header";
 import moment from 'moment';
 import { DatePicker,Button,Select} from 'antd';
-import {Link, Outlet} from 'react-router-dom';
+import {Link, Outlet,useParams} from 'react-router-dom';
 import './ItemIntro.css'
 function ItemIntro(){
     //const docRef = React.createRef();
@@ -24,7 +24,7 @@ function ItemIntro(){
     const incre = (n) => {
         setImgIndex(n)
     }
-    
+    const {serviceId} = useParams();
     return (
         <div>
             <Header/>
@@ -76,12 +76,12 @@ function ItemIntro(){
                 <div className='dr-sub'
                 style={{backgroundColor:reviewOrSale?'':'bisque',}}
                 >
-                    <Link onClick={changeRS} to="/result/details/intro">DETAILS</Link>
+                    <Link onClick={changeRS} to={`/result/details/${serviceId}/intro`}>DETAILS</Link>
                 </div>
                 <div className='dr-sub'
                 style={{ backgroundColor:reviewOrSale?'bisque':'',}}
                 >
-                    <Link onClick={changeRS} to="/result/details/review">REVIEWS</Link>
+                    <Link onClick={changeRS} to={`/result/details/${serviceId}/review`}>REVIEWS</Link>
                 </div>
             </div>
             <Outlet/>
