@@ -3,16 +3,9 @@ import Header from '../../layout/Header'
 import './Result.css';
 import {useState,useEffect} from 'react';
 import {useNavigate,Link, useParams} from 'react-router-dom';
-import {Rate} from 'antd';
 import axios from 'axios';
 
 function Result() {
-  const serType = [ "Venue Renting","Hosting","Decoration","Live Performance","Security","Car Rental",];
-  const areType = [ "Hobart","SandyBay","Kinston","NewTown","South Hobart","North Hobart","Dynnyrne"];
-  const bgtType = [ "$50-$99","$100-$499","$500-$999","$1000+"];
-  const [isActiveRight, setIsActive] = useState(false);
-  const [isActiveLeft, setLeft] = useState(false);
-  const history = useNavigate();
   const {eventId} = useParams();
   const results = [
     {
@@ -37,12 +30,6 @@ function Result() {
     }
   ]
   const [data, setData] = useState([]);
-  const goHome = () =>{
-    history("/")
-  }
-  const handleSelect = () =>{
-    setIsActive(!isActiveRight)
-  }
   const getData = async () => {
     const { data } = await axios.get(`https://eventeasynew.azurewebsites.net/api/ServicePackages/GetServicePackageDetail/${eventId}`);
     //setData(response);
@@ -59,80 +46,7 @@ function Result() {
       <div className='result'>
         {/**Navbar */}
         <Header/> 
-        {/**Search bar and Home Logo */}
-        <div className='find'> 
-          <div className='logo' onClick={goHome}></div>
-            <div className='formSearch'>
-              <form><input placeholder='Searching by Merchant or Service'/></form>
-              <div className='iconSearch'></div>
-            </div>
-        </div>
-        {/**More specific filters*/}
-        <div className='filter'>  
-          {/**Service type filter*/}
-          <div className='selection'> 
-            <div className='left' >
-              <p>Type</p>
-              <p className='all'>All</p>
-            </div>
-
-           <div className='right right-service'>
-            <ul>
-              {
-                serType.map((ele,index)=>{
-                  return <li key={index}
-                  style={{backgroundColor:isActiveRight?'darkseagreen':'',color:isActiveRight?'white':'black'}}
-                  
-                  onClick={handleSelect}>{ele}</li>
-                })
-              }
-              </ul>
-              
-           </div>
-           
-          </div>
-          <hr className='hrSearch'/>
-          {/**Area filter*/}
-          <div className='selection'> 
-            <div className='left'>
-              <p>Area</p>
-              <p className='all'>All</p>
-            </div>
-            <div className='right right-area'>
-            <ul>
-              {
-                areType.map((ele,index)=>{
-                  return <li key={index} 
-                  style={{backgroundColor:isActiveRight?'darkseagreen':'',color:isActiveRight?'white':'black'}}
-                  onClick={handleSelect}
-                         >{ele}</li>
-                })
-              }
-              </ul>
-           </div>
-          </div>
-          <hr className='hrSearch'/>
-          {/**Budget filter*/}
-          <div className='selection'> 
-            <div className='left'>
-                <p>Budget</p>
-                <p className='all'>All</p>
-            </div>
-            <div className='right right-budget'>
-              <ul>
-                {
-                  bgtType.map((ele,index)=>{
-                    return <li key={index}
-                    style={{backgroundColor:isActiveRight?'darkseagreen':'',color:isActiveRight?'white':'black'}}
-                  onClick={handleSelect}>{ele}</li>
-                  })
-                }
-                </ul>
-            </div>
-          </div>
-          <hr className='hrSearch'/>
-        </div>
-
+      
         <div className='itemList'> {/**Item Results*/}
            {
                 data.map((ele,index)=>{

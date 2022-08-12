@@ -101,6 +101,9 @@ return (
                 {
                     sessionStorage.getItem('id')
                     ?
+                    //check if logged in
+                    (sessionStorage.getItem('access')<5
+                    ?
                     <li className='nav-item'>
                     <Link
                         to='/dashboard'
@@ -112,9 +115,22 @@ return (
                     </li>
                     :
                     <li className='nav-item'>
+                    <Link
+                        to='/service'
+                        className='nav-links'
+                        onClick={closeMobileMenu}
+                    >
+                        Service
+                    </Link>
+                    </li>
+                    
+                    )
+                    
+                    :
+                    <li className='nav-item'>
                         <p className='nav-links' onClick={setSelection}
                         style={{display:selectShow?'':'none'}}>
-                            Sign Up
+                        Sign Up
                         </p>
                         <div className="register" style={{display:selectShow?'':''}}>
                                 

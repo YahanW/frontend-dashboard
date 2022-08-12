@@ -5,13 +5,13 @@ import {Carousel} from 'antd';
 
 function BookHsitory(){
     const images = [{
-        id:1,
+        id:1323,
         source:"https://theconferenceshop.com.au/wp-content/uploads/2020/07/Hobart-2.jpg"
     },{
         source:"https://spie.org/images/Graphics/CE/DCS/2021/Special-Events-Technical-2.jpg",
-        id:2,
+        id:244,
     },{
-        id:3,
+        id:344,
         source:"https://betasmania.com.au/wp-content/uploads/2020/07/mr-i-with-mr-ii_44478028070_o-scaled-1536x810.jpg"
     }]
 
