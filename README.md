@@ -4,20 +4,20 @@
 - start frontend: 
 >npm/yarn start
 
- | Page | isFinished | Function |
- | Home | F | Entry to: profile, Login, Register, Dashboard |
- | Login | T | Login user |
- | Register | T | Register User 5, Merchant 3 |
- | Dashboard | F | Manage user Service |
- | Dashboard.User | F | Admin create, update, delete user |
- | Dashboard.Merchant | F | Merchant create, update, delete events and service |
- | Event | F | Give correspoding event result |
- | Result | F | Fetch related service for same event |
- | Profile | F | to show user info or bookings |
- | Checkout | F | Make Payment |
- | NavEvent | T | containing Inbox, trolley, location, Home, username |
- | Inbox | F | Provide user with chat function |
- | Trolley | F | check all user selected services |
+| Page | isFinished | Function |
+| Home | F | Entry to: profile, Login, Register, Dashboard |
+| Login | T | Login user |
+| Register | T | Register User 5, Merchant 3 |
+| Dashboard | F | Manage user Service |
+| Dashboard.User | F | Admin create, update, delete user |
+| Dashboard.Merchant | F | Merchant create, update, delete events and service |
+| Event | F | Give correspoding event result |
+| Result | F | Fetch related service for same event |
+| Profile | F | to show user info or bookings |
+| Checkout | F | Make Payment |
+| NavEvent | T | containing Inbox, trolley, location, Home, username |
+| Inbox | F | Provide user with chat function |
+| Trolley | F | check all user selected services |
 
 - react loop array:
   ```javascript
