@@ -1,5 +1,4 @@
 # Project EventEasy
-![eventeasy](https://hsfnotes.com/cybersecurity/wp-content/uploads/sites/33/2020/02/TMT-GettyImages-956353730-1024x534.jpg)
 ## Frontend
 - start frontend: 
 >npm/yarn start
@@ -58,3 +57,4 @@
 > npm install nodemon -g --save
  - [backend source](https://github.com/Mingke1999/backend-dashboard)
 
+![end](https://creditcardreviews.s3.amazonaws.com/uploads/post/featured_image/781/chase-ending-blueprint.jpg)
