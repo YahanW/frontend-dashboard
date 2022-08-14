@@ -2,7 +2,7 @@
 ![eventeasy](https://hsfnotes.com/cybersecurity/wp-content/uploads/sites/33/2020/02/TMT-GettyImages-956353730-1024x534.jpg)
 ## Frontend
 - start frontend: 
-> npm/yarn start
+>npm/yarn start
 - Entry:Home: 
   - Dashboard/Corporate
     - Services   Login/profile   Sign-up/sign-out    
@@ -30,9 +30,9 @@
     - first use <Outlet/> occupy a position, and use <Link/>  routing page
     - configure routing path by <Route> <Route/> </Route>
 - if the path not exit, * could be used to response 404
-- > npm install @mui/material @emotion/react @emotion/styled
-- > npm install @date-io/date-fns date component
-- > npm install @chatscope/chat-ui-kit-react
+> npm install @mui/material @emotion/react @emotion/styled
+> npm install @date-io/date-fns date component
+> npm install @chatscope/chat-ui-kit-react
 
 ## Backend
 - 1. proxy configuration
@@ -41,7 +41,15 @@
   - Proxy created with a specific port
   - if change port proxy at backend, then need to refresh frontend
 - 3. start backend
-  - > nodemon index.js
+> nodemon index.js
 - nodemon
- - > npm install nodemon -g --save
+> npm install nodemon -g --save
  - [backend source](https://github.com/Mingke1999/backend-dashboard)
+
+ | heading | header | head |
+ | --- | --- | --- |
+ | content | more | text |
+ | more | more | more |
+
+ ** bold **
+ *italic*
