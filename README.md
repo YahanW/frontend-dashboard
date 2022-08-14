@@ -1,32 +1,41 @@
-1. proxy configuration: https://create-react-app.dev/docs/proxying-api-requests-in-development/
+## Backend
+- 1. proxy configuration
+  - https://create-react-app.dev/docs/proxying-api-requests-in-development/
+- 2. When start front-end
+  - Proxy created with a specific port
+  - if change port proxy at backend, then need to refresh frontend
+- 3. start backend
+  - nodemon index.js
+- nodemon
+ - npm install nodemon -g --save
+- backend source: https://github.com/Mingke1999/backend-dashboard
+## Frontend
+- start frontend: npm/yarn start
+- Entry:Home: 
+  - Dashboard/Corporate
+    - Services   Login/profile   Sign-up/sign-out    
+      - Dashoboard: Service     User    Bookings    
+  - Search:     Result      Inbox   Trolley     Location    Bookings
+  - Item:   Overview    Review
+  - Profile:    Overview    past-events
 
-2. when tarn start front-end Proxy created with a specific port. if change port proxy at backend, then refresh frontend
+- react loop array:
+  - results.map((ele,index)=>{<tag key={index}>{ele.attribute}</tag>})
 
-3. start frontend: npm/yarn start
-4. start backend: nodemon index.js
-5. Entry->
-    Home: Dashboard/Corporate   Services   Login/profile   Sign-up/sign-out    
-    Dashoboard: Service     User    Bookings    
-    Search:     Result      Inbox   Trolley     Location    Bookings
-    Item:   Overview    Review
-    Profile:    Overview    past-events
-6.  results.map((ele,index)=>{
-    <tag key={index}>{ele.attribute}</tag>
-})
-7. Expression ? : Link->routes
-8. backend-> npm install nodemon -g --save
-9. backend references to "https://github.com/Mingke1999/backend-dashboard"
-10. react-redux-> store stay over all route from <Outlet/>
-    reducer executes common actions and receiving signal from dispatch
-    dispatch class  
-    const mapStateToProps=(store)=>({userState:store.user})
-    const mapDispatchToProps=(dispatch)=>({dispatch})
-    export default connect(mapStateToProps,mapDispatchToProps)(User)
-11. relative value, responsive css use number% or @medium screen and(){  }
-12. User <Outlet/> same page sub routing
-    first use <Outlet/> occupy a position, and use <Link/>  routing page
-    configure routing path by <Route> <Route/> </Route>
-13. if the path not exit, * could be used to response 404
-14. npm install @mui/material @emotion/react @emotion/styled
-15. npm install @date-io/date-fns date component
-16. npm install @chatscope/chat-ui-kit-react
+- { Expression ? : Link->routes }
+
+- react-redux-> store stay over all route from <Outlet/>
+  - reducer executes common actions and receiving signal from dispatch
+  - dispatch class  
+  - const mapStateToProps=(store)=>({userState:store.user})
+  - const mapDispatchToProps=(dispatch)=>({dispatch})
+  - export default connect(mapStateToProps,mapDispatchToProps)(User)
+
+- relative value, responsive css use number% or @medium screen and(){  }
+- Use <Outlet/> same page sub routing
+    - first use <Outlet/> occupy a position, and use <Link/>  routing page
+    - configure routing path by <Route> <Route/> </Route>
+- if the path not exit, * could be used to response 404
+- npm install @mui/material @emotion/react @emotion/styled
+- npm install @date-io/date-fns date component
+- npm install @chatscope/chat-ui-kit-react
