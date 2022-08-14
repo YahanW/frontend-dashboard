@@ -5,6 +5,7 @@
 >npm/yarn start
 
 | Page               | isFinished | Function                                            |
+|  |  |
 | Home               | F          | Entry to: profile, Login, Register, Dashboard       |
 | Login              | T          | Login user                                          |
 | Register           | T          | Register User 5, Merchant 3                         | 
