@@ -38,23 +38,23 @@
     - first use <Outlet/> occupy a position, and use <Link/>  routing page
     - configure routing path by <Route> <Route/> </Route>
 - if the path not exit, * could be used to response 404
-> npm install antd
-> npm install @mui/material @emotion/react @emotion/styled
-> npm install @date-io/date-fns date component
-> npm install @chatscope/chat-ui-kit-react
-> npm install react-router-dom
-> npm install axios
-> npm install redux-thunk
+ npm install antd
+- > npm install @mui/material @emotion/react @emotion/styled
+- > npm install @date-io/date-fns date component
+- > npm install @chatscope/chat-ui-kit-react
+- > npm install react-router-dom
+- > npm install axios
+- > npm install redux-thunk
 ## Backend
-- 1. proxy configuration
+- proxy configuration
   - [proxy configure ](https://create-react-app.dev/docs/proxying-api-requests-in-development/)
-- 2. When start front-end
+- When start front-end
   - Proxy created with a specific port
   - if change port proxy at backend, then need to refresh frontend
-- 3. start backend
-> nodemon index.js
-- nodemon
-> npm install nodemon -g --save
+- startup backend
+- > nodemon index.js
+- nodemon install
+- > npm install nodemon -g --save
  - [backend source](https://github.com/Mingke1999/backend-dashboard)
 
 ![end](https://creditcardreviews.s3.amazonaws.com/uploads/post/featured_image/781/chase-ending-blueprint.jpg)
