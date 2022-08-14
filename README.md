@@ -1,5 +1,5 @@
 # Project EventEasy
-![eventeasy](https://alacritas.cis.utas.edu.au/~mingked/kit301/PNGs/logo.png)
+![eventeasy](https://hsfnotes.com/cybersecurity/wp-content/uploads/sites/33/2020/02/TMT-GettyImages-956353730-1024x534.jpg)
 ## Frontend
 - start frontend: npm/yarn start
 - Entry:Home: 
