@@ -39,10 +39,13 @@
     - first use <Outlet/> occupy a position, and use <Link/>  routing page
     - configure routing path by <Route> <Route/> </Route>
 - if the path not exit, * could be used to response 404
+> npm install antd
 > npm install @mui/material @emotion/react @emotion/styled
 > npm install @date-io/date-fns date component
 > npm install @chatscope/chat-ui-kit-react
-
+> npm install react-router-dom
+> npm install axios
+> npm install redux-thunk
 ## Backend
 - 1. proxy configuration
   - [proxy configure ](https://create-react-app.dev/docs/proxying-api-requests-in-development/)
