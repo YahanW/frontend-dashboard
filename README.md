@@ -3,6 +3,7 @@
 ## Frontend
 - start frontend: 
 >npm/yarn start
+
  | Page | isFinished | Function |
  | Home | F | Entry to: profile, Login, Register, Dashboard |
  | Login | T | Login user |
