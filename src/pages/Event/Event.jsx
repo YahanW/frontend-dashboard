@@ -128,10 +128,18 @@ if(!eveList){
                         return (    
                             <li className="eve-row" key={index}>
                             
-                                    <div className="eve-ele" key={index}>
-                                    <Link className="getService" to={`/result/${ele.eventId}`}>
-                                            <h3>{ele.eventName}</h3>
-                                    </Link>
+                                    <div className="eve-ele" 
+                                    
+                                    key={index}>
+                                      <Link className="getService" to={`/result/${ele.eventId}`}>
+                                              <h3 style={{color:'white',fontSize:'2.7rem',fontFamily:`"Times New Roman", "Times", "serif"`,}}>
+                                                {ele.eventName}
+                                              </h3>
+                                              <h4 style={{color:'white',fontSize:'1rem',
+                                              fontFamily:`"Times New Roman", "Times", "serif"`,}}>
+                                                Learn More 
+                                              </h4>
+                                      </Link>
                                     </div>                 
 
                                 

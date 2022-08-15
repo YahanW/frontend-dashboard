@@ -23,13 +23,11 @@
     width:33.333%; /*three ele each row*/
     padding: .75rem;
     margin-bottom: 2rem;
-    border: 1px solid #efefef;
     text-align: center;
 }
 .eve-row{
     width: 100%;
     height: 35vh;
-    background-color: aliceblue;
     display: flex;
     padding: 1rem;
 }
@@ -37,11 +35,14 @@
     width: 100%;
     height: 100%;
     padding: 1rem;
-    background-color: rgb(255, 255, 255);
-    border-radius: 1rem;
+    background: linear-gradient(rgba(42, 42, 42, 0.5), rgba(0, 0, 0, 0.5)), 
+    url('https://images.squarespace-cdn.com/content/v1/585a6e76b3db2b19a94d4553/706b772c-47e0-46ce-b302-9cd9032f9087/IMG-2353.jpg');
+    background-size: cover;
     margin-right: 1rem;
 }
-
+.eve-ele:hover{
+    transform: scale(1.5); 
+}
 
 .find{
     /*background-color: #80808030;*/
