@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter as Router, Routes, Route,Navigate} from 'react-router-dom'
+import {BrowserRouter as Router, Routes, Route,Redirect} from 'react-router-dom'
 
 //Dashboard and its sub-routing
 import MainDash from "./pages/Dashboard/Entry"
@@ -35,7 +35,8 @@ import NotFound from "./pages/NotFound";
 export default(
     <Router>
         <Routes>
-            <Route index exact path='/' element={<Home/>}/>
+            <Route path='/' element={<Home/>}/>
+            
             <Route path='/dashboard' element={<MainDash />}>
                 <Route index element={<img src={WelcomeDash} style={{width:'100%'}}/>}/>
                 <Route path='/dashboard/service' element={<ServiceDash/>}/>
@@ -48,7 +49,12 @@ export default(
                 <Route path='booking' index element={<Booking/>} />
                 <Route path='personal' element={<Personals/>}/>
             </Route>
-            <Route path='/event' element={<Event/>}/>
+
+            <Route path='/event/' >
+                <Route path=':type/:date/:guest/:budget' element={<Event/>}/>
+                <Route path=':type/:seat/:budget' element={<Event/>}/>
+            </Route>
+
             <Route path='/profile/booking/details' element={<BookHsitory/>}/>
 
             <Route path='/result/'>

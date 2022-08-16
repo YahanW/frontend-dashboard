@@ -1,7 +1,7 @@
 import React,{ useState,useEffect} from "react";
 import Header from "../../layout/Header";
 import Footer from '../Home/homes/Footer';
-import { Link,useNavigate } from "react-router-dom";
+import { Link,useNavigate,useParams } from "react-router-dom";
 import axios from "axios";
 import './Event.css';
 
@@ -12,6 +12,8 @@ const areType = [ "Hobart","SandyBay","Kinston","NewTown","South Hobart","North 
 const bgtType = [ "$50-$99","$100-$499","$500-$999","$1000+"];
 const [isActiveRight, setIsActive] = useState(false);
 const [isActiveLeft, setLeft] = useState(false);
+
+const {type,date,guest,budget} = useParams();
 const [keyWord,setKeyWord] = useState('');
 const history = useNavigate();
 const goHome = () =>{
@@ -22,7 +24,7 @@ const handleSelect = () =>{
   }
 const makeSearch = () =>{
     console.log(`searching by ${keyWord}`)
-    history("/event")
+    history("/event/4/3/2/1")
 }
 const getEvent = async ()=>{
   const { data } = await 
@@ -32,11 +34,14 @@ const getEvent = async ()=>{
 }
 useEffect(() => {
   getEvent().then((eveList)=>setEveList(eveList))
+  
 }, []);
 
 if(!eveList){ 
   return <li className="eve-row" ><div>Fetching Event Result...</div></li>
 }
+
+  console.log(type,date,guest,budget);
     return (
         <div>
             <Header/>
