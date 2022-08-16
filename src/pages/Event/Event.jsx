@@ -7,7 +7,7 @@ import axios from "axios";
 import './Event.css';
 
 export default function Event(){
-const [eveList,setEveList] = useState([]);
+const [eveListTemp,setEveListTemp] = useState([]);
 const serType = [ "All","Venue Renting","Hosting","Decoration","Live Performance","Security","Car Rental",];
 const areType = [ "All","Hobart","SandyBay","Kinston","NewTown","South Hobart","North Hobart","Dynnyrne"];
 const bgtType = [ "All","$50-$99","$100-$499","$500-$999","$1000+"];
@@ -17,6 +17,7 @@ const [curBgt,setCurBgt] = useState("");
 const {type,date,guest,budget} = useParams();
 const [keyWord,setKeyWord] = useState('');
 const history = useNavigate();
+
 const goHome = () =>{
     history("/")
 }
@@ -31,12 +32,13 @@ const getEvent = async ()=>{
   //setEveList(data.$values);
   return data.$values;
 }
+
 useEffect(() => {
-  getEvent().then((eveList)=>setEveList(eveList))
+  getEvent().then((eveListTemp)=>setEveListTemp(eveListTemp))
   
 }, []);
 
-if(!eveList){ 
+if(!eveListTemp){ 
   return <li className="eve-row" ><div>Fetching Event Result...</div></li>
 }
 
@@ -119,9 +121,10 @@ if(!eveList){
             <div className="events">
                 <ul className="eve-col">
                 {
-                    eveList //is there any data remains
+                    eveListTemp //is there any data remains
                     ? 
-                    eveList.map((ele,index)=>{
+                    eveListTemp.map((ele,index)=>{
+                       if(ele.budget<=budget){
                         return (    
                             <li className="eve-row" key={index}>
                             
@@ -142,6 +145,7 @@ if(!eveList){
                                 
                             </li>
                                 )
+                       }
                     })
                     :
                     'No Relavent Result ...'

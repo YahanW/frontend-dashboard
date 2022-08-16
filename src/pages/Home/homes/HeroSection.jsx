@@ -83,25 +83,25 @@ function HeroSection() {
               <option value="2">CORPORATE FUNCTIONS</option>
               <option value="3">WEDDINGS & ENGAGEMENTS</option>
             </select>
-            <input type='date' className='AdvCheckin' onChange={(event)=>setDate(event.target.value)} />
-            <input type="number" className="AdvGuest" placeholder="Number of Guest" onChange={(event)=>setNumber(event.target.value)} />
-            <input type='number' className='AdvBudget' placeholder="BUDGET" onChange={(event)=>setBudget(event.target.value)} />
-            <label for="standAdv">stand</label>
-            <select id="standAdv"
+            <input type='date' className="AdvEventType" onChange={(event)=>setDate(event.target.value)} />
+            <input type="number" className="AdvEventType" placeholder="Number of Guest" onChange={(event)=>setNumber(event.target.value)} />
+            <input type='number' className="AdvEventType" placeholder="BUDGET" onChange={(event)=>setBudget(event.target.value)} />
+            <label for="standAdv">STAND</label>
+            <select className="AdvEventType"id="standAdv"
               onChange={(event)=>{setStand(event.target.value)}}>
               <option value="20">1-20</option>
               <option value="50">20-50</option>
               <option value="100">50+</option>
             </select>
-            <label for="seatAdv">seat</label>
-            <select id="seatAdv"
+            <label for="seatAdv">SEAT</label>
+            <select className="AdvEventType" id="seatAdv"
             onChange={(event)=>{setSeat(event.target.value)}}>
               <option value="20">1-20</option>
               <option value="50">20-50</option>
               <option value="100">50+</option>
             </select>
-            <label for="location">seat</label>
-            <select id="location"
+            <label for="location">LOCATION</label>
+            <select className="AdvEventType" id="location"
             onChange={(event)=>{setLocation(event.target.value)}}>
               <option value="Hobart">Hobart</option>
               <option value="SandyBay">SandyBay</option>

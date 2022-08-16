@@ -57,7 +57,7 @@ function Result() {
                       </div>
                       <div className='item-right'>
                         <h2><Link to={`/result/details/${ele.eventService.eventServiceId}`}>{ele.eventService.serviceName}</Link></h2>
-                        <h4>{ele.eventService.address}</h4>
+                        <h4>{ele.eventService.location}</h4>
                         <div className='merchant'>
                           <h3>{ele.eventService.merchant}</h3>
                           <div className='avatar'

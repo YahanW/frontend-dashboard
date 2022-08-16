@@ -67,7 +67,17 @@
 .fa-play-circle {
     margin-left: 4px;
 }
-
+.AdvSearch{
+    display: flex;
+    flex-direction: column;
+}
+.ant-modal-body .AdvEventType{
+    margin-bottom: 2vh;
+    height: 5vh;
+}
+.ant-modal-body label{
+    font-size: 1.6rem;
+}
 @media screen and (max-width: 960px) {
     .hero-container > h1 {
         font-size: 70px;

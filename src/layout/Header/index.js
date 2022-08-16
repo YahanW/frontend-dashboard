@@ -26,7 +26,7 @@ function Header(){
   const showModalCheck = () => {setIsModalVisible(true);};
   const CancelCheck = () => {setIsModalVisible(false);};
   const CancelMSG = () => {setMSGVisible(false);};
-
+  const [isSent,setIsSent] = useState(false);
   const [isAccept,setAccept] = useState(true);
     return (
       <div className='m-header'>
@@ -98,19 +98,125 @@ function Header(){
                      className="shop-list"
               >
                 <ul>
-                  <li style={{backgroundColor:isAccept?'#80ED99':'red'}} >
-                    <Link to="/checkout">
-                      <h3 style={{color:'#ffffff'}}>SERVICE NAME</h3>
-                      <h4>MERCHANT NAME</h4>
-                      <h4 style={{color:isAccept?'#B5FFD9':'red'}}>accept</h4>
-                    </Link>
+                  <li 
+                  // style={{backgroundColor:isAccept?'#80ED99':'red'}} 
+                  >
+                    <div className='avatar'>
+                    </div>
+                      <div className='left'>
+                        <h3 >EVENT NAMEdsdsdsddddddddddddddddddddddddddddddddddddddddddddddddd</h3>
+                        <h5>MERCHANT NAME</h5>
+                        <h4 style={{color:isAccept?'#B5FFD9':'red'}}>
+                       
+                        accept
+                      
+                          </h4>
+                      </div>
+                      <div className='right'>
+                      <button>
+                        {
+                          isSent?(
+                            <Link to="/checkout">
+                        
+                          checkout
+                        
+                        </Link>
+                          ):(
+                            'Request'
+                          )
+                        }
+                        </button>
+                      </div>
                   </li>
-                  <li style={{backgroundColor:isAccept?'#80ED99':'red'}}>
-                    <Link to="/checkout">
-                        <h3 style={{color:'#ffffff'}}>SERVICE NAME</h3>
-                        <h4>MERCHANT NAME</h4>
-                        <h4 style={{color:isAccept?'#B5FFD9':'red'}}>accept</h4>
-                      </Link>
+                  <li 
+                  // style={{backgroundColor:isAccept?'#80ED99':'red'}} 
+                  >
+                    <div className='avatar'>
+                    </div>
+                      <div className='left'>
+                        <h3 >EVENT NAMEdsdsdsddddddddddddddddddddddddddddddddddddddddddddddddd</h3>
+                        <h5>MERCHANT NAME</h5>
+                        <h4 style={{color:isAccept?'#B5FFD9':'red'}}>
+                       
+                        accept
+                      
+                          </h4>
+                      </div>
+                      <div className='right'>
+                      <button>
+                        {
+                          isSent?(
+                            <Link to="/checkout">
+                        
+                          checkout
+                        
+                        </Link>
+                          ):(
+                            'Request'
+                          )
+                        }
+                        </button>
+                      </div>
+                  </li>
+                  <li 
+                  // style={{backgroundColor:isAccept?'#80ED99':'red'}} 
+                  >
+                    <div className='avatar'>
+                    </div>
+                      <div className='left'>
+                        <h3 >EVENT NAMEdsdsdsddddddddddddddddddddddddddddddddddddddddddddddddd</h3>
+                        <h5>MERCHANT NAME</h5>
+                        <h4 style={{color:isAccept?'#B5FFD9':'red'}}>
+                       
+                        accept
+                      
+                          </h4>
+                      </div>
+                      <div className='right'>
+                      <button>
+                        {
+                          isSent?(
+                            <Link to="/checkout">
+                        
+                          checkout
+                        
+                        </Link>
+                          ):(
+                            'Request'
+                          )
+                        }
+                        </button>
+                      </div>
+                  </li>
+                  <li 
+                  // style={{backgroundColor:isAccept?'#80ED99':'red'}} 
+                  >
+                    <div className='avatar'>
+                    </div>
+                      <div className='left'>
+                        <h3 >EVENT NAMEdsdsdsddddddddddddddddddddddddddddddddddddddddddddddddd</h3>
+                        <h5>MERCHANT NAME</h5>
+                        <h4 style={{color:isAccept?'#B5FFD9':'red'}}>
+                       
+                        accept
+                      
+                          </h4>
+                      </div>
+                      <div className='right'>
+                      <button>
+                        {
+                          isSent?(
+                            <Link to="/checkout">
+                        
+                          checkout
+                        
+                        </Link>
+                          ):(
+                            'Request'
+                          )
+                        }
+                        </button>
+                      </div>
                   </li>
                 </ul>
               </Modal>
