@@ -51,8 +51,9 @@ export default(
             </Route>
 
             <Route path='/event/' >
-                <Route path=':type/:date/:guest/:budget' element={<Event/>}/>
-                <Route path=':type/:seat/:budget' element={<Event/>}/>
+                <Route path='normal/:type/:date/:guest/:budget' element={<Event/>}/>
+                <Route path=':type/:area/:budget/:name' element={<Event/>}/>
+                <Route path='advance/:type/:date/:guest/:budget/:area/:stand/:seat' element={<Event/>}/>
             </Route>
 
             <Route path='/profile/booking/details' element={<BookHsitory/>}/>

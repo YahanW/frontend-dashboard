@@ -11,21 +11,19 @@ const [eveList,setEveList] = useState([]);
 const serType = [ "All","Venue Renting","Hosting","Decoration","Live Performance","Security","Car Rental",];
 const areType = [ "All","Hobart","SandyBay","Kinston","NewTown","South Hobart","North Hobart","Dynnyrne"];
 const bgtType = [ "All","$50-$99","$100-$499","$500-$999","$1000+"];
-const [isActiveRight, setIsActive] = useState(false);
-const [isActiveLeft, setLeft] = useState(false);
-
+const [curType,setCurType] = useState("");
+const [curAre,setCurAre] = useState("");
+const [curBgt,setCurBgt] = useState("");
 const {type,date,guest,budget} = useParams();
 const [keyWord,setKeyWord] = useState('');
 const history = useNavigate();
 const goHome = () =>{
     history("/")
 }
-const handleSelect = () =>{
-    setIsActive(!isActiveRight)
-  }
 const makeSearch = () =>{
-    console.log(`searching by ${keyWord}`)
-    history("/event/4/3/2/1")
+    //console.log(`searching by ${keyWord}`)
+    history(`/event/${curType}/${curAre}/${curBgt}/${keyWord}`)
+    //console.log(curType,curAre,curBgt,keyWord)
 }
 const getEvent = async ()=>{
   const { data } = await 
@@ -71,7 +69,9 @@ if(!eveList){
                 <Radio.Group>
                 {
                     serType.map((ele,index)=>{
-                    return <Radio value={index}>{ele}</Radio>
+                    return <Radio value={index}
+                    onChange={()=>{setCurType(ele)}}
+                    >{ele}</Radio>
                     })
                 }
                 </Radio.Group>
@@ -84,9 +84,13 @@ if(!eveList){
                 <p>Area</p>
                 <div className='right right-area'>
                 <Radio.Group>
+                
                 {
+                   
                     areType.map((ele,index)=>{
-                    return <Radio value={index}>{ele}</Radio>
+                    return <Radio value={index}
+                    onChange={()=>{setCurAre(ele)}}
+                    >{ele}</Radio>
                     })
                 }
                 </Radio.Group>
@@ -100,7 +104,9 @@ if(!eveList){
                 <Radio.Group>
                 {
                     bgtType.map((ele,index)=>{
-                    return <Radio value={index}>{ele}</Radio>
+                    return <Radio value={index}
+                    onChange={()=>{setCurBgt(ele)}}
+                    >{ele}</Radio>
                     })
                 }
                 </Radio.Group>
