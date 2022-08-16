@@ -59,20 +59,37 @@ function Customer() {
 
     return(
       <div class="regiBase">
-        <div id="regiBox">
-          <div id="left"></div>
-          <div id="right">
-            <form onSubmit={submitHandler}>
-              <div className='hello'>
-                <h3>Hi Customer</h3>
-                <div className='home'><a><Link to="/">home</Link></a></div>
+        <div className="regiBox">
+          <div className="left">
+            <div className='home'>
+              <h4><Link to="/">HOME</Link></h4>
               </div>
-              <div class="form">
+          </div>
+          <div className="right">
+            <form onSubmit={submitHandler}>
+              
+              <h3>Hi Customer</h3>
+              
+              <div class="form f-user">
                 <div class="item">
+                  <label for="userName">username</label>
                   <input name="userName" type="text" placeholder="username" 
                   value={details.userName} onChange={e=>setDetails({...details,userName:e.target.value})} required/>
                 </div>
                 <div class="item">
+                  <label for="email">Email</label>
+                  <input name="email" type="email" placeholder="email" 
+                  value={details.email} onChange={e=>setDetails({...details,email:e.target.value})} required/>
+                </div>
+                <div class="item">
+                  <label for="password">Password</label>
+                  <input type="password" name="password" placeholder="password"
+                  value={details.password} onChange={e=>setDetails({...details,password:e.target.value})} required/>
+                </div>
+                <div class="item">
+                  <PasswordStrengthBar password={details.password} style={{width:'120px',marginLeft:'1vw'}}/>
+                </div>
+                {/* <div class="item">
                   <input name="firstName" type="text" placeholder="firstname" 
                   value={details.firstName} onChange={e=>setDetails({...details,firstName:e.target.value})} required/>
                 </div>
@@ -84,21 +101,13 @@ function Customer() {
                   <input name="dob" type="date" placeholder="date of birth" 
                   value={details.dob} onChange={e=>setDetails({...details,dob:e.target.value})} required/>
                 </div>
-                <div class="item">
-                  <input name="email" type="text" placeholder="email" 
-                  value={details.email} onChange={e=>setDetails({...details,email:e.target.value})} required/>
-                </div>
-                <div class="item">
-                  <input type="password" name="password" placeholder="password"
-                  value={details.password} onChange={e=>setDetails({...details,password:e.target.value})} required/>
-                </div>
-                <PasswordStrengthBar password={details.password} />
+                
                 <div class="item">
                   <input name="phoneNumber" type="text" placeholder="phone number" 
                   value={details.phoneNumber} onChange={phoneCheck} required/>
-                </div>
+                </div> */}
               </div>
-                <div class="sending">
+                <div class="sending send-user">
                   <button type="submit" class="submit">Submit</button>
                 </div>  
             </form>

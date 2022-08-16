@@ -1,81 +1,72 @@
 .regiBase{
-	background-image: url('https://alacritas.cis.utas.edu.au/~mingked/kit301/JPGs/back-register.png');
-	background-size: cover;
-	height: 825px;
-	padding-top: 45px;
-	background-repeat: no-repeat;
-	
-}
-#regiBox{
+	height: 100vh;
 	display: flex;
-	width: 60%;
-	height: 600px;
-	margin: 3% auto;/*上右下左*/
-	background: #FFFFFF;
-	border-radius: 3pc;
-}
-
-#left{
-	border-radius: 1pc;
-	width: 35%;
-	height: 600px;
-	background-image: url('https://alacritas.cis.utas.edu.au/~mingked/kit301/JPGs/front-register.png');
+	align-items: center;
+	flex-direction: column;
+	padding-top: 5vh;
+	background-image: url("https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80");
 	background-size: cover;
-	
-	border-top-right-radius: 2pc;
-	border-bottom-right-radius: 2pc;
-	
+	background-repeat: no-repeat;
+}
+.regiBox{
+	display: flex;
+	width: 64%;
+	height: 85%;
+	background: #FFFFFF;
+	border: .4rem solid #efefef;
 }
 
-#right{
+.regiBox .left{
+	width: 45%;
+	height: 100%;
+	background-image: url("https://images.unsplash.com/photo-1543599538-a6c4f6cc5c05?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80");
+	background-size: cover;
+}
+
+.regiBox .right{
 	margin-left: 50px;
+	height: 100%;
+	width: 65%;
 }
-
-#regiBox .form .item input{
-	border-radius: 1pc;
-	width: 500px;
-	height: 40px;
-	font-size: 20px;
-	border: 2;
-	padding: 10px 10px; /*上下左右*/
-	background: #ffffff00;
-	color: #000000; /*直接color就是字体颜色*/
+.regiBox .f-user{
+	margin-top: 4vh;
+	margin-bottom: 3vh;
 }
-#regiBox h3{
+.regiBox .form .item{
+	margin-top: 1vh; /*上间距*/
+	display: flex;
+	flex-direction: column;
+}
+.regiBox .form .item input{
+	width: 90%;
+	height: 5.5vh;
+	font-size: 1.5rem;
+	border: .2rem solid #efefef;
+	padding: 10px 10px; 
+	margin-top: 1vh;
+}
+.regiBox h3{
 	color: #000000;
-   	font-size: 50px;
-	margin: 10px;
-}
-
-#regiBox .form .item{
-	margin-top: 15px; /*上间距*/
+   	font-size: 3rem;
+	margin: 1rem;
+	font-weight: 500;
 }
 
 .sending .submit{
-	width: 500px;
+	width: 90%;
 	height: 50px;
 	font-size: 20px;
 	font-weight: 700;
 	background-color: #2B394E;
     color: #FFFFFF;
 	border: 0;
-	border-radius: 30px;
-	
 	margin-top: 35px;
 	cursor: pointer;
 }
-
-.hello{
-	display: flex;
+.left .home h4{
+	margin-left: 5vw;
+	margin-top: 2vh;
 }
-.hello .home{
-	height: 100px;
-	font-size: small;
-	margin-top: 10px;
-	margin-bottom: 0px;
-	margin-left: 10px;
-}
-
 .dotSet{
 	display: flex;
 	margin-left: 85px;

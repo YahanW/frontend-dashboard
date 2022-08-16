@@ -30,15 +30,15 @@ function Merchant() {
 
     return(
       <div class="regiBase">
-        <div id="regiBox">
-          <div id="left">
+        <div className="regiBox">
+          <div className="left">
             <div className='dotSet'>
               <div className='pageDot'></div>
               <div className='pageDot'></div>
               <div className='pageDot'></div>
             </div>
           </div>
-          <div id="right">
+          <div className="right">
             <form onSubmit={submitHandler}>
               <div className='hello'>
                 <h3>Hi Merchant</h3>
