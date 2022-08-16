@@ -1,9 +1,20 @@
-.footer-container {
-    background-color: #242424;
-    padding: 4rem 0 2rem 0;
+.footer-container{
+    width: 100vw;
+    background-color: rgb(86, 86, 86);
     display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 50vh;
+}
+
+
+.footer-container .left{
+    width: 50%;
+    padding: 1rem;
+    border-right: 1px solid #989898;
+}
+.footer-container .right{
+    padding: 1rem;
+    width: 50%;
+    display: flex;
 }
 
 .footer-subscription {
@@ -12,10 +23,20 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-
+    width: 100%;
     margin-bottom: 10vh;
     padding: 1.5rem;
     color: #fff;
+}
+.footer-links {
+    max-width: 1000px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.social-media {
+    max-width: 1000px;
+    width: 50%;
 }
 
 .footer-subscription>p {
@@ -25,12 +46,14 @@
 
 .footer-subscription-heading {
     margin-bottom: 1.5rem;
-    font-size: 1.4rem;
+    font-size: 1.8rem;
 }
 
 .footer-subscription-text {
     margin-bottom: 1rem;
-    font-size: 1.3rem;
+    font-size: .3rem;
+    box-sizing:unset;
+    width: 350px;
 }
 
 .footer-input {
@@ -44,29 +67,25 @@
     border: 1px solid #fff;
 }
 
-.footer-links {
-    width: 100%;
-    max-width: 1000px;
-    display: flex;
-    justify-content: center;
-}
+
 
 .footer-link-wrapper {
     display: flex;
 }
 
 .footer-link-items {
+    margin-top: 4.5vh;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    margin: 16px;
+    align-items: center;
     text-align: left;
-    width: 160px;
+    width: 220px;
     box-sizing: border-box;
 }
 
 .footer-link-items h2 {
-    margin-bottom: 16px;
+    margin-bottom: 5vh;
+    font-size: 1.6rem;
 }
 
 .footer-link-items>h2 {
@@ -98,18 +117,16 @@
     font-size: 24px;
 }
 
-.social-media {
-    max-width: 1000px;
-    width: 100%;
-}
 
 .social-media-wrap {
+    
     display: flex;
-    justify-content: space-between;
+    margin-left: 165px;
+    margin-top: -65px;
     align-items: center;
-    width: 90%;
+    width: 100%;
     max-width: 1000px;
-    margin: 40px auto 0 auto;
+    
 }
 
 .social-icons {

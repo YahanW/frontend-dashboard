@@ -13,7 +13,7 @@ function HeroSection() {
     message.error("please fills in the form")
    }
   }
-  const [type,setType] = useState(0);
+  const [type,setType] = useState(1);
   const [date,setDate] = useState("");
   const [number,setNumber] = useState(0);
   const [budget,setBudget] = useState(0);
@@ -25,7 +25,7 @@ function HeroSection() {
         <p>Making events easy.</p>
         <Form className='search' onFinish={getEventsNormal} ref={formRef}>
             <Form.Item>
-              <select className="requires eventType" 
+              <select className="requires eventType"  
               onChange={(event)=>setType(event.target.value)}>
                   <option value="1">BIRTHDAYS & PRIVATE</option>
                   <option value="2">CORPORATE FUNCTIONS</option>
