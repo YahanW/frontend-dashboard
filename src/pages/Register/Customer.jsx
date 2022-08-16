@@ -48,12 +48,9 @@ function Customer() {
 					history("/")
 				}
 			  })
-			//console.log(response)
-			//alert("Congradulations!! Register Finished !!!");
 		})
 		.catch(error=>{
 			console.log(error)
-			//alert("Something went wrong");
 		})
 	}
 
@@ -67,7 +64,6 @@ function Customer() {
           </div>
           <div className="right">
             <form onSubmit={submitHandler}>
-              
               <h3>Hi Customer</h3>
               
               <div class="form f-user">
@@ -89,7 +85,19 @@ function Customer() {
                 <div class="item">
                   <PasswordStrengthBar password={details.password} style={{width:'120px',marginLeft:'1vw'}}/>
                 </div>
-                {/* <div class="item">
+              </div>
+              <div class="sending send-user">
+                <button type="submit" class="submit">Submit</button>
+              </div>  
+              <p className='sign-notice'>By signing up, you agree to our communication and usage terms. 
+                Already have an account? <a><Link to="/login">Login In</Link></a>
+              </p>
+            </form>
+          </div>
+		    </div>
+      </div>
+    )
+  {/* <div class="item">
                   <input name="firstName" type="text" placeholder="firstname" 
                   value={details.firstName} onChange={e=>setDetails({...details,firstName:e.target.value})} required/>
                 </div>
@@ -106,17 +114,6 @@ function Customer() {
                   <input name="phoneNumber" type="text" placeholder="phone number" 
                   value={details.phoneNumber} onChange={phoneCheck} required/>
                 </div> */}
-              </div>
-                <div class="sending send-user">
-                  <button type="submit" class="submit">Submit</button>
-                </div>  
-            </form>
-          </div>
-		    </div>
-      </div>
-	
-    )
-  
 }
 
 

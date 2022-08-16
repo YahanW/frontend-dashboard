@@ -37,6 +37,9 @@
 	display: flex;
 	flex-direction: column;
 }
+.right .sign-notice{
+	width: 90%;
+}
 .regiBox .form .item input{
 	width: 90%;
 	height: 5.5vh;
