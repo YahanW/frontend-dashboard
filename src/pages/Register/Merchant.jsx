@@ -74,6 +74,9 @@ function Merchant() {
                 <div class="sending">
                   <button type="submit" class="submit">Submit</button>
                 </div>  
+                <p className='sign-notice'>By signing up, you agree to our communication and usage terms. 
+                Already have an account? <a><Link to="/login">Login In</Link></a>
+              </p>
             </form>
           </div>
 		    </div>
