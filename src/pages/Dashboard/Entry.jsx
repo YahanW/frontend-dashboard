@@ -6,14 +6,17 @@ import Header from '../../layout/Header'
 export default class Entry extends Component {
   render() {
     return (
+      <div>
+      <Header/>
       <div className='app'>
         <div className='m-slide'>
             <Slider/>
         </div>
         <div className='m-content'>
-            <Header/>
+           
             {/**dynamic page */}
             <Outlet/>
+        </div>
         </div>
       </div>
     )

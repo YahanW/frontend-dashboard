@@ -41,6 +41,7 @@ if(!eveListTemp){
 }
 
   console.log(type,date,guest,budget);
+  console.log(eveListTemp)
     return (
         <div>
             <Header/>
@@ -120,7 +121,7 @@ if(!eveListTemp){
                     eveListTemp //is there any data remains
                     ? 
                     eveListTemp.map((ele,index)=>{
-                       if(ele.budget<=budget){
+                       if(ele.budget<=budget&&ele.guestAmount>=guest){
                         
                         return (    
                             
@@ -133,7 +134,8 @@ if(!eveListTemp){
                                               </h3>
                                               <h4 style={{color:'white',fontSize:'1rem',
                                               fontFamily:`"Times New Roman", "Times", "serif"`,}}>
-                                                'Learn More'
+                                                {'Learn More'}
+                                                
                                               </h4>
                                       </Link>
                                     </div>            

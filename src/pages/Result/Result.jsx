@@ -2,8 +2,10 @@ import React from 'react'
 import Header from '../../layout/Header'
 import './Result.css';
 import {useState,useEffect} from 'react';
-import {useNavigate,Link, useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import axios from 'axios';
+
+import Footer from '../Home/homes/Footer';
 
 function Result() {
   const {eventId} = useParams();
@@ -46,7 +48,31 @@ function Result() {
       <div className='result'>
         {/**Navbar */}
         <Header/> 
-      
+        <div className='event-intro'>
+          <div className='intro-img'></div>
+          <div className='intro-list'>
+            <div className='list-locate'>
+              <h2>Location</h2>
+              <h3>320 George Street, Sydney, New South Wales, Australia </h3>
+            </div>
+            <div className='list-locate'>
+              <h2>Contact Us</h2>
+              <h3>Bookings & Enquiries +61 2 9114 7360 </h3>
+            </div>
+            <div className='list-locate'>
+              <h2>Services & Facilities</h2>
+              <h3>In-house visual styling and florist, Full AV support, Wi-Fi, Outdoor terrace </h3>
+            </div>
+            <div className='list-locate'>
+              <h2>Capacity</h2>
+              <h3>Cocktail: 1000 Banquet: 400 Wedding: 372</h3>
+            </div>
+          </div>
+          <div className='divider'></div>
+          <div className='intro-desc'>
+          A grand, sweeping space that rises to every occasion, in the heart of the CBD.
+          </div>
+        </div>
         <div className='itemList'> {/**Item Results*/}
            {
                 data.map((ele,index)=>{
@@ -79,7 +105,7 @@ function Result() {
                 )})
             }
         </div>
-
+        <Footer/>
       </div>
     )
 }

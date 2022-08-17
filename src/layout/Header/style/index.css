@@ -7,7 +7,6 @@
     text-align: center;
     position: sticky;
     width: 100vw;
-    box-shadow:0 .5rem #98CBB475 ;
     position: sticky;
     top: 0;
     z-index: 999;
@@ -103,7 +102,7 @@
 }
 .tro-name{
     position:absolute;
-    right: 10vw;
+    right: 20vw;
 }
 .nav-toggle:checked ~ .trolley{
     /* ~ first sibling, doesn't have to be immediatelt after */
