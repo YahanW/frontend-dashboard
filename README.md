@@ -45,6 +45,8 @@
 - > npm install react-router-dom
 - > npm install axios
 - > npm install redux-thunk
+- > npm install react-promise-tracker --save
+- > npm install react-loader-spinner --save
 ## Backend
 - proxy configuration
   - [proxy configure ](https://create-react-app.dev/docs/proxying-api-requests-in-development/)
