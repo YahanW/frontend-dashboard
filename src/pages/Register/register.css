@@ -32,6 +32,11 @@
 	margin-top: 4vh;
 	margin-bottom: 3vh;
 }
+.regiBox .right .form{
+	overflow: scroll;
+	height: 50vh;
+	padding: 2vh;
+}
 .regiBox .form .item{
 	margin-top: 1vh; /*上间距*/
 	display: flex;
@@ -42,12 +47,13 @@
 }
 .regiBox .form .item input{
 	width: 90%;
-	height: 5.5vh;
+	height: 6.5vh;
 	font-size: 1.5rem;
 	border: .2rem solid #efefef;
-	padding: 10px 10px; 
-	margin-top: 1vh;
+	padding: 10px;
+	margin-bottom: 2vh;
 }
+
 .regiBox h3{
 	color: #000000;
    	font-size: 3rem;

@@ -12,6 +12,7 @@ function Merchant() {
 			email:'',
 			password:'',
       phoneNumber: '',
+      ABN:'',
       accessNumbrt:3 //3 means merchant
 		})
 	
@@ -32,47 +33,43 @@ function Merchant() {
       <div class="regiBase">
         <div className="regiBox">
           <div className="left">
-            <div className='dotSet'>
-              <div className='pageDot'></div>
-              <div className='pageDot'></div>
-              <div className='pageDot'></div>
+            <div className='home'>
+                <h4><Link to="/">HOME</Link></h4>
             </div>
           </div>
           <div className="right">
             <form onSubmit={submitHandler}>
               <div className='hello'>
                 <h3>Hi Merchant</h3>
-                <div className='home'><a><Link to="/">home</Link></a></div>
               </div>
               <div class="form">
                 <div class="item">
+                  <label for="username">Password</label>
                   <input name="userName" type="text" placeholder="username" 
                   value={details.userName} onChange={e=>setDetails({...details,userName:e.target.value})} required/>
                 </div>
                 <div class="item">
-                  <input name="firstName" type="text" placeholder="firstname" 
-                  value={details.firstName} onChange={e=>setDetails({...details,firstName:e.target.value})} required/>
-                </div>
-                <div class="item">
-                  <input name="lastName" type="text" placeholder="lastname" 
-                  value={details.lastName} onChange={e=>setDetails({...details,lastName:e.target.value})} required/>
-                </div>
-                <div class="item">
-                  <input name="dob" type="date" placeholder="date of birth" 
-                  value={details.dob} onChange={e=>setDetails({...details,dob:e.target.value})} required/>
-                </div>
-                <div class="item">
-                  <input name="email" type="text" placeholder="email" 
+                  <label for="email">Email</label>
+                  <input name="email" type="email" placeholder="email" 
                   value={details.email} onChange={e=>setDetails({...details,email:e.target.value})} required/>
                 </div>
                 <div class="item">
+                  <label for="password">Password</label>
                   <input type="password" name="password" placeholder="password"
                   value={details.password} onChange={e=>setDetails({...details,password:e.target.value})} required/>
                 </div>
                 <div class="item">
-                  <input name="phoneNumber" type="text" placeholder="phone number" 
-                  value={details.phoneNumber} onChange={e=>setDetails({...details,phoneNumber:e.target.value})} required/>
+                  <label for="password">ABN</label>
+                  <input name="abn" type="number" placeholder="11 digit identifier" 
+                  value={details.phoneNumber} onChange={e=>setDetails({...details,ABN:e.target.value})} required/>
                 </div>
+                <div class="item">
+                  <label for="abnFiles">ABN Documents</label>
+                  <input name="abnFiles" type="file" id="abnFiles" multiple
+                  style={{height:'10vh'}}
+                  required/>
+                </div>
+                
               </div>
                 <div class="sending">
                   <button type="submit" class="submit">Submit</button>

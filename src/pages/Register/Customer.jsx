@@ -19,24 +19,11 @@ function Customer() {
 		})
   const history = useNavigate();
 
-	const phoneCheck = e => 
-  {
-    const reg = /^-?(04|[0-9][0-9]*)(\.[0-9]*)?$/;
-    if ((!Number.isNaN(e.target.value) && reg.test(e.target.value)) || e.target.value === '' || e.target.value === '-') 
-    {
-      console.log("ok")
-      setDetails({...details,phoneNumber:e.target.value})
-     
-    }else{
-      console.log("error")
-    }
-   
-  }
 	const submitHandler = e =>{
 		e.preventDefault()
 		axios.post("https://eventeasynew.azurewebsites.net/api/user/create",details)
 		.then(response => {
-      console.log(response)
+      //console.log(response)
       sessionStorage.setItem('id',response.data.userId)
 			
 			Modal.confirm({
@@ -60,7 +47,7 @@ function Customer() {
           <div className="left">
             <div className='home'>
               <h4><Link to="/">HOME</Link></h4>
-              </div>
+            </div>
           </div>
           <div className="right">
             <form onSubmit={submitHandler}>
@@ -68,7 +55,7 @@ function Customer() {
               
               <div class="form f-user">
                 <div class="item">
-                  <label for="userName">username</label>
+                  <label for="userName">Username</label>
                   <input name="userName" type="text" placeholder="username" 
                   value={details.userName} onChange={e=>setDetails({...details,userName:e.target.value})} required/>
                 </div>
@@ -97,23 +84,6 @@ function Customer() {
 		    </div>
       </div>
     )
-  {/* <div class="item">
-                  <input name="firstName" type="text" placeholder="firstname" 
-                  value={details.firstName} onChange={e=>setDetails({...details,firstName:e.target.value})} required/>
-                </div>
-                <div class="item">
-                  <input name="lastName" type="text" placeholder="lastname" 
-                  value={details.lastName} onChange={e=>setDetails({...details,lastName:e.target.value})} required/>
-                </div>
-                <div class="item">
-                  <input name="dob" type="date" placeholder="date of birth" 
-                  value={details.dob} onChange={e=>setDetails({...details,dob:e.target.value})} required/>
-                </div>
-                
-                <div class="item">
-                  <input name="phoneNumber" type="text" placeholder="phone number" 
-                  value={details.phoneNumber} onChange={phoneCheck} required/>
-                </div> */}
 }
 
 
