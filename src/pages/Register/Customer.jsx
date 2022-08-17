@@ -5,25 +5,34 @@ import {Modal} from 'antd';
 import {CheckOutlined} from '@ant-design/icons';
 import { Link,useNavigate } from 'react-router-dom';
 import PasswordStrengthBar from 'react-password-strength-bar';
+import { usePromiseTracker } from "react-promise-tracker";
+import { trackPromise } from 'react-promise-tracker';
+import {ThreeDots} from 'react-loader-spinner';
 
 function Customer() {
   const [details,setDetails] = useState({
       userName: '',
-      firstName: '',
-      lastName: '',
-      dob: '',
 			email:'',
 			password:'',
-      phoneNumber: '',
       accessNumber:5  //5 means user
 		})
   const history = useNavigate();
-
+  const LoadingIndicator = () => {
+    const { promiseInProgress } = usePromiseTracker();
+    return (
+      promiseInProgress &&<div
+      style={{marginLeft:"14vw"}}>
+        <ThreeDots color="#00BFFF" height={80} width={80} />
+      </div>
+      
+        
+    );}
 	const submitHandler = e =>{
 		e.preventDefault()
+    trackPromise(
 		axios.post("https://eventeasynew.azurewebsites.net/api/user/create",details)
 		.then(response => {
-      //console.log(response)
+      console.log(response)
       sessionStorage.setItem('id',response.data.userId)
 			
 			Modal.confirm({
@@ -38,7 +47,7 @@ function Customer() {
 		})
 		.catch(error=>{
 			console.log(error)
-		})
+		}));
 	}
 
     return(
@@ -82,6 +91,7 @@ function Customer() {
             </form>
           </div>
 		    </div>
+        <LoadingIndicator/>
       </div>
     )
 }

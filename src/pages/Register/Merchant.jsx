@@ -2,31 +2,41 @@ import React, { useState }  from 'react'
 import axios from "axios";
 import './register.css'
 import { Link } from 'react-router-dom';
+import { usePromiseTracker } from "react-promise-tracker";
+import { trackPromise } from 'react-promise-tracker';
+import {ThreeDots} from 'react-loader-spinner';
 
 function Merchant() {
   const [details,setDetails] = useState({
       userName: '',
-      firstName: '',
-      lastName: '',
-      dob: '',
 			email:'',
 			password:'',
-      phoneNumber: '',
-      ABN:'',
+      abn:"",
+      //abnImage:'',
       accessNumbrt:3 //3 means merchant
 		})
-	
+  const LoadingIndicator = () => {
+      const { promiseInProgress } = usePromiseTracker();
+      return (
+        promiseInProgress &&<div
+        style={{marginLeft:"14vw"}}>
+          <ThreeDots color="#00BFFF" height={80} width={80} />
+        </div>
+        
+          
+      );}
 	const submitHandler = e =>{
 		e.preventDefault()
+    trackPromise(
 		axios.post("https://easyevent.azurewebsites.net/api/user/create",details)
 		.then(response => {
 			console.log(response)
-			//alert("Congradulations!! Register Finished !!!");
+			alert("Congradulations!! Register Finished !!!");
 		})
 		.catch(error=>{
 			console.log(error)
-			//alert("Something went wrong");
-		})
+			alert("Something went wrong");
+		}))
 	}
 
     return(
@@ -44,7 +54,7 @@ function Merchant() {
               </div>
               <div class="form">
                 <div class="item">
-                  <label for="username">Password</label>
+                  <label for="username">Username</label>
                   <input name="userName" type="text" placeholder="username" 
                   value={details.userName} onChange={e=>setDetails({...details,userName:e.target.value})} required/>
                 </div>
@@ -60,15 +70,17 @@ function Merchant() {
                 </div>
                 <div class="item">
                   <label for="password">ABN</label>
-                  <input name="abn" type="number" placeholder="11 digit identifier" 
-                  value={details.phoneNumber} onChange={e=>setDetails({...details,ABN:e.target.value})} required/>
+                  <input name="abn" type="nubmer" placeholder="11 digit identifier" 
+                  value={details.phoneNumber} onChange={e=>setDetails({...details,abn:e.target.value})} required/>
                 </div>
-                <div class="item">
+                {/* <div class="item">
                   <label for="abnFiles">ABN Documents</label>
-                  <input name="abnFiles" type="file" id="abnFiles" multiple
+                  <input name="abnFiles" type="file" id="abnFiles" 
+                  onChange={e=>setDetails({...details,abnImage:e.target.value})} 
+                  multiple
                   style={{height:'10vh'}}
                   required/>
-                </div>
+                </div> */}
                 
               </div>
                 <div class="sending">
@@ -80,6 +92,7 @@ function Merchant() {
             </form>
           </div>
 		    </div>
+        <LoadingIndicator/>
       </div>
 	
     )
