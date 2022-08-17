@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
 import Header from '../../layout/Header';
-
+import { Link } from 'react-router-dom';
+import './NotFound.css'
 export default class NotFound extends Component {
   render() {
     return (
       <div>
         <Header/>
-        <img src='https://i0.wp.com/learn.onemonth.com/wp-content/uploads/2017/08/1-10.png?w=845&ssl=1'
-          style={{width:'100%'}}
-        ></img>
+        <div className='lost-content'>
+          <h2>Lost Your Way ?</h2>
+          <h4>Sorry, we can't find that page. You'll find loads to explore on the home page</h4>
+          <button><Link to="/">EventEasy Home</Link></button>
+          <div className='code'>
+            <h3 className='c1'>Error Code</h3>
+            <h3 className='c2'>HTTP 404</h3>
+          </div>
+        </div>
       </div>
     )
   }

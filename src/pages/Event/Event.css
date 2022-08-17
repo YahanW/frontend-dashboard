@@ -3,19 +3,21 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 7vh;
     min-height: 80vh;
+    height: 45vh;
 }
 
 .eve-ele h3{
     font-size: 1.6rem;
     font-weight: 600;
 }
-.eve-col{
-    width: 80vw;
+.events ul{
+    width: 81vw;
     height: auto;
-   
     padding-left: 0;
+    overflow: hidden;
+    margin-top: 0;
+    overflow: scroll;
 }
 .eve-col li{
     list-style: none;
@@ -24,14 +26,17 @@
     padding: .75rem;
     margin-bottom: 2rem;
     text-align: center;
+    
 }
 .eve-row{
     width: 100%;
     height: 35vh;
     display: flex;
     padding: 1rem;
+   
 }
 .eve-ele{
+    
     width: 100%;
     height: 100%;
     padding: 1rem;
@@ -90,13 +95,13 @@
 }
 .result .filter{
     background-color: #ffffff40;  
-    
+    padding: 1.3rem;
 }
 .filter .selection{
     width:80%;
     margin-left: 18%;
     display: flex;
-    height: 95px;
+    height: 7vh;
     align-items: center;
 }
 .selection p{

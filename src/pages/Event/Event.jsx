@@ -10,21 +10,19 @@ export default function Event(){
 const [eveListTemp,setEveListTemp] = useState([]);
 const serType = [ "All","Venue Renting","Hosting","Decoration","Live Performance","Security","Car Rental",];
 const areType = [ "All","Hobart","SandyBay","Kinston","NewTown","South Hobart","North Hobart","Dynnyrne"];
-const bgtType = [ "All","$50-$99","$100-$499","$500-$999","$1000+"];
-const [curType,setCurType] = useState("");
-const [curAre,setCurAre] = useState("");
-const [curBgt,setCurBgt] = useState("");
+const bgtType = [ "All","$500","$1000","$1500","$2000+"];
+const [curType,setCurType] = useState("All");
+const [curAre,setCurAre] = useState("All");
+const [curBgt,setCurBgt] = useState(0);
 const {type,date,guest,budget} = useParams();
 const [keyWord,setKeyWord] = useState('');
 const history = useNavigate();
-
+const [eventCount,setEventCount] = useState(0);
 const goHome = () =>{
     history("/")
 }
 const makeSearch = () =>{
-    //console.log(`searching by ${keyWord}`)
     history(`/event/${curType}/${curAre}/${curBgt}/${keyWord}`)
-    //console.log(curType,curAre,curBgt,keyWord)
 }
 const getEvent = async ()=>{
   const { data } = await 
@@ -68,10 +66,10 @@ if(!eveListTemp){
             <p>Type</p>
             <div className='right right-service'>
                
-                <Radio.Group>
+                <Radio.Group value={curType}>
                 {
                     serType.map((ele,index)=>{
-                    return <Radio value={index}
+                    return <Radio value={ele} key={index}
                     onChange={()=>{setCurType(ele)}}
                     >{ele}</Radio>
                     })
@@ -85,12 +83,10 @@ if(!eveListTemp){
             <div className='selection'> 
                 <p>Area</p>
                 <div className='right right-area'>
-                <Radio.Group>
-                
+                <Radio.Group value={curAre}>
                 {
-                   
                     areType.map((ele,index)=>{
-                    return <Radio value={index}
+                    return <Radio value={ele} key={index}
                     onChange={()=>{setCurAre(ele)}}
                     >{ele}</Radio>
                     })
@@ -103,11 +99,11 @@ if(!eveListTemp){
             <div className='selection'> 
                 <p>Budget</p>
                 <div className='right right-budget'>
-                <Radio.Group>
+                <Radio.Group value={curBgt}>
                 {
                     bgtType.map((ele,index)=>{
-                    return <Radio value={index}
-                    onChange={()=>{setCurBgt(ele)}}
+                    return <Radio value={bgtType.indexOf(ele)*500} key={index}
+                    onChange={()=>{setCurBgt(bgtType.indexOf(ele)*500)}}
                     >{ele}</Radio>
                     })
                 }
@@ -117,7 +113,7 @@ if(!eveListTemp){
             <hr className='hrSearch'/>
 
             </div>
-        </div>
+            </div>
             <div className="events">
                 <ul className="eve-col">
                 {
@@ -125,11 +121,11 @@ if(!eveListTemp){
                     ? 
                     eveListTemp.map((ele,index)=>{
                        if(ele.budget<=budget){
+                        
                         return (    
-                            <li className="eve-row" key={index}>
                             
+                            <li className="eve-row" key={index}>
                                     <div className="eve-ele" 
-                                    
                                     key={index}>
                                       <Link className="getService" to={`/result/${ele.eventId}`}>
                                               <h3 style={{color:'white',fontSize:'2.7rem',fontFamily:`"Times New Roman", "Times", "serif"`,}}>
@@ -137,18 +133,18 @@ if(!eveListTemp){
                                               </h3>
                                               <h4 style={{color:'white',fontSize:'1rem',
                                               fontFamily:`"Times New Roman", "Times", "serif"`,}}>
-                                                Learn More 
+                                                'Learn More'
                                               </h4>
                                       </Link>
-                                    </div>                 
-
-                                
+                                    </div>            
                             </li>
                                 )
                        }
                     })
                     :
-                    'No Relavent Result ...'
+                    <li className="eve-row">
+                    {'No Relavent Result ...'}
+                    </li>
                 }       
                 </ul>    
             </div>

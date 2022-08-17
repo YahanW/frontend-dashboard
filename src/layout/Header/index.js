@@ -140,7 +140,7 @@ function Header(){
                        
                         accept
                       
-                          </h4>
+                        </h4>
                       </div>
                       <div className='right'>
                       <button>
@@ -222,15 +222,19 @@ function Header(){
               </Modal>
             </li>
             <li>
-              <Link to='/profile' className="tro-item tro-name"> 
+              
               {
                 sessionStorage.getItem('username')
                 ?
-                sessionStorage.getItem('username').toUpperCase()
+                (<Link to='/profile' className="tro-item tro-name"> 
+                {sessionStorage.getItem('username').toUpperCase()}
+                 </Link>)
                 :
-                'username'
+                (<Link to='/login' className="tro-item tro-name"> 
+                {"Login"}
+                 </Link>)
               }
-              </Link>
+             
             </li>
           </ul>
         </div>
