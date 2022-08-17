@@ -1,13 +1,19 @@
 import React from "react";
 import { Modal,Button,message } from "antd";
 import { AlignCenterOutlined } from "@ant-design/icons";
+import axios from "axios";
+
 export default class extends React.Component{
     constructor(props){
         super(props)
         this.state={dataSource:[]}
     }
     componentDidMount(){
-        
+        axios.get("https://eventeasynew.azurewebsites.net/api/user/GetAll")
+        .then(response=>{
+            this.setState({dataSource:response})
+        })
+        console.log(this.state.dataSource);
         global.request.get('/api/user/all').then(data=>{
             this.setState({dataSource:data.records})
         })
@@ -47,7 +53,7 @@ export default class extends React.Component{
         )
     }
     render(){
-        const {data={}}=this.props
+        //const {data={}}=this.props
         return (
         <Modal 
             visible 

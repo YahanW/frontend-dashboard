@@ -153,7 +153,6 @@ render() {
     const {userModal,levelModal}=this.props.userState
     return (
    
-    
     <Panel title="User">
         <Card className='m-filter'>
             <Form layout="inline" onFinish={this.onSearch}>
