@@ -83,6 +83,29 @@
     height: 45vh;
     background-size: cover;
     background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.intro-img h2{
+    font-size: 3.2rem;
+    color: rgb(255, 255, 255);
+    font-family:'Times New Roman', Times, serif;
+}
+.intro-img h3{
+    font-size: 1.2rem;
+    color: rgb(206, 206, 206);
+    font-family:'Times New Roman', Times, serif;
+    margin-bottom: 3vh;
+}
+.create-event{
+    background-color: #ffffff00;
+    border: 1px solid #ffffff;
+    font-size: 1rem;
+    width: 12vw;
+    height: 6vh;
+    color: white;
 }
 .event-intro .divider{
     width: 70%;
