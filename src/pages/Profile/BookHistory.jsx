@@ -1,7 +1,8 @@
-import React from "react";
+import React,{useState} from "react";
 import Header from "../../layout/Header";
 import './History.css';
 import {Carousel} from 'antd';
+import {Link} from 'react-router-dom';
 
 function BookHsitory(){
     const images = [{
@@ -14,6 +15,7 @@ function BookHsitory(){
         id:344,
         source:"https://betasmania.com.au/wp-content/uploads/2020/07/mr-i-with-mr-ii_44478028070_o-scaled-1536x810.jpg"
     }]
+    const [status,setStatus] = useState(1);
 
     return(
         <div>
@@ -66,9 +68,22 @@ function BookHsitory(){
             </div>
 
             {
-                <button>
+                status==0?
+                <button id='bk-cancel'>
+                    <Link className="bookLink" to="/profile/booking/cancel"
+                   >
                     CANCEL
+                    </Link>
                 </button>
+                :
+                <button id='bk-review'>
+                    <Link className="bookLink" to="/profile/booking/review"
+                    >
+                    REVIEW
+                    </Link>
+                </button>
+                // style={{backgroundColor:'brown',color:'white'}}
+                // style={{backgroundColor:'rgb(196, 139, 48)',color:'white'}}
             }
             
            </div>

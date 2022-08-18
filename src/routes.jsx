@@ -26,6 +26,9 @@ import Profile from "./pages/Profile";
 import Personals from "./pages/Profile/Personals";
 import Booking from "./pages/Profile/Booking";
 import BookHsitory from "./pages/Profile/BookHistory";
+import MakeReview from "./pages/Profile/MakeReview";
+import CancelEvent from "./pages/Profile/CancelEvent";
+
 //trolley and checkout
 import CheckOut from "./pages/CheckOut/CheckOut"
 
@@ -57,18 +60,18 @@ export default(
             </Route>
 
             <Route path='/profile/booking/details' element={<BookHsitory/>}/>
+            <Route path='/profile/booking/review' element={<MakeReview/>}/>
+            <Route path='/profile/booking/cancel' element={<CancelEvent/>}/>
 
             <Route path='/result/'>
                 <Route path=':eventId'  element={<Result/>}/>
             </Route>
 
-        
             <Route path='/result/details/:serviceId' element={<ItemIntro/>}>
                 <Route path='intro'  index element={<Intro/>}/>
                 <Route path='review' element={<Review/>}/>
             </Route>
        
-
             <Route path="/checkout" element={<CheckOut/>}></Route>
             <Route path='/service' element={<HomeService/>}/>
             <Route path='/sign-user' element={<Register/>}/>

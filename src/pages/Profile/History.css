@@ -32,10 +32,19 @@
     width: 15vw;
     height: 10vh;
     margin-left: 75vw;
-    background-color: brown;
-    color: aliceblue;
     font-size: 1rem;
     border:none;
+}
+#bk-cancel{
+    background-color: brown;
+   
+   
+}
+#bk-review{
+    background-color:rgb(196, 139, 48);
+}
+.bookLink{
+    color: white;
 }
 .detail h2{
     font-size: 1.4rem;
