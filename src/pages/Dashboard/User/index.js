@@ -137,10 +137,10 @@ layoutUserTable=()=>({
             title:'operate',
             render:(record)=>{
                 return <Space>
-                    <a onClick={this.onView(record)}>View</a>
+                    {/* <a onClick={this.onView(record)}>View</a>
                     <a onClick={this.onEdit(record)}>Edit</a>
                     <a onClick={this.onDelete(record)}>Delete</a>
-                    <a onClick={this.onLeverage(record)}>LevelUp</a>
+                    <a onClick={this.onLeverage(record)}>LevelUp</a> */}
                 </Space>
             }
         }
@@ -155,7 +155,8 @@ render() {
    
     <Panel title="User">
         <Card className='m-filter'>
-            <Form layout="inline" onFinish={this.onSearch}>
+            <Form layout="inline" //onFinish={this.onSearch}
+            >
                 <Form.Item label="username" name="uname">
                     <Input/>
                 </Form.Item>

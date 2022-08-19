@@ -50,9 +50,9 @@ function Result() {
         <Header/> 
         <div className='event-intro'>
           <div className='intro-img'>
-            <h2>{data[0].packageName}</h2>
+            {/* <h2>{data[0].packageName}</h2>
             <h3>PRICES START AT ${data[0].eventService.budget/data[0].eventService.guestAmount*10} PP</h3>
-            <button className='create-event'>CREATE EVENT</button>
+            <button className='create-event'>CREATE EVENT</button> */}
           </div>
           <div className='intro-list'>
             <div className='list-locate'>
