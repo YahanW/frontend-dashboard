@@ -1,106 +1,42 @@
 .checkout{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
     height: auto;
-    display: flex;
-    background-color:#a9a9a910;
 }
-
-.checkout .left{
-    width: 55%;
-    height: 95%;
-    display: flex;
-    flex-direction: column;
-    padding-left: 10vw;
-   
-}
-.itemContainer{
-    width: 90%;
-    height: 35vh;
-    margin-bottom: 5vh;
-    
-}
-.payContainer{
-    width: 90%;
-    height: 23vh;
-    margin-bottom: 5vh;
-    
-}
-.cardContainer{
-    width: 90%;
-    height: 50vh;
-}
-.itemCheck{
+.checkout .itemContainer{
+    padding-left: 3vw;padding-right: 3vw;
     width: 100%;
-    height: 85%;
-    background-color:#a9a9a930;
+    height: 80vh;
 }
-.itemCheck .first{
+.itemContainer .itemTitle{
+    height: 30%;
+}
+.serList{
+    padding-left: 1rem;padding-right: 1rem;
     display: flex;
+    flex-direction: column;
+    height: 50%;
+    overflow: scroll;
+    border: 1rem solid #efefef;
 }
-.cardContainer button{
+.serList .service{
+    width: 75%;
+    margin-bottom: 1vh;
+    height: 50%;
+    border-bottom: 3px solid #efefef;
+}
+.service .sname, .service .select{
+    display: flex;
+    height: 50%;
     width: 100%;
-    margin-top: 2vh;
-    height: 5vh;
-    background-color: crimson;
-    color:#ffffff;
-    font-size: 1rem;
-    border-radius: 5rem;
-   
+    align-items: center;
+    position: relative;
 }
-
-.first input{
-    border-radius: 5px;
-    height: 4vh;
-    width: 11vw;
-    margin-right: 3vw;
-    margin-left: 1vw;
-    margin-top: 1vh;
-}
-.second input{
-    border-radius: 5px;
-    height: 4vh;
-    width: 17vw;
-}
-.third input{
-    border-radius: 5px;
-    height: 4vh;
-    width: 13.5vw;
-    margin-right: 3vw;
-    margin-bottom: 2vh;
-}
-.checkout .right{
-    width: 45%;
-    height: 100%;
-    background-color:#83838310;
-}
-.vouBox{
-    background-color: #ffffff;
-    margin-right:4vw;
-}
-.voucher{
-    margin-top: 5vh;
-    height: 12vh;
-    
-    display: flex;
-    flex-direction: column;
-}
-.voucher input{
-    height: 7vh;
-    border: 0;
-}
-.voucher button{
-    height: 5vh;
-    background-color: darkgray;
-    color: antiquewhite;
-}
-
-.calc{
-    display: flex;
-    flex-direction: column;
-
-}
-@media screen and (max-width:800px){
-    .first{
-        display: flex;
-        flex-direction: column;
-    }
+.service button{
+    width: 5vw;
+    height: 50%;
+    position: absolute;
+    right: 0;
 }

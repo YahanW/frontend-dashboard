@@ -26,7 +26,7 @@ function Header(){
   const showModalCheck = () => {setIsModalVisible(true);};
   const CancelCheck = () => {setIsModalVisible(false);};
   const CancelMSG = () => {setMSGVisible(false);};
-  const [isSent,setIsSent] = useState(false);
+  const [isSent,setIsSent] = useState(true);
   const [isAccept,setAccept] = useState(true);
     return (
       <div className='m-header'>

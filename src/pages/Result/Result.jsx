@@ -50,9 +50,19 @@ function Result() {
         <Header/> 
         <div className='event-intro'>
           <div className='intro-img'>
-            {/* <h2>{data[0].packageName}</h2>
-            <h3>PRICES START AT ${data[0].eventService.budget/data[0].eventService.guestAmount*10} PP</h3>
-            <button className='create-event'>CREATE EVENT</button> */}
+            {/* {
+              data[0]?
+              data[0].map((ele,index)=>{
+                return (
+                  <div>
+                    <h2>{ele.packageName}</h2>
+                    <h3>PRICES START AT ${ele.eventService.budget/ele.eventService.guestAmount*10} PP</h3>
+                    <button className='create-event'>CREATE EVENT</button> 
+                  </div>
+                )
+              })
+              :''
+            } */}
           </div>
           <div className='intro-list'>
             <div className='list-locate'>
