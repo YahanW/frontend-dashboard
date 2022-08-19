@@ -10,8 +10,11 @@ return (
             <div className="checkout">
                     <div className="itemContainer">
                         <h1>CHECK OUT</h1>
-                       
+                        <h2>EVENT NAME: HOT STAR</h2>
+                        <h2>EVENT TYPE</h2>
+                        <h2>DATE 19/08/2022</h2>
                         <div className="serList">
+                           
                             <div className="service">
                                 <div className="sname">
                                     <h2>Service Name service name</h2>

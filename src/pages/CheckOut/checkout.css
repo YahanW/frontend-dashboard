@@ -11,7 +11,7 @@
     height: 80vh;
 }
 .itemContainer .itemTitle{
-    height: 30%;
+    height: 30px;
 }
 .serList{
     padding-left: 1rem;padding-right: 1rem;
