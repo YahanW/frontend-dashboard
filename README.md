@@ -5,7 +5,7 @@
 
 | Page               | isFinished | Function                                            |
 | ---                | ---        | ---                                                 |
-| Home               | F          | Entry to: profile, Login, Register, Dashboard       |
+| Home               | T          | Entry to: profile, Login, Register, Dashboard       |
 | Login              | T          | Login user                                          |
 | Register           | T          | Register User 5, Merchant 3                         | 
 | Dashboard          | F          | Manage user Service                                 |
@@ -13,8 +13,8 @@
 | Dashboard.Merchant | F          | Merchant create, update, delete events and service  |
 | Event              | F          | Give correspoding event result                      |
 | Result             | F          | Fetch related service for same event                |
-| Profile            | F          |   to show user info or bookings                     |
-| Checkout           | F          | Make Payment                                        |
+| Profile            | T          |   to show user info or bookings                     |
+| Checkout           | T          | Make Payment                                        |
 | NavEvent           | T          | containing Inbox, trolley, location, Home, username |
 | Inbox              | F          | Provide user with chat function                     |
 | Trolley            | F          | check all user selected services                    |
@@ -47,6 +47,7 @@
 - > npm install redux-thunk
 - > npm install react-promise-tracker --save
 - > npm install react-loader-spinner --save
+- > npm install @paypal/react-paypal-js
 ## Backend
 - proxy configuration
   - [proxy configure ](https://create-react-app.dev/docs/proxying-api-requests-in-development/)
