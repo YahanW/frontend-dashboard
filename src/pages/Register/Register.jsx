@@ -11,7 +11,7 @@ export default class Register extends Component {
           this.props.mode == 'm'?
           <Merchant/>
           :
-          <ABN/>
+          <Customer/>
           
         }
       </div>

@@ -40,8 +40,8 @@ if(!eveListTemp){
   return <li className="eve-row" ><div>Fetching Event Result...</div></li>
 }
 
-  console.log(type,date,guest,budget);
-  console.log(eveListTemp)
+  //console.log(type,date,guest,budget);
+  //console.log(eveListTemp)
     return (
         <div>
             <Header/>
@@ -72,6 +72,7 @@ if(!eveListTemp){
                     serType.map((ele,index)=>{
                     return <Radio value={ele} key={index}
                     onChange={()=>{setCurType(ele)}}
+                    
                     >{ele}</Radio>
                     })
                 }
@@ -122,25 +123,24 @@ if(!eveListTemp){
                     ? 
                     eveListTemp.map((ele,index)=>{
                        if(ele.budget<=budget&&ele.guestAmount>=guest){
-                        
-                        return (    
-                            
-                            <li className="eve-row" key={index}>
-                                    <div className="eve-ele" 
-                                    key={index}>
-                                      <Link className="getService" to={`/result/${ele.eventId}`}>
-                                              <h3 style={{color:'white',fontSize:'2.7rem',fontFamily:`"Times New Roman", "Times", "serif"`,}}>
-                                                {ele.eventName}
-                                              </h3>
-                                              <h4 style={{color:'white',fontSize:'1rem',
-                                              fontFamily:`"Times New Roman", "Times", "serif"`,}}>
-                                                {'Learn More'}
-                                                
-                                              </h4>
-                                      </Link>
-                                    </div>            
-                            </li>
-                                )
+                       
+                            return (    
+                                <li className="eve-row" key={index} id="e-valid">
+                                        <div className="eve-ele" 
+                                        key={index}>
+                                        <Link className="getService" to={`/result/${ele.eventId}`}>
+                                                <h3 style={{color:'white',fontSize:'2.7rem',fontFamily:`"Times New Roman", "Times", "serif"`,}}>
+                                                    {ele.eventName}
+                                                </h3>
+                                                <h4 style={{color:'white',fontSize:'1rem',
+                                                fontFamily:`"Times New Roman", "Times", "serif"`,}}>
+                                                    {'Learn More'}
+                                                    
+                                                </h4>
+                                        </Link>
+                                        </div>            
+                                </li>
+                        )
                        }
                     })
                     :
