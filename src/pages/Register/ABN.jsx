@@ -12,18 +12,27 @@ export default function ABN(){
         axios.get(`https://abr.business.gov.au/ABRXMLSearch/AbrXmlSearch.asmx/SearchByABNv201408?searchString=${sString}&includeHistoricalDetails=${hisDetail}&authenticationGuid=${auGuid}`,{
             headers:{
                 'Host': 'abr.business.gov.au',
-                'Content-Type': 'text/json',
+                'Content-Type': 'text/xml',
             }
         }).then(
             (res)=>{
                 var xml = new XMLParser().parseFromString(res.data); 
-                console.log(xml.children[1])
-                console.log(xml.children[1].children[0].name,xml.children[1].children[0].value)
-                console.log(xml.children[1].children[1].name,xml.children[1].children[1].value)
-                console.log(xml.children[1].children[2].name,xml.children[1].children[2].value)
-                console.log(xml.children[1].children[3].name,xml.children[1].children[3].value)
-               
-
+                console.log(xml)
+                if(xml.children[1].children[2].name!=='exception'){
+                    console.log(xml.children[1].children[1].name,xml.children[1].children[1].value);
+                    console.log(xml.children[1].children[3].children[0].name,xml.children[1].children[3].children[0].value);
+                    console.log(xml.children[1].children[3].children[1].children[0].name,
+                        xml.children[1].children[3].children[1].children[0].value);
+                    console.log(xml.children[1].children[3].children[1].children[1].name,
+                            xml.children[1].children[3].children[1].children[1].value);
+                    console.log(xml.children[1].children[3].children[2].children[0].name,
+                                xml.children[1].children[3].children[2].children[0].value);
+                    console.log(xml.children[1].children[3].children[2].children[1].name,
+                                    xml.children[1].children[3].children[2].children[1].value);
+                }else{
+                    console.log(xml.children[1].children[2].children[0].name,
+                        xml.children[1].children[2].children[0].value)
+                }
             }
         )
 
