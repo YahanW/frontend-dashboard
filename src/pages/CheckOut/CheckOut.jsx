@@ -37,7 +37,7 @@ return (
                                     purchase_units: [
                                         {
                                             amount: {
-                                                value: "1.99",
+                                                value: "9999",
                                             },
                                         },
                                     ],

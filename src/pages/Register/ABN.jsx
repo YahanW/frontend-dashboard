@@ -40,7 +40,6 @@ export default function ABN(){
 
     }
 
-
     return(
         <div>
             <div className='abn' style={{display:'flex',flexDirection:'column',alignItems:'center'}}>
