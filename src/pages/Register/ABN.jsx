@@ -4,7 +4,7 @@ import XMLParser from 'react-xml-parser';
 
 export default function ABN(){
     const [sString,setsString] = useState("");
-    const [hisDetail,setHisDetail] = useState("");
+    const [hisDetail,setHisDetail] = useState("n");
     const [auGuid,setAuGuid] = useState("");
 
     const getLookUp = () =>{
@@ -14,6 +14,8 @@ export default function ABN(){
                 'Host': 'abr.business.gov.au',
                 'Content-Type': 'text/xml',
             }
+
+        //https://abr.business.gov.au/ABRXMLSearch/AbrXmlSearch.asmx/SearchByABNv201408?searchString=74599608295&includeHistoricalDetails=n&authenticationGuid=fbb9c7c6-f657-4411-ae5c-3b5eb36a9fcd
         }).then(
             (res)=>{
                 var xml = new XMLParser().parseFromString(res.data); 
