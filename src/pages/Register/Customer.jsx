@@ -16,6 +16,7 @@ function Customer() {
 			password:'',
       accessNumber:5  //5 means user
 		})
+   
   const history = useNavigate();
   const LoadingIndicator = () => {
     const { promiseInProgress } = usePromiseTracker();
