@@ -28,8 +28,8 @@ function LoginForm(){
 	trackPromise(
 		axios.post("https://eventeasynew.azurewebsites.net/api/user/login/",details)
 		.then(response => { //200
-			sessionStorage.setItem('username',response.data.userName)
 			sessionStorage.setItem('id',response.data.userId)
+			sessionStorage.setItem('username',response.data.userName)
 			sessionStorage.setItem('access',response.data.accessNumber)
 			Modal.confirm({
 				//a pop up window

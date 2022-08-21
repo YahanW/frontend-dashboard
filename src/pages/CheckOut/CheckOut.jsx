@@ -30,14 +30,14 @@ return (
                     </div>
            
                     <div>
-                    <PayPalScriptProvider options={{ "client-id": "test" }}>
+                    <PayPalScriptProvider options={{ "client-id": "PN8RLHJPZQLJQ" }}>
                         <PayPalButtons 
                             createOrder={(data, actions) => {
                                 return actions.order.create({
                                     purchase_units: [
                                         {
                                             amount: {
-                                                value: "9999",
+                                                value: "100",
                                             },
                                         },
                                     ],

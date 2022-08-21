@@ -1,7 +1,8 @@
-import React, { useState,useEffect }  from 'react'
+import React, { useState,useEffect }  from 'react';
 import axios from "axios";
-import './register.css'
-import { Link } from 'react-router-dom';
+import './register.css';
+import {CheckOutlined} from '@ant-design/icons';
+import { Link, useNavigate } from 'react-router-dom';
 import { usePromiseTracker } from "react-promise-tracker";
 import { trackPromise } from 'react-promise-tracker';
 import {ThreeDots} from 'react-loader-spinner';
@@ -9,12 +10,13 @@ import {Modal,Button, message} from 'antd';
 import XMLParser from 'react-xml-parser';
 function Merchant() {
   const [details,setDetails] = useState({
-      userName: '',
-			email:'',
-			password:'',
-      abn:"",
-      accessNumbrt:3 //3 means merchant
+    userName: '',
+    email:'',
+    password:'',
+    accessNumber:3,
+    abn:0,
 		})
+  const history = useNavigate();
   const [abnCheck,setAbnCheck] = useState([]);
   const [valid,setValid] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -51,10 +53,22 @@ function Merchant() {
 		e.preventDefault()
     if(valid===true){
       trackPromise(
-        axios.post("https://easyevent.azurewebsites.net/api/user/create",details)
+        axios.post("https://eventeasynew.azurewebsites.net/api/user/create",details)
         .then(response => {
           console.log(response)
-          alert("Congradulations!! Register Finished !!!");
+          sessionStorage.setItem('id',response.data.userId);
+          sessionStorage.setItem('username',response.data.userName);
+			    sessionStorage.setItem('access',response.data.accessNumber);
+
+          Modal.confirm({
+            //a pop up window
+            icon:<CheckOutlined />,
+            title:'Congradulations',
+            content:'Register successed, Welcome !!!',
+            onOk:()=>{
+              history("/")
+            }
+            })
         })
         .catch(error=>{
           console.log(error)
@@ -110,9 +124,9 @@ return(
                   value={details.password} onChange={e=>setDetails({...details,password:e.target.value})} required/>
                 </div>
                 <div class="item">
-                  <label for="password">ABN</label>
+                  <label for="abn">ABN</label>
                   <input name="abn" type="nubmer" placeholder="11 digit identifier" 
-                  value={details.abn} onChange={e=>setDetails({...details,abn:e.target.value})} required/>
+                  value={details.abn} onChange={e=>{setDetails({...details,abn:e.target.value});setValid(false);}} required/>
               
                 </div>
                 <Button type="primary" onClick={showModal}>
