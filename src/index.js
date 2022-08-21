@@ -5,7 +5,6 @@ import thunk from 'redux-thunk'
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import Request from './requests';
-import './global.css'
 import routes from './routes';
 import rootReducer from './reducer'
 import { message } from 'antd';

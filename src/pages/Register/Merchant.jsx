@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom';
 import { usePromiseTracker } from "react-promise-tracker";
 import { trackPromise } from 'react-promise-tracker';
 import {ThreeDots} from 'react-loader-spinner';
-
+import {Modal,Button} from 'antd';
+import XMLParser from 'react-xml-parser';
 function Merchant() {
   const [details,setDetails] = useState({
       userName: '',
@@ -15,6 +16,19 @@ function Merchant() {
       //abnImage:'',
       accessNumbrt:3 //3 means merchant
 		})
+  const [abnCheck,setAbnCheck] = useState([]);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const showModal = async () => {
+    getLookUp().then((abnCheck)=>setAbnCheck(abnCheck));
+    setIsModalVisible(true);
+    
+  };
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
   const LoadingIndicator = () => {
       const { promiseInProgress } = usePromiseTracker();
       return (
@@ -38,6 +52,36 @@ function Merchant() {
 			alert("Something went wrong");
 		}))
 	}
+
+  const getLookUp = async () =>{
+    const {data} = await 
+    axios.get(`https://abr.business.gov.au/ABRXMLSearch/AbrXmlSearch.asmx/SearchByABNv201408?searchString=${details.abn}&includeHistoricalDetails=n&authenticationGuid=fbb9c7c6-f657-4411-ae5c-3b5eb36a9fcd`,{
+        headers:{
+            'Host': 'abr.business.gov.au',
+            'Content-Type': 'text/xml',
+        }
+    })
+    var xml = new XMLParser().parseFromString(data); 
+    return xml;
+    //https://abr.business.gov.au/ABRXMLSearch/AbrXmlSearch.asmx/SearchByABNv201408?searchString=74599608295&includeHistoricalDetails=n&authenticationGuid=fbb9c7c6-f657-4411-ae5c-3b5eb36a9fcd
+  }
+            
+            /*
+            if(xml.children[1].children[2].name!=='exception'){
+                
+                console.log(xml.children[1].children[3].children[1].children[0].name,
+                    xml.children[1].children[3].children[1].children[0].value);
+                console.log(xml.children[1].children[3].children[1].children[1].name,
+                        xml.children[1].children[3].children[1].children[1].value);
+                console.log(xml.children[1].children[3].children[2].children[0].name,
+                            xml.children[1].children[3].children[2].children[0].value);
+                console.log(xml.children[1].children[3].children[2].children[1].name,
+                                xml.children[1].children[3].children[2].children[1].value);
+            }else{
+                console.log(xml.children[1].children[2].children[0].name,
+                    xml.children[1].children[2].children[0].value)
+            }
+            */
 
     return(
       <div class="regiBase">
@@ -71,16 +115,47 @@ function Merchant() {
                 <div class="item">
                   <label for="password">ABN</label>
                   <input name="abn" type="nubmer" placeholder="11 digit identifier" 
-                  value={details.phoneNumber} onChange={e=>setDetails({...details,abn:e.target.value})} required/>
+                  value={details.abn} onChange={e=>setDetails({...details,abn:e.target.value})} required/>
+              
                 </div>
-                {/* <div class="item">
-                  <label for="abnFiles">ABN Documents</label>
-                  <input name="abnFiles" type="file" id="abnFiles" 
-                  onChange={e=>setDetails({...details,abnImage:e.target.value})} 
-                  multiple
-                  style={{height:'10vh'}}
-                  required/>
-                </div> */}
+                <Button type="primary" onClick={showModal}>
+                    Check ABN
+                </Button>
+                <Modal title="ABN LookUp" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+                  {
+                     abnCheck?
+                     (
+                      abnCheck.children[1].children[2].name!=='exception'?
+                      
+                      <div>
+                        <p>{abnCheck.children[1].children[1].name}</p>
+                        <p>{abnCheck.children[1].children[1].value}</p>
+                        <p>{abnCheck.children[1].children[3].children[0].name}</p>
+                        <p>{abnCheck.children[1].children[3].children[0].value}</p>
+                        <p>{abnCheck.children[1].children[3].children[1].children[0].name}</p>
+                        <p>{abnCheck.children[1].children[3].children[1].children[0].value}</p>
+                        <p>{abnCheck.children[1].children[3].children[1].children[1].name}</p>
+                        <p>{abnCheck.children[1].children[3].children[1].children[1].value}</p>
+                        <p>{abnCheck.children[1].children[3].children[2].children[0].name}</p>
+                        <p>{abnCheck.children[1].children[3].children[2].children[0].value}</p>
+                        <p>{abnCheck.children[1].children[3].children[2].children[1].name}</p>
+                        <p>{abnCheck.children[1].children[3].children[2].children[1].value}</p>
+                      </div>
+                              
+                      :
+                      
+                      <div>
+                        <p>{abnCheck.children[1].children[2].children[0].name}</p>
+                        <p>{abnCheck.children[1].children[2].children[0].value}</p>
+                      </div>
+                      
+                      
+                     )
+                      :
+                      'system error,please press check again'
+                      
+                    }
+                </Modal>
                 
               </div>
                 <div class="sending">

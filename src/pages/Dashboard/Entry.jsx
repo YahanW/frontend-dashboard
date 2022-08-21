@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import { Outlet } from 'react-router-dom'
-import Slider from '../../layout/slider'
-import Header from '../../layout/Header'
-
+import React, { Component } from 'react';
+import { Outlet } from 'react-router-dom';
+import Slider from '../../layout/slider';
+import Header from '../../layout/Header';
+import './dashboard.css';
 export default class Entry extends Component {
   render() {
     return (

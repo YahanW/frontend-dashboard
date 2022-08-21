@@ -1,11 +1,5 @@
 @import '~antd/dist/antd.css';
-#root,.app{
-    height: 100%;
-}
-.app{
-    display: flex;
-    background-color: aliceblue;
-}
+
 .m-slide{
     width: 256px;
     height: 100%;
@@ -17,7 +11,6 @@
     overflow: auto;
    
 }
-
 .ant-menu{
     height: 100vh;
 }
