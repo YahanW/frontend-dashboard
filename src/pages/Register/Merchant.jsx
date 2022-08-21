@@ -1,11 +1,11 @@
-import React, { useState }  from 'react'
+import React, { useState,useEffect }  from 'react'
 import axios from "axios";
 import './register.css'
 import { Link } from 'react-router-dom';
 import { usePromiseTracker } from "react-promise-tracker";
 import { trackPromise } from 'react-promise-tracker';
 import {ThreeDots} from 'react-loader-spinner';
-import {Modal,Button} from 'antd';
+import {Modal,Button, message} from 'antd';
 import XMLParser from 'react-xml-parser';
 function Merchant() {
   const [details,setDetails] = useState({
@@ -13,15 +13,25 @@ function Merchant() {
 			email:'',
 			password:'',
       abn:"",
-      //abnImage:'',
       accessNumbrt:3 //3 means merchant
 		})
   const [abnCheck,setAbnCheck] = useState([]);
+  const [valid,setValid] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const showModal = async () => {
-    getLookUp().then((abnCheck)=>setAbnCheck(abnCheck));
-    setIsModalVisible(true);
+    getLookUp().then(
+      data=>{
+        setAbnCheck(data.children[1]);
+        if(data.children[1].children[2].name!=='exception'){
+          setValid(true);
+          console.log("valid")
+        }else{
+          console.log("invalid")
+        }
+        
+      });
     
+    setIsModalVisible(true);
   };
   const handleCancel = () => {
     setIsModalVisible(false);
@@ -36,21 +46,24 @@ function Merchant() {
         style={{marginLeft:"14vw"}}>
           <ThreeDots color="#00BFFF" height={80} width={80} />
         </div>
-        
-          
       );}
 	const submitHandler = e =>{
 		e.preventDefault()
-    trackPromise(
-		axios.post("https://easyevent.azurewebsites.net/api/user/create",details)
-		.then(response => {
-			console.log(response)
-			alert("Congradulations!! Register Finished !!!");
-		})
-		.catch(error=>{
-			console.log(error)
-			alert("Something went wrong");
-		}))
+    if(valid===true){
+      trackPromise(
+        axios.post("https://easyevent.azurewebsites.net/api/user/create",details)
+        .then(response => {
+          console.log(response)
+          alert("Congradulations!! Register Finished !!!");
+        })
+        .catch(error=>{
+          console.log(error)
+          alert("Something went wrong");
+        }))
+
+    }else{
+      window.alert("Please register with a valid ABN");
+    }
 	}
 
   const getLookUp = async () =>{
@@ -62,28 +75,12 @@ function Merchant() {
         }
     })
     var xml = new XMLParser().parseFromString(data); 
+    console.log('xml',xml)
     return xml;
     //https://abr.business.gov.au/ABRXMLSearch/AbrXmlSearch.asmx/SearchByABNv201408?searchString=74599608295&includeHistoricalDetails=n&authenticationGuid=fbb9c7c6-f657-4411-ae5c-3b5eb36a9fcd
   }
-            
-            /*
-            if(xml.children[1].children[2].name!=='exception'){
-                
-                console.log(xml.children[1].children[3].children[1].children[0].name,
-                    xml.children[1].children[3].children[1].children[0].value);
-                console.log(xml.children[1].children[3].children[1].children[1].name,
-                        xml.children[1].children[3].children[1].children[1].value);
-                console.log(xml.children[1].children[3].children[2].children[0].name,
-                            xml.children[1].children[3].children[2].children[0].value);
-                console.log(xml.children[1].children[3].children[2].children[1].name,
-                                xml.children[1].children[3].children[2].children[1].value);
-            }else{
-                console.log(xml.children[1].children[2].children[0].name,
-                    xml.children[1].children[2].children[0].value)
-            }
-            */
 
-    return(
+return(
       <div class="regiBase">
         <div className="regiBox">
           <div className="left">
@@ -123,38 +120,39 @@ function Merchant() {
                 </Button>
                 <Modal title="ABN LookUp" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
                   {
-                     abnCheck?
-                     (
-                      abnCheck.children[1].children[2].name!=='exception'?
-                      
-                      <div>
-                        <p>{abnCheck.children[1].children[1].name}</p>
-                        <p>{abnCheck.children[1].children[1].value}</p>
-                        <p>{abnCheck.children[1].children[3].children[0].name}</p>
-                        <p>{abnCheck.children[1].children[3].children[0].value}</p>
-                        <p>{abnCheck.children[1].children[3].children[1].children[0].name}</p>
-                        <p>{abnCheck.children[1].children[3].children[1].children[0].value}</p>
-                        <p>{abnCheck.children[1].children[3].children[1].children[1].name}</p>
-                        <p>{abnCheck.children[1].children[3].children[1].children[1].value}</p>
-                        <p>{abnCheck.children[1].children[3].children[2].children[0].name}</p>
-                        <p>{abnCheck.children[1].children[3].children[2].children[0].value}</p>
-                        <p>{abnCheck.children[1].children[3].children[2].children[1].name}</p>
-                        <p>{abnCheck.children[1].children[3].children[2].children[1].value}</p>
-                      </div>
-                              
+                    abnCheck!==null
+                    ?
+                    
+                    (
+                      abnCheck.children?
+                      (
+                        abnCheck.children[2].name!=='exception'?
+                        <div>
+                          <div><p>{abnCheck.children[3].children[0].name}</p></div>
+                          <div><p>{abnCheck.children[3].children[0].value}</p></div>
+                          <div><p>{abnCheck.children[3].children[2].children[0].name}</p></div>
+                          <div><p>{abnCheck.children[3].children[2].children[0].value}</p></div>
+                          <div><p>{abnCheck.children[3].children[2].children[1].name}</p></div>
+                          <div><p>{abnCheck.children[3].children[2].children[1].value}</p></div>
+                          <div><p>{abnCheck.children[3].children[2].children[2].name}</p></div>
+                          <div><p>{abnCheck.children[3].children[2].children[2].value}</p></div>
+                        </div>
+                        :
+                        <div>
+                            <div><p>{abnCheck.children[2].name}</p></div>
+                            <div><p>{abnCheck.children[2].children[0].value}</p></div>
+                        </div>
+                      )
                       :
-                      
-                      <div>
-                        <p>{abnCheck.children[1].children[2].children[0].name}</p>
-                        <p>{abnCheck.children[1].children[2].children[0].value}</p>
-                      </div>
-                      
-                      
-                     )
-                      :
-                      'system error,please press check again'
-                      
-                    }
+                      <div>a system false</div>
+                    )
+                    :
+                    <div>
+                      <p>System error please recheck</p>
+                    </div>
+                       
+                    
+                  }
                 </Modal>
                 
               </div>
@@ -171,8 +169,28 @@ function Merchant() {
       </div>
 	
     )
+                
   
 }
 
 
 export default Merchant
+
+
+//a backup scheme make sure data safe
+// const useBeforeRender = (callback, deps) => {
+//   const [isRun, setIsRun] = useState(false);
+
+//   if (!isRun) {
+//       callback();
+//       setIsRun(true);
+//   }
+
+//   useEffect(() => () => setIsRun(false), deps);
+// };
+// useBeforeRender(() => {
+// getLookUp().then(
+// data=>{
+//   setAbnCheck(data.children[1])
+// })
+// }, []);
