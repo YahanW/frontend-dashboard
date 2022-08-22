@@ -31,7 +31,7 @@ import CancelEvent from "./pages/Profile/CancelEvent";
 
 //trolley and checkout
 import CheckOut from "./pages/CheckOut/CheckOut"
-
+import GeoCheck from "./layout/Header/GeoCheck";
 //warning 404
 import NotFound from "./pages/NotFound";
 
@@ -52,7 +52,7 @@ export default(
                 <Route path='booking' index element={<Booking/>} />
                 <Route path='personal' element={<Personals/>}/>
             </Route>
-
+            <Route path='/geo' element={<GeoCheck/>}/>
             <Route path='/event/' >
                 <Route path='normal/:type/:date/:guest/:budget' element={<Event/>}/>
                 <Route path=':type/:area/:budget/:name' element={<Event/>}/>

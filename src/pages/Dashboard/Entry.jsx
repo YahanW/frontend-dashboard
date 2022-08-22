@@ -6,14 +6,13 @@ import './dashboard.css';
 export default class Entry extends Component {
   render() {
     return (
-      <div>
+      <div className='dashboard'> 
       <Header/>
-      <div className='app'>
+      <div className='dashboard-user'>
         <div className='m-slide'>
             <Slider/>
         </div>
-        <div className='m-content'>
-           
+        <div className='m-content'>  
             {/**dynamic page */}
             <Outlet/>
         </div>

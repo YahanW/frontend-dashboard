@@ -1,27 +1,31 @@
 @import '~antd/dist/antd.css';
 
-.m-slide{
+.dashboard-user{
+    display: flex;
+}
+.dashboard-user .m-slide{
     width: 256px;
     height: 100%;
    
 }
-.m-content{
+.dashboard-user .m-content{
     flex:1;
     height: 100vh;
     overflow: auto;
    
 }
-.ant-menu{
+.dashboard-user .ant-menu{
     height: 100vh;
 }
 
-.m-operate{
+.dashboard-user .m-operate{
     text-align: right;
     padding-bottom: 10px;
 }
 
 .m-readonly-modal .ant-form-item{
     pointer-events: none;
+    /* no mouse event could happen */
 }
 
 .m-readonly-modal .ant-modal-footer{
@@ -29,6 +33,6 @@
 }
 
 
-.m-filter{
+.dashboard-user .m-filter{
     margin:10px 0;
 }
