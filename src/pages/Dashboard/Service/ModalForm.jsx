@@ -1,9 +1,8 @@
-import React, { Component } from 'react'
-import { Modal,Form,Input,Select,InputNumber,Dropdown,Radio,Space,Pagination, message} from 'antd'
-import { Icons } from '../../../commons'
-import _ from 'lodash'
-import axios from 'axios'
-
+import React, { Component } from 'react';
+import { Modal,Form,Input,Select,InputNumber,Dropdown,Radio,Space,Pagination, message} from 'antd';
+import { Icons } from '../../../commons';
+import _ from 'lodash';
+import axios from 'axios';
 class ModalForm extends Component {
 
 constructor(props){
@@ -21,8 +20,8 @@ onCancel=()=>{ //user clicks on the cancel button, close modal
 
 layout={ 
     //form layout
-    labelCol:{span:6},
-    wrapperCol:{span:20}
+    labelCol:{span:10},
+    wrapperCol:{span:250}
 }
 
 onTyping = (e) =>{
@@ -87,14 +86,15 @@ render() {
     <Modal visible width={600} title={this.props.title}
         onCancel={this.onCancel}
         onOk={()=>this.formRef.current.submit()}
-        className={readOnly?'m-readonly-modal':''}
+        className={readOnly?'m-readonly-modal':'dash-event'}
     >
             
-        <Form {...this.layout} ref={this.formRef} onFinish={this.onSave}   initialValues={{["access"]: 2 }}>
+        <Form {...this.layout} ref={this.formRef} 
+        onFinish={this.onSave}   initialValues={{["access"]: 5 }}>
             <Form.Item label="Access Level" name='access'>
                 {'Merchant'} {/**this.props.data.name||'' */}
             </Form.Item>
-            <Form.Item label="Service Name" name='sname' 
+            <Form.Item label="Event Name" name='sname' 
                 rules={[{required:true, message: 'Please input your Service Name!'}]}>
                 <Input/>
             </Form.Item>

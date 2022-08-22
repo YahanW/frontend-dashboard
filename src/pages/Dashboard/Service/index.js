@@ -11,18 +11,18 @@ constructor(props){
   super(props)
   this.state={dataSource:[]}
 }
-// onCreate = () =>{
-//   //pop up window
-//   this.props.dispatch({
-//     type:'show',
-//     data:{
-//       title:'Add Service',
-//       data:{ },
-//       refreshList:this.onGetServices  
-//       //passing service list so as to be used later
-//     }
-//   })
-// }
+onCreate = () =>{
+  //pop up window
+  this.props.dispatch({
+    type:'show',
+    data:{
+      title:'Add Service',
+      data:{ },
+      refreshList:this.onGetEvents  
+      //passing service list so as to be used later
+    }
+  })
+}
 // onDetail=(record)=>{
 //   return ()=>{
 //     this.props.dispatch({
@@ -96,7 +96,7 @@ getTableProps=()=>{
         )
       }
     ],dataSource:this.state.dataSource||[],
-    rowKey:'id',
+    rowKey:'eventId',
     pagination:false
   }
 }
@@ -120,7 +120,7 @@ componentDidMount(){ //once render done, make new request
     return (
       //this.props.isLogged == true
       
-      <Panel title="Service List">
+      <Panel title="Event List">
         <div className='m-operate'>
           <Button type='primary' icon={<PlusOutlined/>} onClick={this.onCreate}>ADD</Button>
             {/** <Button type='primary' icon={<PlusOutlined/>} onClick={this.onCreate()}>ADD</Button> */}

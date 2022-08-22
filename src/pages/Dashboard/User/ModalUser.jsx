@@ -7,7 +7,7 @@ class ModalUser extends Component {
 formRef=React.createRef()
 
 layout={
-    labelCol:{span:4},
+    labelCol:{span:8},
     wrapperCol:{span:20}
 }
 
@@ -71,12 +71,12 @@ render() {
         title={this.props.title}
         onOk={()=>this.formRef.current.submit()} 
         onCancel={this.onCancel}
-        className={readOnly?'m-readonly-modal':''}
+        className={readOnly?'m-readonly-modal':'dash-modal'}
     >
       <Form {...this.layout} onFinish={this.onSave} ref={this.formRef}>
         
-        <Form.Item label='Access Level' name='access'>
-            <p>{data.access==3?'Merchant':(data.access==5?'Customer':data.access==1?'Admin':'New User')}</p>
+        <Form.Item label='Access Level' name='access' >
+            <p>{data.access==3?'Merchant':(data.access==5?'Customer':data.access==1?'Admin':'User')}</p>
                 
             
         </Form.Item>

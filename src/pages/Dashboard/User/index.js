@@ -45,28 +45,28 @@ onGetUsers=(params={})=>{
 //     this.onGetUsers(values)
 // }
 
-// onAddUser=()=>{
-//     this.props.dispatch({
-//         type:'show',
-//         data:{
-//             title:'New User',
-//             data:{},
-//             refreshList:this.onGetUsers
-//         }
-//     })
-// }
-// onView=(record)=>{
-//     console.log(record)
-//     return ()=>{
-//         this.props.dispatch({
-//             type:'show',
-//             data:{
-//                 title:'User Details',
-//                 data:{...record,location:record.location.split(',')},
-//             }
-//         })
-//     }
-// }
+onAddUser=()=>{
+    this.props.dispatch({
+        type:'show',
+        data:{
+            title:'New User',
+            data:{},
+            refreshList:this.onGetUsers
+        }
+    })
+}
+onView=(record)=>{
+    console.log(record)
+    return ()=>{
+        this.props.dispatch({
+            type:'show',
+            data:{
+                title:'User Details',
+                data:{...record,location:record.location.split(',')},
+            }
+        })
+    }
+}
 // onEdit=(record)=>{
 //     return ()=>{
 //         this.props.dispatch({

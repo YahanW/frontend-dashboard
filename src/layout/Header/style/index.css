@@ -2,6 +2,7 @@
     /* define variable at root in case of later using */
     --background-color:#000000;
 }
+
 .m-header-b{
     background-color: var(--background-color);
     text-align: center;
