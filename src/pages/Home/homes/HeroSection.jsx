@@ -76,16 +76,20 @@ function HeroSection() {
           onCancel={() => setModal2Visible(false)}
         >
           <div className='AdvSearch'>
-            <select className="AdvEventType" 
+            <label for="type-adv">Event Type</label>
+            <select className="AdvEventType" id="type-adv"
              onChange={(event)=>setType(event.target.value)}>
 
               <option value="1">BIRTHDAYS & PRIVATE</option>
               <option value="2">CORPORATE FUNCTIONS</option>
               <option value="3">WEDDINGS & ENGAGEMENTS</option>
             </select>
-            <input type='date' className="AdvEventType" onChange={(event)=>setDate(event.target.value)} />
-            <input type="number" className="AdvEventType" placeholder="Number of Guest" onChange={(event)=>setNumber(event.target.value)} />
-            <input type='number' className="AdvEventType" placeholder="BUDGET" onChange={(event)=>setBudget(event.target.value)} />
+            <label for="date-adv">Start Date</label>
+            <input type='date' className="AdvEventType" id="date-adv" onChange={(event)=>setDate(event.target.value)} />
+            <label for="guest-adv">Guests</label>
+            <input type="number" id="guest-adv" className="AdvEventType" placeholder="Number of Guest" onChange={(event)=>setNumber(event.target.value)} />
+            <label for="buget-adv">Max Buget</label>
+            <input type='number' className="AdvEventType" id="buget-adv" placeholder="BUDGET" onChange={(event)=>setBudget(event.target.value)} />
             <label for="standAdv">STAND</label>
             <select className="AdvEventType"id="standAdv"
               onChange={(event)=>{setStand(event.target.value)}}>

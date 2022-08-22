@@ -1,4 +1,3 @@
-
 .hero-container{
     width: 100vw;
     height: 100vh;
@@ -6,38 +5,24 @@
     background-size: cover;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
-
 .hero-container  h1 {
     color: white;
     font-size: 100px;
-    margin-left: 34vw;
-    
 }
 .hero-container  p {
-    margin-top: -5vh;
     color: white;
     font-size: 32px;
-    margin-left: 40vw;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
+/* all search fields */
 .search{
     display: flex;
     flex-wrap: wrap;
     padding-left: 9vw;
-    /* margin-top: -22vh;  */
 }
-.twoSearch .btn{
-    margin-left: 38.5vw;
-    margin-top: 3vh;
-    margin-bottom: 1vh;
-}
-.twoSearch a{
-   color:#7691C6;
-   font-size: 20px;
-   margin-left: 40vw;
-   
-}
+/* each search fields */
 .requires{
     text-align: center;
     background-color:#ffffff00 ;
@@ -50,8 +35,20 @@
     height: 17vh;
     margin-left:0.5vw;
     margin-right:0.5vw;
-
 }
+
+.twoSearch{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3vh;
+}
+.twoSearch a{
+   color:#7691C6;
+   font-size: 20px;
+   margin-top: 2vh;
+} 
+
 
 .eventType option{
     background-color:#ffffff;
@@ -74,7 +71,11 @@
 .ant-modal-body .AdvEventType{
     margin-bottom: 2vh;
     height: 5vh;
+    background-color: #7691C620;
+    border-radius: 5px;
+    color: gray;
 }
+
 .ant-modal-body label{
     font-size: 1.6rem;
 }
