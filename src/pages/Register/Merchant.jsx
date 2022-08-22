@@ -88,6 +88,7 @@ function Merchant() {
             'Content-Type': 'text/xml',
         }
     })
+    
     var xml = new XMLParser().parseFromString(data); 
     console.log('xml',xml)
     return xml;

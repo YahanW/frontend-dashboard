@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Header from '../../layout/Header';
 import { Link } from 'react-router-dom';
-import './NotFound.css'
+import './NotFound.css';
+
 export default class NotFound extends Component {
   render() {
     return (

@@ -15,7 +15,7 @@ function BookHsitory(){
         id:344,
         source:"https://betasmania.com.au/wp-content/uploads/2020/07/mr-i-with-mr-ii_44478028070_o-scaled-1536x810.jpg"
     }]
-    const [status,setStatus] = useState(0);
+    const [status,setStatus] = useState(1);
 
     return(
         <div>
