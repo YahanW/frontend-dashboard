@@ -1,16 +1,19 @@
-import React, { Component } from 'react'
-import { Panel } from '../../../commons'
-import { Card,Form,Input,Button,Table,Space, Avatar,Modal,message } from 'antd'
-import { PlusOutlined } from '@ant-design/icons'
-import { connect } from 'react-redux'
-import ModalUser from './ModalUser'
-import LevelModal from './LevelModal'
+import React, { Component } from 'react';
+import { Panel } from '../../../commons';
+import { Card,Form,Input,Button,Table,Space, Avatar,Modal,message } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
+import { connect } from 'react-redux';
+import ModalUser from './ModalUser';
+import LevelModal from './LevelModal';
+import axios from 'axios';
 
 class User extends Component {
     constructor(props){
     super(props);
     this.state = {
-        dataSource:[],pagination:{},filters:{}
+        dataSource:[],
+        //pagination:{},
+        filters:{}
     }
 }
 componentDidMount(){
@@ -19,98 +22,108 @@ componentDidMount(){
 }
 onGetUsers=(params={})=>{
     
-    global.request.get('/api/user/all',params).then(
-        data=>{
-            this.setState({dataSource:data.records,pagination:data.pagination})
-            //get pagination wihle fetching records
-        }
-    )
-}
-
-onSearch=(values)=>{
-    this.setState({filters:values})
-    this.onGetUsers(values)
-}
-
-onAddUser=()=>{
-    this.props.dispatch({
-        type:'show',
-        data:{
-            title:'New User',
-            data:{},
-            refreshList:this.onGetUsers
-        }
+    axios.get("https://eventeasynew.azurewebsites.net/api/user/GetAll")
+    .then( data=>{
+        //console.log(data.data.$values)
+        this.setState({dataSource:data.data.$values})
+            //pagination:{data.length,5}
+        
+        //get pagination wihle fetching records
     })
+    // global.request.get('/api/user/all',params).then(
+    //     data=>{
+    //         this.setState({dataSource:data.records,
+    //             //pagination:{data.length,5}
+    //         })
+    //         //get pagination wihle fetching records
+    //     }
+    // )
 }
-onView=(record)=>{
-    console.log(record)
-    return ()=>{
-        this.props.dispatch({
-            type:'show',
-            data:{
-                title:'User Details',
-                data:{...record,location:record.location.split(',')},
-            }
-        })
-    }
-}
-onEdit=(record)=>{
-    return ()=>{
-        this.props.dispatch({
-            type:'show',
-            data:{
-                title:'Edit',
-                data:{...record,location:record.location.split(',')},
-                refreshList:this.onGetUsers
-            }
-        })
-    }
-}
-onDelete=(record)=>{
-    return ()=>{
-        Modal.confirm({
-            //a pop up window
-            title:'Warning',
-            content:'Are you sure to delete this record?',
-            onOk:()=>
-            {
-              global.request.post('/api/user/delete',{id:record.id}).then(data=>{
-                message.success('Deletion Success')
-                this.onGetUsers()
+
+// onSearch=(values)=>{
+//     this.setState({filters:values})
+//     this.onGetUsers(values)
+// }
+
+// onAddUser=()=>{
+//     this.props.dispatch({
+//         type:'show',
+//         data:{
+//             title:'New User',
+//             data:{},
+//             refreshList:this.onGetUsers
+//         }
+//     })
+// }
+// onView=(record)=>{
+//     console.log(record)
+//     return ()=>{
+//         this.props.dispatch({
+//             type:'show',
+//             data:{
+//                 title:'User Details',
+//                 data:{...record,location:record.location.split(',')},
+//             }
+//         })
+//     }
+// }
+// onEdit=(record)=>{
+//     return ()=>{
+//         this.props.dispatch({
+//             type:'show',
+//             data:{
+//                 title:'Edit',
+//                 data:{...record,location:record.location.split(',')},
+//                 refreshList:this.onGetUsers
+//             }
+//         })
+//     }
+// }
+// onDelete=(record)=>{
+//     return ()=>{
+//         Modal.confirm({
+//             //a pop up window
+//             title:'Warning',
+//             content:'Are you sure to delete this record?',
+//             onOk:()=>
+//             {
+//               global.request.post('/api/user/delete',{id:record.id}).then(data=>{
+//                 message.success('Deletion Success')
+//                 this.onGetUsers()
                 
-              })
+//               })
             
-            }
-          })
-    }
-}
-onLeverage=(record)=>{
-    return ()=>{
-        this.props.dispatch({
-            //passing type 'showLevelModal' to visiable level modal
-            type:'showLevelModal',  //calling level management modal
-            data:{
-                title:'Level Up',   //give title
-                data:{...record},     //passing user record
-                refreshList:this.onGetUsers //after level configuration, refresh data list required
-            }
-        })
-    }
-}
+//             }
+//           })
+//     }
+// }
+// onLeverage=(record)=>{
+//     return ()=>{
+//         this.props.dispatch({
+//             //passing type 'showLevelModal' to visiable level modal
+//             type:'showLevelModal',  //calling level management modal
+//             data:{
+//                 title:'Level Up',   //give title
+//                 data:{...record},     //passing user record
+//                 refreshList:this.onGetUsers //after level configuration, refresh data list required
+//             }
+//         })
+//     }
+// }
 //Username Password Phonenumber Email 
 layoutUserTable=()=>({
-    onChange:(pagination)=>{
-        //passing paging and filter condition
-        this.onGetUsers({...pagination, ...this.state.filters})
-    },
-    pagination:{
-        ...this.state.pagination,
-        showTotal:(total)=>`total ${total} user records`
-    },
+    // onChange:(pagination)=>{
+    //     //passing paging and filter condition
+    //     this.onGetUsers({...pagination, ...this.state.filters})
+    // },
+    // pagination:{
+    //     ...this.state.pagination,
+    //     showTotal:(total)=>`total ${total} user records`
+    // },
     columns:[
         {
             title:"username",
-            dataIndex:'username',
+            dataIndex:'userName',
             render:(text,record)=>{
                 return <Space>
                     <Avatar src={record.profile}/>
@@ -124,11 +137,11 @@ layoutUserTable=()=>({
         },
         {
             title:"phone",
-            dataIndex:'phonenumber'
+            dataIndex:'phoneNumber'
         },
         {
             title:"Access",
-            dataIndex:'access',
+            dataIndex:'accessNumber',
             render:(record)=>{
                 return record==3?'Merchant':(record==5?'Customer':record==1?'Admin':'Something Wrong')
             }
@@ -137,10 +150,10 @@ layoutUserTable=()=>({
             title:'operate',
             render:(record)=>{
                 return <Space>
-                    <a onClick={this.onView(record)}>View</a>
+                    {/* <a onClick={this.onView(record)}>View</a>
                     <a onClick={this.onEdit(record)}>Edit</a>
                     <a onClick={this.onDelete(record)}>Delete</a>
-                    <a onClick={this.onLeverage(record)}>LevelUp</a>
+                    <a onClick={this.onLeverage(record)}>LevelUp</a> */}
                 </Space>
             }
         }
