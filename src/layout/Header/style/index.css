@@ -67,12 +67,11 @@
 .shop-list ul{
     list-style: none;
     height: 45vh; /*height at here, width at modal itself*/
-    overflow: scroll;
 }
 .shop-list li{
     margin-bottom: 1rem;
     display: flex;
-    width: 25vw;
+    width: 30vw;
     height: 15vh;
     border: 2px solid #efefef;
     border-radius: 5px;
