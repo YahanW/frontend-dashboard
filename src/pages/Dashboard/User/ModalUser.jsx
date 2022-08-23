@@ -71,7 +71,7 @@ render() {
         title={this.props.title}
         onOk={()=>this.formRef.current.submit()} 
         onCancel={this.onCancel}
-        className={readOnly?'m-readonly-modal':'dash-modal'}
+        className={readOnly?'m-readonly-modal':''}
     >
       <Form {...this.layout} onFinish={this.onSave} ref={this.formRef}>
         

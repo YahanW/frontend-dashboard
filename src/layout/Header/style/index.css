@@ -3,6 +3,7 @@
     --background-color:#000000;
 }
 
+/*overall header*/
 .m-header-b{
     background-color: var(--background-color);
     text-align: center;
@@ -10,18 +11,21 @@
     width: 100vw;
     position: sticky;
     top: 0;
+    height: 10vh;
     z-index: 999;
 }
-.m-header-b .location{
+/*use to change location*/
+.location{
     display: flex;
     justify-content: center;
+    align-items: center;
 }
-.m-header-b .location a{
-    margin-top: 15px;
+.location a{
     margin-left: 15px;
     color:#ffffff;
 }
-.m-header-b .trolley{
+/* four entries*/
+.trolley{
     position: absolute;
     text-align: left;
     top: 100%;
@@ -33,36 +37,47 @@
     transform-origin: top ;
     transition:transform 400ms ease-in-out;
 }
-.m-header-b .trolley ul{
+.trolley ul{
     margin:0;
     list-style: none;
     
 }
-.m-header-b .trolley li{
+ .trolley li{
     padding-top: .75rem;
     height: 7vh;
     
 }
-.m-header-b .trolley li:hover{
+.trolley li:hover{
    
     background-color: aqua;
 }
-
-.m-header-b .shop-list ul{
-    list-style: none;
-    overflow:scroll;
-    height: 45vh;
-    
+.trolley Link{  
+    /* remove a tag feature */
+    text-decoration: none;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    opacity: 0; /*default does't appear*/
+    transition: opacity 150ms ease-in-out; /*last one is animation delay*/
 }
-.m-header-b .shop-list li{
+.trolley .tro-item{
+    color: #ffffff;
+}
+
+/*trolley modal*/
+.shop-list ul{
+    list-style: none;
+    height: 45vh; /*height at here, width at modal itself*/
+    overflow: scroll;
+}
+.shop-list li{
     margin-bottom: 1rem;
     display: flex;
-    width: 27vw;
+    width: 25vw;
     height: 15vh;
     border: 2px solid #efefef;
     border-radius: 5px;
 }
-.m-header-b .shop-list li .avatar{
+.shop-list li .avatar{
     width: 130px;
     background-image: url('https://images.squarespace-cdn.com/content/v1/585a6e76b3db2b19a94d4553/706b772c-47e0-46ce-b302-9cd9032f9087/IMG-2353.jpg');
     background-size: cover;
@@ -81,26 +96,13 @@
 }
 
 .shop-list li .left h3{
-    box-sizing: border-box;
-    scroll-behavior: auto;
     height: 5vh;
     font-size: 1.5rem;
     font-weight:400;
-    overflow:scroll;
-    
-}
-.trolley Link{  
-    /* remove a tag feature */
-    text-decoration: none;
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    opacity: 0; /*default does't appear*/
-    transition: opacity 150ms ease-in-out; /*last one is animation delay*/
+    overflow:hidden;
+    width: 185px;
 }
 
-.trolley .tro-item{
-    color: #ffffff;
-}
 .tro-name{
     position:absolute;
     right: 20vw;
