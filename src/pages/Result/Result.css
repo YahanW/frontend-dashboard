@@ -114,15 +114,14 @@
 .intro-list{
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: 5vh;
 }
 .intro-list .list-locate{
     width: 24%;
-    height: 25vh;
+    height: max-content;
     padding-top: 10px;
     margin-top: 3vh;
-    overflow: scroll;
     margin-right: 5vw;
 }
 
