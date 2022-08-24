@@ -1,34 +1,33 @@
-import React, { useState,useEffect } from 'react';
+import React, { Component } from 'react';
 import { Panel } from '../../../commons';
 import { Card,Form,Input,Button,Table,Space, Avatar,Modal,message } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
-import { useSelector,useDispatch,useStore } from 'react-redux';
+import { connect } from 'react-redux';
 import ModalUser from './ModalUser';
 import LevelModal from './LevelModal';
 import axios from 'axios';
-import * as ModalAction from '../../../reducer/index';
 
-export default function User(props){
-
-const [record,setRecord] = useState({
+class User extends Component {
+    constructor(props){
+    super(props);
+    this.state = {
         dataSource:[],
         //pagination:{},
         filters:{}
-    })
-const selector = useSelector(state=>state);
-const dispatch = useDispatch();
-
-useEffect(()=>{
-    onGetUsers();  //fetching users once upon the element are rendered
-    console.log(record);
-},[])
-const onGetUsers=(params={})=>{
+    }
+}
+componentDidMount(){
+    this.onGetUsers();  //fetching users once upon the element are rendered
+    console.log(this.props.records)
+}
+onGetUsers=(params={})=>{
     
     axios.get("https://eventeasynew.azurewebsites.net/api/user/GetAll")
     .then( data=>{
         //console.log(data.data.$values)
-        setRecord({...record, dataSource:data.data.$values})
+        this.setState({dataSource:data.data.$values})
             //pagination:{data.length,5}
+        
         //get pagination wihle fetching records
     })
     // global.request.get('/api/user/all',params).then(
@@ -45,14 +44,18 @@ const onGetUsers=(params={})=>{
 //     this.setState({filters:values})
 //     this.onGetUsers(values)
 // }
-const onAddUser=()=>{
-    dispatch({type:'show',data:{
-                title:'New User',
-                data:{},
-                refreshList:onGetUsers
-            }})
+
+onAddUser=()=>{
+    this.props.dispatch({
+        type:'show',
+        data:{
+            title:'New User',
+            data:{},
+            refreshList:this.onGetUsers
+        }
+    })
 }
-const onView=(record)=>{
+onView=(record)=>{
     console.log(record)
     return ()=>{
         this.props.dispatch({
@@ -108,7 +111,7 @@ const onView=(record)=>{
 //     }
 // }
 //Username Password Phonenumber Email 
-const layoutUserTable=()=>({
+layoutUserTable=()=>({
     // onChange:(pagination)=>{
     //     //passing paging and filter condition
     //     this.onGetUsers({...pagination, ...this.state.filters})
@@ -155,11 +158,12 @@ const layoutUserTable=()=>({
             }
         }
     ],
-    dataSource:record.dataSource
+    dataSource:this.state.dataSource
 
 })
 
-    const {userModal,levelModal}=selector.user;
+render() {
+    const {userModal,levelModal}=this.props.userState
     return (
    
     <Panel title="User">
@@ -177,13 +181,17 @@ const layoutUserTable=()=>({
         </Card>
         <Card>
             <div className='m-operate'>
-                <Button type='primary' icon={<PlusOutlined/>} onClick={onAddUser}>Add User</Button>
+                <Button type='primary' icon={<PlusOutlined/>} onClick={this.onAddUser}>Add User</Button>
             </div>
-            <Table {...layoutUserTable()}/>
+            <Table {...this.layoutUserTable()}/>
         </Card>
-        {userModal&&<ModalUser {...userModal} {...props}/>} 
-        {levelModal&&<LevelModal {...levelModal} {...props}/>}
+        {userModal&&<ModalUser {...userModal} {...this.props}/>} {/**passing dispatch by props since it is in props */}
+        {levelModal&&<LevelModal {...levelModal} {...this.props}/>}
     </Panel>
    
     )
   }
+}
+const mapStateToProps=(store)=>({userState:store.user})
+const mapDispatchToProps=(dispatch)=>({dispatch})
+export default connect(mapStateToProps,mapDispatchToProps)(User)
