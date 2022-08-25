@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {Modal,Form,Input, message} from 'antd'
 import {Location} from '../../../commons'
 import Uploads from './Uploads'
+import axios from 'axios'
 
 class ModalUser extends Component {
 formRef=React.createRef()
@@ -14,41 +15,45 @@ layout={
 componentDidMount(){
     this.formRef.current.setFieldsValue(this.props.data)
     this.formRef.current.setFieldsValue({access:5})
-    console.log('555555555',this.props.data)
     //assign access level 5 to user, 5 means user
 }
-// onSave=(value)=>{
+onSave=(value)=>{
+    console.log(value)
     
-//     console.log(value)
-//     if(this.props.title=='New User'){
-//         global.request.post('/api/user/add',
-//         {...value,location:value.location.join(',')}).then(
-//             //location is an array from form, need converted to be string
-//             data=>{
-//                 message.success('User Insertion Success')
-//                 this.onCancel() //close modal
-//                 //refresh user list
-//                 this.props.refreshList()  //reloading data
-//                 return
-//             }
-//         )
+    axios.post(`https://eventeasynew.azurewebsites.net/api/user/update/${this.props.data.userId}`,value)
+    .then(response=>{
+        message.success('User Update Success');
+        console.log(response)
+    }).catch(err=>{
+        console.log(err)
+    })
+    // if(this.props.title=='New User'){
+    //     global.request.post('/api/user/add',
+    //     {...value,location:value.location.join(',')}).then(
+    //         //location is an array from form, need converted to be string
+    //         data=>{
+    //             message.success('User Insertion Success')
+    //             this.onCancel() //close modal
+    //             //refresh user list
+    //             this.props.refreshList()  //reloading data
+    //             return
+    //         }
+    //     )
        
-//     }
-//         global.request.post('/api/user/edit',
-//         {...value,location:value.location.join(','),id:this.props.data.id}).then(
-//             //location is an array from form, need converted to be string
-//             data=>{
-//                 message.success('User Update Success')
-//                 this.onCancel() //close modal
-//                 //refresh user list
-//                 this.props.refreshList()  //reloading data
-//                 return
-//             }
-//         )
+    // }
+    //     global.request.post('/api/user/edit',
+    //     {...value,location:value.location.join(','),id:this.props.data.id}).then(
+    //         //location is an array from form, need converted to be string
+    //         data=>{
+    //             message.success('User Update Success')
+    //             this.onCancel() //close modal
+    //             //refresh user list
+    //             this.props.refreshList()  //reloading data
+    //             return
+    //         }
+    //     )
+}
 
-    
-    
-// }
 // onGeoChange=(value)=>{
 //     this.formRef.current.setFieldsValue({location:value})
 //     console.log(value)

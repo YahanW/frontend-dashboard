@@ -68,18 +68,20 @@ onView=(record)=>{
         })
     }
 }
-// onEdit=(record)=>{
-//     return ()=>{
-//         this.props.dispatch({
-//             type:'show',
-//             data:{
-//                 title:'Edit',
-//                 data:{...record,location:record.location.split(',')},
-//                 refreshList:this.onGetUsers
-//             }
-//         })
-//     }
-// }
+onEdit=(record)=>{
+    return ()=>{
+        this.props.dispatch({
+            type:'show',
+            data:{
+                title:'Edit',
+                data:record
+                // data:{...record,location:record.location.split(',')},
+                // refreshList:this.onGetUsers
+            }
+        })
+    }
+}
+
 // onDelete=(record)=>{
 //     return ()=>{
 //         Modal.confirm({
@@ -151,11 +153,12 @@ layoutUserTable=()=>({
             title:'operate',
             render:(record)=>{
                 return <Space>
-                     <a onClick={this.onView(record)}>View</a>
-                    {/*
+                    <a onClick={this.onView(record)}>View</a>
                     <a onClick={this.onEdit(record)}>Edit</a>
+                    {/*
                     <a onClick={this.onDelete(record)}>Delete</a>
-                    <a onClick={this.onLeverage(record)}>LevelUp</a> */}
+                    <a onClick={this.onLeverage(record)}>LevelUp</a> 
+                    */}
                 </Space>
             }
         }
