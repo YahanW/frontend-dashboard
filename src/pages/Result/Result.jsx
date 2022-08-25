@@ -57,6 +57,7 @@ function Result() {
                   <div>
                     <h2>{ele.packageName}</h2>
                     <h3>PRICES START AT ${ele.eventService.budget/ele.eventService.guestAmount*10} PP</h3>
+                    <button>Create Event</button>
                   </div>
                 )
               })
