@@ -94,7 +94,7 @@ render() {
             <Form.Item label="Access Level" name='access'>
                 {'Merchant'} {/**this.props.data.name||'' */}
             </Form.Item>
-            <Form.Item label="Event Name" name='sname' 
+            <Form.Item label="Event Name" name='eventName' 
                 rules={[{required:true, message: 'Please input your Service Name!'}]}>
                 <Input/>
             </Form.Item>
@@ -103,7 +103,7 @@ render() {
                 rules={[{required:true,message: 'Please input your Merchant Name!'}]}>
                 <Input/>
             </Form.Item>
-            <Form.Item label="Service Type" name='category' 
+            <Form.Item label="Service Type" name='eventType' 
                 rules={[{required:true,message: 'Please select your Service type!'}]}>
                 <Select>
                     <Select.Option value='corporate function'>corporate function</Select.Option>
@@ -111,8 +111,8 @@ render() {
                     <Select.Option value='private birthday'>private birthday</Select.Option>
                 </Select>
             </Form.Item>
-            <Form.Item label="Capacity 1-100" name='capacity' rules={[{required:true}]}>
-                <InputNumber min={1} max={100} defaultValue={0}/>
+            <Form.Item label="Capacity 1-100" name='guestAmount' rules={[{required:true}]}>
+                <InputNumber/>
             </Form.Item>
             {/**Icons */}
 

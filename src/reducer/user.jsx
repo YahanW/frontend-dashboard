@@ -6,13 +6,13 @@ const initState={
 export default (state=initState,action)=>{
     const {type,data}=action;
     switch(type){
-        case 'show':
+        case 'show'://edit
             return {...state,userModal:data}
-        case 'hide':
+        case 'hide'://view
             return {...state,userModal:null}
-        case 'showLevelModal':
+        case 'showLevelModal'://delete
             return {...state,levelModal:data}
-        case 'hideLevelModal':
+        case 'hideLevelModal'://create
             return {...state,levelModal:null}
         default:
             return initState

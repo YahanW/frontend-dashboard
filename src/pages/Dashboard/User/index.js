@@ -13,7 +13,7 @@ class User extends Component {
     this.state = {
         dataSource:[],
         //pagination:{},
-        filters:{}
+        // filters:{}
     }
 }
 componentDidMount(){
@@ -62,7 +62,8 @@ onView=(record)=>{
             type:'show',
             data:{
                 title:'User Details',
-                data:{...record,location:record.location.split(',')},
+                data:record
+                // data:{...record,location:record.location.split(',')},
             }
         })
     }
@@ -150,7 +151,8 @@ layoutUserTable=()=>({
             title:'operate',
             render:(record)=>{
                 return <Space>
-                    {/* <a onClick={this.onView(record)}>View</a>
+                     <a onClick={this.onView(record)}>View</a>
+                    {/*
                     <a onClick={this.onEdit(record)}>Edit</a>
                     <a onClick={this.onDelete(record)}>Delete</a>
                     <a onClick={this.onLeverage(record)}>LevelUp</a> */}
