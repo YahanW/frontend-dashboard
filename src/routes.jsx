@@ -34,6 +34,7 @@ import CheckOut from "./pages/CheckOut/CheckOut"
 import GeoCheck from "./layout/Header/GeoCheck";
 //warning 404
 import NotFound from "./pages/NotFound";
+import Test from "./pages/Test";
 
 export default(
     <Router>
@@ -47,7 +48,7 @@ export default(
                 <Route path="/dashboard/member/merchant" element={<h1>Merchant List</h1>}/>
                 <Route path="/dashboard/booking" element={<h1>Bookings</h1>}/>
             </Route>
-
+            <Route path="/test" element={<Test/>}/>
             <Route path='/profile/' element={<Profile/>}> 
                 <Route path='booking' index element={<Booking/>} />
                 <Route path='personal' element={<Personals/>}/>

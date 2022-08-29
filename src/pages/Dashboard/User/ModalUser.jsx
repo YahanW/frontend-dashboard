@@ -20,12 +20,12 @@ componentDidMount(){
 onSave=(value)=>{
     console.log(value)
     
-    axios.put(`https://eventeasyau.azurewebsites.net/api/User/Update/${this.props.data.userId}`,value)
+    axios.post(`https://eventeasyau.azurewebsites.net/api/User/Update/${this.props.data.userId}`,value)
     .then(response=>{
         message.success('User Update Success');
         console.log(response)
     }).catch(err=>{
-        console.log(err)
+        console.log(err);
     })
     // if(this.props.title=='New User'){
     //     global.request.post('/api/user/add',

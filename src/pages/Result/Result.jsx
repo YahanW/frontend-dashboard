@@ -1,11 +1,11 @@
-import React from 'react'
-import Header from '../../layout/Header'
+import React from 'react';
+import Header from '../../layout/Header';
 import './Result.css';
 import {useState,useEffect} from 'react';
 import {Link, useParams} from 'react-router-dom';
 import axios from 'axios';
-
 import Footer from '../Home/homes/Footer';
+import {Modal,Form,Input,Select, InputNumber} from 'antd';
 
 function Result() {
   const {eventId} = useParams();
@@ -32,6 +32,10 @@ function Result() {
     }
   ]
   const [data, setData] = useState([]);
+  const [eventVisible,setEventVisible] = useState(false);
+  const CancelVisible = () =>{
+    setEventVisible(false);
+  }
   const getData = async () => {
     const { data } = await axios.get(`https://eventeasynew.azurewebsites.net/api/ServicePackages/GetServicePackageDetail/${eventId}`);
     //setData(response);
@@ -57,13 +61,36 @@ function Result() {
                   <div>
                     <h2>{ele.packageName}</h2>
                     <h3>PRICES START AT ${ele.eventService.budget/ele.eventService.guestAmount*10} PP</h3>
-                    <button>Create Event</button>
+                    <button onClick={()=>{setEventVisible(true)}}>Create Event</button>
+                    <Modal title="New Event" width={600} 
+                     visible={eventVisible} onCancel={CancelVisible}
+                     className="shop-list">
+                      <Form.Item label="Event Name" name="eventName"
+                        rules={[{ required: true, message: 'Please input your username!' }]}
+                      >
+                        <Input />
+                      </Form.Item>
+
+                      <Form.Item label="Event Type" name="type"
+                        rules={[{ required: true, message: 'Please Select a type!' }]}>
+                        <Select>
+                          <Select.Option value="1">Wedding</Select.Option>
+                          <Select.Option value="2">Birthday&Private</Select.Option>
+                          <Select.Option value="3">Corporate Function</Select.Option>
+                        </Select>
+                      </Form.Item>
+                      <Form.Item label="Seat Number" name="seats"
+                      rules={[{ required: true, message: 'Please give a seat number!' }]}>
+                        <InputNumber/>
+                      </Form.Item>
+                    </Modal>
                   </div>
                 )
               })
               :''
             }
           </div>
+
           <div className='intro-list'>
             <div className='list-locate'>
               <h2>Location</h2>

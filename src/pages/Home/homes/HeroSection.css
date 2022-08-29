@@ -20,7 +20,7 @@
 .search{
     display: flex;
     flex-wrap: wrap;
-    padding-left: 9vw;
+    padding-left: 5vw;
 }
 /* each search fields */
 .requires{

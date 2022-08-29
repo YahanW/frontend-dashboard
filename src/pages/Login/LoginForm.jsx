@@ -26,8 +26,10 @@ function LoginForm(){
 		
 	e.preventDefault();	//avoid page re-render
 	trackPromise(
+		
 		axios.post("https://eventeasyau.azurewebsites.net/api/user/login/",details)
 		.then(response => { //200
+			console.log(details)
 			sessionStorage.setItem('id',response.data.userId)
 			sessionStorage.setItem('username',response.data.userName)
 			sessionStorage.setItem('access',response.data.accessNumber)
