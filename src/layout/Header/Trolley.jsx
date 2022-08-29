@@ -24,7 +24,7 @@ export default function Trolley(){
         "accept":true,},]
     return (
         <div>
-             <a  onClick={showModalCheck} className="tro-item">Trolley</a>
+             <a  onClick={showModalCheck} className="tro-item">ShoppingCart</a>
              <Modal title="EVENT TROLLEY" mask={false} width={600} 
                      visible={isModalVisible} footer={false}onCancel={CancelCheck}
                      className="shop-list"
