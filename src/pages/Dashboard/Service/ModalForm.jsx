@@ -7,7 +7,7 @@ class ModalForm extends Component {
 
 constructor(props){
     super(props)
-    this.state={allIcons:Icons,currentIcons:Icons.slice(0,10)}
+    // this.state={allIcons:Icons,currentIcons:Icons.slice(0,10)}
     //initial display 10 icons as default
 }
 formRef=React.createRef()
@@ -24,59 +24,70 @@ layout={
     wrapperCol:{span:250}
 }
 
-onTyping = (e) =>{
-    let {value} = e.target  //event was dispatched
-    value=_.trim(value) //remove space
-    const tempIcons=[] //store the matched Icons
+// onTyping = (e) =>{
+//     let {value} = e.target  //event was dispatched
+//     value=_.trim(value) //remove space
+//     const tempIcons=[] //store the matched Icons
 
-    if(value){ //non empty
-        Icons.map(item=>{
-            //convert all text lowercase
-            if(_.lowerCase(item.name).indexOf(_.lowerCase(value))!==-1){ //keyword matching
-                tempIcons.push(item) //push to temp
-            }
-        })
-        this.setState({icons:value,allIcons:tempIcons,currentIcons:tempIcons.slice(0,10)})
-        //update displayed Icons
-        return
-    }
-    this.setState({icons:value,allIcons:Icons,currentIcons:Icons.slice(0,10)})
-}
+//     if(value){ //non empty
+//         Icons.map(item=>{
+//             //convert all text lowercase
+//             if(_.lowerCase(item.name).indexOf(_.lowerCase(value))!==-1){ //keyword matching
+//                 tempIcons.push(item) //push to temp
+//             }
+//         })
+//         this.setState({icons:value,allIcons:tempIcons,currentIcons:tempIcons.slice(0,10)})
+//         //update displayed Icons
+//         return
+//     }
+//     this.setState({icons:value,allIcons:Icons,currentIcons:Icons.slice(0,10)})
+// }
 
-onSelected=(e)=>{
-    const {value}=e.target   //get select Icons value
-    this.setState({icons:value}) //passing icons icon value
-    //manually set input
-    this.formRef.current.setFieldsValue({icons:value})  //forminstance
-}
+// onSelected=(e)=>{
+//     const {value}=e.target   //get select Icons value
+//     this.setState({icons:value}) //passing icons icon value
+//     //manually set input
+//     this.formRef.current.setFieldsValue({icons:value})  //forminstance
+// }
 componentDidMount(){
     this.formRef.current.setFieldsValue(this.props.data)  //forminstance
-    this.setState({icons:this.props.data.icons})
+    // this.setState({icons:this.props.data.icons})
 }
 /**
  * make http request and send data to database
  */
 onSave=(values)=>{
     console.log(values)
-    if(this.props.title=='Add Service'){
-        //checking if it is a add action
-        axios.post('/api/service/add',values).then((data)=>{
-            message.success('Add Success')
-            //post form to backend
-            this.onCancel() //close modal
-            this.props.refreshList()  //reloading data
-            window.dispatchEvent(new Event('refreshService'))
-        })
-        return
-    }
-    axios.post('/api/service/edit',{...values,id:this.props.data.id}).then((data)=>{
-        console.log(data)
-        message.success('Edit Success')
-        //post form to backend
-        this.onCancel() //close modal
-        this.props.refreshList()  //reloading data
-        window.dispatchEvent(new Event('refreshService'))
+    
+    axios.put(`https://eventeasynew.azurewebsites.net/api/event/update/${this.props.data.eventId}`,values)
+    .then(response=>{
+        message.success('Event Update Success');
+        console.log(response)
+    }).catch(err=>{
+        console.log(err)
     })
+
+
+    // console.log(values)
+    // if(this.props.title=='Add Service'){
+    //     //checking if it is a add action
+    //     axios.post('/api/service/add',values).then((data)=>{
+    //         message.success('Add Success')
+    //         //post form to backend
+    //         this.onCancel() //close modal
+    //         // this.props.refreshList()  //reloading data
+    //         window.dispatchEvent(new Event('refreshService'))
+    //     })
+    //     return
+    // }
+    // axios.post('/api/service/edit',{...values,id:this.props.data.id}).then((data)=>{
+    //     console.log(data)
+    //     message.success('Edit Success')
+    //     //post form to backend
+    //     this.onCancel() //close modal
+    //     this.props.refreshList()  //reloading data
+    //     window.dispatchEvent(new Event('refreshService'))
+    // })
 
 }
 
@@ -115,7 +126,7 @@ render() {
                 <InputNumber/>
             </Form.Item>
             {/**Icons */}
-
+{/* 
             <Form.Item label='Icons' name='icons' rules={[{required:true,message: 'Please select your Icon!'}]}> 
                 <Dropdown 
                     trigger={['click']} 
@@ -140,16 +151,9 @@ render() {
                             />
                         </div>
 
-                    </>}
-  /**Dropdown*/> 
-                    <Input prefix={
-                        React.createElement((_.find(this.state.allIcons,(item)=>
-                            item.name==this.state.icons)||{}).renderDf||'something')} 
-                        onChange={this.onTyping} 
-                        value={this.state.icons}
-                      />
+                    </>}> 
                 </Dropdown>
-            </Form.Item>
+            </Form.Item> */}
 
         </Form>
 

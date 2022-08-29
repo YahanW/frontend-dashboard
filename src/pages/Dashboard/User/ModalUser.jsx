@@ -20,7 +20,7 @@ componentDidMount(){
 onSave=(value)=>{
     console.log(value)
     
-    axios.post(`https://eventeasyau.azurewebsites.net/api/User/Update/${this.props.data.userId}`,value)
+    axios.put(`https://eventeasyau.azurewebsites.net/api/User/Update/${this.props.data.userId}`,value)
     .then(response=>{
         message.success('User Update Success');
         console.log(response)
@@ -81,8 +81,8 @@ render() {
     >
       <Form {...this.layout} onFinish={this.onSave} ref={this.formRef}>
         
-        <Form.Item label='Access Level' name='access' >
-            <p>{data.access==3?'Merchant':(data.access==5?'Customer':data.access==1?'Admin':'User')}</p>
+        <Form.Item label='Access Level' name='accessNumber' >
+            <p>{data.accessNumber==3?'Merchant':(data.accessNumber==5?'Customer':data.accessNumber==1?'Admin':'User')}</p>
                 
             
         </Form.Item>
@@ -93,22 +93,22 @@ render() {
             />
         </Form.Item> */}
        
-        <Form.Item label='username' name='userName' rules={[{required:true}]}>
+        <Form.Item label='username' name='userName' rules={[{required:false}]}>
             <Input/>
         </Form.Item>
-        <Form.Item label='password' name='password' rules={[{required:true}]}>
+        <Form.Item label='password' name='password' rules={[{required:false}]}>
             <Input/>
            
         </Form.Item>
         <Form.Item>
             <p style={{marginLeft:'8vw',display:readOnly?'':'none'}}>For security reason, the password has been hashed.</p>
         </Form.Item>
-        <Form.Item label='email' name='email' rules={[{required:true, type: 'email'}]}>
+        <Form.Item label='email' name='email' rules={[{required:false, type: 'email'}]}>
             <Input/>
         </Form.Item>
-        <Form.Item label='phone number' name='phoneNumber' rules={[{required:true}]}>
+        {/* <Form.Item label='phone number' name='phoneNumber' rules={[{required:true}]}>
             <Input/>
-        </Form.Item>
+        </Form.Item> */}
         {/* <Form.Item label='Profile' name='profile' rules={[{required:true}]}>
            <Uploads onChange={this.onPictureChange} 
            defaultFileList={data.profile?data.profile.split(','):[]}
