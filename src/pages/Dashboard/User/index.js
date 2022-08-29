@@ -22,7 +22,7 @@ componentDidMount(){
 }
 onGetUsers=(params={})=>{
     
-    axios.get("https://eventeasynew.azurewebsites.net/api/user/GetAll")
+    axios.get("https://eventeasyau.azurewebsites.net/api/user/GetAll")
     .then( data=>{
         //console.log(data.data.$values)
         this.setState({dataSource:data.data.$values})

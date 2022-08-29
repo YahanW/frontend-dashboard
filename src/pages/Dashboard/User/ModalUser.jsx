@@ -20,7 +20,7 @@ componentDidMount(){
 onSave=(value)=>{
     console.log(value)
     
-    axios.post(`https://eventeasynew.azurewebsites.net/api/user/update/${this.props.data.userId}`,value)
+    axios.post(`https://eventeasyau.azurewebsites.net/api/User/Update/${this.props.data.userId}`,value)
     .then(response=>{
         message.success('User Update Success');
         console.log(response)

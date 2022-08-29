@@ -14,7 +14,7 @@ function Customer() {
       userName: '',
 			email:'',
 			password:'',
-      accessNumber:5  //5 means user
+      accessNumber:1  //5 means user
 		})
    
   const history = useNavigate();
@@ -31,11 +31,12 @@ function Customer() {
 	const submitHandler = e =>{
 		e.preventDefault()
     trackPromise(
-		axios.post("https://eventeasynew.azurewebsites.net/api/user/create",details)
+		axios.post("https://eventeasyau.azurewebsites.net/api/user/create",details)
 		.then(response => {
       console.log(response)
       sessionStorage.setItem('id',response.data.userId)
-			
+			sessionStorage.setItem('username',response.data.userName);
+			sessionStorage.setItem('access',response.data.accessNumber);
 			Modal.confirm({
 				//a pop up window
 				icon:<CheckOutlined />,

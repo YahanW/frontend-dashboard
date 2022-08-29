@@ -26,7 +26,7 @@ function LoginForm(){
 		
 	e.preventDefault();	//avoid page re-render
 	trackPromise(
-		axios.post("https://eventeasynew.azurewebsites.net/api/user/login/",details)
+		axios.post("https://eventeasyau.azurewebsites.net/api/user/login/",details)
 		.then(response => { //200
 			sessionStorage.setItem('id',response.data.userId)
 			sessionStorage.setItem('username',response.data.userName)
@@ -34,12 +34,13 @@ function LoginForm(){
 			Modal.confirm({
 				//a pop up window
 				icon:<CheckOutlined />,
-				title:'Congradulations',
+				title:'Congratulations',
 				content:'Your Identity was Identified, Welcome !!!',
 				onOk:()=>{
 					history("/")
 				}
 			  })
+			console.log(response)
 		})
 		.catch(error=>{
 			console.log(error)
