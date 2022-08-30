@@ -98,6 +98,10 @@ onDelete=(record)=>{
 
 getTableProps=()=>{
   return {
+    pagination:{
+      pageSize:10,
+      showTotal:()=>`total ${this.state.dataSource.length} Service records`
+    },
     columns:[
       {
         title:'ServiceID',
@@ -154,7 +158,7 @@ getTableProps=()=>{
     ],
     dataSource:this.state.dataSource||[],
     rowKey:'servicetId',
-    pagination:false
+    pagination:true
   }
 }
 

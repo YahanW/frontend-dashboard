@@ -13,12 +13,8 @@ class Slider extends React.Component{
         if(sessionStorage.getItem('access')==1)
         {
             this.state.menus.push({
-                name:'Members',id:'2',
-                children:[{name:"Users",id:'21',
-                    linkUrl:"/dashboard/member/user"
-                },{name:"Merchants",id:'22',
-                    linkUrl:"/dashboard/member/merchant"},]
-                
+                name:'Users',id:'2', 
+                linkUrl:"/dashboard/member/user"
             })
         }
         return menus.map(menu=>{
