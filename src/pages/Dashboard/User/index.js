@@ -12,38 +12,22 @@ class User extends Component {
     super(props);
     this.state = {
         dataSource:[],
-        //pagination:{},
-        // filters:{}
     }
 }
 componentDidMount(){
     this.onGetUsers();  //fetching users once upon the element are rendered
-    console.log(this.props.records)
 }
-onGetUsers=(params={})=>{
-    
-    axios.get("https://eventeasyau.azurewebsites.net/api/user/GetAll")
+onGetUsers=()=>{
+    axios.get("https://eventeasyau.azurewebsites.net/api/user/getactiveuser")
     .then( data=>{
-        //console.log(data.data.$values)
         this.setState({dataSource:data.data.$values})
-            //pagination:{data.length,5}
-        
-        //get pagination wihle fetching records
     })
-    // global.request.get('/api/user/all',params).then(
-    //     data=>{
-    //         this.setState({dataSource:data.records,
-    //             //pagination:{data.length,5}
-    //         })
-    //         //get pagination wihle fetching records
-    //     }
-    // )
 }
 
-// onSearch=(values)=>{
-//     this.setState({filters:values})
-//     this.onGetUsers(values)
-// }
+onSearch=(values)=>{
+    this.setState({filters:values})
+    this.onGetUsers(values)
+}
 
 onAddUser=()=>{
     this.props.dispatch({
@@ -56,7 +40,7 @@ onAddUser=()=>{
     })
 }
 onView=(record)=>{
-    console.log(record)
+    //console.log(record)
     return ()=>{
         this.props.dispatch({
             type:'show',
@@ -74,55 +58,56 @@ onEdit=(record)=>{
             type:'show',
             data:{
                 title:'Edit',
-                data:record
+                data:record,
                 // data:{...record,location:record.location.split(',')},
-                // refreshList:this.onGetUsers
+                refreshList:this.onGetUsers
             }
         })
     }
 }
 
-// onDelete=(record)=>{
-//     return ()=>{
-//         Modal.confirm({
-//             //a pop up window
-//             title:'Warning',
-//             content:'Are you sure to delete this record?',
-//             onOk:()=>
-//             {
-//               global.request.post('/api/user/delete',{id:record.id}).then(data=>{
-//                 message.success('Deletion Success')
-//                 this.onGetUsers()
+onDelete=(record)=>{
+    return ()=>{
+        Modal.confirm({
+            //a pop up window
+            title:'Warning',
+            content:'Are you sure to delete this record?',
+            onOk:()=>
+            {
+              axios.delete(`https://eventeasyau.azurewebsites.net/api/user/deleteuser/${record.userId}`,
+              )
+              .then(data=>{
+                console.log(data)
+                message.success('Deletion Success')
+                this.onGetUsers()
                 
-//               })
+              }).catch(err=>{
+                console.log(err)
+              })
             
-//             }
-//           })
-//     }
-// }
-// onLeverage=(record)=>{
-//     return ()=>{
-//         this.props.dispatch({
-//             //passing type 'showLevelModal' to visiable level modal
-//             type:'showLevelModal',  //calling level management modal
-//             data:{
-//                 title:'Level Up',   //give title
-//                 data:{...record},     //passing user record
-//                 refreshList:this.onGetUsers //after level configuration, refresh data list required
-//             }
-//         })
-//     }
-// }
+            }
+          })
+    }
+}
+onLeverage=(record)=>{
+    return ()=>{
+        this.props.dispatch({
+            //passing type 'showLevelModal' to visiable level modal
+            type:'showLevelModal',  //calling level management modal
+            data:{
+                title:'Level Up',   //give title
+                data:{...record},     //passing user record
+                refreshList:this.onGetUsers //after level configuration, refresh data list required
+            }
+        })
+    }
+}
 //Username Password Phonenumber Email 
 layoutUserTable=()=>({
-    // onChange:(pagination)=>{
-    //     //passing paging and filter condition
-    //     this.onGetUsers({...pagination, ...this.state.filters})
-    // },
-    // pagination:{
-    //     ...this.state.pagination,
-    //     showTotal:(total)=>`total ${total} user records`
-    // },
+    pagination:{
+        pageSize:10,
+        showTotal:()=>`total ${this.state.dataSource.length} user records`
+    },
     columns:[
         {
             title:"username",
@@ -155,10 +140,9 @@ layoutUserTable=()=>({
                 return <Space>
                     <a onClick={this.onView(record)}>View</a>
                     <a onClick={this.onEdit(record)}>Edit</a>
-                    {/*
                     <a onClick={this.onDelete(record)}>Delete</a>
                     <a onClick={this.onLeverage(record)}>LevelUp</a> 
-                    */}
+                    
                 </Space>
             }
         }
