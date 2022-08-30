@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Card, Table, Space, Modal, message } from 'antd';
+import { Button, Card, Table, Space, Modal, message, Switch } from 'antd';
 import {PlusOutlined} from '@ant-design/icons';
 import { Panel } from '../../../commons';
 import { connect } from 'react-redux';
@@ -7,10 +7,37 @@ import ModalForm from './ModalForm';
 import axios from 'axios';
 
 class Service extends Component {
-constructor(props){
+  constructor(props){
   super(props)
-  this.state={dataSource:[]}
+  this.state = {
+    dataSource:[],
+  }
 }
+
+
+  componentDidMount() {
+      this.onGetServices();  //fetching users once upon the element are rendered
+  }
+  onGetServices = () => { //ok
+    
+    // if admin then display all services
+        if(sessionStorage.getItem("access") == 1) {
+        axios.get("https://eventeasyau.azurewebsites.net/api/services/getallservices")
+          .then(data => {
+            console.log(data.data.$values)
+            this.setState({ dataSource: data.data.$values })
+          })
+        }
+        // if merchant then show only their services
+        else if (sessionStorage.getItem("access") == 3) {
+          axios.get(`https://eventeasyau.azurewebsites.net/api/services/getservicesbymerchant/${sessionStorage.getItem("id")}`)
+            .then(data => {
+              console.log(data)
+              this.setState({ dataSource: data.data.$values })
+            })
+        }
+  }
+
 onCreate = () =>{
   //pop up window
   this.props.dispatch({
@@ -68,24 +95,51 @@ onDelete=(record)=>{
     })
   }
 }
+
 getTableProps=()=>{
   return {
     columns:[
       {
         title:'ServiceID',
-        dataIndex:'eventId'
+        dataIndex:'servicesId'
       },
       {
         title:'Service name',
-        dataIndex:'eventName'
+        dataIndex:'serviceName'
       },
       {
         title:'Service type',
-        dataIndex:'eventType'
+        dataIndex:'serviceType',
+        render: (record) => {
+          switch (record) {
+            case 0:
+              return "Venue"; break;
+            case 1:
+              return "Food";  break;
+            case 2:
+              return "Beverage"; break;
+            case 3: return "Entertainment";break;
+            case 4: return "Florist";break;
+            case 5: return "Photographer";break;
+            case 6: return "Power";break;
+            case 7: return "Network";break;
+            case 8: return "Music";break;
+            case 9: return "Security";break;
+            case 10: return "Restroom"; break;
+            case 11:return "CarPark";break;
+            case 12:return "Waiter";break;
+            case 13:return "Transport";break;
+            case 14:return "Taxi"; break;
+            case 15:return "Firework"; break;
+            default:
+              break;
+          }
+
+        }
       },
       {
-        title:'Merchant ID',
-        dataIndex:'merchantId'
+        title:'Estimating Price',
+        dataIndex:'price'
       },
       {
         title:'Operate',
@@ -99,26 +153,11 @@ getTableProps=()=>{
       }
     ],
     dataSource:this.state.dataSource||[],
-    rowKey:'eventId',
+    rowKey:'servicetId',
     pagination:false
   }
 }
 
-onGetEvents=()=>{
-  axios.get("https://eventeasynew.azurewebsites.net/api/Event/GetAll")
-  .then(response=>{
-    this.setState({dataSource:response.data.$values})
-  })
-  // global.request.get('/api/service/fetching',
-  // {email:sessionStorage.getItem('email')}).then(data=>{
-  // console.log(data)
-  // this.setState({dataSource:data.records})
-  // })
-  
-}
-componentDidMount(){ //once render done, make new request
-  this.onGetEvents()
-}
   render() {
     const {modalForm}=this.props.serviceState
     return (

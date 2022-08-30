@@ -14,6 +14,7 @@ class User extends Component {
         dataSource:[],
     }
 }
+
 componentDidMount(){
     this.onGetUsers();  //fetching users once upon the element are rendered
 }
@@ -24,10 +25,10 @@ onGetUsers=()=>{
     })
 }
 
-onSearch=(values)=>{
-    this.setState({filters:values})
-    this.onGetUsers(values)
-}
+// onSearch=(values)=>{
+//     this.setState({filters:values})
+//     this.onGetUsers(values)
+// }
 
 onAddUser=()=>{
     this.props.dispatch({
@@ -35,7 +36,7 @@ onAddUser=()=>{
         data:{
             title:'New User',
             data:{},
-            refreshList:this.onGetUsers
+            refreshList:this.onGetUsers //passing a function
         }
     })
 }
@@ -47,7 +48,6 @@ onView=(record)=>{
             data:{
                 title:'User Details',
                 data:record
-                // data:{...record,location:record.location.split(',')},
             }
         })
     }
@@ -59,7 +59,6 @@ onEdit=(record)=>{
             data:{
                 title:'Edit',
                 data:record,
-                // data:{...record,location:record.location.split(',')},
                 refreshList:this.onGetUsers
             }
         })

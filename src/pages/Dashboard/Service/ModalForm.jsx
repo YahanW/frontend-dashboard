@@ -58,14 +58,33 @@ componentDidMount(){
  */
 onSave=(values)=>{
     console.log(values)
+    if(this.props.title=='Add Service')
+    {
+        axios.post(`https://eventeasyau.azurewebsites.net/api/services/create/`,values)
+        .then(response=>{
+            console.log(response)
+            message.success('Service Add Success');
+            this.onCancel() //close modal
+            this.props.refreshList()  //reloading data
+            
+        }).catch(err=>{
+            console.log(err)
+        })
+    }
+    else
+    {
+        axios.put(`https://eventeasyau.azurewebsites.net/api/services/update/`,values)
+        .then(response=>{
+            console.log(response)
+            message.success('Service Update Success');
+            this.onCancel() //close modal
+            this.props.refreshList()  //reloading data
+            
+        }).catch(err=>{
+            console.log(err)
+        })
+    }
     
-    axios.put(`https://eventeasynew.azurewebsites.net/api/event/update/${this.props.data.eventId}`,values)
-    .then(response=>{
-        message.success('Event Update Success');
-        console.log(response)
-    }).catch(err=>{
-        console.log(err)
-    })
 
 
     // console.log(values)
@@ -100,29 +119,42 @@ render() {
         className={readOnly?'m-readonly-modal':'dash-event'}
     >
             
-        <Form {...this.layout} ref={this.formRef} 
-        onFinish={this.onSave}   initialValues={{["access"]: 5 }}>
-            <Form.Item label="Access Level" name='access'>
-                {'Merchant'} {/**this.props.data.name||'' */}
-            </Form.Item>
-            <Form.Item label="Event Name" name='eventName' 
+        <Form {...this.layout} ref={this.formRef} onFinish={this.onSave}>
+            <Form.Item label="Service Name" name='serviceName' 
                 rules={[{required:true, message: 'Please input your Service Name!'}]}>
                 <Input/>
             </Form.Item>
-      
-            <Form.Item label="Merchant Name" name='mname' 
+            <Form.Item label="Service Type" name='serviceType' 
+                rules={[{required:true,message: 'Please select your Service type!'}]}>
+                <Select>
+                    <Select.Option value={0}>Venue</Select.Option>
+                    <Select.Option value={1}>Food</Select.Option>
+                    <Select.Option value={2}>Beverage</Select.Option>
+                    <Select.Option value={3}>Entertainment,</Select.Option>
+                    <Select.Option value={4}>Florist,</Select.Option>
+                    <Select.Option value={5}>Photographer,</Select.Option>
+                    <Select.Option value={6}>Power,</Select.Option>
+                    <Select.Option value={7}>Network,</Select.Option>
+                    <Select.Option value={8}>Music,</Select.Option>                        
+                    <Select.Option value={9}>Security,</Select.Option>
+                    <Select.Option value={10}>Restroom,</Select.Option>
+                    <Select.Option value={11}>CarPark,</Select.Option>
+                    <Select.Option value={12}>Waiter,</Select.Option>
+                    <Select.Option value={13}>Transport,</Select.Option>
+                    <Select.Option value={14}>Taxi,</Select.Option>
+                    <Select.Option value={15}>Firework</Select.Option>
+                </Select>
+            </Form.Item>
+
+            <Form.Item label="Merchant ID" name='merchantId' 
                 rules={[{required:true,message: 'Please input your Merchant Name!'}]}>
                 <Input/>
             </Form.Item>
-            <Form.Item label="Service Type" name='eventType' 
-                rules={[{required:true,message: 'Please select your Service type!'}]}>
-                <Select>
-                    <Select.Option value='corporate function'>corporate function</Select.Option>
-                    <Select.Option value='wedding'>wedding</Select.Option>
-                    <Select.Option value='private birthday'>private birthday</Select.Option>
-                </Select>
+            <Form.Item label="Seats" name='seated' 
+                rules={[{required:true,message: 'Please input Seats number'}]}>
+                <Input/>
             </Form.Item>
-            <Form.Item label="Capacity 1-100" name='guestAmount' rules={[{required:true}]}>
+            <Form.Item label="Price" name='price' rules={[{required:true}]}>
                 <InputNumber/>
             </Form.Item>
             {/**Icons */}
