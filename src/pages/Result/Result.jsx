@@ -2,13 +2,12 @@ import React from 'react';
 import Header from '../../layout/Header';
 import './Result.css';
 import {useState,useEffect} from 'react';
-import {Link, useParams} from 'react-router-dom';
+import {Link,useParams} from 'react-router-dom';
 import axios from 'axios';
 import Footer from '../Home/homes/Footer';
-import {Modal,Form,Input,Select, InputNumber} from 'antd';
+import {Modal,Form,Input,Select, InputNumber,Pagination} from 'antd';
 
 function Result() {
-  const {eventId} = useParams();
   const results = [
     {
     image:"https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=PA1-3CnCcy-HwYCSsVvTOw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=123.645096&pitch=0&thumbfov=100",
@@ -31,23 +30,24 @@ function Result() {
       score:'4.7'
     }
   ]
-  const [data, setData] = useState([]);
+  const [record, setRecord] = useState([]);
   const [eventVisible,setEventVisible] = useState(false);
   const CancelVisible = () =>{
     setEventVisible(false);
   }
+  const {servicesId} = useParams();
+
   const getData = async () => {
-    const { data } = await axios.get(`https://eventeasynew.azurewebsites.net/api/ServicePackages/GetServicePackageDetail/${eventId}`);
-    //setData(response);
-    setData(data.$values)
+    const {data} = await axios.get(`https://eventeasyau.azurewebsites.net/api/services/getallservices`);
+    setRecord(data.$values);
+    
   };
+
   useEffect(() => {
     getData();
-    
   }, []);
 
-  console.log(data)
-  
+  console.log(record);
     return (
       <div className='result'>
         {/**Navbar */}
@@ -55,39 +55,48 @@ function Result() {
         <div className='event-intro'>
           <div className='intro-img'>
             {
-              data?
-              data.map((ele,index)=>{
-                return (
-                  <div>
-                    <h2>{ele.packageName}</h2>
-                    <h3>PRICES START AT ${ele.eventService.budget/ele.eventService.guestAmount*10} PP</h3>
-                    <button onClick={()=>{setEventVisible(true)}}>Create Event</button>
-                    <Modal title="New Event" width={600} 
-                     visible={eventVisible} onCancel={CancelVisible}
-                     className="shop-list">
-                      <Form.Item label="Event Name" name="eventName"
-                        rules={[{ required: true, message: 'Please input your username!' }]}
-                      >
-                        <Input />
-                      </Form.Item>
-
-                      <Form.Item label="Event Type" name="type"
-                        rules={[{ required: true, message: 'Please Select a type!' }]}>
-                        <Select>
-                          <Select.Option value="1">Wedding</Select.Option>
-                          <Select.Option value="2">Birthday&Private</Select.Option>
-                          <Select.Option value="3">Corporate Function</Select.Option>
-                        </Select>
-                      </Form.Item>
-                      <Form.Item label="Seat Number" name="seats"
-                      rules={[{ required: true, message: 'Please give a seat number!' }]}>
-                        <InputNumber/>
-                      </Form.Item>
-                    </Modal>
-                  </div>
-                )
+              record?
+              record.map((ele,index)=>{
+                if(ele.servicesId==servicesId){
+                  return (
+                    <div>
+                      <h2>{ele.serviceName}</h2>
+                      <h3>PRICES START AT ${ele.price/ele.guestAmount*10} PP</h3>
+                      <button onClick={()=>{setEventVisible(true)}}>Create Event</button>
+                      <Modal title="New Event" width={600} 
+                       visible={eventVisible} onCancel={CancelVisible}
+                       className="shop-list">
+                        <Form.Item label="Event Name" name="eventName"
+                          rules={[{ required: true, message: 'Please input your username!' }]}
+                        >
+                          <Input />
+                        </Form.Item>
+  
+                        <Form.Item label="Event Type" name="type"
+                          rules={[{ required: true, message: 'Please Select a type!' }]}>
+                          <Select>
+                            <Select.Option value={0}>Wedding</Select.Option>
+                            <Select.Option value={1}>Birthday&Private</Select.Option>
+                            <Select.Option value={2}>Corporate Function</Select.Option>
+                          </Select>
+                        </Form.Item>
+                        <Form.Item label="Seat Number" name="seats"
+                        rules={[{ required: true, message: 'Please give a seat number!' }]}>
+                          <InputNumber/>
+                        </Form.Item>
+                      </Modal>
+                    </div>
+                  )
+                }else{
+                  return null
+                }
+               
               })
-              :''
+              :<div>'abcd'</div>
+              
+                
+                
+              
             }
           </div>
 
@@ -114,36 +123,39 @@ function Result() {
           A grand, sweeping space that rises to every occasion, in the heart of the CBD.
           </div>
         </div>
-        <div className='itemList'> {/**Item Results*/}
+        <div className='itemList'> 
            {
-                data.map((ele,index)=>{
+                record.map((ele,index)=>{
+                 if(ele.serviceType!==0){
                   return  (
                     <div className='item'>
                       <div className='item-left'
                       style={{backgroundImage:`url("https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=PA1-3CnCcy-HwYCSsVvTOw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=123.645096&pitch=0&thumbfov=100")`}}>
                       </div>
                       <div className='item-right'>
-                        <h2><Link to={`/result/details/${ele.eventService.eventServiceId}`}>{ele.eventService.serviceName}</Link></h2>
-                        <h4>{ele.eventService.location}</h4>
+                        <h2><Link to={`/result/details/${ele.servicesId}`}>{ele.serviceName}</Link></h2>
+                        <h4>{ele.address}</h4>
                         <div className='merchant'>
-                          <h3>{ele.eventService.merchant}</h3>
+                          <h3>{ele.merchant}</h3>
                           <div className='avatar'
                           style={{backgroundImage:`url("https://cpp-prod-seek-company-image-uploads.s3.ap-southeast-2.amazonaws.com/813527/logo/653c2e81-bcca-11ea-86d1-e52bae5cc086.png")`}}></div>
                         </div>
-                    </div>
-                  {/**very right side for marking*/}
-                    <div className='item-star'>
+                      </div>    
+                      <div className='item-star'>
                       <div className="star" 
                       style={{backgroundImage:`url("https://alacritas.cis.utas.edu.au/~mingked/kit301/PNGs/rating.png")`}}
-                    
                       >
                      
-                        <h2>{ele.eventService.rate}</h2></div>
+                        <h2>{ele.rate}</h2></div>
                       <h4>average price</h4>
-                      <h3>{ele.eventService.budget}</h3>
-                    </div>
-                </div>
-                )})
+                      <h3>{ele.price}</h3>
+                      </div>
+                      </div>
+                )
+                 }else{
+                  return null
+                 }
+              })
             }
         </div>
         <Footer/>

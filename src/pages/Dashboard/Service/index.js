@@ -112,6 +112,22 @@ getTableProps=()=>{
         dataIndex:'serviceName'
       },
       {
+        title:'Event Type',
+        dataIndex:'eventType',
+        render:(record)=>{
+          switch(record){
+            case 0:return "Wedding Engagement"; break;
+            case 1:return "Birthday&Private"; break;
+            case 2:return "Corporate Functions"; break;
+            default: break;
+          }
+        }
+      },
+      {
+        title:'Capacity',
+        dataIndex:'guestAmount'
+      },
+      {
         title:'Service type',
         dataIndex:'serviceType',
         render: (record) => {

@@ -1,12 +1,14 @@
 .itemList{
+   height: auto;
    background-color:#9C528B30;
    width: 80%;
-   height: 900px;
-   display: flex;
-   margin-top: 4vh;
-   margin-left: 10vw;
    border: 10px solid #30303030;
-   justify-content: center;
+   margin-top: 4vh;
+   margin-bottom: 4vh;
+   margin-left: 10vw;
+   align-items: center;
+   display: flex;
+   flex-direction: column;
 }
 .itemList .item{
     background-color:#9C528B60;
@@ -14,8 +16,10 @@
     height: 22.5vh;
     box-shadow: 5px 10px #88888840;
     display: flex;
-    margin-top: 1vh;
-
+    margin-top: 4vh;
+}
+.itemList .item:last-child{
+    margin-bottom: 4vh;
 }
 
 .item-left{
@@ -112,7 +116,7 @@
 .intro-list{
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    flex-direction: column;
     margin-bottom: 5vh;
 }
 .intro-list .list-locate{

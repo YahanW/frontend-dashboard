@@ -65,7 +65,7 @@ export default(
             <Route path='/profile/booking/cancel' element={<CancelEvent/>}/>
 
             <Route path='/result/'>
-                <Route path=':eventId'  element={<Result/>}/>
+                <Route path=':servicesId'  element={<Result/>}/>
             </Route>
 
             <Route path='/result/details/:serviceId' element={<ItemIntro/>}>

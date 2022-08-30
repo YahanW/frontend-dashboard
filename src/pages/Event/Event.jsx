@@ -26,7 +26,7 @@ const makeSearch = () =>{
 }
 const getEvent = async ()=>{
   const { data } = await 
-  axios.get("https://eventeasynew.azurewebsites.net/api/Event/GetAll");
+  axios.get("https://eventeasyau.azurewebsites.net/api/services/getservicesbytype/0");
   //setEveList(data.$values);
   return data.$values;
 }
@@ -41,7 +41,7 @@ if(!eveListTemp){
 }
 
   //console.log(type,date,guest,budget);
-  //console.log(eveListTemp)
+  console.log(eveListTemp)
     return (
         <div>
             <Header/>
@@ -122,15 +122,15 @@ if(!eveListTemp){
                     eveListTemp //is there any data remains
                     ? 
                     eveListTemp.map((ele,index)=>{
-                       if(ele.budget<=budget&&ele.guestAmount>=guest){
+                       if(ele.price<=budget&&ele.guestAmount>=guest){
                        
                             return (    
                                 <li className="eve-row" key={index} id="e-valid">
                                         <div className="eve-ele" 
                                         key={index}>
-                                        <Link className="getService" to={`/result/${ele.eventId}`}>
+                                        <Link className="getService" to={`/result/${ele.servicesId}`}>
                                                 <h3 style={{color:'white',fontSize:'2.7rem',fontFamily:`"Times New Roman", "Times", "serif"`,}}>
-                                                    {ele.eventName}
+                                                    {ele.serviceName}
                                                 </h3>
                                                 <h4 style={{color:'white',fontSize:'1rem',
                                                 fontFamily:`"Times New Roman", "Times", "serif"`,}}>

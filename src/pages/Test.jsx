@@ -4,13 +4,13 @@ import axios from 'axios';
 export default function Test() {
 
 const [details,setDetails] = useState({
-        userName: '',
-        email:'',
-        password:'',
+        serviceType: '',
+        // email:'',
+        // password:'',
 })
 
 const updateUser = () =>{
-    axios.post(`https://eventeasyau.azurewebsites.net/api/user/update/3`,details)
+    axios.get(`https://eventeasyau.azurewebsites.net/api/services/getservices/1`)
     .then(response=>{
         console.log(response)
     }).catch(
@@ -27,14 +27,14 @@ const updateUser = () =>{
         <input type="text" name="password" id="passwd"
         onChange={(event)=>({...details,password:event.target.value})}
         />
-        <label for="email">Email</label>
+        {/* <label for="email">Email</label>
         <input type="text" name="email" id="email"
          onChange={(event)=>({...details,email:event.target.value})}
         />
         <label for="username">UserName</label>
         <input type="text" name="username" id="username"
          onChange={(event)=>({...details,userName:event.target.value})}
-        />
+        /> */}
          
       </form>
       <button onClick={updateUser}>Update</button>

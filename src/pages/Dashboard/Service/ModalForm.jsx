@@ -74,7 +74,7 @@ onSave=(values)=>{
     else
     {
        
-        axios.put(`https://eventeasyau.azurewebsites.net/api/services/update/${values.servicesId}`,values)
+        axios.put(`https://eventeasyau.azurewebsites.net/api/services/update/`,values)
         .then(response=>{
             console.log(response)
             message.success('Service Update Success');
@@ -140,12 +140,19 @@ render() {
             <Form.Item label="Merchant ID" name='merchantId' >
                 <Input disabled={sessionStorage.getItem('access')==1?false:true}/>
             </Form.Item>
-            <Form.Item label="Seats" name='seated' 
+            <Form.Item label="Capacity" name='guestAmount' 
                 rules={[{required:true,message: 'Please input Seats number'}]}>
                 <Input/>
             </Form.Item>
             <Form.Item label="Price" name='price' rules={[{required:true}]}>
                 <InputNumber/>
+            </Form.Item>
+            <Form.Item label="Event Type" name='eventType' rules={[{required:true}]}>
+                <Select>
+                    <Select.Option value={0}>Wedding&Engagement</Select.Option>
+                    <Select.Option value={1}>Birthday&Private</Select.Option>
+                    <Select.Option value={2}>Corporate Functions</Select.Option>
+                </Select>
             </Form.Item>
             {/**Icons */}
 {/* 
