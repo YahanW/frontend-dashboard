@@ -58,6 +58,7 @@ componentDidMount(){
  */
 onSave=(values)=>{
     console.log(values)
+    
     if(this.props.title=='Add Service')
     {
         axios.post(`https://eventeasyau.azurewebsites.net/api/services/create/`,values)
@@ -66,52 +67,30 @@ onSave=(values)=>{
             message.success('Service Add Success');
             this.onCancel() //close modal
             this.props.refreshList()  //reloading data
-            
         }).catch(err=>{
             console.log(err)
         })
     }
     else
     {
-        axios.put(`https://eventeasyau.azurewebsites.net/api/services/update/`,values)
+       
+        axios.put(`https://eventeasyau.azurewebsites.net/api/services/update/${values.servicesId}`,values)
         .then(response=>{
             console.log(response)
             message.success('Service Update Success');
             this.onCancel() //close modal
             this.props.refreshList()  //reloading data
-            
         }).catch(err=>{
             console.log(err)
         })
     }
-    
-
-
-    // console.log(values)
-    // if(this.props.title=='Add Service'){
-    //     //checking if it is a add action
-    //     axios.post('/api/service/add',values).then((data)=>{
-    //         message.success('Add Success')
-    //         //post form to backend
-    //         this.onCancel() //close modal
-    //         // this.props.refreshList()  //reloading data
-    //         window.dispatchEvent(new Event('refreshService'))
-    //     })
-    //     return
-    // }
-    // axios.post('/api/service/edit',{...values,id:this.props.data.id}).then((data)=>{
-    //     console.log(data)
-    //     message.success('Edit Success')
-    //     //post form to backend
-    //     this.onCancel() //close modal
-    //     this.props.refreshList()  //reloading data
-    //     window.dispatchEvent(new Event('refreshService'))
-    // })
 
 }
 
 render() {
     const readOnly=this.props.title=='Details'?true:false
+    const isvisable=this.props.title=='Add Service'?false:true
+    
     return (
     <Modal visible width={600} title={this.props.title}
         onCancel={this.onCancel}
@@ -119,7 +98,17 @@ render() {
         className={readOnly?'m-readonly-modal':'dash-event'}
     >
             
-        <Form {...this.layout} ref={this.formRef} onFinish={this.onSave}>
+        <Form {...this.layout} ref={this.formRef} onFinish={this.onSave}
+                fields={sessionStorage.getItem("id")==3?
+                [
+                    {
+                    name: ["merchantId"],
+                    value: sessionStorage.getItem("id")
+                    },
+                ]
+                :
+                []}
+        >
             <Form.Item label="Service Name" name='serviceName' 
                 rules={[{required:true, message: 'Please input your Service Name!'}]}>
                 <Input/>
@@ -145,10 +134,11 @@ render() {
                     <Select.Option value={15}>Firework</Select.Option>
                 </Select>
             </Form.Item>
-
-            <Form.Item label="Merchant ID" name='merchantId' 
-                rules={[{required:true,message: 'Please input your Merchant Name!'}]}>
-                <Input/>
+                <Form.Item label="Service ID" name={isvisable ? 'servicesId' : 'address' } style={{display:isvisable?'':'none'}}>
+                <Input disabled={true}/>
+            </Form.Item>
+            <Form.Item label="Merchant ID" name='merchantId' >
+                <Input disabled={sessionStorage.getItem('access')==1?false:true}/>
             </Form.Item>
             <Form.Item label="Seats" name='seated' 
                 rules={[{required:true,message: 'Please input Seats number'}]}>
