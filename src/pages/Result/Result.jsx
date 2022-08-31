@@ -5,9 +5,10 @@ import {useState,useEffect} from 'react';
 import {Link,useParams} from 'react-router-dom';
 import axios from 'axios';
 import Footer from '../Home/homes/Footer';
-import {Modal,Form,Input,Select, InputNumber} from 'antd';
+import {Modal,Form,Input,Select, InputNumber, message} from 'antd';
 
 function Result() {
+  const formRef=React.createRef();
   const {servicesId} = useParams();
   const [record, setRecord] = useState([]);
   const [eventVisible,setEventVisible] = useState(false);
@@ -18,6 +19,23 @@ function Result() {
     setRecord(data.$values);  
   };
   useEffect(() => {getData(); }, []);
+
+  const onSave=(value)=>{
+    console.log(value);
+    axios.post("https://eventeasyau.azurewebsites.net/api/event/create",value)
+    .then(response=>{
+      console.log(response);
+      message.success("Event created successfully");
+      CancelVisible();
+    }).catch(err=>{
+      console.log(err)
+    })
+  }
+  const layout={ 
+    //form layout
+    labelCol:{span:10},
+    wrapperCol:{span:250}
+}
   console.log(record);
     return (
       <div className='result'>
@@ -36,13 +54,22 @@ function Result() {
                     <h2>{ele.serviceName}</h2>
                     <h3>PRICES START AT ${(ele.price/ele.guestAmount*10).toFixed(2)} PP</h3>
                     <button onClick={()=>{setEventVisible(true)}}>Create Event</button>
-                    <Modal title="New Event" width={600} visible={eventVisible} onCancel={CancelVisible}className="shop-list">
-                      <Form.Item label="Event Name" name="eventName"
-                            rules={[{ required: true, message: 'Please input your username!' }]}
-                          >
-                            <Input />
+                    <Modal title="New Event" width={600} visible={eventVisible} 
+                    onCancel={CancelVisible} onOk={()=>{formRef.current.submit()}} className="shop-list">
+                      <Form onFinish={onSave} ref={formRef} {...layout}
+                      fields={[
+                        {
+                          name: ["customerId"],
+                          value: sessionStorage.getItem("id")
+                          },
+                      ]}
+
+                      
+                      >
+                      <Form.Item label="Event Name" name="eventName"rules={[{ required: true, message: 'Please input your username!' }]}>
+                          <Input />
                       </Form.Item>
-                      <Form.Item label="Event Type" name="type"
+                      <Form.Item label="Event Type" name="eventType"
                             rules={[{ required: true, message: 'Please Select a type!' }]}>
                             <Select>
                               <Select.Option value={0}>Wedding</Select.Option>
@@ -50,10 +77,17 @@ function Result() {
                               <Select.Option value={2}>Corporate Function</Select.Option>
                             </Select>
                       </Form.Item>
-                      <Form.Item label="Seat Number" name="seats"
+                      <Form.Item label="Guest Number" name="guest"
                           rules={[{ required: true, message: 'Please give a seat number!' }]}>
                             <InputNumber/>
                       </Form.Item>
+                      <Form.Item label="Some Descriptions" name="description">
+                          <Input/>
+                      </Form.Item>
+                      <Form.Item label="Your UniqueID" name="customerId">
+                          <InputNumber disabled={true}/>
+                      </Form.Item>
+                      </Form>
                     </Modal>
                   </div>
                 </div>
