@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
-import './index'
-import './Person.css'
-// import axios from 'axios';
+import React, { useState } from 'react';
+import './index';
+import './Person.css';
+
+
 function Personals(){
   const [editing,setEdit] = useState(false);
   const [isEnabled,setEnabled] = useState(true);
@@ -23,7 +24,7 @@ function Personals(){
 	// 	.catch(error=>{
 	// 		console.log(error)
 	// 	})
-	// }
+
     return (
       <div className='PersonList'>
         <div className='List'>

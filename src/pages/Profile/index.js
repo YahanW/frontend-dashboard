@@ -1,8 +1,9 @@
 import React, {useState,useEffect} from 'react';
 import axios from "axios";
 import Header from "../../layout/Header";
-import { Link,Outlet,useLocation } from "react-router-dom";
-import './profile.css'
+import { Link,Outlet,useLocation,useOutlet } from "react-router-dom";
+import './profile.css';
+const Context = React.createContext({});
 
 export default function Profile(){
   const [bookSelect,setBookSelect]=useState(true);
@@ -15,18 +16,14 @@ export default function Profile(){
   }
   const uid = sessionStorage.getItem('id');
   const location = useLocation(); //get current route path
-  
   const getProfile = async () => {
-      
-      const { data } = await axios.get(`https://eventeasynew.azurewebsites.net/api/user/get/${uid}`);
+      const { data } = await axios.get(`https://eventeasyau.azurewebsites.net/api/user/get/${uid}`);
       setUserInfo(data)
     };
   useEffect(() => {
       getProfile();
-      //accroding current path highlight different marks
-      setBookSelect(location.pathname=='/profile/booking'?true:false);
+      setBookSelect(location.pathname=='/profile'?true:false);
     }, []);
-
     return (
       <div className='profile'>
         <Header/>
@@ -44,7 +41,7 @@ export default function Profile(){
           <div className='nav-sub'
           style={{borderBottom:bookSelect?'3px solid #33A1C9':''}}
           >
-            <Link onClick={changeSelectA} to="/profile/booking">Booking History</Link>
+            <Link onClick={changeSelectA} to="/profile">Booking History</Link>
           </div>
           <div className='nav-sub'
            style={{borderBottom:bookSelect?'':'3px solid #33A1C9'}}
@@ -52,7 +49,7 @@ export default function Profile(){
             <Link onClick={changeSelectB} to="/profile/personal">Personal Details</Link>
           </div>
         </div>
-        <Outlet/>
+          <Outlet/>
       </div>
     )
 }

@@ -105,6 +105,10 @@ render() {
                     name: ["merchantId"],
                     value: sessionStorage.getItem("id")
                     },
+                    {
+                        name: ["merchant"],
+                        value: sessionStorage.getItem("username")
+                    },
                 ]
                 :
                 []}
@@ -134,10 +138,20 @@ render() {
                     <Select.Option value={15}>Firework</Select.Option>
                 </Select>
             </Form.Item>
-                <Form.Item label="Service ID" name={isvisable ? 'servicesId' : 'address' } style={{display:isvisable?'':'none'}}>
+            <Form.Item label="Event Type" name='eventType' rules={[{required:true}]}>
+                <Select>
+                    <Select.Option value={0}>Wedding&Engagement</Select.Option>
+                    <Select.Option value={1}>Birthday&Private</Select.Option>
+                    <Select.Option value={2}>Corporate Functions</Select.Option>
+                </Select>
+            </Form.Item>
+            <Form.Item label="Service ID" name={isvisable ? 'servicesId' : 'address' } style={{display:isvisable?'':'none'}}>
                 <Input disabled={true}/>
             </Form.Item>
             <Form.Item label="Merchant ID" name='merchantId' >
+                <Input disabled={sessionStorage.getItem('access')==1?false:true}/>
+            </Form.Item>
+            <Form.Item label="Merchant Name" name='merchant' >
                 <Input disabled={sessionStorage.getItem('access')==1?false:true}/>
             </Form.Item>
             <Form.Item label="Capacity" name='guestAmount' 
@@ -147,13 +161,13 @@ render() {
             <Form.Item label="Price" name='price' rules={[{required:true}]}>
                 <InputNumber/>
             </Form.Item>
-            <Form.Item label="Event Type" name='eventType' rules={[{required:true}]}>
-                <Select>
-                    <Select.Option value={0}>Wedding&Engagement</Select.Option>
-                    <Select.Option value={1}>Birthday&Private</Select.Option>
-                    <Select.Option value={2}>Corporate Functions</Select.Option>
-                </Select>
+            <Form.Item label="Introductions" name='introduction'>
+                <Input/>
             </Form.Item>
+            <Form.Item label="Location" name='serviceLocation'>
+                <Input/>
+            </Form.Item>
+            
             {/**Icons */}
 {/* 
             <Form.Item label='Icons' name='icons' rules={[{required:true,message: 'Please select your Icon!'}]}> 

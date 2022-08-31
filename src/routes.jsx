@@ -49,10 +49,17 @@ export default(
                 <Route path="/dashboard/booking" element={<h1>Bookings</h1>}/>
             </Route>
             <Route path="/test" element={<Test/>}/>
-            <Route path='/profile/' element={<Profile/>}> 
-                <Route path='booking' index element={<Booking/>} />
-                <Route path='personal' element={<Personals/>}/>
+
+            <Route path='/profile' element={<Profile/>}> 
+                <Route index element={<Booking/>}/>
+                <Route path='/profile/personal' element={<Personals/>}/>
             </Route>
+            
+            <Route path='/profile/booking/details' element={<BookHsitory/>}/>
+            <Route path='/profile/booking/review' element={<MakeReview/>}/>
+            <Route path='/profile/booking/cancel' element={<CancelEvent/>}/>
+
+
             <Route path='/geo' element={<GeoCheck/>}/>
             <Route path='/event/' >
                 <Route path='normal/:type/:date/:guest/:budget' element={<Event/>}/>
@@ -60,9 +67,7 @@ export default(
                 <Route path='advance/:type/:date/:guest/:budget/:area/:stand/:seat' element={<Event/>}/>
             </Route>
 
-            <Route path='/profile/booking/details' element={<BookHsitory/>}/>
-            <Route path='/profile/booking/review' element={<MakeReview/>}/>
-            <Route path='/profile/booking/cancel' element={<CancelEvent/>}/>
+          
 
             <Route path='/result/'>
                 <Route path=':servicesId'  element={<Result/>}/>
