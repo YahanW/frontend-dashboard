@@ -14,7 +14,7 @@ const bgtType = [ "All","$500","$1000","$1500","$2000+"];
 const [curType,setCurType] = useState("All");
 const [curAre,setCurAre] = useState("All");
 const [curBgt,setCurBgt] = useState(0);
-const {type,date,guest,budget} = useParams();
+const {type,date,guest,budget,area,stand,seat} = useParams();
 const [keyWord,setKeyWord] = useState('');
 const history = useNavigate();
 const [eventCount,setEventCount] = useState(0);
@@ -33,7 +33,7 @@ const getEvent = async ()=>{
 
 useEffect(() => {
   getEvent().then((eveListTemp)=>setEveListTemp(eveListTemp))
-  
+    console.log(type,date,guest,budget,area,stand,seat)
 }, []);
 
 if(!eveListTemp){ 

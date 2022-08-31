@@ -6,7 +6,6 @@ import {Button} from './Button'
 function HeroSection() {
   const history = useNavigate();
   const getEventsNormal = () =>{
-   //console.log(type,date,number,budget)
    if(type!==0&&date!==""&&number!==0&&budget!==0){
     history(`/event/normal/${type}/${date}/${number}/${budget}`);
    }else{
@@ -14,15 +13,14 @@ function HeroSection() {
    }
   }
   const getEventsAdvanced = () =>{
-    //console.log(type,date,number,budget)
-    if(type!==0&&date!==""&&number!==0&&budget!==0&&stand!==0&&seat!==0){
+    if(date!==""&&number!==0&&budget!==0&&stand!==0&&seat!==0){
      history(`/event/advance/${type}/${date}/${number}/${budget}/${location}/${stand}/${seat}`);
     }else{
      message.error("please fills in the form")
     }
    }
-  const [type,setType] = useState(1);
-  const [date,setDate] = useState("");
+  const [type,setType] = useState(0);
+  const [date,setDate] = useState(Date.now());
   const [number,setNumber] = useState(0);
   const [budget,setBudget] = useState(0);
   const [stand,setStand] = useState(0);
@@ -68,21 +66,17 @@ function HeroSection() {
 
          {/* advanced search  */}
           <a onClick = {() => setModal2Visible(true)} >Want Advanced Search ? Click Here</a> 
-            <Modal className='ModalSearch'
-          title="Advanced Search"
-          centered
-          visible={modal2Visible}
-          onOk={() => getEventsAdvanced()}
-          onCancel={() => setModal2Visible(false)}
+            <Modal className='ModalSearch'title="Advanced Search"centered visible={modal2Visible}
+          onOk={() => getEventsAdvanced()} onCancel={() => setModal2Visible(false)}
         >
           <div className='AdvSearch'>
             <label for="type-adv">Event Type</label>
             <select className="AdvEventType" id="type-adv"
              onChange={(event)=>setType(event.target.value)}>
 
-              <option value="1">BIRTHDAYS & PRIVATE</option>
-              <option value="2">CORPORATE FUNCTIONS</option>
-              <option value="3">WEDDINGS & ENGAGEMENTS</option>
+              <option value={0}>BIRTHDAYS & PRIVATE</option>
+              <option value={1}>CORPORATE FUNCTIONS</option>
+              <option value={2}>WEDDINGS & ENGAGEMENTS</option>
             </select>
             <label for="date-adv">Start Date</label>
             <input type='date' className="AdvEventType" id="date-adv" onChange={(event)=>setDate(event.target.value)} />
@@ -100,9 +94,9 @@ function HeroSection() {
             <label for="seatAdv">SEAT</label>
             <select className="AdvEventType" id="seatAdv"
             onChange={(event)=>{setSeat(event.target.value)}}>
-              <option value="20">1-20</option>
-              <option value="50">20-50</option>
-              <option value="100">50+</option>
+              <option value={20}>1-20</option>
+              <option value={50}>20-50</option>
+              <option value={100}>50+</option>
             </select>
             <label for="location">LOCATION</label>
             <select className="AdvEventType" id="location"
