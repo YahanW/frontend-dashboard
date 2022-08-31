@@ -45,8 +45,8 @@ function Personals(){
          [{
           name:'accessNumber',
           value:
-            formRef.current.getFieldValue('accessNumber')==1?'Admin':
-            ( formRef.current.getFieldValue('accessNumber')==3?'Merchant':'Mermbership')
+            sessionStorage.getItem('access')==1?'Admin':
+            ( sessionStorage.getItem('access')==3?'Merchant':'Mermbership')
          }]
         }
         >
@@ -78,7 +78,10 @@ function Personals(){
           editing ? 
           <button onClick={()=>{formRef.current.submit();onConfirm()}}>Confirm</button>
           :
+          
           <button onClick={()=>{onChangePerson()}}>Edit</button>
+         
+          
         }
         
       </div>
