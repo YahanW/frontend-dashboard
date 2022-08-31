@@ -4,7 +4,7 @@ import Footer from '../Home/homes/Footer';
 import { Radio } from 'antd';
 import { Link,useNavigate,useParams } from "react-router-dom";
 import axios from "axios";
-import './Event.css';
+import './Venue.css';
 
 export default function Event(){
 const [eveListTemp,setEveListTemp] = useState([]);

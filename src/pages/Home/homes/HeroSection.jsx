@@ -8,22 +8,18 @@ function HeroSection() {
   const getEventsNormal = () =>{
     let dateNow = new Date().toISOString().split("T")[0]
     if(date>=dateNow){
-      console.log(date)
-      console.log(dateNow)
-    if(type!==-1&&date!==""&&number!==0&&budget!==0){
-      history(`/event/normal/${type}/${date}/${number}/${budget}`);
-     }else{
-      message.error("please fills in the form")
-     }
-   }else{
-    console.log(date)
-    console.log(dateNow)
-    message.error("please select a date from today")
-   }
+      if(type!==-1&&date!==""&&number!==0&&budget!==0){
+        history(`/venue/normal/${type}/${date}/${number}/${budget}`);
+      }else{
+        message.error("please fills in the form")
+      }
+    }else{
+      message.error("please select a date from today")
+    }
   }
   const getEventsAdvanced = () =>{
     if(date!==""&&number!==0&&budget!==0&&stand!==0&&seat!==0){
-     history(`/event/advance/${type}/${date}/${number}/${budget}/${location}/${stand}/${seat}`);
+     history(`/venue/advance/${type}/${date}/${number}/${budget}/${location}/${stand}/${seat}`);
     }else{
      message.error("please fills in the form")
     }
@@ -37,10 +33,6 @@ function HeroSection() {
   const [location,setLocation] = useState("");
   const formRef=React.createRef();
   const [modal2Visible, setModal2Visible] = useState(false);
-
-  const tileDisabled = ({ activeStartDate, date, view }) => {
-    return date >= new Date()
-  }
 
   return (
     <div className='hero-container'>

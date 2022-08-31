@@ -13,7 +13,7 @@ import ResetPass from "./pages/Login/ResetPass";
 //home page and its sub-routing
 import Home from "./pages/Home/Home";
 import HomeService from "./pages/Home/HomeService";
-import Event from "./pages/Event/Event";
+import Venue from './pages/Venue/Venue';
 
 //Service result related
 import Result from "./pages/Result/Result";
@@ -61,10 +61,10 @@ export default(
 
 
             <Route path='/geo' element={<GeoCheck/>}/>
-            <Route path='/event/' >
-                <Route path='normal/:type/:date/:guest/:budget' element={<Event/>}/>
-                <Route path=':type/:area/:budget/:name' element={<Event/>}/>
-                <Route path='advance/:type/:date/:guest/:budget/:area/:stand/:seat' element={<Event/>}/>
+            <Route path='/venue/' >
+                <Route path='normal/:type/:date/:guest/:budget' element={<Venue/>}/>
+                <Route path='name/:type/:area/:budget/:name' element={<Venue/>}/>
+                <Route path='advance/:type/:date/:guest/:budget/:area/:stand/:seat' element={<Venue/>}/>
             </Route>
 
           
