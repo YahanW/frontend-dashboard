@@ -4,6 +4,7 @@ import './Person.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import {Form,Input, InputNumber,message} from 'antd';
+import { render } from 'react-dom';
 
 function Personals(){
   const history = useNavigate();
@@ -35,11 +36,20 @@ function Personals(){
             console.log(err);
         })
   }
-  console.log(profileInfo)
+  console.log(formRef)
     return (
       <div className='PersonList'>
        
-        <Form ref={formRef} onFinish={onSave} className='List'>
+        <Form ref={formRef} onFinish={onSave} className='List'
+        fields={
+         [{
+          name:'accessNumber',
+          value:
+            formRef.current.getFieldValue('accessNumber')==1?'Admin':
+            ( formRef.current.getFieldValue('accessNumber')==3?'Merchant':'Mermbership')
+         }]
+        }
+        >
           <div className='left'>
             <Form.Item name='userName' label="Username">
             <Input disabled={isEnabled}/>
@@ -53,7 +63,7 @@ function Personals(){
           </div>
           <div className='right'>
             <Form.Item name='accessNumber' label="Access Level">
-              <InputNumber  disabled={true}/>
+              <Input  disabled={true}/>
             </Form.Item>      
             <Form.Item name='email' label="Email">
               <Input  disabled={isEnabled}/>
