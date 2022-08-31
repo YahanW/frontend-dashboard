@@ -7,6 +7,7 @@ class Slider extends React.Component{
         super(props)
         this.state={menus:[
             {name:'Services',id:'1',linkUrl:'/dashboard/service'},
+            {name:'Event',id:'3',linkUrl:'/dashboard/event' }
         ]}
     }
     onRenderMenu=(menus)=>{

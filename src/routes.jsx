@@ -6,6 +6,8 @@ import MainDash from "./pages/Dashboard/Entry"
 import WelcomeDash from "./pages/Dashboard/welcome.jpg"
 import ServiceDash from "./pages/Dashboard/Service";
 import UserDash from "./pages/Dashboard/User";
+import Event from "./pages/Dashboard/Event";
+
 //login and Register page
 import LoginForm from "./pages/Login/LoginForm"
 import Register from "./pages/Register/Register";
@@ -29,7 +31,7 @@ import BookHsitory from "./pages/Profile/BookHistory";
 import MakeReview from "./pages/Profile/MakeReview";
 import CancelEvent from "./pages/Profile/CancelEvent";
 
-//trolley and checkout
+//Shopping Cart and checkout
 import CheckOut from "./pages/CheckOut/CheckOut"
 import GeoCheck from "./layout/Header/GeoCheck";
 //warning 404
@@ -45,8 +47,7 @@ export default(
                 <Route index element={<img src={WelcomeDash} style={{width:'100%'}}/>}/>
                 <Route path='/dashboard/service' element={<ServiceDash/>}/>
                 <Route path="/dashboard/member/user" element={<UserDash/>}/>
-                <Route path="/dashboard/member/merchant" element={<h1>Merchant List</h1>}/>
-                <Route path="/dashboard/booking" element={<h1>Bookings</h1>}/>
+                <Route path='/dashboard/event' element={<Event/>}/>
             </Route>
             <Route path="/test" element={<Test/>}/>
 
@@ -66,8 +67,6 @@ export default(
                 <Route path='name/:type/:area/:budget/:name' element={<Venue/>}/>
                 <Route path='advance/:type/:date/:guest/:budget/:area/:stand/:seat' element={<Venue/>}/>
             </Route>
-
-          
 
             <Route path='/result/'>
                 <Route path=':servicesId'  element={<Result/>}/>

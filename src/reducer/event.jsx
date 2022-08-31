@@ -1,14 +1,14 @@
 const initState={
-    modalForm:null
+    eventModal:null
 }
 
 export default (state=initState,action)=>{
     const {type,data}=action;
     switch(type){
         case 'show':
-            return {...state,modalForm:data}
+            return {...state,eventModal:data}
         case 'hide':
-            return {...state,modalForm:null}
+            return {...state,eventModal:null}
         default:
             return initState
     }
