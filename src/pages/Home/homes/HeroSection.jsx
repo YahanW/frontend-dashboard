@@ -1,15 +1,24 @@
 import React,{useState} from 'react';
 import { useNavigate } from "react-router-dom";
 import './HeroSection.css';
-import {Form, message,Modal} from 'antd';
+import {Form, message,Modal,DatePicker} from 'antd';
 import {Button} from './Button'
 function HeroSection() {
   const history = useNavigate();
   const getEventsNormal = () =>{
-   if(type!==0&&date!==""&&number!==0&&budget!==0){
-    history(`/event/normal/${type}/${date}/${number}/${budget}`);
+    let dateNow = new Date().toISOString().split("T")[0]
+    if(date>=dateNow){
+      console.log(date)
+      console.log(dateNow)
+    if(type!==-1&&date!==""&&number!==0&&budget!==0){
+      history(`/event/normal/${type}/${date}/${number}/${budget}`);
+     }else{
+      message.error("please fills in the form")
+     }
    }else{
-    message.error("please fills in the form")
+    console.log(date)
+    console.log(dateNow)
+    message.error("please select a date from today")
    }
   }
   const getEventsAdvanced = () =>{
@@ -28,6 +37,11 @@ function HeroSection() {
   const [location,setLocation] = useState("");
   const formRef=React.createRef();
   const [modal2Visible, setModal2Visible] = useState(false);
+
+  const tileDisabled = ({ activeStartDate, date, view }) => {
+    return date >= new Date()
+  }
+
   return (
     <div className='hero-container'>
         <h1>Event Easy</h1>
@@ -42,7 +56,7 @@ function HeroSection() {
               </select>
             </Form.Item>
             <Form.Item>
-              <input type='date' className='requires checkin' 
+              <input type="date"  className='requires checkin' 
               onChange={(event)=>setDate(event.target.value)}/>
             </Form.Item>
             <Form.Item>

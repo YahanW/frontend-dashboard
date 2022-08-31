@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from "react";
 import { Link } from "react-router-dom";
-import { Modal } from "antd";
+import { Modal} from "antd";
 import './style/index.css';
 import axios from "axios";
 
@@ -91,7 +91,7 @@ export default function Trolley(){
             </Modal>
             <Modal title="Services" width={600}
                 visible={isServiceVisible} footer={false} onCancel={CancelService}
-                className="service-list">
+            className="service-list"> 
                     <ul>
                         <li><div className='avatar'></div>
                         <div className='left'>

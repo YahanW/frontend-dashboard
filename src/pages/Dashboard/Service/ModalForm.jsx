@@ -6,7 +6,10 @@ import axios from 'axios';
 class ModalForm extends Component {
 
 constructor(props){
-    super(props)
+    super(props);
+    this.state={
+        isVenue:false
+    }
     // this.state={allIcons:Icons,currentIcons:Icons.slice(0,10)}
     //initial display 10 icons as default
 }
@@ -99,7 +102,7 @@ render() {
     >
             
         <Form {...this.layout} ref={this.formRef} onFinish={this.onSave}
-                fields={sessionStorage.getItem("id")==3?
+                fields={
                 [
                     {
                     name: ["merchantId"],
@@ -110,14 +113,14 @@ render() {
                         value: sessionStorage.getItem("username")
                     },
                 ]
-                :
-                []}
+               }
         >
             <Form.Item label="Service Name" name='serviceName' 
                 rules={[{required:true, message: 'Please input your Service Name!'}]}>
                 <Input/>
             </Form.Item>
             <Form.Item label="Service Type" name='serviceType' 
+            onChange={()=>{ this.formRef.current.getFieldValue("serviceType")==0?this.setState({isVenue:true}):this.setState({isVenue:false}) }}
                 rules={[{required:true,message: 'Please select your Service type!'}]}>
                 <Select>
                     <Select.Option value={0}>Venue</Select.Option>
@@ -154,19 +157,21 @@ render() {
             <Form.Item label="Merchant Name" name='merchant' >
                 <Input disabled={sessionStorage.getItem('access')==1?false:true}/>
             </Form.Item>
-            <Form.Item label="Capacity" name='guestAmount' 
-                rules={[{required:true,message: 'Please input Seats number'}]}>
+            <Form.Item label="Standing Capacity" name='standing' 
+                rules={[{required:this.state.isVenue,message: 'Please input Standing number'}]}>
+                <Input/>
+            </Form.Item>
+            <Form.Item label="Venue Seats" name='seats' 
+                rules={[{required:this.state.isVenue,message: 'Please input Seats number'}]}>
                 <Input/>
             </Form.Item>
             <Form.Item label="Price" name='price' rules={[{required:true}]}>
                 <InputNumber/>
             </Form.Item>
-            <Form.Item label="Introductions" name='introduction'>
+            <Form.Item label="Location" name='introduction'>
                 <Input/>
             </Form.Item>
-            <Form.Item label="Location" name='serviceLocation'>
-                <Input/>
-            </Form.Item>
+           
             
             {/**Icons */}
 {/* 

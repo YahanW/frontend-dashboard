@@ -101,7 +101,7 @@ function Result() {
                 <div className='intro-list'>
                   <div className='list-locate'>
                     <h2>Location</h2>
-                    <h3>320 George Street, Sydney, New South Wales, Australia </h3>
+                    <h3>{ele.introduction} </h3>
                   </div>
                   <div className='list-locate'>
                     <h2>Contact Us</h2>
@@ -113,7 +113,7 @@ function Result() {
                   </div>
                   <div className='list-locate'>
                 <h2>Capacity</h2>
-                <h3>Cocktail: {ele.guestAmount} Banquet: 400 Wedding: 372</h3>
+                <h3> Seated: {ele.seated} Standing: {ele.standing}</h3>
                 </div>
                 </div>
                 <div className='divider'></div>
