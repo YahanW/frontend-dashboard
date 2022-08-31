@@ -62,6 +62,10 @@ function Result() {
                           name: ["customerId"],
                           value: sessionStorage.getItem("id")
                           },
+                          {
+                            name: ["status"],
+                            value: 0
+                            },
                       ]}
 
                       
@@ -86,6 +90,9 @@ function Result() {
                       </Form.Item>
                       <Form.Item label="Your UniqueID" name="customerId">
                           <InputNumber disabled={true}/>
+                      </Form.Item>
+                      <Form.Item label="Event Status" name="status" style={{display:'none'}}>
+                          <InputNumber/>
                       </Form.Item>
                       </Form>
                     </Modal>

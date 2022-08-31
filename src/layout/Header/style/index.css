@@ -76,6 +76,7 @@
     border: 2px solid #efefef;
     border-radius: 5px;
     cursor: pointer;
+    overflow: auto;
 }
 .shop-list li .avatar{
     width: 130px;
@@ -107,6 +108,74 @@
     width: 185px;
 }
 
+.service-list ul {
+    list-style: none;
+    height: 45vh;
+    /*height at here, width at modal itself*/
+}
+
+.service-list li {
+    margin-bottom: 1rem;
+    display: flex;
+    width: 30vw;
+    height: 15vh;
+    border: 2px solid #efefef;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.service-list li .avatar {
+    width: 130px;
+    background-image: url('https://images.squarespace-cdn.com/content/v1/585a6e76b3db2b19a94d4553/706b772c-47e0-46ce-b302-9cd9032f9087/IMG-2353.jpg');
+    background-size: cover;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+}
+
+.service-list li .left {
+    padding: 10px;
+    width: 12.5vw;
+    height: 100%;
+}
+
+.service-list li .right button {
+    width: 7vw;
+    height: 5vh;
+    margin-top: 4vh;
+    margin-left: -30px;
+}
+
+.service-list li .left h3 {
+    height: 5vh;
+    font-size: 1.5rem;
+    font-weight: 400;
+    overflow: hidden;
+    width: 185px;
+}
+
+.shop-list .ant-modal-header{
+    background-color: rgb(203, 203, 203);
+ }
+.shop-list .ant-modal-title{
+    font-size: 1.7rem;
+    font-weight: 470;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.service-list .ant-modal-header{
+   background-color: rgb(203, 203, 203);
+}
+.service-list .ant-modal-title{
+    font-size: 2rem;
+    font-weight: 470;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .tro-name{
     position:absolute;
     right: 20vw;
