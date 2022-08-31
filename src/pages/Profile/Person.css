@@ -26,14 +26,7 @@
     padding: 1%;
     width:47%; height: 90%;
 }
-.List input{
-    margin-bottom: 1vh;
-    height: 15vh;
-    background-color:#B0E0E6;
-    color: #5169ad;
-    border: 0;
-    border-bottom: 3px solid rgba(106, 133, 136, 0.6);
-}
+
 .PersonList button{
     width: 85%;
     height: 15vh;

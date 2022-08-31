@@ -7,7 +7,7 @@ const Context = React.createContext({});
 
 export default function Profile(){
   const [bookSelect,setBookSelect]=useState(true);
-  const [userInfo,setUserInfo]=useState([])
+  
   const changeSelectA = () =>{
     this.setBookSelect(true);
   }
@@ -16,6 +16,8 @@ export default function Profile(){
   }
   const uid = sessionStorage.getItem('id');
   const location = useLocation(); //get current route path
+
+  const [userInfo,setUserInfo]=useState([])
   const getProfile = async () => {
       const { data } = await axios.get(`https://eventeasyau.azurewebsites.net/api/user/get/${uid}`);
       setUserInfo(data)
@@ -34,7 +36,7 @@ export default function Profile(){
           </div>
           <div className='desc'>
             <h1>{userInfo.userName}</h1>
-            <h2>{userInfo?userInfo.email:'Nothing here'}</h2>
+            <h2>{userInfo.tokenNumber?userInfo.tokenNumber:'This guy is too lazy to leave anything.'}</h2>
           </div>
         </div>
         <div className='navies'>

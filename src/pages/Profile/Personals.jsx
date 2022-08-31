@@ -1,55 +1,74 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import './index';
 import './Person.css';
-
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import {Form,Input, InputNumber,message} from 'antd';
 
 function Personals(){
+  const history = useNavigate();
+  const [profileInfo,setProfileInfo]=useState([])
   const [editing,setEdit] = useState(false);
   const [isEnabled,setEnabled] = useState(true);
   const onChangePerson = () =>{setEdit(true);setEnabled(false);}
   const onConfirm = () =>{setEdit(false);setEnabled(true);}
-
-  // const [userInfo,setInfo] = useState({}) //initialise as an empty set
-  // const setUser = (data) =>{setInfo(data);}
-  // const uid = sessionStorage.getItem('id');
-  // useEffect(() => {     //render after every changes
-  //    userDetails()
-  // });
-
-  // const userDetails = () =>{
-	// 	axios.get(`https://eventeasynew.azurewebsites.net/api/user/get/${uid}`)
-	// 	.then(response => {
-	// 	 setUser(response.data);
-	// 	})
-	// 	.catch(error=>{
-	// 		console.log(error)
-	// 	})
-
+  const uid = sessionStorage.getItem('id');
+  const formRef= React.useRef();
+  const getProfile = async () => {
+      const { data } = await axios.get(`https://eventeasyau.azurewebsites.net/api/user/get/${uid}`);
+      setProfileInfo(data);
+      formRef.current.setFieldsValue({...data})
+    };
+  useEffect(() => {
+      getProfile();
+      
+    }, []);
+  const onSave = (value)=>{
+    console.log(value);
+    axios.put(`https://eventeasyau.azurewebsites.net/api/User/Update/`,value)
+        .then(response=>{
+            console.log(response)
+            message.success('User Update Success');
+            history("/profile/personal")
+            return
+        }).catch(err=>{
+            console.log(err);
+        })
+  }
+  console.log(profileInfo)
     return (
       <div className='PersonList'>
-        <div className='List'>
+       
+        <Form ref={formRef} onFinish={onSave} className='List'>
           <div className='left'>
-            First Name
-            <input  disabled={isEnabled}/>
-            Last Name
-            <input  disabled={isEnabled}/>
-            Birth Date
-            <input  disabled={isEnabled}/>
+            <Form.Item name='userName' label="Username">
+            <Input disabled={isEnabled}/>
+            </Form.Item>
+            <Form.Item name='address' label="Address">
+            <Input disabled={isEnabled}/>
+            </Form.Item>
+            <Form.Item name='password' label="Password">
+            <Input disabled={isEnabled}/>
+            </Form.Item>
           </div>
           <div className='right'>
-            Phone
-            <input  disabled={isEnabled}/>
-            Email
-            <input  disabled={isEnabled}/>
-            Address
-            <input  disabled={isEnabled}/>
-          </div>
-        </div>
+            <Form.Item name='accessNumber' label="Access Level">
+              <InputNumber  disabled={true}/>
+            </Form.Item>      
+            <Form.Item name='email' label="Email">
+              <Input  disabled={isEnabled}/>
+            </Form.Item>     
+            <Form.Item name='userId' label="Your ID">
+              <Input  disabled={true}/>
+            </Form.Item>     
+          </div>    
+        </Form>      
+       
         {
           editing ? 
-          <button onClick={onConfirm}>Confirm</button>
+          <button onClick={()=>{formRef.current.submit();onConfirm()}}>Confirm</button>
           :
-          <button onClick={onChangePerson}>Edit</button>
+          <button onClick={()=>{onChangePerson()}}>Edit</button>
         }
         
       </div>
