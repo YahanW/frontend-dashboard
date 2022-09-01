@@ -9,7 +9,7 @@ import {
   Message,
   MessageInput,
 } from "@chatscope/chat-ui-kit-react";
-import Trolley from './Trolley';
+import ShoppingCart from './ShoppingCart';
 import './style/index.css'
 
 function Header(){
@@ -96,7 +96,7 @@ function Header(){
             </li>
             {/* trolley item list */}
             <li>
-              <Trolley/>
+              <ShoppingCart/>
             </li>
             {/* remainder user to login */}
             <li>
