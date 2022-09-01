@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Panel } from '../../../commons';
-import { Card,Form,Input,Button,Table,Space, Avatar,Modal,message } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
+import { Card,Form,Input,Table,Space, Avatar,Menu, Dropdown } from 'antd';
+import { SmileOutlined } from '@ant-design/icons';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import EventModal from './EventModal';
@@ -17,20 +17,20 @@ class Event extends Component {
         this.onGetEvents();  //fetching users once upon the element are rendered
     }
     onGetEvents=()=>{
-        //if(sessionStorage.getItem('access')==1){
+        if(sessionStorage.getItem('access')==1){
             axios.get("https://eventeasyau.azurewebsites.net/api/event/getall")
             .then( data=>{
                 this.setState({dataSource:data.data.$values})
                 console.log(data.data.$values)
             })
-        //}
-        // if(sessionStorage.getItem('access')==3){
-        //     axios.get("https://eventeasyau.azurewebsites.net/api/event/getall")
-        //     .then( data=>{
-        //         this.setState({dataSource:data.data.$values})
-        //         console.log(data.data.$values)
-        //     })
-        // }
+        }
+        if(sessionStorage.getItem('access')==3){
+            axios.get(`https://eventeasyau.azurewebsites.net/api/event/GetEventByMerc/${sessionStorage.getItem('id')}`)
+            .then( data=>{
+                this.setState({dataSource:data.data.$values})
+                console.log(data.data.$values)
+            })
+        }
     }
     onView=(record)=>{
         return ()=>{
@@ -43,6 +43,33 @@ class Event extends Component {
             })
         }
     }
+    onEdit=(record)=>{
+        return ()=>{
+            this.props.dispatch({
+                type:'show',
+                data:{
+                    title:'Edit',
+                    data:record
+                }
+            })
+        }
+    }
+    menu = (
+        <Menu
+          items={[
+            {
+              key: '1',
+              label: (
+              'abc'
+              ),
+            },
+            
+          ]}
+        />
+      );
+
+
+
     //Render Event List in Table format
     layoutEventTable=()=>({
     pagination:{
@@ -53,20 +80,30 @@ class Event extends Component {
         {
             title:"Event Name",
             dataIndex:'eventName',
-            render:(text,record)=>{
-                return <Space>
-                    <Avatar src={record.profile}/>
-                    {text}
-                </Space>
-            }
         },
         {
-            title:"Customer Id",
-            dataIndex:'customerId'
+            title:"Start Time",
+            dataIndex:'startTime',
         },
         {
-            title:"Guest Number",
-            dataIndex:'guest'
+            title:"End Time",
+            dataIndex:'endTime'
+        },
+        {
+            title:"Status",
+            dataIndex:'status',
+            render:(record)=>{
+                switch(record){
+                  case 0:return "Init"; break;
+                  case 1:return "Sent"; break;
+                  case 2:return "Accepted"; break;
+                  case 3:return "Rejected"; break;
+                  case 4:return "Cancelled"; break;
+                  case 5:return "AwaitPaid"; break;
+                  case 6:return "Completed"; break;
+                  default: break;
+                }
+              }
         },
         {
             title:"Event ID",
@@ -77,7 +114,8 @@ class Event extends Component {
             render:(record)=>{
                 return <Space>
                      <a onClick={this.onView(record)}>View</a>
-                    {/*<a onClick={this.onEdit(record)}>Edit</a>
+                    <a onClick={this.onEdit(record)}>Edit</a>
+                    {/* 
                     <a onClick={this.onDelete(record)}>Delete</a>
                     <a onClick={this.onLeverage(record)}>LevelUp</a> 
                      */}
@@ -85,6 +123,7 @@ class Event extends Component {
             }
         }
     ],
+    
     dataSource:this.state.dataSource
 
 })

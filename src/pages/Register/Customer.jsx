@@ -14,7 +14,7 @@ function Customer() {
       userName: '',
 			email:'',
 			password:'',
-      accessNumber:1  //5 means user
+      accessNumber:5  //5 means user
 		})
    
   const history = useNavigate();

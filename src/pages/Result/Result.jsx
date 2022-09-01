@@ -2,13 +2,14 @@ import React from 'react';
 import Header from '../../layout/Header';
 import './Result.css';
 import {useState,useEffect} from 'react';
-import {Link,useParams} from 'react-router-dom';
+import {Link,useParams,useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import Footer from '../Home/homes/Footer';
-import {Modal,Form,Input,Select, InputNumber, message} from 'antd';
+import {Modal,Form,Input,Select, InputNumber, message,DatePicker} from 'antd';
 
 function Result() {
   const formRef=React.createRef();
+  const history=useNavigate();
   const {servicesId} = useParams();
   const [record, setRecord] = useState([]);
   const [eventVisible,setEventVisible] = useState(false);
@@ -53,7 +54,7 @@ function Result() {
                   <div>
                     <h2>{ele.serviceName}</h2>
                     <h3>PRICES START AT ${(ele.price/ele.guestAmount*10).toFixed(2)} PP</h3>
-                    <button onClick={()=>{setEventVisible(true)}}>Create Event</button>
+                    <button onClick={()=>{sessionStorage.getItem('id')?setEventVisible(true):history("/login")}}>Create Event</button>
                     <Modal title="New Event" width={600} visible={eventVisible} 
                     onCancel={CancelVisible} onOk={()=>{formRef.current.submit()}} className="shop-list">
                       <Form onFinish={onSave} ref={formRef} {...layout}
@@ -66,10 +67,23 @@ function Result() {
                             name: ["status"],
                             value: 0
                             },
+                            {
+                              name: ["staffId"],
+                              value: ele.merchantId
+                              },
                       ]}
 
                       
                       >
+                      {/* <Form.Item label="User Name" name="customer">
+                          <Input disabled={true}/>
+                      </Form.Item> */}
+                      <Form.Item label="Your UniqueID" name="customerId">
+                          <InputNumber disabled={true}/>
+                      </Form.Item>
+                      <Form.Item label="Merchant ID" name="staffId" style={{display:'none'}}>
+                          <InputNumber disabled={true}/>
+                      </Form.Item>
                       <Form.Item label="Event Name" name="eventName"rules={[{ required: true, message: 'Please input your username!' }]}>
                           <Input />
                       </Form.Item>
@@ -88,11 +102,14 @@ function Result() {
                       <Form.Item label="Some Descriptions" name="description">
                           <Input/>
                       </Form.Item>
-                      <Form.Item label="Your UniqueID" name="customerId">
-                          <InputNumber disabled={true}/>
-                      </Form.Item>
                       <Form.Item label="Event Status" name="status" style={{display:'none'}}>
                           <InputNumber/>
+                      </Form.Item>
+                      <Form.Item label="Start Time" name="startTime">
+                          <DatePicker showTime/>
+                      </Form.Item>
+                      <Form.Item label="End Time" name="endTime" >
+                          <DatePicker showTime/>
                       </Form.Item>
                       </Form>
                     </Modal>

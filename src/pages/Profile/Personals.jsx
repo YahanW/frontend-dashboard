@@ -41,14 +41,7 @@ function Personals(){
       <div className='PersonList'>
        
         <Form ref={formRef} onFinish={onSave} className='List'
-        fields={
-         [{
-          name:'accessNumber',
-          value:
-            sessionStorage.getItem('access')==1?'Admin':
-            ( sessionStorage.getItem('access')==3?'Merchant':'Mermbership')
-         }]
-        }
+       
         >
           <div className='left'>
             <Form.Item name='userName' label="Username">
@@ -62,9 +55,7 @@ function Personals(){
             </Form.Item>
           </div>
           <div className='right'>
-            <Form.Item name='accessNumber' label="Access Level">
-              <Input  disabled={true}/>
-            </Form.Item>      
+            
             <Form.Item name='email' label="Email">
               <Input  disabled={isEnabled}/>
             </Form.Item>     

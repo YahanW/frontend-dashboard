@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Modal,Form,Input,InputNumber} from 'antd';
+import {Modal,Form,Input,InputNumber, Select,message} from 'antd';
 import axios from 'axios';
 
 export default class EventModal extends Component {
@@ -14,6 +14,17 @@ export default class EventModal extends Component {
     onCancel=()=>{
         this.props.dispatch({
             type:'hide'
+        })
+    }
+    onSave=(values)=>{
+        console.log(values)
+        axios.put(`https://eventeasyau.azurewebsites.net/api/event/update/${this.props.data.eventId}`,values)
+        .then(response=>{
+            console.log(response)
+            message.success('Service Add Success');
+            this.onCancel() //close modal
+        }).catch(err=>{
+            console.log(err)
         })
     }
   render() {
@@ -31,9 +42,23 @@ export default class EventModal extends Component {
             <Form.Item name="guest" label="Guest Number">
                 <InputNumber/>
             </Form.Item>
-            <Form.Item name="customerId" label="Customer ID">
-                <Input/>
+            <Form.Item name="status" label="Status">
+                <Select>
+                    <Select.Option value={0} disabled={sessionStorage.getItem('access')==1?false:true}>Created</Select.Option>
+                    <Select.Option value={1} disabled={sessionStorage.getItem('access')==1?false:true}>Waiting</Select.Option>
+                    <Select.Option value={2} >Accepted</Select.Option>
+                    <Select.Option value={3} >Rejected</Select.Option>
+                    <Select.Option value={4} disabled={sessionStorage.getItem('access')==1?false:true}>Cancelled</Select.Option>
+                    <Select.Option value={5} disabled={sessionStorage.getItem('access')==1?false:true}>AwaitPayment</Select.Option>
+                    <Select.Option value={6} disabled={sessionStorage.getItem('access')==1?false:true}>Paid</Select.Option>
+                    <Select.Option value={7} disabled={sessionStorage.getItem('access')==1?false:true}>Completed</Select.Option>
+                   
+                </Select>
             </Form.Item>
+            <Form.Item name="customerId" label="Customer ID">
+                <Input disabled={sessionStorage.getItem('access')===1?false:true}/>
+            </Form.Item>
+           
         </Form>
       </Modal>
     )

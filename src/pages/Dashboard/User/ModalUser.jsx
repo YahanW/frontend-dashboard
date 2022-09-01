@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import {Modal,Form,Input, message,Radio} from 'antd'
+import {Modal,Form,Input, message} from 'antd'
+import axios from 'axios'
 import {Location} from '../../../commons'
 import Uploads from './Uploads'
-import axios from 'axios'
+
 
 class ModalUser extends Component {
 formRef=React.createRef()
