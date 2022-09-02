@@ -90,7 +90,7 @@ class Event extends Component {
             dataIndex:'endTime'
         },
         {
-            title:"Status",
+            title:"Booking Status",
             dataIndex:'status',
             render:(record)=>{
                 switch(record){
@@ -117,7 +117,6 @@ class Event extends Component {
                     <a onClick={this.onEdit(record)}>Edit</a>
                     {/* 
                     <a onClick={this.onDelete(record)}>Delete</a>
-                    <a onClick={this.onLeverage(record)}>LevelUp</a> 
                      */}
                 </Space>
             }

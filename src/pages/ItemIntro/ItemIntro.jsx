@@ -5,11 +5,20 @@ import moment from 'moment';
 import { DatePicker,Button,Select} from 'antd';
 import {Link, Outlet,useParams} from 'react-router-dom';
 import './ItemIntro.css'
+import axios from "axios";
 function ItemIntro(){
     //const docRef = React.createRef();
     const [reviewOrSale,setRS] = useState(false);
     const [imgIndex,setImgIndex] = useState(0);
-    
+    const [details,setDetails] = useState([]);
+    const {serviceId} = useParams();
+    const getDetail = async ()=>{
+      const {data} = await axios.get(`https://eventeasyau.azurewebsites.net/api/services/getservices/${serviceId}`)
+      setDetails(data);
+    }
+    useEffect(()=>{
+      getDetail();
+    },[])
     const changeRS = () =>{ setRS(!reviewOrSale);}
     const dateFormat = 'YYYY/MM/DD';
     const { Option, OptGroup } = Select;
@@ -24,13 +33,13 @@ function ItemIntro(){
     const incre = (n) => {
         setImgIndex(n)
     }
-    const {serviceId} = useParams();
+
     return (
         <div>
             <Header/>
             <div className="selecBox">
                 <div className="selection">
-                    <h1>Simple and True Art Workshop</h1>
+                    <h1>{details.serviceName}</h1>
                     <div className="selc-shop" >
                         <div className="imagesub">
                         {
@@ -76,7 +85,7 @@ function ItemIntro(){
                 <div className='dr-sub'
                 style={{backgroundColor:reviewOrSale?'':'bisque',}}
                 >
-                    <Link onClick={changeRS} to={`/result/details/${serviceId}/intro`}>DETAILS</Link>
+                    <Link onClick={changeRS} to={`/result/details/${serviceId}`}>DETAILS</Link>
                 </div>
                 <div className='dr-sub'
                 style={{ backgroundColor:reviewOrSale?'bisque':'',}}

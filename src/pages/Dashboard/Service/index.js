@@ -82,13 +82,17 @@ onDelete=(record)=>{
     Modal.confirm({
       //a pop up window
       title:'Warning',
-      content:'Are you sure to delete this record?',
+      content:'Are you sure to delete this Service?',
       onOk:()=>
       {
-        global.request.post('/api/service/delete',{id:record.id}).then(data=>{
+        axios.delete(`https://eventeasyau.azurewebsites.net/api/Services/Disableservices/${record.servicesId}`)
+        .then(data=>{
+          console.log(data)
           message.success('Deletion Success')
           this.onGetServices()  //reloading
-          window.dispatchEvent(new Event('refreshService'))
+        }).catch(err=>{
+          console.log(err)
+          message.error("Deletion Failed")
         })
       
       }
@@ -167,7 +171,7 @@ getTableProps=()=>{
           <Space>
           <a onClick={this.onDetail(record)}>Details</a>
            <a onClick={this.onEdit(record)}>Edit</a>
-          {/* <a onClick={this.onDelete(record)}>Delete</a>  */}
+          <a onClick={this.onDelete(record)}>Delete</a> 
         </Space>
         )
       }
