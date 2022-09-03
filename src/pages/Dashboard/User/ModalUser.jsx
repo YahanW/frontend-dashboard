@@ -59,10 +59,10 @@ onCancel=()=>{
         type:'hide'
     })
 }
-// onPictureChange=(value)=>{
-//     console.log(value)
-//     this.formRef.current.setFieldsValue({profile:value})
-// }
+onPictureChange=(value)=>{
+    console.log(value)
+    this.formRef.current.setFieldsValue({profile:value})
+}
 
 render() {
     const readOnly=this.props.title=='User Details'?true:false
@@ -108,11 +108,11 @@ render() {
         <Form.Item label='phone number' name='phoneNumber' rules={[{required:true}]}>
             <Input/>
         </Form.Item>
-        {/* <Form.Item label='Profile' name='profile' rules={[{required:true}]}>
+        <Form.Item label='Profile' name='profile' rules={[{required:true}]}>
            <Uploads onChange={this.onPictureChange} 
            defaultFileList={data.profile?data.profile.split(','):[]}
            />
-        </Form.Item> */}
+        </Form.Item>
       </Form>
     </Modal>
     )

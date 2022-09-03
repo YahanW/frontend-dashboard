@@ -36,7 +36,7 @@ import CheckOut from "./pages/CheckOut/CheckOut"
 import GeoCheck from "./layout/Header/GeoCheck";
 //warning 404
 import NotFound from "./pages/NotFound";
-import Test from "./pages/Test";
+import Test from "./Test/Test"
 
 export default(
     <Router>
