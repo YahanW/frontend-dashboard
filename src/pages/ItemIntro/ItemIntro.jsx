@@ -1,8 +1,7 @@
 import React , {useState,useEffect} from "react";
 import FormControl from '@mui/material/FormControl';
 import Header from "../../layout/Header";
-import moment from 'moment';
-import { DatePicker,Button,Select} from 'antd';
+import {Select} from 'antd';
 import {Link, Outlet,useParams} from 'react-router-dom';
 import './ItemIntro.css'
 import axios from "axios";
@@ -12,16 +11,25 @@ function ItemIntro(){
     const [imgIndex,setImgIndex] = useState(0);
     const [details,setDetails] = useState([]);
     const {serviceId} = useParams();
+    const [avail,setAvail] = useState([]);
+
     const getDetail = async ()=>{
       const {data} = await axios.get(`https://eventeasyau.azurewebsites.net/api/services/getservices/${serviceId}`)
       setDetails(data);
+      
     }
+    const getEvents = ()=>{
+        axios.get(`https://eventeasyau.azurewebsites.net/api/event/geteventbyuser/${sessionStorage.getItem("id")}`)
+        .then(response=>{
+            setAvail(response.data.$values)
+          
+        })
+      }
     useEffect(()=>{
       getDetail();
+      getEvents();
     },[])
     const changeRS = () =>{ setRS(!reviewOrSale);}
-    const dateFormat = 'YYYY/MM/DD';
-    const { Option, OptGroup } = Select;
     const imgDemo = [{
         source:'https://www.christies.com/media-library/images/features/articles/2019/04/02/andrew-graham-dixon-on-the-night-watch-by-rembrandt/rembrandtharmenszvanrijnmilitiacompanyofdistrictiiunderthecommandofcaptainfransbanninckcocqknownasthenightwatch16422400.jpg?w=780'
     },{
@@ -49,35 +57,28 @@ function ItemIntro(){
                             })
                         }
                         </div>
-                        <div className="imageShow" name="imageShow" style={{backgroundImage:`url(${imgDemo[imgIndex].source})`}}></div>
+                        <div className="imageShow" name="imageShow" 
+                        style={{backgroundImage:`url(${imgDemo[imgIndex].source})`}}></div>
                       
-                       
                         <FormControl className="right">
-                            <p>Event Date</p>
-                            <DatePicker defaultValue={moment('2015/01/01', dateFormat)} 
-                            format={dateFormat} className="sel-pick" />
-                            <p>Service Type</p>
-                            <Select defaultValue="2" style={{ width: '100%' }} className="sel-pick">
-                                <OptGroup label="Morning">
-                                <Option value="1">BREAK-FAST</Option>
-                                <Option value="2">COOKIES</Option>
-                                </OptGroup>
-                                <OptGroup label="Night">
-                                <Option value="4">SUSHI</Option>
-                                </OptGroup>
-                            </Select>
-                            <p>Event Size</p>
-                            <Select defaultValue="2" style={{ width: '100%' }} className="sel-pick">
-                                <OptGroup label="BIG">
-                                <Option value="1">WEDDING</Option>
-                                <Option value="2">FEAST-CORPORATE</Option>
-                                </OptGroup>
-                                <OptGroup label="SMALL">
-                                <Option value="4">BIRTHDAY</Option>
-                                </OptGroup>
-                            </Select>
-                            <Button type="primary">MAKE REQUEST</Button>
+                            <p>
+                                Choose one of your available events to add services
+                            </p>
+                                <Select>
+                                    {
+                                        avail?
+                                        avail.map((ele)=>{
+                                            return(
+                                                <Select.Option key={ele.eventId} value={ele.eventName}>
+                                                    {ele.eventName}
+                                                </Select.Option>
+                                            )
+                                        }):'You have no event yet.'
+                                    }
+                                </Select>
+                            
                         </FormControl>
+                       
                     </div>
                 </div>
             </div>

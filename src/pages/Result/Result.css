@@ -2,7 +2,7 @@
    height: auto;
    background-color:#9C528B30;
    width: 80%;
-   border: 10px solid #30303030;
+   border: 10px solid #d4a1a130;
    margin-top: 4vh;
    margin-bottom: 4vh;
    margin-left: 10vw;
@@ -11,10 +11,10 @@
    flex-direction: column;
 }
 .itemList .item{
-    background-color:#9C528B60;
+    background-color:#d3a63560;
     width: 90%;
     height: 22.5vh;
-    box-shadow: 5px 10px #88888840;
+    box-shadow: 5px 10px #4b256851;
     display: flex;
     margin-top: 4vh;
 }

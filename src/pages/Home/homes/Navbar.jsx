@@ -39,7 +39,7 @@ return (
     <div className='navbar'>
         <div className='navbar-container'>
             <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
-                <img src='https://alacritas.cis.utas.edu.au/~mingked/kit301/PNGs/logo.png'/>
+                <img src='https://easyevent.blob.core.windows.net/image/logo_1dc871378bfda.png'/>
             </Link>
             <div className='menu-icon' onClick={handleClick}>
                 <i className={click ? 'fas fa-times' : 'fas fa-bars'} />

@@ -1,7 +1,7 @@
 .hero-container{
     width: 100vw;
     height: 100vh;
-    background-image: url("https://alacritas.cis.utas.edu.au/~mingked/kit301/JPGs/bg.jpg");
+    background-image: url("https://easyevent.blob.core.windows.net/image/bg_f75919862e8f78.jpg");
     background-size: cover;
     display: flex;
     flex-direction: column;

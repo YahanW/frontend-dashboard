@@ -11,7 +11,7 @@ function Cards() {
   
           <ul className='cards__items'>
             <CardItem
-              src='https://alacritas.cis.utas.edu.au/~mingked/kit301/JPGs/wedding2.jpg'
+              src='https://easyevent.blob.core.windows.net/image/wedding2_cc8215ae44609.jpg'
               text="The most romantic wedding With WonderfulWedding. Free quote, ask our friendly stuff now."
               label='Wedding'
               path='/service' />

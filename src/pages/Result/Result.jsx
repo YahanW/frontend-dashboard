@@ -150,7 +150,7 @@ function Result() {
                   return  (
                     <div className='item' key={index}>
                       <div className='item-left'
-                      style={{backgroundImage:`url("https://easyevent.blob.core.windows.net/image/abcd_27678569c5db78.jpg")`}}>
+                      style={{backgroundImage:`url("https://easyevent.blob.core.windows.net/image/abcd_f92b9761451328.jpg")`}}>
                       </div>
                       <div className='item-right'>
                         <h2><Link to={`/result/details/${ele.servicesId}`}>{ele.serviceName}</Link></h2>
@@ -163,7 +163,7 @@ function Result() {
                       </div>    
                       <div className='item-star'>
                       <div className="star" 
-                      style={{backgroundImage:`url("https://alacritas.cis.utas.edu.au/~mingked/kit301/PNGs/rating.png")`}}
+                      style={{backgroundImage:`url("https://cdn-icons-png.flaticon.com/512/2881/2881505.png")`}}
                       >
                      
                         <h2>{ele.rate}</h2></div>
