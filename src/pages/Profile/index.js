@@ -31,7 +31,10 @@ export default function Profile(){
         <Header/>
         <div className='upper'>
           <div className='avatar'>
-            <div className='ava-pic'></div>
+            <div className='ava-pic' 
+            style={{
+              backgroundImage:`url("https://easyevent.blob.core.windows.net/image/${userInfo.tokenNumber}")`
+            }}></div>
             <button>change profile</button>
           </div>
           <div className='desc'>
