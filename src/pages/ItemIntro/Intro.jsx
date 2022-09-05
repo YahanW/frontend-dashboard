@@ -12,6 +12,10 @@ export default function Intro() {
     const {data} = await axios.get(`https://eventeasyau.azurewebsites.net/api/services/getservices/${serviceId}`)
     setDetails(data);
   }
+
+
+
+
   useEffect(()=>{
     getDetail();
   },[])

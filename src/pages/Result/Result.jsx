@@ -5,7 +5,7 @@ import {useState,useEffect} from 'react';
 import {Link,useParams,useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import Footer from '../Home/homes/Footer';
-import {Modal,Form,Input,Select, InputNumber, message,DatePicker} from 'antd';
+import {Modal,Form,Input,Select, InputNumber, message,DatePicker,Rate} from 'antd';
 
 function Result() {
   const formRef=React.createRef();
@@ -158,19 +158,18 @@ function Result() {
                         <div className='merchant'>
                           <h3>{ele.merchant}</h3>
                           <div className='avatar'
-                          style={{backgroundImage:`url("https://cpp-prod-seek-company-image-uploads.s3.ap-southeast-2.amazonaws.com/813527/logo/653c2e81-bcca-11ea-86d1-e52bae5cc086.png")`}}></div>
+                          style={{backgroundImage:`url("https://cpp-prod-seek-company-image-uploads.s3.ap-southeast-2.amazonaws.com/813527/logo/653c2e81-bcca-11ea-86d1-e52bae5cc086.png")`}}>
+                            
+                          </div>
                         </div>
                       </div>    
                       <div className='item-star'>
-                      <div className="star" 
-                      style={{backgroundImage:`url("https://cdn-icons-png.flaticon.com/512/2881/2881505.png")`}}
-                      >
-                     
-                        <h2>{ele.rate}</h2></div>
-                      <h4>average price</h4>
-                      <h3>{ele.price}</h3>
+                        <Rate defaultValue={ele.rate} disabled={true}/>
+                        <h2>{ele.rate||'0'}</h2>
+                        <h4>average price</h4>
+                        <h3>{ele.price}</h3>
                       </div>
-                      </div> )
+                    </div> )
                  }else{return null}})
             }
         </div>
