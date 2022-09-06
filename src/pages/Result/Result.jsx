@@ -118,7 +118,7 @@ function Result() {
                 <div className='intro-list'>
                   <div className='list-locate'>
                     <h2>Location</h2>
-                    <h3>{ele.introduction} </h3>
+                    <h3>{ele.serviceLocation} </h3>
                   </div>
                   <div className='list-locate'>
                     <h2>Contact Us</h2>

@@ -1,10 +1,11 @@
 import React , {useState,useEffect} from "react";
 import FormControl from '@mui/material/FormControl';
 import Header from "../../layout/Header";
-import {Select} from 'antd';
-import {Link, Outlet,useParams} from 'react-router-dom';
+import {Button, Select, message} from 'antd';
+import {Link, Outlet,useParams, useNavigate} from 'react-router-dom';
 import './ItemIntro.css'
 import axios from "axios";
+import FormItem from "antd/lib/form/FormItem";
 function ItemIntro(){
     //const docRef = React.createRef();
     const [reviewOrSale,setRS] = useState(false);
@@ -12,7 +13,11 @@ function ItemIntro(){
     const [details,setDetails] = useState([]);
     const {serviceId} = useParams();
     const [avail,setAvail] = useState([]);
-
+    const [eventVisible, setEventVisible] = useState(false);
+    const formRef = React.createRef();
+    const history = useNavigate();
+    const [eventId,setEventId] = useState(0); 
+    const [newService, setNewService] = useState({eventId:0,servicesId:parseInt(serviceId)});
     const getDetail = async ()=>{
       const {data} = await axios.get(`https://eventeasyau.azurewebsites.net/api/services/getservices/${serviceId}`)
       setDetails(data);
@@ -23,11 +28,12 @@ function ItemIntro(){
         .then(response=>{
             setAvail(response.data.$values)
           
-        })
+        }).catch(err=>{console.log(err)})
       }
     useEffect(()=>{
       getDetail();
       getEvents();
+
     },[])
     const changeRS = () =>{ setRS(!reviewOrSale);}
     const imgDemo = [{
@@ -40,6 +46,18 @@ function ItemIntro(){
     
     const incre = (n) => {
         setImgIndex(n)
+    }
+
+    const onClick = () => {
+
+        axios.post("https://eventeasyau.azurewebsites.net/api/eventService/create", newService)
+            .then(response => {
+                console.log(response);
+                message.success("Service added successfully");
+            }).catch(err => {
+                if ((err.response.status)==409)
+                    message.error("This service already exists.");
+            })  
     }
 
     return (
@@ -64,18 +82,21 @@ function ItemIntro(){
                             <p>
                                 Choose one of your available events to add services
                             </p>
-                                <Select>
+                            <Select onSelect={(e) => {setNewService({eventId:e,servicesId:parseInt(serviceId)}); console.log(newService) }}>
                                     {
                                         avail?
                                         avail.map((ele)=>{
                                             return(
-                                                <Select.Option key={ele.eventId} value={ele.eventName}>
-                                                    {ele.eventName}
+                                                <Select.Option key={ele.eventId} value={ele.eventId}>
+                                                    {ele.eventName} 
                                                 </Select.Option>
                                             )
                                         }):'You have no event yet.'
                                     }
                                 </Select>
+
+
+                            <button onClick={onClick}>Add to Event</button>
                             
                         </FormControl>
                        

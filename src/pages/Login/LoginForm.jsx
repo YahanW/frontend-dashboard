@@ -39,7 +39,7 @@ function LoginForm(){
 				title:'Congratulations',
 				content:'Your Identity was Identified, Welcome !!!',
 				onOk:()=>{
-					history("/")
+					history(-1)
 				}
 			  })
 			console.log(response)
