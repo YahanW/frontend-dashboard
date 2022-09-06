@@ -46,7 +46,7 @@ export default function ShoppingCart(){
                 <ul>
                  {
                     events.map((ele,index)=>{
-                        if(ele.status==0||ele.status==1||ele.status==2||ele.status==3){
+                        // if(ele.status==0||ele.status==1||ele.status==2||ele.status==3){
                           return (
                             <li>
                             <div className='avatar' onClick={()=>{getEventServices(ele.eventId);setServiceVisible(true);}}>
@@ -69,17 +69,22 @@ export default function ShoppingCart(){
                                     <Link to="/checkout">             
                                   checkout    
                                 </Link>
-                                  ):(
+                                  )
+                                  :(
                                     'Request'
                                   )
                                 }
                                 </button>
+                                <button disabled={ele.status>=2?true:false}>
+                                  Cancel
+                                </button>
                               </div>
                           </li>
                             )
-                        }else{
-                          return null
-                        }
+                        //}
+                        // else{
+                        //   return null
+                        // }
                     })
                  }
                 </ul>
