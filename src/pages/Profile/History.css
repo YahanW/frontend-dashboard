@@ -2,17 +2,22 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background-color: white;
 }
 .history-book .history-title{
     padding-left: 41.5vw;
     margin-bottom: 3vh;
     padding-top: 2vh;
 }
-.slice-show{
+.slide-show{
     width: 70vw;
     margin-left: 15vw;
 }
 
+.slick-dots li{
+    background: white;
+    cursor: pointer;
+}
 .Details{
     margin-top: 3vh;
     height: 40vh;

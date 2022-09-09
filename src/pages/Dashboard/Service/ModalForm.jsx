@@ -77,7 +77,7 @@ onSave=(values)=>{
     else
     {
        
-        axios.put(`https://eventeasyau.azurewebsites.net/api/services/update/`,values)
+        axios.put(`https://eventeasyau.azurewebsites.net/api/services/update/${this.props.data.servicesId}`,values)
         .then(response=>{
             console.log(response)
             message.success('Service Update Success');
@@ -109,9 +109,12 @@ render() {
                     value: sessionStorage.getItem("id")
                     },
                     {
-                        name: ["merchant"],
+                        name: ["introduction"],
                         value: sessionStorage.getItem("username")
-                    },
+                    },{
+                        name:['status'],
+                        value:0
+                    }
                 ]
                }
         >
@@ -148,27 +151,27 @@ render() {
                     <Select.Option value={2}>Corporate Functions</Select.Option>
                 </Select>
             </Form.Item>
-            <Form.Item label="Service ID" name={isvisable ? 'servicesId' : 'address' } style={{display:isvisable?'':'none'}}>
-                <Input disabled={true}/>
+            <Form.Item label="Status" name='status' style={{display:'none'}}>
+                <InputNumber/>
             </Form.Item>
             <Form.Item label="Merchant ID" name='merchantId' >
                 <Input disabled={sessionStorage.getItem('access')==1?false:true}/>
             </Form.Item>
-            <Form.Item label="Merchant Name" name='merchant' >
+            <Form.Item label="Merchant Name" name='introduction' >
                 <Input disabled={sessionStorage.getItem('access')==1?false:true}/>
             </Form.Item>
             <Form.Item label="Standing Capacity" name='standing' 
                 rules={[{required:this.state.isVenue,message: 'Please input Standing number'}]}>
-                <Input/>
+                <InputNumber/>
             </Form.Item>
-            <Form.Item label="Venue Seats" name='seats' 
+            <Form.Item label="Venue Seats" name='seated' 
                 rules={[{required:this.state.isVenue,message: 'Please input Seats number'}]}>
-                <Input/>
+                <InputNumber/>
             </Form.Item>
             <Form.Item label="Price" name='price' rules={[{required:true}]}>
                 <InputNumber/>
             </Form.Item>
-            <Form.Item label="Location" name='introduction'>
+            <Form.Item label="Location" name='location'>
                 <Input/>
             </Form.Item>
            

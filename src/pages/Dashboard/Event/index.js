@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Panel } from '../../../commons';
-import { Card,Form,Input,Table,Space, Avatar,Menu, Dropdown } from 'antd';
+import { Card,Form,Input,Table,Space, Modal,Menu, message } from 'antd';
 import { SmileOutlined } from '@ant-design/icons';
 import { connect } from 'react-redux';
 import axios from 'axios';
@@ -18,7 +18,8 @@ class Event extends Component {
     }
     onGetEvents=()=>{
         if(sessionStorage.getItem('access')==1){
-            axios.get("https://eventeasyau.azurewebsites.net/api/event/getall")
+            axios.get("https://eventeasyau.azurewebsites.net/api/event/getallactiveevents")
+            //axios.get("https://eventeasyau.azurewebsites.net/api/event/getall")
             .then( data=>{
                 this.setState({dataSource:data.data.$values})
                 console.log(data.data.$values)
@@ -49,10 +50,34 @@ class Event extends Component {
                 type:'show',
                 data:{
                     title:'Edit',
-                    data:record
+                    data:record,
+                    refreshList:this.onGetEvents
                 }
             })
         }
+    }
+    onDelete=(record)=>{
+
+        return ()=>{
+            Modal.confirm({
+              //a pop up window
+              title:'Warning',
+              content:'Are you sure to delete this Service?',
+              onOk:()=>
+              {
+                axios.delete(`https://eventeasyau.azurewebsites.net/api/event/delete/${record.eventId}`)
+                .then(data=>{
+                  console.log(data)
+                  message.success('Deletion Success')
+                  this.onGetEvents()  //reloading
+                }).catch(err=>{
+                  console.log(err)
+                  message.error("Deletion Failed")
+                })
+              
+              }
+            })
+          }
     }
     menu = (
         <Menu
@@ -67,8 +92,6 @@ class Event extends Component {
           ]}
         />
       );
-
-
 
     //Render Event List in Table format
     layoutEventTable=()=>({
@@ -91,7 +114,7 @@ class Event extends Component {
         },
         {
             title:"Booking Status",
-            dataIndex:'status',
+            dataIndex:'bookingStatus',
             render:(record)=>{
                 switch(record){
                   case 0:return "Init"; break;
@@ -113,11 +136,10 @@ class Event extends Component {
             title:'operate',
             render:(record)=>{
                 return <Space>
-                     <a onClick={this.onView(record)}>View</a>
+                    <a onClick={this.onView(record)}>View</a>
                     <a onClick={this.onEdit(record)}>Edit</a>
-                    {/* 
                     <a onClick={this.onDelete(record)}>Delete</a>
-                     */}
+                    
                 </Space>
             }
         }
