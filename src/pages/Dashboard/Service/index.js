@@ -133,7 +133,9 @@ getTableProps=()=>{
       },
       {
         title:'Capacity',
-        dataIndex:'guestAmount'
+        render: (record) => {
+          return Math.max(record.standing, record.seated);
+        } 
       },
       {
         title:'Service type',

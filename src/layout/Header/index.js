@@ -86,14 +86,14 @@ function Header(){
                     </Modal>
               </Modal>
             </li>
-            {/* booking list */}
-            <li>
+            
+            {/* <li>
               <a  onClick={showModalBook} className="tro-item">Booking</a>
               <Modal title="Booking LIST" mask={false}
                     visible={isBookVisible} footer={false} onCancel={CancelBook}
                     className="shop-list">
               </Modal>
-            </li>
+            </li> */}
             {/* trolley item list */}
             <li>
               <ShoppingCart/>

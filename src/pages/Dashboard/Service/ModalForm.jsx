@@ -77,7 +77,7 @@ onSave=(values)=>{
     else
     {
        
-        axios.put(`https://eventeasyau.azurewebsites.net/api/services/update/${this.props.servicesId}`,values)
+        axios.put(`https://eventeasyau.azurewebsites.net/api/services/update/${this.props.data.servicesId}`,values)
         .then(response=>{
             console.log(response)
             message.success('Service Update Success');
@@ -109,9 +109,12 @@ render() {
                     value: sessionStorage.getItem("id")
                     },
                     {
-                        name: ["merchant"],
+                        name: ["introduction"],
                         value: sessionStorage.getItem("username")
-                    },
+                    },{
+                        name:['status'],
+                        value:0
+                    }
                 ]
                }
         >
@@ -148,9 +151,9 @@ render() {
                     <Select.Option value={2}>Corporate Functions</Select.Option>
                 </Select>
             </Form.Item>
-            {/* <Form.Item label="Service ID" name={isvisable ? 'servicesId' : '' } style={{display:isvisable?'':'none'}}>
-                <Input disabled={true}/>
-            </Form.Item> */}
+            <Form.Item label="Status" name='status' style={{display:'none'}}>
+                <InputNumber/>
+            </Form.Item>
             <Form.Item label="Merchant ID" name='merchantId' >
                 <Input disabled={sessionStorage.getItem('access')==1?false:true}/>
             </Form.Item>
