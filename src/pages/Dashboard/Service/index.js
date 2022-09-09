@@ -22,13 +22,17 @@ class Service extends Component {
     
     // if admin then display all services
         if(sessionStorage.getItem("access") == 1) {
-        axios.get("https://eventeasyau.azurewebsites.net/api/services/getallservices")
+        axios.get("https://eventeasyau.azurewebsites.net/api/services/getenableservices")
           .then(data => {
             console.log(data.data.$values)
             this.setState({ dataSource: data.data.$values })
           })
         }
-        // if merchant then show only their services
+        // if merchant then show only their services (getservicesbymerchant)
+        // first get service by merchant ID
+        // Show Event dashboard where eventService.serviceID == Merchant.serviceId 
+        // then traverse serviceType: if serviceType==0 then (approve/reject)
+    
         else if (sessionStorage.getItem("access") == 3) {
           axios.get(`https://eventeasyau.azurewebsites.net/api/services/getservicesbymerchant/${sessionStorage.getItem("id")}`)
             .then(data => {
@@ -69,7 +73,7 @@ onEdit=(record)=>{
     this.props.dispatch({
       type:'show',
       data:{
-        title:'Edit',
+        title:'EditService',
         data:record,
         //passing service list so as to be used later
         refreshList:this.onGetServices  //data need to be refreshed after being edited

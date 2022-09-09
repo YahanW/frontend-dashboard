@@ -71,6 +71,10 @@ function Result() {
                               name: ["staffId"],
                               value: ele.merchantId
                               },
+                              {
+                                name:["bookingStatus"],
+                                value:0
+                              }
                       ]}
 
                       
@@ -102,7 +106,10 @@ function Result() {
                       <Form.Item label="Some Descriptions" name="description">
                           <Input/>
                       </Form.Item>
-                      <Form.Item label="Event Status" name="status" style={{display:'none'}}>
+                      <Form.Item label="Booking Status" name="bookingStatus" style={{display:'none'}}>
+                          <InputNumber/>
+                      </Form.Item>
+                      <Form.Item  label="Event Status" name="status" style={{display:'none'}}>
                           <InputNumber/>
                       </Form.Item>
                       <Form.Item label="Start Time" name="startTime">

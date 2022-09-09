@@ -21,8 +21,11 @@ export default class EventModal extends Component {
         axios.put(`https://eventeasyau.azurewebsites.net/api/event/update/${this.props.data.eventId}`,values)
         .then(response=>{
             console.log(response)
-            message.success('Service Add Success');
-            this.onCancel() //close modal
+            this.onCancel(); //close modal
+            message.success('Event updated Successfully');
+            this.props.refreshList();
+            
+           
         }).catch(err=>{
             console.log(err)
         })
@@ -42,7 +45,7 @@ export default class EventModal extends Component {
             <Form.Item name="guest" label="Guest Number">
                 <InputNumber/>
             </Form.Item>
-            <Form.Item name="status" label="Status">
+            <Form.Item name="bookingStatus" label="Status">
                 <Select>
                     <Select.Option value={0} disabled={sessionStorage.getItem('access')==1?false:true}>Created</Select.Option>
                     <Select.Option value={1} disabled={sessionStorage.getItem('access')==1?false:true}>Waiting</Select.Option>
