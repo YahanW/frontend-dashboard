@@ -3,6 +3,7 @@ import axios from "axios";
 import Header from "../../layout/Header";
 import { Link,Outlet,useLocation,useOutlet } from "react-router-dom";
 import './profile.css';
+import Navbar from '../Home/homes/Navbar';
 const Context = React.createContext({});
 
 export default function Profile(){
@@ -28,7 +29,7 @@ export default function Profile(){
     }, []);
     return (
       <div className='profile'>
-        <Header/>
+        <Navbar/>
         <div className='upper'>
           <div className='avatar'>
             <div className='ava-pic' 

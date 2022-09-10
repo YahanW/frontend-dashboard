@@ -13,11 +13,6 @@
     width: 70vw;
     margin-left: 15vw;
 }
-
-.slick-dots li{
-    background: white;
-    cursor: pointer;
-}
 .Details{
     margin-top: 3vh;
     height: 40vh;
