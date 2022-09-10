@@ -5,6 +5,7 @@ import { Radio } from 'antd';
 import { Link,useNavigate,useParams } from "react-router-dom";
 import axios from "axios";
 import './Venue.css';
+import Navbar from "../Home/homes/Navbar";
 
 export default function Event(){
 const [eveListTemp,setEveListTemp] = useState([]);
@@ -44,7 +45,7 @@ if(!eveListTemp){
   console.log(eveListTemp)
     return (
         <div>
-            <Header/>
+            <Navbar/>
             <div className="eventSearch">
             {/**Search bar and Home Logo */}
             <div className='find'> 

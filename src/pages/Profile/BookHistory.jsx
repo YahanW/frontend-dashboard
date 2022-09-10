@@ -3,6 +3,7 @@ import Header from "../../layout/Header";
 import './History.css';
 import {Carousel,Radio} from 'antd';
 import {Link} from 'react-router-dom';
+import Navbar from "../Home/homes/Navbar";
 
 function BookHsitory(){
     const images = [{
@@ -26,7 +27,7 @@ function BookHsitory(){
     }
     return(
         <div>
-            <Header/>
+            <Navbar/>
            <div className="history-book">
             <div className="history-title">
                 <h1>KID BIRTHDAY PARTY</h1>

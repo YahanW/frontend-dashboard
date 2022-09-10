@@ -3,6 +3,7 @@ import './checkout.css';
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import Header from "../../layout/Header";
 import Footer from '../Home/homes/Footer';
+import Navbar from "../Home/homes/Navbar";
 function CheckOut(){
     const services = [
         {
@@ -17,7 +18,7 @@ function CheckOut(){
         qutity:1,total:100}]
 return (
         <div>
-            <Header/> 
+            <Navbar/> 
             <div className="checkout">
                 <div className="itemContainer">
                     <h1 style={{padding:'1rem'}}>CHECK OUT</h1>

@@ -6,6 +6,7 @@ import {Link, Outlet,useParams, useNavigate} from 'react-router-dom';
 import './ItemIntro.css'
 import axios from "axios";
 import FormItem from "antd/lib/form/FormItem";
+import Navbar from "../Home/homes/Navbar";
 function ItemIntro(){
     //const docRef = React.createRef();
     const [reviewOrSale,setRS] = useState(false);
@@ -62,7 +63,7 @@ function ItemIntro(){
 
     return (
         <div>
-            <Header/>
+            <Navbar/>
             <div className="selecBox">
                 <div className="selection">
                     <h1>{details.serviceName}</h1>

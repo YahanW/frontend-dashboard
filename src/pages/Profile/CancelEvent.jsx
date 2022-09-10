@@ -1,12 +1,13 @@
 import React,{useState} from "react";
 import Header from "../../layout/Header";
 import Footer from '../Home/homes/Footer';
+import Navbar from "../Home/homes/Navbar";
 import './feedback.css';
 
 export default function CancelEvent(){
     return(
         <div>
-            <Header/>
+            <Navbar/>
             <div className="review-content">
                 <div className="review-title">
                     <h3>Cancel for Event: </h3>

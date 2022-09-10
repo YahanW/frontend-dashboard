@@ -6,6 +6,7 @@ import {Link,useParams,useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import Footer from '../Home/homes/Footer';
 import {Modal,Form,Input,Select, InputNumber, message,DatePicker,Rate} from 'antd';
+import Navbar from '../Home/homes/Navbar';
 
 function Result() {
   const formRef=React.createRef();
@@ -41,7 +42,7 @@ function Result() {
     return (
       <div className='result'>
         {/**Navbar */}
-        <Header/> 
+        <Navbar/> 
         {/**Upper Part and Four Columns */}
         <div className='event-intro'>
         {
