@@ -48,17 +48,17 @@ if(!eveListTemp){
             <Navbar/>
             <div className="eventSearch">
             {/**Search bar and Home Logo */}
-            <div className='find'> 
-            <div className='logo' onClick={goHome}></div>
-                <div className='formSearch'>
-                    <form>
-                        <input placeholder='Searching by Merchant or Service'
-                        onChange={e=>setKeyWord(e.target.value)}
-                        />
-                    </form>
+                {/* <div className='find'> 
+                    <div className='logo' onClick={goHome}></div>
+                    <div className='formSearch'>
+                        <form>
+                            <input placeholder='Searching by Merchant or Service'
+                                 onChange={e=>setKeyWord(e.target.value)}
+                            />
+                        </form>
                     <div className='iconSearch' onClick={makeSearch}></div>
-                </div>
-            </div>
+                </div> */}
+            {/* </div> */}
 
             {/**More specific filters*/}
 
