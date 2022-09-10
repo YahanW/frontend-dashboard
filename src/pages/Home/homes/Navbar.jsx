@@ -128,26 +128,26 @@ return (
                     
                     :
                     <li className='nav-item'>
-                        <p className='nav-links' onClick={setSelection}
+                            <a className='nav-links' onMouseEnter={setSelection} 
                         style={{display:selectShow?'':'none'}}>
                         Sign Up
-                        </p>
-                        <div className="register" style={{display:selectShow?'':''}}>
+                        </a>
+                            <div className="register" style={{ display: selectShow ? '' : '' }} onMouseLeave={setSelection}>
                                 
                                 <Link to='/sign-user' 
-                                className=' reg-it' onClick={closeMobileMenu}
+                                    className=' reg-it' onClick={closeMobileMenu} 
                                 style={{display:selectShow?'none':''}}
                                 >
-                                    Sign User
+                                    As a User
                                 </Link>
                                 
                                
                                 <Link to='/sign-merchant' 
                                 className=' reg-it' 
-                                onClick={closeMobileMenu}
+                                    onClick={closeMobileMenu} 
                                 style={{display:selectShow?'none':''}}
                                 >
-                                    Sign Merchant
+                                    As a Merchant
                                 </Link>
                                 
                         </div>
