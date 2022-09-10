@@ -3,16 +3,17 @@ import Header from "../../layout/Header";
 import './History.css';
 import {Carousel,Radio} from 'antd';
 import {Link} from 'react-router-dom';
+import Navbar from "../Home/homes/Navbar";
 
 function BookHsitory(){
     const images = [{
-        id:1323,
+        id:1,
         source:"https://images.pexels.com/photos/302743/pexels-photo-302743.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
     },{
         source:"https://spie.org/images/Graphics/CE/DCS/2021/Special-Events-Technical-2.jpg",
-        id:244,
+        id:2,
     },{
-        id:344,
+        id:3,
         source:"https://betasmania.com.au/wp-content/uploads/2020/07/mr-i-with-mr-ii_44478028070_o-scaled-1536x810.jpg"
     }]
     const [status,setStatus] = useState(0);
@@ -26,28 +27,33 @@ function BookHsitory(){
     }
     return(
         <div>
-            <Header/>
+            <Navbar/>
            <div className="history-book">
             <div className="history-title">
                 <h1>KID BIRTHDAY PARTY</h1>
                 <h3>October 16,2022 9:00 AM - 7:00 PM</h3>
             </div>   
-      <Carousel className="slide-show" autoplay afterChange={onChange} dotPosition={"bottom"}>
+      <Carousel className="slide-show" autoplay dots={'false'}>
 
       {
             images.map((ele,index)=>{
                 return  <div key={index}>
                             <h3 style={{ height: '160px',
-                            lineHeight: '160px',
-                            textAlign: 'center',
-                            color:'white',
-                            backgroundImage:`url(${ele.source})`,
-                            }}  
-                            onClick={onDisplay}>
+                                lineHeight: '160px',
+                                textAlign: 'center',
+                                color:'white',
+                                backgroundImage:`url(${ele.source}),repeat:false`,
+                                backgroundRepeat:'no-repeat',
+                                backgroundSize:'cover'
+                                }}  
+                            >
                                 {ele.id}
                             </h3>
                         </div>
             })}
+
+
+
       </Carousel>
 
             <div className="Details">

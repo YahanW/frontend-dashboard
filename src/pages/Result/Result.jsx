@@ -6,6 +6,7 @@ import {Link,useParams,useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import Footer from '../Home/homes/Footer';
 import {Modal,Form,Input,Select, InputNumber, message,DatePicker,Rate} from 'antd';
+import Navbar from '../Home/homes/Navbar';
 
 function Result() {
   const formRef=React.createRef();
@@ -41,7 +42,7 @@ function Result() {
     return (
       <div className='result'>
         {/**Navbar */}
-        <Header/> 
+        <Navbar/> 
         {/**Upper Part and Four Columns */}
         <div className='event-intro'>
         {
@@ -129,7 +130,7 @@ function Result() {
                   </div>
                   <div className='list-locate'>
                     <h2>Contact Us</h2>
-                    <h3>Bookings & Enquiries +61 2 9114 7360 </h3>
+                    <h3>Bookings & Enquiries +61 3 9114 7360 </h3>
                   </div>
                   <div className='list-locate'>
                     <h2>Services & Facilities</h2>
@@ -137,7 +138,7 @@ function Result() {
                   </div>
                   <div className='list-locate'>
                 <h2>Capacity</h2>
-                <h3> Seated: {ele.seated} Standing: {ele.standing}</h3>
+                <h3> Seated: {ele.seated} </h3><br/><h3>Standing: {ele.standing}</h3>
                 </div>
                 </div>
                 <div className='divider'></div>

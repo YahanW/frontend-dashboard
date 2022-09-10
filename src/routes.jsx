@@ -44,7 +44,7 @@ export default(
             <Route path='/' element={<Home/>}/>
             
             <Route path='/dashboard' element={<MainDash />}>
-                <Route index element={<img src={WelcomeDash} style={{width:'100%'}}/>}/>
+                <Route index element={<img src={WelcomeDash} style={{height:'90vh'}}/>}/>
                 <Route path='/dashboard/service' element={<ServiceDash/>}/>
                 <Route path="/dashboard/member/user" element={<UserDash/>}/>
                 <Route path='/dashboard/event' element={<Event/>}/>

@@ -40,8 +40,7 @@ function HeroSection() {
         <p>Making events easy.</p>
         <Form className='search' onFinish={getEventsNormal} ref={formRef}>
             <Form.Item>
-              <select className="requires eventType"  
-              onChange={(event)=>setType(event.target.value)}>
+              <select className="requires eventType" onChange={(event)=>setType(event.target.value)}>
                   <option value="1">BIRTHDAYS & PRIVATE</option>
                   <option value="2">CORPORATE FUNCTIONS</option>
                   <option value="3">WEDDINGS & ENGAGEMENTS</option>

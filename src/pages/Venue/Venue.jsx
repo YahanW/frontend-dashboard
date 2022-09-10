@@ -5,6 +5,7 @@ import { Radio } from 'antd';
 import { Link,useNavigate,useParams } from "react-router-dom";
 import axios from "axios";
 import './Venue.css';
+import Navbar from "../Home/homes/Navbar";
 
 export default function Event(){
 const [eveListTemp,setEveListTemp] = useState([]);
@@ -44,20 +45,20 @@ if(!eveListTemp){
   console.log(eveListTemp)
     return (
         <div>
-            <Header/>
+            <Navbar/>
             <div className="eventSearch">
             {/**Search bar and Home Logo */}
-            <div className='find'> 
-            <div className='logo' onClick={goHome}></div>
-                <div className='formSearch'>
-                    <form>
-                        <input placeholder='Searching by Merchant or Service'
-                        onChange={e=>setKeyWord(e.target.value)}
-                        />
-                    </form>
+                {/* <div className='find'> 
+                    <div className='logo' onClick={goHome}></div>
+                    <div className='formSearch'>
+                        <form>
+                            <input placeholder='Searching by Merchant or Service'
+                                 onChange={e=>setKeyWord(e.target.value)}
+                            />
+                        </form>
                     <div className='iconSearch' onClick={makeSearch}></div>
-                </div>
-            </div>
+                </div> */}
+            {/* </div> */}
 
             {/**More specific filters*/}
 

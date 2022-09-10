@@ -3,13 +3,14 @@ import Header from "../../layout/Header";
 import Footer from '../Home/homes/Footer';
 import { Rate } from "antd";
 import './feedback.css';
+import Navbar from "../Home/homes/Navbar";
 
 export default function MakeReview(){
     const [marks,setMarks] = useState(4.6);
 
     return(
         <div>
-            <Header/>
+            <Navbar/>
             <div className="review-content">
                 <div className="review-title">
                     <h3>Review for Event: </h3>
