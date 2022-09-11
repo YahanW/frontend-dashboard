@@ -1,10 +1,13 @@
 import React,{useState} from "react";
 import './checkout.css';
+import { useParams } from "react-router-dom";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import Header from "../../layout/Header";
 import Footer from '../Home/homes/Footer';
 import Navbar from "../Home/homes/Navbar";
 function CheckOut(){
+    const {eventId} = useParams();
+
     const services = [
         {
         name:"SOLO Pizza",
@@ -16,6 +19,7 @@ function CheckOut(){
         startTime:9,
         endTime:13,
         qutity:1,total:100}]
+    console.log(eventId)
 return (
         <div>
             <Navbar/> 
@@ -59,7 +63,7 @@ return (
                                     purchase_units: [
                                         {
                                             amount: {
-                                                value: "100",
+                                                value: `${eventId}`,
                                             },
                                         },
                                     ],

@@ -64,8 +64,8 @@ return (
                         Profile
                     </Link>
                     </li>
-                    <li className='nav-item'>
-                        <ShoppingCart />
+                    <li className='nav-item' >
+                        <ShoppingCart/>
                     </li>
                 </>
                 :
