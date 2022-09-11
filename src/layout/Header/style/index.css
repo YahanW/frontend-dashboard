@@ -59,7 +59,7 @@
     opacity: 0; /*default does't appear*/
     transition: opacity 150ms ease-in-out; /*last one is animation delay*/
 }
-.trolley .tro-item{
+.nav-links .tro-item{
     color: #ffffff;
 }
 

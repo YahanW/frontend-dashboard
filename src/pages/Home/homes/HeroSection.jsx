@@ -18,10 +18,17 @@ function HeroSection() {
     }
   }
   const getEventsAdvanced = () =>{
-    if(date!==""&&number!==0&&budget!==0&&stand!==0&&seat!==0){
-     history(`/venue/advance/${type}/${date}/${number}/${budget}/${location}/${stand}/${seat}`);
-    }else{
-     message.error("please fills in the form")
+    let dateNow = new Date().toISOString().split("T")[0]
+    if (date >= dateNow)
+    {
+      console.log(date,number,budget,stand,seat)
+      if(date!==""&&number!==0&&budget!==0&&stand!==0&&seat!==0){
+        history(`/venue/advance/${type}/${date}/${number}/${budget}/${location}/${stand}/${seat}`);
+      }else{
+        message.error("please fills in the form")
+      }
+    } else {
+      message.error("please select a date from today")
     }
    }
   const [type,setType] = useState(0);
@@ -30,7 +37,7 @@ function HeroSection() {
   const [budget,setBudget] = useState(0);
   const [stand,setStand] = useState(0);
   const [seat,setSeat] = useState(0);
-  const [location,setLocation] = useState("");
+  const [location,setLocation] = useState("Hobart");
   const formRef=React.createRef();
   const [modal2Visible, setModal2Visible] = useState(false);
 
@@ -90,19 +97,11 @@ function HeroSection() {
             <label for="buget-adv">Max Buget</label>
             <input type='number' className="AdvEventType" id="buget-adv" placeholder="BUDGET" onChange={(event)=>setBudget(event.target.value)} />
             <label for="standAdv">STAND</label>
-            <select className="AdvEventType"id="standAdv"
-              onChange={(event)=>{setStand(event.target.value)}}>
-              <option value="20">1-20</option>
-              <option value="50">20-50</option>
-              <option value="100">50+</option>
-            </select>
+            <input className="AdvEventType"id="standAdv"
+              onChange={(event)=>{setStand(event.target.value)}}/>
             <label for="seatAdv">SEAT</label>
-            <select className="AdvEventType" id="seatAdv"
-            onChange={(event)=>{setSeat(event.target.value)}}>
-              <option value={20}>1-20</option>
-              <option value={50}>20-50</option>
-              <option value={100}>50+</option>
-            </select>
+            <input className="AdvEventType" id="seatAdv"
+            onChange={(event)=>{setSeat(event.target.value)}}/>
             <label for="location">LOCATION</label>
             <select className="AdvEventType" id="location"
             onChange={(event)=>{setLocation(event.target.value)}}>

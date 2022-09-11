@@ -36,8 +36,8 @@ export default function ShoppingCart(){
 
     console.log(events);
     return (
-        <div>
-             <a  onClick={showModalCheck} className="tro-item">ShoppingCart</a>
+        <div className='nav-links'>
+             <a  onClick={showModalCheck} className="tro-item">Shopping Cart</a>
             <div className="cartSection">
              <Modal title="EVENT TROLLEY" mask={false} width={600} 
                      visible={isModalVisible} footer={false}onCancel={CancelCheck}
