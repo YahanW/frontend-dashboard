@@ -32,6 +32,13 @@
     flex-wrap: wrap;
     padding-left: 5vw;
 }
+
+.AdvEventType::-webkit-input-placeholder {
+    color: gray;
+    font-size: 16px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
 /* each search fields */
 .requires{
     text-align: center;
