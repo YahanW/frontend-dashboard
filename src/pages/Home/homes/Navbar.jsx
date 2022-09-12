@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom'
 import axios from 'axios'
-
+import ShoppingCart from '../../../layout/Header/ShoppingCart';
 import './Navbar.css';
 import { useNavigate } from "react-router-dom";
 
@@ -50,18 +50,24 @@ return (
                         Home
                     </Link>
                 </li>
+
                {
                 sessionStorage.getItem('id') 
                 ?
-                <li className='nav-item'>
-                <Link
-                    to='/profile'
-                    className='nav-links'
-                    onClick={closeMobileMenu}
-                >
-                    Profile
-                </Link>
-                </li>
+                <>
+                    <li className='nav-item'>
+                    <Link
+                        to='/profile'
+                        className='nav-links'
+                        onClick={closeMobileMenu}
+                    >
+                        Profile
+                    </Link>
+                    </li>
+                    <li className='nav-item' >
+                        <ShoppingCart/>
+                    </li>
+                </>
                 :
                 <li className='nav-item'>
                 <Link
@@ -153,6 +159,7 @@ return (
                         </div>
                        
                     </li>
+                   
 
                 }
                 

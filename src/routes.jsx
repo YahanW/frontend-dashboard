@@ -77,7 +77,7 @@ export default(
                 <Route path='review' element={<Review/>}/>
             </Route>
        
-            <Route path="/checkout" element={<CheckOut/>}></Route>
+            <Route path="/checkout/:eventId" element={<CheckOut/>}></Route>
             <Route path='/service' element={<HomeService/>}/>
             <Route path='/sign-user' element={<Register/>}/>
             <Route path='/sign-merchant' element={<Register mode={'m'}/>}/>
