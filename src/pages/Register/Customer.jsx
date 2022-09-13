@@ -25,8 +25,7 @@ function Customer() {
       style={{marginLeft:"14vw"}}>
         <ThreeDots color="#00BFFF" height={80} width={80} />
       </div>
-      
-        
+            
     );}
 	const submitHandler = e =>{
 		e.preventDefault()
