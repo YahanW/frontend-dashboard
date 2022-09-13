@@ -107,7 +107,7 @@ onDelete=(record)=>{
 getTableProps=()=>{
   return {
     pagination:{
-      pageSize:10,
+      pageSize:7,
       showTotal:()=>`total ${this.state.dataSource.length} Service records`
     },
     columns:[

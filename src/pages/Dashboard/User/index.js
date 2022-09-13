@@ -112,7 +112,7 @@ class User extends Component {
     //Username Password Phonenumber Email 
     layoutUserTable = () => ({
         pagination: {
-            pageSize: 10,
+            pageSize: 6,
             showTotal: () => `total ${this.state.dataSource.length} user records`
         },
         columns: [
@@ -166,12 +166,12 @@ class User extends Component {
             <Panel title="User">
 
                 <Card >
-                    <Form className='functions' layout="inline" >
+                    <Form className='functions' layout="inline" style={{width:'75vw'}}>
                         <Form.Item label="Search" name="name">
                             <input type='text' placeholder="username, firstname or lastname" onKeyUp={(e) => this.onSearch(e.target.value)} />
                         </Form.Item>
 
-                        <Button className='addUser' type='primary' style={{ marginLeft: "45vw" }} icon={<PlusOutlined />} onClick={this.onAddUser}>Add User</Button>
+                        <Button className='addUser' type='primary' style={{ marginLeft: "40vw" }} icon={<PlusOutlined />} onClick={this.onAddUser}>Add User</Button>
                     </Form>
 
                     <Table loading='true' className='table' {...this.layoutUserTable()} />
