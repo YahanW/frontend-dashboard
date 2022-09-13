@@ -2,8 +2,18 @@
 
 .dashboard{
     height:100vh;
-    padding-top: 10vh;
+    /* padding-top: 10vh; */
     overflow: hidden;
+}
+.table{
+    margin-top: 5vh;
+}
+.functions input{
+    width:20vw;
+}
+.functions input::-webkit-input-placeholder{
+    color: gray;
+    font-size: 1rem;
 }
 
 .dashboard-user{

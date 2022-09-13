@@ -103,14 +103,17 @@ class Event extends Component {
         {
             title:"Event Name",
             dataIndex:'eventName',
+            sorter: (a, b) => a.eventName.localeCompare(b.eventName),
         },
         {
             title:"Start Time",
             dataIndex:'startTime',
+            sorter: (a, b) => a.startTime.localeCompare(b.startTime),
         },
         {
             title:"End Time",
-            dataIndex:'endTime'
+            dataIndex:'endTime',
+            sorter: (a, b) => a.endTime.localeCompare(b.endTime),
         },
         {
             title:"Booking Status",
@@ -130,7 +133,9 @@ class Event extends Component {
         },
         {
             title:"Event ID",
-            dataIndex:'eventId'
+            dataIndex:'eventId',
+            sorter: (a, b) => a.eventId - b.eventId,
+            sortDirections: ['descend'],
         },
         {
             title:'operate',
@@ -151,7 +156,7 @@ class Event extends Component {
   render() {
     const {eventModal}=this.props.eventState
     return (
-        <Panel title="User">
+        <Panel title="Event">
         <Card className='m-filter'>
             <Form layout="inline" //onFinish={this.onSearch}
             >

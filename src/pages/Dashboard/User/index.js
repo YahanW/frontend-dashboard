@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import ModalUser from './ModalUser';
 import LevelModal from './LevelModal';
 import axios from 'axios';
+import { usePromiseTracker } from 'react-promise-tracker';
+import { ThreeDots } from 'react-loader-spinner';
 
 class User extends Component {
     constructor(props){
@@ -14,11 +16,21 @@ class User extends Component {
         dataSource:[],
     }
 }
+LoadingIndicator = () => {
+        const { promiseInProgress } = usePromiseTracker;
+        return (
+            promiseInProgress && 
+            <div style={{ marginLeft: "14vw" }}>
+                <ThreeDots color="#00BFFF" height={80} width={80} />
+            </div>
 
+        );
+    }
 componentDidMount(){
     this.onGetUsers();  //fetching users once upon the element are rendered
 }
 onGetUsers=()=>{
+
     axios.get("https://eventeasyau.azurewebsites.net/api/user/getactiveuser")
     .then( data=>{
         this.setState({dataSource:data.data.$values})
@@ -88,6 +100,12 @@ onDelete=(record)=>{
           })
     }
 }
+onSearch=(name)=>{
+    axios.get(`https://eventeasyau.azurewebsites.net/api/user/searchuserbyname/${name}`)
+        .then(data => {
+            this.setState({ dataSource: data.data.$values })
+        })
+}
 onLeverage=(record)=>{
     return ()=>{
         this.props.dispatch({
@@ -153,29 +171,27 @@ layoutUserTable=()=>({
 render() {
     const {userModal,levelModal}=this.props.userState
     return (
-   
+   <>
     <Panel title="User">
-        <Card className='m-filter'>
-            <Form layout="inline" //onFinish={this.onSearch}
-            >
-                <Form.Item label="username" name="uname">
-                    <Input/>
+        <Card >
+            <Form className='functions' layout="inline" >
+                <Form.Item label="Search" name="name">
+                    <input type='text' placeholder="username, firstname or lastname" onKeyUp={(e)=>this.onSearch(e.target.value)}/>
                 </Form.Item>
-                <Form.Item>
-                    <Button type='primary' htmlType='submit'>Search</Button>
-                    {/**htmlType submit so form get data */}
-                </Form.Item>
+                
+                <Button className='addUser' type='primary' style={{ marginLeft: "45vw" }} icon={<PlusOutlined />} onClick={this.onAddUser}>Add User</Button>
             </Form>
-        </Card>
-        <Card>
-            <div className='m-operate'>
-                <Button type='primary' icon={<PlusOutlined/>} onClick={this.onAddUser}>Add User</Button>
-            </div>
-            <Table {...this.layoutUserTable()}/>
+
+
+            
+
+            <Table className='table' {...this.layoutUserTable()}/>
         </Card>
         {userModal&&<ModalUser {...userModal} {...this.props}/>} {/**passing dispatch by props since it is in props */}
         {levelModal&&<LevelModal {...levelModal} {...this.props}/>}
     </Panel>
+    {/* <loadingIndicator /> 不好用 */}
+    </>
    
     )
   }
