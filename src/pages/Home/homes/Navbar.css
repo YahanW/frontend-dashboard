@@ -49,14 +49,19 @@
     height: 80px;
 }
 
-.nav-item .register{
-    color: #fff;
-    cursor: pointer;
+.register{
+    background-color: red;
     display: flex;
     flex-direction: column;
-    margin-top: 3vh;
+    padding-top: 15px;
+    padding-left: 4.5px;
+}
+.reg-it{
+    color: #fff;
+    cursor: pointer;
 }
 .nav-links {
+    /* background-color: red; */
     color: #fff;
     display: flex;
     align-items: center;
