@@ -171,7 +171,7 @@ class User extends Component {
                             <input type='text' placeholder="username, firstname or lastname" onKeyUp={(e) => this.onSearch(e.target.value)} />
                         </Form.Item>
 
-                        <Button className='addUser' type='primary' style={{ marginLeft: "45vw" }} icon={<PlusOutlined />} onClick={this.onAddUser}>Add User</Button>
+                        <Button className='addUser' type='primary' style={{ marginLeft: "40vw" }} icon={<PlusOutlined />} onClick={this.onAddUser}>Add User</Button>
                     </Form>
 
                     <Table loading='true' className='table' {...this.layoutUserTable()} />
