@@ -5,7 +5,7 @@
 }
 .dashboard-user .m-slide{
     width: 18.5vw;
-    height: 85%;
+    height: 100%;
 }
 .dashboard-user .m-slide .ant-menu-item{
     font-size: 1rem;
@@ -13,10 +13,10 @@
 
 .dashboard-user .m-content{
     flex:1;
-    height: 90vh;  
+    height: 100vh;  
 }
 .dashboard-user .ant-menu{
-    height: 90vh;
+    height: 100vh;
 }
 
 .dashboard-user .m-operate{
