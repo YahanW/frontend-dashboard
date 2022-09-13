@@ -50,7 +50,6 @@
 }
 
 .register{
-    background-color: red;
     display: flex;
     flex-direction: column;
     padding-top: 15px;

@@ -96,7 +96,7 @@ class Event extends Component {
     //Render Event List in Table format
     layoutEventTable=()=>({
     pagination:{
-        pageSize:10,
+        pageSize:7,
         showTotal:()=>`total ${this.state.dataSource.length} user records`
     },
     columns:[
