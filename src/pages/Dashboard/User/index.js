@@ -6,8 +6,9 @@ import { connect } from 'react-redux';
 import ModalUser from './ModalUser';
 import LevelModal from './LevelModal';
 import axios from 'axios';
-import { usePromiseTracker } from 'react-promise-tracker';
-import { ThreeDots } from 'react-loader-spinner';
+import { usePromiseTracker } from "react-promise-tracker";
+import { trackPromise } from 'react-promise-tracker';
+import {Rings} from 'react-loader-spinner';
 
 class User extends Component {
     constructor(props){
@@ -17,11 +18,11 @@ class User extends Component {
     }
 }
 LoadingIndicator = () => {
-        const { promiseInProgress } = usePromiseTracker;
+    const { promiseInProgress } = usePromiseTracker();
         return (
             promiseInProgress && 
             <div style={{ marginLeft: "14vw" }}>
-                <ThreeDots color="#00BFFF" height={80} width={80} />
+                <Rings color="#00BFFF" height={80} width={80} />
             </div>
 
         );
@@ -30,11 +31,11 @@ componentDidMount(){
     this.onGetUsers();  //fetching users once upon the element are rendered
 }
 onGetUsers=()=>{
-
+    trackPromise(
     axios.get("https://eventeasyau.azurewebsites.net/api/user/getactiveuser")
     .then( data=>{
         this.setState({dataSource:data.data.$values})
-    })
+    }))
 }
 
 // onSearch=(values)=>{
@@ -101,10 +102,11 @@ onDelete=(record)=>{
     }
 }
 onSearch=(name)=>{
-    axios.get(`https://eventeasyau.azurewebsites.net/api/user/searchuserbyname/${name}`)
+    trackPromise(
+        axios.get(`https://eventeasyau.azurewebsites.net/api/user/searchuserbyname/${name}`)
         .then(data => {
             this.setState({ dataSource: data.data.$values })
-        })
+        }))
 }
 onLeverage=(record)=>{
     return ()=>{
@@ -181,11 +183,8 @@ render() {
                 
                 <Button className='addUser' type='primary' style={{ marginLeft: "45vw" }} icon={<PlusOutlined />} onClick={this.onAddUser}>Add User</Button>
             </Form>
-
-
-            
-
             <Table className='table' {...this.layoutUserTable()}/>
+            <this.LoadingIndicator/>
         </Card>
         {userModal&&<ModalUser {...userModal} {...this.props}/>} {/**passing dispatch by props since it is in props */}
         {levelModal&&<LevelModal {...levelModal} {...this.props}/>}
