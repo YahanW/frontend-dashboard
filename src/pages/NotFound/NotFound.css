@@ -1,0 +1,50 @@
+.lost-content{
+    background-image: url("https://images.unsplash.com/photo-1473800447596-01729482b8eb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80");
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.lost-content h2{
+    margin-top: 15vh;
+    font-size: 3rem;
+    font-weight: 600;
+    color: aliceblue;
+}
+.lost-content h4{
+    color:white;
+    width: 40vw;
+    font-size: 1.3rem;
+    margin-bottom: 5vh;
+   
+}
+.lost-content button{
+    background-color: white;
+    color: black;
+    font-size: 1.1rem;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 15vw;
+    height: 6vh;
+    border-radius: 5px;
+}
+.code{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5vh;
+    margin-left: -2vw;
+}
+.c1{
+    color:#ffffff60;
+    font-size: 1.7rem;
+    border-left: .3rem solid rgb(177, 71, 71);
+    padding-left: 1vw;
+    margin-right: 2vw;
+}
+.c2{
+    color: white;
+    font-size: 1.7rem;
+}
