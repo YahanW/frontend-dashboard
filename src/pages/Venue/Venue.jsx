@@ -9,7 +9,7 @@ import Navbar from "../Home/homes/Navbar";
 
 export default function Event(){
 const [eveListTemp,setEveListTemp] = useState([]);
-const serType = [ "All","Venue Renting","Hosting","Decoration","Live Performance","Security","Car Rental",];
+const serType = [ "All","Venue","Food","Decoration","Live Performance","Security","Car Rental",];
 const areType = [ "All","Hobart","SandyBay","Kinston","NewTown","South Hobart","North Hobart","Dynnyrne"];
 const bgtType = [ "All","$500","$1000","$1500","$2000+"];
 const [curType,setCurType] = useState("All");
@@ -64,7 +64,7 @@ if(!eveListTemp){
 
             <div className='filter'>  
             {/**Service type filter*/}
-            <div className='selection'> 
+            <div className='selection'>  
             <p>Type</p>
             <div className='right right-service'>
                

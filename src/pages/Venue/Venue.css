@@ -95,17 +95,21 @@
 }
 .filter .selection{
     width:80%;
-    margin-left: 18%;
+    margin-left: 10%;
     display: flex;
     height: 7vh;
     align-items: center;
+    justify-content: right;
 }
 .selection p{
+    color:white;
     margin-top: 1vh;
     margin-right: 2vw;
-    font-size: 1rem;
+    font-size: large;
 }
 .filter .selection .right{
+    /* background-color: red; */
+    color: black;
     width: 80%;
     font-size: large;
 }
@@ -113,15 +117,18 @@
 .ant-radio{ /*radio circle */
     display: none;
   } 
+  .ant-radio-wrapper {
+      color: white;
+      font-size: 1rem;
+  }
   .ant-radio-wrapper-checked{
-    margin-left: 25px;
     padding-left: 5px;
     padding-right: 5px;
     background-color:darkseagreen;
     border-radius: 10px;
     height: 25px;
-    color: aliceblue;
-    width: 7vw;
+    color: black;
+    width: fit-content;
   }
 .hrSearch{
     width: 920px;

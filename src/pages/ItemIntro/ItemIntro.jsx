@@ -25,7 +25,7 @@ function ItemIntro(){
       
     }
     const getEvents = ()=>{
-        axios.get(`https://eventeasyau.azurewebsites.net/api/event/geteventbyuser/${sessionStorage.getItem("id")}`)
+        axios.get(`https://eventeasyau.azurewebsites.net/api/event/getactiveeventbyuser/${sessionStorage.getItem("id")}`)
         .then(response=>{
             setAvail(response.data.$values)
           
