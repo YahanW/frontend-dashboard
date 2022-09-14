@@ -14,7 +14,8 @@ export default function ShoppingCart() {
   const [sends,setSends] = useState({bookingStatus:1});
   const [init,setInit] = useState({bookingStatus:0});
   const sentRequest = (ele) => {
-    axios.put(`https://eventeasyau.azurewebsites.net/api/event/update/${ele.eventId}`,sends)
+    axios.get(`https://eventeasyau.azurewebsites.net/api/user/sendmail/${ele.staffId}`)
+    .then(axios.put(`https://eventeasyau.azurewebsites.net/api/event/update/${ele.eventId}`,sends))
         .then(response=>{
             console.log(response)
             message.success('Request has been sent');
