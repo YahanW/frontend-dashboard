@@ -143,14 +143,13 @@ return(
                       (
                         abnCheck.children[2].name!=='exception'?
                         <div>
-                          <div><p>{abnCheck.children[3].children[0].name}</p></div>
-                          <div><p>{abnCheck.children[3].children[0].value}</p></div>
-                          <div><p>{abnCheck.children[3].children[2].children[0].name}</p></div>
-                          <div><p>{abnCheck.children[3].children[2].children[0].value}</p></div>
-                          <div><p>{abnCheck.children[3].children[2].children[1].name}</p></div>
-                          <div><p>{abnCheck.children[3].children[2].children[1].value}</p></div>
-                          <div><p>{abnCheck.children[3].children[2].children[2].name}</p></div>
-                          <div><p>{abnCheck.children[3].children[2].children[2].value}</p></div>
+ 
+                          <div><p>{abnCheck.children[3].children[6].children[0].name}:</p></div>
+                          <div><p>{abnCheck.children[3].children[6].children[0].value}</p></div>
+                          <div><p>ABN Status: {abnCheck.children[3].children[1].children[1].value==='Y'?'Valid':'Invalid'}</p></div>
+
+                          <div><p>{abnCheck.children[3].children[4].children[1].name}:</p></div>
+                          <div><p>{abnCheck.children[3].children[4].children[1].value}</p></div>
                         </div>
                         :
                         <div>

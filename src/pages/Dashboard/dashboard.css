@@ -1,11 +1,27 @@
 @import '~antd/dist/antd.css';
 
+.dashboard{
+    height:100vh;
+    /* padding-top: 10vh; */
+    overflow: hidden;
+}
+.table{
+    margin-top: 3vh;
+}
+.functions input{
+    width:20vw;
+}
+.functions input::-webkit-input-placeholder{
+    color: gray;
+    font-size: 1rem;
+}
+
 .dashboard-user{
     display: flex;
 }
 .dashboard-user .m-slide{
     width: 18.5vw;
-    height: 100%;
+    height: inherit;
 }
 .dashboard-user .m-slide .ant-menu-item{
     font-size: 1rem;
@@ -13,9 +29,7 @@
 
 .dashboard-user .m-content{
     flex:1;
-    height: 100vh;
-    overflow: auto;
-   
+    height: inherit;  
 }
 .dashboard-user .ant-menu{
     height: 100vh;
@@ -37,5 +51,5 @@
 
 
 .dashboard-user .m-filter{
-    margin:10px 0;
+    margin: 10 0;
 }

@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
+    "@azure/storage-blob": "^12.11.0",
     "@chatscope/chat-ui-kit-react": "^1.9.7",
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
@@ -32,7 +33,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "CI=false react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

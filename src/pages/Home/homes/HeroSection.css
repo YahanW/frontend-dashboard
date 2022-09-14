@@ -1,7 +1,7 @@
 .hero-container{
     width: 100vw;
     height: 100vh;
-    background-image: url("https://alacritas.cis.utas.edu.au/~mingked/kit301/JPGs/bg.jpg");
+    background-image: url("https://easyevent.blob.core.windows.net/image/bg_f75919862e8f78.jpg");
     background-size: cover;
     display: flex;
     flex-direction: column;
@@ -16,12 +16,29 @@
     font-size: 32px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
+.hero-container input,::-webkit-input-placeholder{
+    color: white;
+    font-size: 28px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.hero-container .eventType {
+    color: white;
+    font-size: 20px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
 /* all search fields */
 .search{
     display: flex;
     flex-wrap: wrap;
-    padding-left: 9vw;
+    padding-left: 5vw;
 }
+
+.AdvEventType::-webkit-input-placeholder {
+    color: gray;
+    font-size: 16px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
 /* each search fields */
 .requires{
     text-align: center;

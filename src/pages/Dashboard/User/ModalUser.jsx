@@ -1,65 +1,87 @@
 import React, { Component } from 'react'
 import {Modal,Form,Input, message} from 'antd'
-import {Location} from '../../../commons'
-import Uploads from './Uploads'
+import axios from 'axios'
+const {BlockBlobClient, AnonymousCredential } = require('@azure/storage-blob');
+const sasKey = `?sv=2021-06-08&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2022-09-30T11:42:53Z&st=2022-09-03T03:42:53Z&spr=https,http&sig=ZUKmAOkmWjgmj4%2BnEzXOXkYMP%2BRbnOw1HsAnLDFnIuk%3D`
+const url = 'https://easyevent.blob.core.windows.net'
+const container = 'image'
 
 class ModalUser extends Component {
-formRef=React.createRef()
-
-layout={
+    constructor(props){
+        super(props);
+        this.state={
+            picture:"", 
+        }
+    }
+    formRef=React.createRef()
+    layout={
     labelCol:{span:8},
     wrapperCol:{span:20}
 }
 
+blobUpload = (e) => {
+    
+    var blobName = this.buildBlobName(e.target.files[0].name)
+    //console.log(blobName)
+    this.formRef.current.setFieldsValue({tokenNumber:blobName})
+
+    var login = url + '/' + container + '/' + blobName + '?' + sasKey
+    var blockBlobClient = new BlockBlobClient(login, new AnonymousCredential())
+    blockBlobClient.uploadBrowserData(e.target.files[0]).then(
+    response=>{
+       console.log(response)
+       }
+ )
+  }
+
+  buildBlobName = (name) => {
+    var filename = name.substring(0,name.lastIndexOf('.'))
+    var ext = name.substring(name.lastIndexOf('.'))
+    return filename + '_' + Math.random().toString(16).slice(2) + ext
+    
+  }
+
 componentDidMount(){
     this.formRef.current.setFieldsValue(this.props.data)
-    this.formRef.current.setFieldsValue({access:5})
+    this.formRef.current.setFieldsValue({accessNumber:5})
     //assign access level 5 to user, 5 means user
 }
 onSave=(value)=>{
-    
     console.log(value)
-    if(this.props.title=='New User'){
-        global.request.post('/api/user/add',
-        {...value,location:value.location.join(',')}).then(
-            //location is an array from form, need converted to be string
-            data=>{
-                message.success('User Insertion Success')
-                this.onCancel() //close modal
-                //refresh user list
-                this.props.refreshList()  //reloading data
-                return
-            }
-        )
-       
+    if(this.props.title=='New User')
+    {
+        // console.log(value)
+        axios.post("https://eventeasyau.azurewebsites.net/api/user/create",value)
+        .then(response=>{
+            console.log(response);
+            message.success('User Update Success');
+            this.props.refreshList();
+            this.onCancel();
+            return
+        }).catch(err=>{
+            console.log(err);
+        })
     }
-        global.request.post('/api/user/edit',
-        {...value,location:value.location.join(','),id:this.props.data.id}).then(
-            //location is an array from form, need converted to be string
-            data=>{
-                message.success('User Update Success')
-                this.onCancel() //close modal
-                //refresh user list
-                this.props.refreshList()  //reloading data
-                return
-            }
-        )
+    else
+    {
+        axios.put(`https://eventeasyau.azurewebsites.net/api/User/Update/`,value)
+        .then(response=>{
+            console.log(response)
+            message.success('User Update Success');
+            this.props.refreshList();
+            this.onCancel();
+            return
+        }).catch(err=>{
+            console.log(err);
+        })
+    }
 
-    
-    
 }
-onGeoChange=(value)=>{
-    this.formRef.current.setFieldsValue({location:value})
-    console.log(value)
-}
+
 onCancel=()=>{
     this.props.dispatch({
         type:'hide'
     })
-}
-onPictureChange=(value)=>{
-    console.log(value)
-    this.formRef.current.setFieldsValue({profile:value})
 }
 
 render() {
@@ -71,39 +93,42 @@ render() {
         title={this.props.title}
         onOk={()=>this.formRef.current.submit()} 
         onCancel={this.onCancel}
-        className={readOnly?'m-readonly-modal':'dash-modal'}
+        className={readOnly?'m-readonly-modal':''}
     >
       <Form {...this.layout} onFinish={this.onSave} ref={this.formRef}>
         
-        <Form.Item label='Access Level' name='access' >
-            <p>{data.access==3?'Merchant':(data.access==5?'Customer':data.access==1?'Admin':'User')}</p>
-                
-            
-        </Form.Item>
-        
-        <Form.Item label='Area' name='location' rules={[{required:true}]}>
-            <Location onChange={this.onGeoChange}
-                defaultValue={data.location}
-            />
+        <Form.Item label='Access Level' name='accessNumber'>
+            <p>{data.accessNumber==3?'Merchant':
+                    (data.accessNumber==5?'Customer':
+                        data.accessNumber==1?'Admin':'User')}
+            </p>
         </Form.Item>
        
-        <Form.Item label='username' name='username' rules={[{required:true}]}>
+        <Form.Item label='User ID' name='userId' style={{display:this.props.title=='New User'?'none':''}} >
+            <Input disabled={true}/>
+        </Form.Item>
+        
+        <Form.Item label='username' name='userName' rules={[{required:false}]}>
             <Input/>
         </Form.Item>
-        <Form.Item label='password' name='password' rules={[{required:true}]}>
+        <Form.Item label='password' name='password' rules={[{required:false}]}>
+            <Input/>
+           
+        </Form.Item>
+        <Form.Item>
+            <p style={{marginLeft:'8vw',display:readOnly?'':'none'}}>For security reason, the password has been hashed.</p>
+        </Form.Item>
+        <Form.Item label='email' name='email' rules={[{required:false, type: 'email'}]}>
             <Input/>
         </Form.Item>
-        <Form.Item label='email' name='email' rules={[{required:true, type: 'email'}]}>
+        <Form.Item label='phone number' name='phoneNumber' rules={[{required:true}]}>
             <Input/>
         </Form.Item>
-        <Form.Item label='phone number' name='phonenumber' rules={[{required:true}]}>
+        <Form.Item name="tokenNumber" style={{display:'none'}}>
             <Input/>
         </Form.Item>
-        <Form.Item label='Profile' name='profile' rules={[{required:true}]}>
-           <Uploads onChange={this.onPictureChange} 
-           defaultFileList={data.profile?data.profile.split(','):[]}
-           />
-        </Form.Item>
+            <input type="file" onChange={e=>(this.blobUpload(e))}/>
+        
       </Form>
     </Modal>
     )

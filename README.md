@@ -7,23 +7,37 @@
 | ---                | ---        | ---                                                 |
 | Home               | T          | Entry to: profile, Login, Register, Dashboard       |
 | Login              | T          | Login user                                          |
-| Register           | T          | Register User 5, Merchant 3                         | 
-| Dashboard          | F          | Manage user Service                                 |
-| Dashboard.User     | F          | Admin create, update, delete user                   |
-| Dashboard.Merchant | F          | Merchant create, update, delete events and service  |
-| Event              | F          | Give correspoding event result                      |
-| Result             | F          | Fetch related service for same event                |
-| Profile            | T          |   to show user info or bookings                     |
-| Checkout           | T          | Make Payment                                        |
-| NavEvent           | T          | containing Inbox, trolley, location, Home, username |
-| Inbox              | F          | Provide user with chat function                     |
-| Trolley            | F          | check all user selected services                    |
+| Register           | T          | User 5, Merchant 3, If succeed -> get user logged in| 
+| Dashboard.Service  | T          | Service create, view, update, delete access 3, 5    |
+| Dashboard.User     | T          | Admin access only create, update, delete user       |
+| Dashboard.Event    | T          | Merchant update, admin wtih all functions           |
+| Event              | T          | Events are created by users                         |
+| Result             | T          | Fetch related services,and display selected venue   |
+| Profile.History    | F          | Display finished User events                        |
+| Profile.Details    | T          | DisPlay and Edit User Basic Details                 |
+| Checkout           | F          | Make Payment by sum of all services of an event     |
+| NavEvent           | T          | ShoppingCart, Home,Profile,Service,Dashboard,Loggin |
+| ShoppingCart.Event | T          | Get event by UserId, send request, cancel           |
+| Cart.Service       | F          | Get Services by EventId from eventServices, remove  |
 
 - react loop array:
   ```javascript
   results.map((ele,index)=>{<tag key={index}>{ele.attribute}</tag>})
   ```
+- to write switch inside of map render
+  ```javascript
+  const switchFunction(parameter)
+  {
+    switch(parameter){
+      case value:return ; break;
+      default; break;
+    }
+  }
 
+  variable.map((element)=>{
+    switchFunction(element);
+  })
+  ```
 - { Expression ? : Link->routes }
 
 - react-redux-> store stay over all route from <Outlet/>

@@ -62,8 +62,11 @@
     position: absolute;
     bottom: 0;
     width: 100%;
+    color: white;
+    font-size: large;
 }
 .selc-shop  .right p{
+    color: black;
     font-size: medium;
     font-family:'Times New Roman', Times, serif ;
 }

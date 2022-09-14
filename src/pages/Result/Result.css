@@ -1,21 +1,25 @@
 .itemList{
+   height: auto;
    background-color:#9C528B30;
    width: 80%;
-   height: 900px;
-   display: flex;
+   border: 10px solid #d4a1a130;
    margin-top: 4vh;
+   margin-bottom: 4vh;
    margin-left: 10vw;
-   border: 10px solid #30303030;
-   justify-content: center;
+   align-items: center;
+   display: flex;
+   flex-direction: column;
 }
 .itemList .item{
-    background-color:#9C528B60;
+    background-color:#d3a63560;
     width: 90%;
     height: 22.5vh;
-    box-shadow: 5px 10px #88888840;
+    box-shadow: 5px 10px #4b256851;
     display: flex;
-    margin-top: 1vh;
-
+    margin-top: 4vh;
+}
+.itemList .item:last-child{
+    margin-bottom: 4vh;
 }
 
 .item-left{
@@ -33,29 +37,20 @@
 
 }
 .item-star{
-    width: 270px;
+    width: 320px;
     padding-top: 7px;
     height: inherit;
     padding-left: 125px;
-    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-.item-star .star{
-    width: 60px;
-    height: 60px;
-    background-size: cover;
-    padding-left: 16px;
-    padding-top: 40px;
-    font-size: larger;
-}
-.item-star h4{
-    margin-left: -10px;
-    margin-top: 20px;
+
+.item-star h4{ /*average price*/
+   
     opacity: 60%;
 }
 .item-star h3{
-    margin-left: 10px;
-    margin-left: 18px;
-    margin-top: -10px;
     color:white;
 }
 
@@ -99,13 +94,11 @@
     font-family:'Times New Roman', Times, serif;
     margin-bottom: 3vh;
 }
-.create-event{
-    background-color: #ffffff00;
-    border: 1px solid #ffffff;
-    font-size: 1rem;
-    width: 12vw;
-    height: 6vh;
-    color: white;
+.intro-img button{
+   background-color: rgb(255, 255, 255,.2); 
+   width:10vw;height: 7vh;
+   border: 3px solid #ffffff;
+   color: #ffffff;
 }
 .event-intro .divider{
     width: 70%;
@@ -114,15 +107,14 @@
 .intro-list{
     display: flex;
     justify-content: center;
-    align-items: center;
+    flex-direction: row;
     margin-bottom: 5vh;
 }
 .intro-list .list-locate{
     width: 24%;
-    height: 25vh;
+    height: max-content;
     padding-top: 10px;
     margin-top: 3vh;
-    overflow: scroll;
     margin-right: 5vw;
 }
 

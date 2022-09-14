@@ -1,18 +1,42 @@
 import React , {useState,useEffect} from "react";
 import FormControl from '@mui/material/FormControl';
 import Header from "../../layout/Header";
-import moment from 'moment';
-import { DatePicker,Button,Select} from 'antd';
-import {Link, Outlet,useParams} from 'react-router-dom';
+import {Button, Select, message} from 'antd';
+import {Link, Outlet,useParams, useNavigate} from 'react-router-dom';
 import './ItemIntro.css'
+import axios from "axios";
+import FormItem from "antd/lib/form/FormItem";
+import Navbar from "../Home/homes/Navbar";
 function ItemIntro(){
     //const docRef = React.createRef();
     const [reviewOrSale,setRS] = useState(false);
     const [imgIndex,setImgIndex] = useState(0);
-    
+    const [details,setDetails] = useState([]);
+    const {serviceId} = useParams();
+    const [avail,setAvail] = useState([]);
+    const [eventVisible, setEventVisible] = useState(false);
+    const formRef = React.createRef();
+    const history = useNavigate();
+    const [eventId,setEventId] = useState(0); 
+    const [newService, setNewService] = useState({eventId:0,servicesId:parseInt(serviceId)});
+    const getDetail = async ()=>{
+      const {data} = await axios.get(`https://eventeasyau.azurewebsites.net/api/services/getservices/${serviceId}`)
+      setDetails(data);
+      
+    }
+    const getEvents = ()=>{
+        axios.get(`https://eventeasyau.azurewebsites.net/api/event/getactiveeventbyuser/${sessionStorage.getItem("id")}`)
+        .then(response=>{
+            setAvail(response.data.$values)
+          
+        }).catch(err=>{console.log(err)})
+      }
+    useEffect(()=>{
+      getDetail();
+      getEvents();
+
+    },[])
     const changeRS = () =>{ setRS(!reviewOrSale);}
-    const dateFormat = 'YYYY/MM/DD';
-    const { Option, OptGroup } = Select;
     const imgDemo = [{
         source:'https://www.christies.com/media-library/images/features/articles/2019/04/02/andrew-graham-dixon-on-the-night-watch-by-rembrandt/rembrandtharmenszvanrijnmilitiacompanyofdistrictiiunderthecommandofcaptainfransbanninckcocqknownasthenightwatch16422400.jpg?w=780'
     },{
@@ -24,13 +48,25 @@ function ItemIntro(){
     const incre = (n) => {
         setImgIndex(n)
     }
-    const {serviceId} = useParams();
+
+    const onClick = () => {
+
+        axios.post("https://eventeasyau.azurewebsites.net/api/eventService/create", newService)
+            .then(response => {
+                console.log(response);
+                message.success("Service added successfully");
+            }).catch(err => {
+                if ((err.response.status)==409)
+                    message.error("This service already exists.");
+            })  
+    }
+
     return (
         <div>
-            <Header/>
+            <Navbar/>
             <div className="selecBox">
                 <div className="selection">
-                    <h1>Simple and True Art Workshop</h1>
+                    <h1>{details.serviceName}</h1>
                     <div className="selc-shop" >
                         <div className="imagesub">
                         {
@@ -40,35 +76,31 @@ function ItemIntro(){
                             })
                         }
                         </div>
-                        <div className="imageShow" name="imageShow" style={{backgroundImage:`url(${imgDemo[imgIndex].source})`}}></div>
+                        <div className="imageShow" name="imageShow" 
+                        style={{backgroundImage:`url(${imgDemo[imgIndex].source})`}}></div>
                       
-                       
                         <FormControl className="right">
-                            <p>Event Date</p>
-                            <DatePicker defaultValue={moment('2015/01/01', dateFormat)} 
-                            format={dateFormat} className="sel-pick" />
-                            <p>Service Type</p>
-                            <Select defaultValue="2" style={{ width: '100%' }} className="sel-pick">
-                                <OptGroup label="Morning">
-                                <Option value="1">BREAK-FAST</Option>
-                                <Option value="2">COOKIES</Option>
-                                </OptGroup>
-                                <OptGroup label="Night">
-                                <Option value="4">SUSHI</Option>
-                                </OptGroup>
-                            </Select>
-                            <p>Event Size</p>
-                            <Select defaultValue="2" style={{ width: '100%' }} className="sel-pick">
-                                <OptGroup label="BIG">
-                                <Option value="1">WEDDING</Option>
-                                <Option value="2">FEAST-CORPORATE</Option>
-                                </OptGroup>
-                                <OptGroup label="SMALL">
-                                <Option value="4">BIRTHDAY</Option>
-                                </OptGroup>
-                            </Select>
-                            <Button type="primary">MAKE REQUEST</Button>
+                            <p>
+                                Choose one of your available events to add services
+                            </p>
+                            <Select onSelect={(e) => {setNewService({eventId:e,servicesId:parseInt(serviceId)}); console.log(newService) }}>
+                                    {
+                                        avail?
+                                        avail.map((ele)=>{
+                                            return(
+                                                <Select.Option key={ele.eventId} value={ele.eventId}>
+                                                    {ele.eventName} 
+                                                </Select.Option>
+                                            )
+                                        }):'You have no event yet.'
+                                    }
+                                </Select>
+
+
+                            <button onClick={onClick}>Add to Event</button>
+                            
                         </FormControl>
+                       
                     </div>
                 </div>
             </div>
@@ -76,7 +108,7 @@ function ItemIntro(){
                 <div className='dr-sub'
                 style={{backgroundColor:reviewOrSale?'':'bisque',}}
                 >
-                    <Link onClick={changeRS} to={`/result/details/${serviceId}/intro`}>DETAILS</Link>
+                    <Link onClick={changeRS} to={`/result/details/${serviceId}`}>DETAILS</Link>
                 </div>
                 <div className='dr-sub'
                 style={{ backgroundColor:reviewOrSale?'bisque':'',}}

@@ -9,12 +9,12 @@ import {
   Message,
   MessageInput,
 } from "@chatscope/chat-ui-kit-react";
-
-
+import ShoppingCart from './ShoppingCart';
 import './style/index.css'
+
 function Header(){
   //checking if modals to appear
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  
   const [isMSGVisible, setMSGVisible] = useState(false);
   const [isBookVisible, setBookVisible] = useState(false);
   const [chatVisible, setChatVisible] = useState(false);
@@ -23,12 +23,7 @@ function Header(){
   const CancelBook = () => {setBookVisible(false);};
   const showModalBook = () => {setBookVisible(true)};
   const showModalMSG = () => {setMSGVisible(true);};
-  const showModalCheck = () => {setIsModalVisible(true);};
-  const CancelCheck = () => {setIsModalVisible(false);};
   const CancelMSG = () => {setMSGVisible(false);};
-
-  const [isSent,setIsSent] = useState(true);
-  const [isAccept,setAccept] = useState(true);
 
   //navigate to specific page
   const history = useNavigate();
@@ -91,145 +86,17 @@ function Header(){
                     </Modal>
               </Modal>
             </li>
-            {/* booking list */}
-            <li>
+            
+            {/* <li>
               <a  onClick={showModalBook} className="tro-item">Booking</a>
               <Modal title="Booking LIST" mask={false}
                     visible={isBookVisible} footer={false} onCancel={CancelBook}
                     className="shop-list">
               </Modal>
-            </li>
+            </li> */}
             {/* trolley item list */}
             <li>
-              <a  onClick={showModalCheck} className="tro-item">Trolley</a>
-              <Modal title="EVENT TROLLEY" mask={false}
-                     visible={isModalVisible} footer={false}onCancel={CancelCheck}
-                     className="shop-list"
-              >
-                <ul>
-                  <li 
-                  // style={{backgroundColor:isAccept?'#80ED99':'red'}} 
-                  >
-                    <div className='avatar'>
-                    </div>
-                      <div className='left'>
-                        <h3 >EVENT NAMEdsdsdsddddddddddddddddddddddddddddddddddddddddddddddddd</h3>
-                        <h5>MERCHANT NAME</h5>
-                        <h4 style={{color:isAccept?'#B5FFD9':'red'}}>
-                       
-                        accept
-                      
-                          </h4>
-                      </div>
-                      <div className='right'>
-                      <button>
-                        {
-                          isSent?(
-                            <Link to="/checkout">
-                        
-                          checkout
-                        
-                        </Link>
-                          ):(
-                            'Request'
-                          )
-                        }
-                        </button>
-                      </div>
-                  </li>
-                  <li 
-                  // style={{backgroundColor:isAccept?'#80ED99':'red'}} 
-                  >
-                    <div className='avatar'>
-                    </div>
-                      <div className='left'>
-                        <h3 >EVENT NAMEdsdsdsddddddddddddddddddddddddddddddddddddddddddddddddd</h3>
-                        <h5>MERCHANT NAME</h5>
-                        <h4 style={{color:isAccept?'#B5FFD9':'red'}}>
-                       
-                        accept
-                      
-                        </h4>
-                      </div>
-                      <div className='right'>
-                      <button>
-                        {
-                          isSent?(
-                            <Link to="/checkout">
-                        
-                          checkout
-                        
-                        </Link>
-                          ):(
-                            'Request'
-                          )
-                        }
-                        </button>
-                      </div>
-                  </li>
-                  <li 
-                  // style={{backgroundColor:isAccept?'#80ED99':'red'}} 
-                  >
-                    <div className='avatar'>
-                    </div>
-                      <div className='left'>
-                        <h3 >EVENT NAMEdsdsdsddddddddddddddddddddddddddddddddddddddddddddddddd</h3>
-                        <h5>MERCHANT NAME</h5>
-                        <h4 style={{color:isAccept?'#B5FFD9':'red'}}>
-                       
-                        accept
-                      
-                          </h4>
-                      </div>
-                      <div className='right'>
-                      <button>
-                        {
-                          isSent?(
-                            <Link to="/checkout">
-                        
-                          checkout
-                        
-                        </Link>
-                          ):(
-                            'Request'
-                          )
-                        }
-                        </button>
-                      </div>
-                  </li>
-                  <li 
-                  // style={{backgroundColor:isAccept?'#80ED99':'red'}} 
-                  >
-                    <div className='avatar'>
-                    </div>
-                      <div className='left'>
-                        <h3 >EVENT NAMEdsdsdsddddddddddddddddddddddddddddddddddddddddddddddddd</h3>
-                        <h5>MERCHANT NAME</h5>
-                        <h4 style={{color:isAccept?'#B5FFD9':'red'}}>
-                       
-                        accept
-                      
-                          </h4>
-                      </div>
-                      <div className='right'>
-                      <button>
-                        {
-                          isSent?(
-                            <Link to="/checkout">
-                        
-                          checkout
-                        
-                        </Link>
-                          ):(
-                            'Request'
-                          )
-                        }
-                        </button>
-                      </div>
-                  </li>
-                </ul>
-              </Modal>
-            
+              <ShoppingCart/>
             </li>
             {/* remainder user to login */}
             <li>

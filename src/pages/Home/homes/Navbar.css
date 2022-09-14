@@ -1,6 +1,6 @@
 .navbar {
     width: 100vw;
-    background: linear-gradient(90deg, rgb(28, 27, 27) 0%, rgb(26, 23, 23) 100%);
+    background: rgb(3, 3, 32);
     height: 10vh;
     display: flex;
     justify-content: center;
@@ -9,6 +9,7 @@
     position: sticky;
     top: 0;
     z-index: 999;
+    /* position:absolute; */
 }
 
 .navbar-container {
@@ -48,14 +49,18 @@
     height: 80px;
 }
 
-.nav-item .register{
-    color: #fff;
-    cursor: pointer;
+.register{
     display: flex;
     flex-direction: column;
-    margin-top: 3vh;
+    padding-top: 15px;
+    padding-left: 4.5px;
+}
+.reg-it{
+    color: #fff;
+    cursor: pointer;
 }
 .nav-links {
+    /* background-color: red; */
     color: #fff;
     display: flex;
     align-items: center;

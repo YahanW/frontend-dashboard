@@ -4,18 +4,18 @@ import Footer from '../Home/homes/Footer';
 import { Radio } from 'antd';
 import { Link,useNavigate,useParams } from "react-router-dom";
 import axios from "axios";
-import './Event.css';
+import './Venue.css';
 import Navbar from "../Home/homes/Navbar";
 
 export default function Event(){
 const [eveListTemp,setEveListTemp] = useState([]);
-const serType = [ "All","Venue Renting","Hosting","Decoration","Live Performance","Security","Car Rental",];
+const serType = [ "All","Venue","Food","Decoration","Live Performance","Security","Car Rental",];
 const areType = [ "All","Hobart","SandyBay","Kinston","NewTown","South Hobart","North Hobart","Dynnyrne"];
 const bgtType = [ "All","$500","$1000","$1500","$2000+"];
 const [curType,setCurType] = useState("All");
 const [curAre,setCurAre] = useState("All");
 const [curBgt,setCurBgt] = useState(0);
-const {type,date,guest,budget} = useParams();
+const {type,date,guest,budget,area,stand,seat} = useParams();
 const [keyWord,setKeyWord] = useState('');
 const history = useNavigate();
 const [eventCount,setEventCount] = useState(0);
@@ -27,14 +27,14 @@ const makeSearch = () =>{
 }
 const getEvent = async ()=>{
   const { data } = await 
-  axios.get("https://eventeasynew.azurewebsites.net/api/Event/GetAll");
+  axios.get("https://eventeasyau.azurewebsites.net/api/services/getservicesbytype/0");
   //setEveList(data.$values);
   return data.$values;
 }
 
 useEffect(() => {
   getEvent().then((eveListTemp)=>setEveListTemp(eveListTemp))
-  
+    console.log(type,date,guest,budget,area,stand,seat)
 }, []);
 
 if(!eveListTemp){ 
@@ -42,29 +42,29 @@ if(!eveListTemp){
 }
 
   //console.log(type,date,guest,budget);
-  //console.log(eveListTemp)
+  console.log(eveListTemp)
     return (
         <div>
             <Navbar/>
             <div className="eventSearch">
             {/**Search bar and Home Logo */}
-            <div className='find'> 
-            <div className='logo' onClick={goHome}></div>
-                <div className='formSearch'>
-                    <form>
-                        <input placeholder='Searching by Merchant or Service'
-                        onChange={e=>setKeyWord(e.target.value)}
-                        />
-                    </form>
+                {/* <div className='find'> 
+                    <div className='logo' onClick={goHome}></div>
+                    <div className='formSearch'>
+                        <form>
+                            <input placeholder='Searching by Merchant or Service'
+                                 onChange={e=>setKeyWord(e.target.value)}
+                            />
+                        </form>
                     <div className='iconSearch' onClick={makeSearch}></div>
-                </div>
-            </div>
+                </div> */}
+            {/* </div> */}
 
             {/**More specific filters*/}
 
             <div className='filter'>  
             {/**Service type filter*/}
-            <div className='selection'> 
+            <div className='selection'>  
             <p>Type</p>
             <div className='right right-service'>
                
@@ -123,15 +123,15 @@ if(!eveListTemp){
                     eveListTemp //is there any data remains
                     ? 
                     eveListTemp.map((ele,index)=>{
-                       if(ele.budget<=budget&&ele.guestAmount>=guest){
+                       if(ele.price<=budget&&ele.guestAmount>=guest){
                        
                             return (    
                                 <li className="eve-row" key={index} id="e-valid">
                                         <div className="eve-ele" 
                                         key={index}>
-                                        <Link className="getService" to={`/result/${ele.eventId}`}>
+                                        <Link className="getService" to={`/result/${ele.servicesId}`}>
                                                 <h3 style={{color:'white',fontSize:'2.7rem',fontFamily:`"Times New Roman", "Times", "serif"`,}}>
-                                                    {ele.eventName}
+                                                    {ele.serviceName}
                                                 </h3>
                                                 <h4 style={{color:'white',fontSize:'1rem',
                                                 fontFamily:`"Times New Roman", "Times", "serif"`,}}>

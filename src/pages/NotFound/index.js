@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import Header from '../../layout/Header';
 import { Link } from 'react-router-dom';
 import './NotFound.css';
+import Navbar from '../Home/homes/Navbar';
 
 export default class NotFound extends Component {
   render() {
     return (
       <div>
-        <Header/>
+        <Navbar/>
         <div className='lost-content'>
           <h2>Lost Your Way ?</h2>
           <h4>Sorry, we can't find that page. You'll find loads to explore on the home page</h4>

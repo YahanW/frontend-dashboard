@@ -4,53 +4,38 @@ import { AlignCenterOutlined } from "@ant-design/icons";
 import axios from "axios";
 
 export default class extends React.Component{
-    constructor(props){
-        super(props)
-        this.state={dataSource:[]}
-    }
-    componentDidMount(){
-        axios.get("https://eventeasynew.azurewebsites.net/api/user/GetAll")
-        .then(response=>{
-            this.setState({dataSource:response})
-        })
-        console.log(this.state.dataSource);
-        global.request.get('/api/user/all').then(data=>{
-            this.setState({dataSource:data.records})
-        })
-    }
+
     onCancel=()=>{
         this.props.dispatch({
             type:'hideLevelModal'
         })
     }
-    onSave=()=>{
-        
-    }
+   
     toMerchant=()=>{
-        global.request.post('/api/user/UpMerchant',
-        {...this.props.data,id:this.props.data.id}).then(
-            //location is an array from form, need converted to be string
-            data=>{
-                message.success('User Update Success')
-                this.onCancel() //close modal
-                //refresh user list
-                this.props.refreshList()  //reloading data
-                return
-            }
-        )
+        axios.put(`https://eventeasyau.azurewebsites.net/api/User/Update/`,
+        {accessNumber:3,userId:this.props.data.userId})
+        .then(response=>{
+            console.log(response)
+            message.success('User Leverage Success');
+            this.props.refreshList();
+            this.onCancel();
+            return
+        }).catch(err=>{
+            console.log(err);
+        })
     }
     toAdmin=()=>{
-        global.request.post('/api/user/UpAdmin',
-        {...this.props.data,id:this.props.data.id}).then(
-            //location is an array from form, need converted to be string
-            data=>{
-                message.success('User Update Success')
-                this.onCancel() //close modal
-                //refresh user list
-                this.props.refreshList()  //reloading data
-                return
-            }
-        )
+        axios.put(`https://eventeasyau.azurewebsites.net/api/User/Update/`,
+        {accessNumber:1,userId:this.props.data.userId})
+        .then(response=>{
+            console.log(response)
+            message.success('User Leverage Success');
+            this.props.refreshList();
+            this.onCancel();
+            return
+        }).catch(err=>{
+            console.log(err);
+        })
     }
     render(){
         //const {data={}}=this.props

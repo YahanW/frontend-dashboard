@@ -1,42 +1,73 @@
-import React,{useState} from "react";
+import React, { useEffect, useState } from "react";
 import './checkout.css';
+import { useParams } from "react-router-dom";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import Header from "../../layout/Header";
 import Footer from '../Home/homes/Footer';
-function CheckOut(){
-return (
+import Navbar from "../Home/homes/Navbar";
+import axios from "axios";
+
+
+function CheckOut() {
+    const { eventId } = useParams();
+    const [eventService, setEventService] = useState([]);
+
+    const getServices = async () => {
+        const { data } = await
+            axios.get(`https://eventeasyau.azurewebsites.net/api/eventservice/getservicesbyevent/${eventId}`);
+        console.log(data)
+        return data.$values
+    }
+
+    useEffect(() => {
+        getServices().then((eventService) => setEventService(eventService))
+    }, []);
+
+    return (
         <div>
-            <Header/> 
+            <Navbar />
             <div className="checkout">
-                    <div className="itemContainer">
-                        <h1>CHECK OUT</h1>
-                        <h2>EVENT NAME: HOT STAR</h2>
-                        <h2>EVENT TYPE</h2>
-                        <h2>DATE 19/08/2022</h2>
-                        <div className="serList">
-                           
-                            <div className="service">
-                                <div className="sname">
-                                    <h2>Service Name service name</h2>
-                                    <button>remove</button>
-                                </div>
-                                <div className="select">
-                                    <h2>Selections selection name</h2>
-                                    <button>remove</button>
-                                </div>
-                            </div>
-                           
-                        </div>
+                <div className="itemContainer">
+                    <h1 style={{ padding: '1rem' }}>CHECK OUT</h1>
+
+                    <h2 style={{ marginLeft: '1rem' }}>EVENT NAME: Corporate Feast</h2>
+                    <h4 style={{ marginLeft: '1rem' }}>event type: Corporate function</h4>
+                    <h2 style={{ marginLeft: '1rem' }}>DATE: 19/08/2022</h2>
+
+                    <div className="serList">
+
+                        {
+                            eventService.map((ele, index) => {
+                                return (
+                                    <div className="service" key={index}>
+                                        <div className="icon">
+                                        </div>
+                                        <div className="left">
+                                            <h2 className="sname">Service Name {ele.services.serviceName}</h2>
+                                            <div className="detail">
+                                                <h3>Order Period: {ele.services.startTime}-{ele.services.endTime} </h3>
+                                                <h3>  Quantity: 1</h3>
+                                                <h3>Price: {ele.services.price}</h3>
+                                                <button>remove</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                )
+                            })
+                        }
+
                     </div>
-           
-                       <PayPalScriptProvider options={{ "client-id": "test" }}>
-                        <PayPalButtons 
+                </div>
+                <div className="paypalContainer">
+                    <PayPalScriptProvider>
+                        <PayPalButtons
                             createOrder={(data, actions) => {
                                 return actions.order.create({
                                     purchase_units: [
                                         {
                                             amount: {
-                                                value: "100",
+                                                value: `${eventId}`,
                                             },
                                         },
                                     ],
@@ -49,12 +80,12 @@ return (
                                 });
                             }}
                         />
-                    </PayPalScriptProvider> 
-                    
-                   
+                    </PayPalScriptProvider>
+                </div>
+
             </div>
-            <Footer/>
+            <Footer />
         </div>
-        )
+    )
 }
 export default CheckOut;

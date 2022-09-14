@@ -6,22 +6,16 @@ class Slider extends React.Component{
     constructor(props){
         super(props)
         this.state={menus:[
-            {name:'Event',id:'1',linkUrl:'/dashboard/service'},
-            
-            {name:'Booking Requests',id:'3',
-                    linkUrl:"/dashboard/booking"}
+            {name:'Services',id:'1',linkUrl:'/dashboard/service'},
+            {name:'Event',id:'3',linkUrl:'/dashboard/event' }
         ]}
     }
     onRenderMenu=(menus)=>{
         if(sessionStorage.getItem('access')==1)
         {
             this.state.menus.push({
-                name:'Members',id:'2',
-                children:[{name:"Users",id:'21',
-                    linkUrl:"/dashboard/member/user"
-                },{name:"Merchants",id:'22',
-                    linkUrl:"/dashboard/member/merchant"},]
-                
+                name:'Users',id:'2', 
+                linkUrl:"/dashboard/member/user"
             })
         }
         return menus.map(menu=>{

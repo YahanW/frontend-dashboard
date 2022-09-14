@@ -25,17 +25,17 @@ function Customer() {
       style={{marginLeft:"14vw"}}>
         <ThreeDots color="#00BFFF" height={80} width={80} />
       </div>
-      
-        
+            
     );}
 	const submitHandler = e =>{
 		e.preventDefault()
     trackPromise(
-		axios.post("https://eventeasynew.azurewebsites.net/api/user/create",details)
+		axios.post("https://eventeasyau.azurewebsites.net/api/user/create",details)
 		.then(response => {
       console.log(response)
       sessionStorage.setItem('id',response.data.userId)
-			
+			sessionStorage.setItem('username',response.data.userName);
+			sessionStorage.setItem('access',response.data.accessNumber);
 			Modal.confirm({
 				//a pop up window
 				icon:<CheckOutlined />,

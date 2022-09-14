@@ -30,17 +30,11 @@ function Footer() {
                         specials, tips and general info
                     </p>
                 </section>
-                <section class='social-media'>
-                    <div class='social-media-wrap'>
-                        <div class='footer-logo'>
-                            <Link to='/' className='social-logo'>
-                                EventEasy
-                                <i class='fab fa-typo3' />
-                            </Link>
-                        </div>
-                        <small class='website-rights'>EventEasy © 2022</small>
-                  
-                    </div>
+                <section class='copyright'>
+                    <Link to='/' className='homeLink'>
+                        EventEasy
+                    </Link>
+                    <small class='website-rights'>EventEasy © 2022</small>
                 </section>
                 </div>
                 <div className='right'>

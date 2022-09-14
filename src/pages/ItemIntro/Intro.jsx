@@ -1,17 +1,31 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import './Intro.css';
 import { Divider } from 'antd';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import { render } from 'react-dom';
 
 export default function Intro() {
-
+  const [details,setDetails] = useState([]);
   const {serviceId} = useParams();
-  
+  const getDetail = async ()=>{
+    const {data} = await axios.get(`https://eventeasyau.azurewebsites.net/api/services/getservices/${serviceId}`)
+    setDetails(data);
+  }
+
+
+
+
+  useEffect(()=>{
+    getDetail();
+  },[])
   return (
     <div className='intro-box'>
      <div className='img-slice'>
-      <h2>Wedding Packages</h2>
-      <div className='imgs'>
+
+      <h2>
+          {details.eventType==0?'Wedding&Engagement':(details.eventType==1?'Birthday&Private':'Corporate Functions')} Packages</h2>
+      <div className='imgs' style={{backgroundImage:`url(https://www.weddinggownpreservationkit.com/images/zoom-wedding/thumbs/zoom-enchanted-forest-wedding-background-tmb.jpg)`}}>
         <div className='img-sub'>
 
         </div>
