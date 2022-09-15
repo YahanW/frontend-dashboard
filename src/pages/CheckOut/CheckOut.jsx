@@ -51,6 +51,7 @@ function CheckOut() {
 
                         {
                             eventService.map((ele, index) => {
+                                price += ele.services.price;
                                 return (
                                     <div className="service" key={index}>
                                         <div className="icon">
@@ -60,7 +61,7 @@ function CheckOut() {
                                             <div className="detail">
                                                 <h3>  Quantity: 1</h3>
                                                 <h3>Price: {ele.services.price!=null?ele.services.price:"N/A"}</h3>
-                                                {price += ele.services.price}
+                                            
                                                 {/* <button>remove</button> */}
                                             </div>
                                         </div>
