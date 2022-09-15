@@ -43,9 +43,9 @@ function CheckOut() {
                 <div className="itemContainer">
                     <h1 style={{ padding: '1rem' }}>CHECK OUT</h1>
 
-                    <h2 style={{ marginLeft: '1rem' }}>EVENT NAME: {event.eventName}</h2>
-                    <h2 style={{ marginLeft: '1rem' }}>EVENT TYPE: {eventType[event.eventType]}</h2>
-                    <h4 style={{ marginLeft: '1rem' }}>DATE: {event.startTime} - {event.endTime}</h4>
+                    <h1 style={{ marginLeft: '1rem' }}>EVENT NAME: {event.eventName}</h1>
+                    <h1 style={{ marginLeft: '1rem' }}>EVENT TYPE: {eventType[event.eventType]}</h1>
+                    <h3 style={{ marginLeft: '1rem' }}>DATE & TIME: {event.startTime} - {event.endTime}</h3>
 
                     <div className="serList">
 
@@ -57,9 +57,9 @@ function CheckOut() {
                                         <div className="icon">
                                         </div>
                                         <div className="left">
-                                            <h2 className="sname">Service Name {ele.services.serviceName}</h2>
+                                            <h2 className="sname">{ele.services.serviceName}</h2>
                                             <div className="detail">
-                                                <h3>  Quantity: 1</h3>
+                                                {/* <h3>  Quantity: 1</h3> */}
                                                 <h3>Price: {ele.services.price!=null?ele.services.price:"N/A"}</h3>
                                             
                                                 {/* <button>remove</button> */}
@@ -72,11 +72,11 @@ function CheckOut() {
                         }
 
                     </div>
+                </div>
+                <div className="paypalContainer">
                     <div className="totalPrice">
                         <h2>Total: ${price} USD</h2>
                     </div>
-                </div>
-                <div className="paypalContainer">
                     <PayPalScriptProvider>
                         <PayPalButtons
                             createOrder={(data, actions) => {
