@@ -4,6 +4,25 @@
             "route": "/profile",
             "redirect": "/profile",
             "statusCode": 301
-        }
+        },
+        {
+            "route": "/dashboard",
+            "serve": "/dashboard",
+            "statusCode":200
+        },
+        {
+            "route": "/service",
+            "serve": "./src/pages/Home/HomeService.jsx",
+            "statusCode":200
+        },
+        {
+            "route":"/login",
+            "rewrite":"./src/pages/Login/LoginForm.jsx"
+        },
+        {
+            "route": "/test",
+            "redirect": "./src/Test/Test.jsx",
+            "statusCode": 301
+        },
     ]
 }
