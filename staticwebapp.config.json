@@ -4,6 +4,15 @@
             "route": "/profile",
             "redirect": "/profile",
             "statusCode": 301
+        },
+        {
+            "route": "/dashboard",
+            "serve": "/dashboard",
+            "statusCode":200
+        },
+        {
+            "route":"/login",
+            "rewrite":"/src/pages/Login/LoginForm.jsx"
         }
     ]
 }
