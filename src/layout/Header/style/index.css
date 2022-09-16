@@ -1,0 +1,331 @@
+:root{
+    /* define variable at root in case of later using */
+    --background-color:#000000;
+}
+
+/*overall header*/
+.m-header-b{
+    background-color: var(--background-color);
+    text-align: center;
+    position: sticky;
+    width: 100vw;
+    position: sticky;
+    top: 0;
+    height: 10vh;
+    z-index: 1;
+}
+/*use to change location*/
+.location{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.location a{
+    margin-left: 15px;
+    color:#ffffff;
+}
+/* four entries*/
+.trolley{
+    position: absolute;
+    text-align: left;
+    top: 100%;
+    left:0;
+    background:var(--background-color);
+    width: 100%;
+    /* fancy way to appear  */
+    transform: scale(1,0);
+    transform-origin: top ;
+    transition:transform 400ms ease-in-out;
+}
+.trolley ul{
+    margin:0;
+    list-style: none;
+    
+}
+ .trolley li{
+    padding-top: .75rem;
+    height: 7vh;
+    
+}
+.trolley li:hover{
+   
+    background-color: aqua;
+}
+.trolley Link{  
+    /* remove a tag feature */
+    text-decoration: none;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    opacity: 0; /*default does't appear*/
+    transition: opacity 150ms ease-in-out; /*last one is animation delay*/
+}
+.nav-links .tro-item{
+    color: #ffffff;
+}
+
+ .ant-modal-header{
+    background-color: aquamarine;
+}
+.shop-list .ant-modal-body{
+    background-color: #efefef;
+}
+.shop-list .ant-modal-body,.shop-list .ant-modal-header{
+   
+    /* width: 65vw; */
+    box-shadow: 5px 10px #b390cd51;
+    /* margin-left: -10vw; */
+    border: rgb(78, 68, 68) solid 1px;
+}
+/*trolley modal*/
+.shop-list ul{
+    list-style: none;
+    height: 45vh; /*height at here, width at modal itself*/
+    /* width: 60vw; */
+   overflow-y:scroll;
+   background-color: white;
+   display: flex;
+   justify-content: start;
+   align-items: center;
+   flex-direction: column;
+}
+.shop-list li{
+    margin-bottom: 1rem;
+    display: flex;
+   width: 50VW;
+    height: 15vh;
+    border: 2px solid #efefef;
+    border-radius: 5px;
+    cursor: pointer;
+
+   
+    
+}
+.shop-list li .avatar{
+    width: 25%;
+    background-image: url('https://images.squarespace-cdn.com/content/v1/585a6e76b3db2b19a94d4553/706b772c-47e0-46ce-b302-9cd9032f9087/IMG-2353.jpg');
+    background-size: cover;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+}
+.shop-list li .left{
+    padding: 10px;
+    width: 20vw;
+    height: 100%;
+
+}
+.shop-list li .right{
+    display: flex;
+    justify-content: space-evenly;
+    width: 25vw;
+    background-color: white;
+    margin-left: 2vw;
+    z-index: 0;
+}
+.shop-list li .right button{
+    width: 10vw;
+    height: 5vh;
+    margin-top: 4vh;
+background-color: rgb(45, 164, 204);
+}
+
+
+.shop-list li .left h3{
+    height: 5vh;
+    font-size: 1.5rem;
+    font-weight:400;
+    overflow:hidden;
+    width: 185px;
+}
+
+.service-list ul {
+    list-style: none;
+    height: 45vh;
+    /*height at here, width at modal itself*/
+}
+
+.service-list li {
+    margin-bottom: 1rem;
+    display: flex;
+    /* width: 30vw; */
+    height: 15vh;
+    border: 2px solid #efefef;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.service-list li .avatar {
+    width: 130px;
+    background-image: url('https://images.squarespace-cdn.com/content/v1/585a6e76b3db2b19a94d4553/706b772c-47e0-46ce-b302-9cd9032f9087/IMG-2353.jpg');
+    background-size: cover;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+}
+
+.service-list li .left {
+    padding: 10px;
+    width: 20vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.service-list li .right button {
+    width: 7vw;
+    height: 5vh;
+    margin-top: 4vh;
+    margin-left:6vw;
+}
+
+.service-list li .left h3 {
+    height: 8vh;
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+.service-list li .left h4{
+    display: flex ;
+}
+.service-list li .left h4 :last-child {
+    
+    margin-left: 5vw;
+    
+}
+
+.shop-list .ant-modal-header{
+    background-color: rgb(203, 203, 203);
+ }
+.shop-list .ant-modal-title{
+    font-size: 1.7rem;
+    font-weight: 470;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.service-list .ant-modal-header{
+   background-color: rgb(203, 203, 203);
+}
+.service-list .ant-modal-title{
+    font-size: 2rem;
+    font-weight: 470;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.tro-name{
+    position:absolute;
+    right: 20vw;
+}
+.nav-toggle:checked ~ .trolley{
+    /* ~ first sibling, doesn't have to be immediatelt after */
+    display: block;
+    transform: scale(1,1);  /*control lenght width */
+}
+.nav-toggle:checked ~ .trolley Link{
+    /* ~ first sibling, doesn't have to be immediatelt after */
+   opacity: 1;
+   transition: opacity 250ms ease-in-out 250ms; /*last one is animation delay*/
+}
+.nav-toggle{
+    display: none;
+}
+.nav-toggle-label{
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: 1em;
+    /* center items by following three */
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after{
+    display: block;
+    background-color: aliceblue;
+    height: 2px;
+    width: 2em;
+    border-radius: 2px;
+    position:relative;
+    cursor: pointer;
+}
+
+.nav-toggle-label span::before,
+.nav-toggle-label span::after{
+    content: '';
+    position: absolute;
+   
+}
+
+.nav-toggle-label span::before{
+    bottom:7px;
+}
+.nav-toggle-label span::after{
+    top:7px;
+}
+.chatBox .ant-modal-content{
+    height: 100%;
+    margin-top: 12vh;
+    width: 40vw;
+    margin-left: 10vw;
+    display: flex;
+    flex-direction: column;
+    min-width: 370px;
+ }
+ 
+@media screen and (min-width:790px){
+    .nav-toggle-label{
+        display: none;
+    }
+    .m-header-b{
+        display: grid;
+        grid-template-columns: 1fr auto minmax(600px,1fr) 1fr; /*setting 4 columns*/
+    }
+    .m-header-b .location{
+        grid-column: 1 / 3;
+    }
+    .m-header-b .trolley{
+        grid-column: 2 / 3;
+        all:unset;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+    .m-header-b .trolley ul{
+        display: flex;
+        justify-content:flex-end;
+    }
+    .m-header-b .trolley Link{
+        opacity: 1;
+        position: relative;
+    }
+    .m-header-b .trolley Link::before{
+        content: '';
+        display: block;
+        height: 5px;
+        background-color: #000;
+        position: absolute;
+        top: -.75em; /*alternarive: bottom:-.75em*/
+        left: 0;right: 0;
+        transform: scale(0,1);
+        /* transform-origin:left ; grow from left */
+        transition:transform ease-in-out 250ms;
+    }
+    .m-header-b .trolley Link:hover::before{
+        transform: scale(1,1);
+    }
+    .m-header-b .trolley li{
+        margin-left: 3em;
+        margin-bottom: 0;
+    }
+    .m-header-b .chatBox .ant-modal-content{
+        width: 30vw;
+        margin-left: 33vw;
+     }
+     
+} 

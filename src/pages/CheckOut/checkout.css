@@ -1,0 +1,57 @@
+.checkout{
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    height: auto;
+}
+.checkout .itemContainer{
+    width: 55%;
+    height: 80vh;
+    margin-left: 5%;
+}
+.paypalContainer{
+    width: 35%;
+    height: 20vh;
+    padding: 5vh;
+    position: absolute;
+    top: 25vh;
+    right: 5vh;
+    /* display: flex; */
+
+}
+.itemContainer .itemTitle{
+    height: 30px;
+}
+.serList{
+    padding-left: 1rem;padding-right: 1rem;
+    display: flex;
+    flex-direction: column;
+    height: 50%;
+    overflow-y: scroll;
+}
+.serList .service{
+    width: 75%;
+    margin-bottom: 1vh;
+    height: auto;
+    display: flex;
+    margin-top: 2vh;
+}
+.service .icon{
+    width: 20%;
+    height: 15vh;
+    background-image: url("https://images.unsplash.com/photo-1660866838629-8ababef9dab8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80");
+    background-size: cover;
+}
+.service .left{
+    width: 80%;
+    margin-left: 2%;
+    align-self: center;
+}
+
+.service .left .detail{
+   display: flex;
+   margin-top: 10%;
+}
+.service .left .detail h3{
+    margin-right: 1vw;
+ }

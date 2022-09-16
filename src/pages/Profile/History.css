@@ -1,0 +1,58 @@
+.history-book{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: white;
+}
+.history-book .history-title{
+    padding-left: 41.5vw;
+    margin-bottom: 3vh;
+    padding-top: 2vh;
+}
+.slide-show{
+    width: 70vw;
+    margin-left: 15vw;
+}
+.Details{
+    margin-top: 3vh;
+    height: 40vh;
+    display: flex;
+    justify-content: center;
+    
+}
+.Details .detail{
+    height: 85%;
+    width: 25%;
+    margin: 1vw;
+    padding-left: 9%;
+}
+.history-book button{
+    z-index: 15;
+    margin-top: -10.5vh;
+    width: 15vw;
+    height: 10vh;
+    margin-left: 75vw;
+    font-size: 1rem;
+    border:none;
+}
+#bk-cancel{
+    background-color: brown;
+   
+   
+}
+#bk-review{
+    background-color:rgb(196, 139, 48);
+}
+.bookLink{
+    color: white;
+}
+.detail h2{
+    font-size: 1.4rem;
+}
+
+@media screen and (max-width:800px){
+    .history-book .history-title{
+        padding-left: 25.5vw;
+       
+    }
+}
