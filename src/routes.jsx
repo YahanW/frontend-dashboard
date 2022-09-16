@@ -53,9 +53,8 @@ export default(
 
             <Route path='/profile' element={<Profile/>}> 
                 <Route index element={<Booking/>}/>
-                <Route path='/profile/personal' element={<Personals/>}/>
             </Route>
-            
+            <Route path='/profile/personal' element={<Personals/>}/>
             <Route path='/profile/booking/details' element={<BookHsitory/>}/>
             <Route path='/profile/booking/review' element={<MakeReview/>}/>
             <Route path='/profile/booking/cancel' element={<CancelEvent/>}/>
