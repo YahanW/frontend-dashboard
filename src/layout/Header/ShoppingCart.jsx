@@ -13,6 +13,22 @@ export default function ShoppingCart() {
   const CancelService = () => { setServiceVisible(false); };
   const [sends,setSends] = useState({bookingStatus:1});
   const [init,setInit] = useState({bookingStatus:0});
+  const sType = ["Venue",
+                  "Food",
+                  "Beverage",
+                  "Entertainment",
+                  "Florist",
+                  "Photographer",
+                  "Power",
+                  "Network",
+                  "Music",
+                  "Security",
+                  "Restroom",
+                  "CarPark",
+                  "Waiter",
+                  "Transport",
+                  "Taxi",
+                  "Firework"];
   const sentRequest = (ele) => {
     axios.get(`https://eventeasyau.azurewebsites.net/api/user/sendmail/${ele.staffId}`)
     .then(axios.put(`https://eventeasyau.azurewebsites.net/api/event/update/${ele.eventId}`,sends))
@@ -48,7 +64,7 @@ export default function ShoppingCart() {
     axios.get(`https://eventeasyau.azurewebsites.net/api/eventservice/getservicesbyevent/${eventId}`)
       .then(data => {
         setEventServices(data.data.$values);
-        //console.log(data.data.$values);
+        console.log(data.data.$values);
       }).catch(err => {
         console.log(err)
       })
@@ -92,7 +108,7 @@ export default function ShoppingCart() {
     <div className='nav-links'  onClick={()=>{getEvents()}}>
       <a onClick={showModalCheck} className="tro-item">Shopping Cart</a>
       <div className="cartSection">
-        <Modal title="EVENT TROLLEY" mask={false} width={600}
+        <Modal title="EVENT TROLLEY" mask={false} width={950}
           visible={isModalVisible} footer={false} onCancel={CancelCheck}
           className="shop-list"
         >
@@ -101,14 +117,14 @@ export default function ShoppingCart() {
               events.map((ele, index) => {
                 // if(ele.status==0||ele.status==1||ele.status==2||ele.status==3){
                 return (
-                  <li>
+                  <li >
                     <div className='avatar' onClick={() => { getEventServices(ele.eventId); setServiceVisible(true); }}>
                       Services
                     </div>
                     <div className='left'>
-                      <h3>{ele.eventName}</h3>
-                      <h5>{ele.staff}</h5>
-                      <h4 style={{ color: ele.bookingStatus == 2 ? '#B5FFD9' : 'red' }}>
+                      <h3 onClick={() => { getEventServices(ele.eventId); setServiceVisible(true); }}>{ele.eventName}</h3>
+                      {/* <h5>{ele.staff}</h5> */}
+                      <h4 style={{ color: ele.bookingStatus == 2 ? 'green' : 'red' }}>
                         {
                           renderSwitch(ele.bookingStatus)
                         }
@@ -131,18 +147,19 @@ export default function ShoppingCart() {
         </Modal>
 
 
-        <Modal title="Services" width={600}
+        <Modal title="Services" width={850}
           visible={isServiceVisible} footer={false} onCancel={CancelService}
           className="service-list">
           <ul>
             {
-              eventServices ?
+              eventServices.length!==0 ?
                 eventServices.map((ele, index) => {
                   return (
                     <li><div className='avatar'></div>
                       <div className='left'>
-                        <h3>Service Name</h3>
-                        <h4>{ele.servicesId}</h4>
+                        <h3>{ele.services.serviceName}</h3>
+                        <h4>{sType[ele.services.serviceType]}</h4>
+                        <h4>Price: ${ele.services.price}</h4>
                       </div>
                       <div className='right'>
                         <button>Remove</button>
@@ -150,7 +167,16 @@ export default function ShoppingCart() {
                     </li>
                   )
                 })
-                : ''
+                :  
+                // 请在这里写一个path, 引导用户到service列表
+                  <li className="addService">
+                    <div>
+                        <h2>You have no services in your cart</h2><br/>
+                    </div>
+                    <div>
+                        <Link to="/result/empty">Click here to browse services</Link>
+                    </div>
+                  </li>
             }
           </ul>
         </Modal>

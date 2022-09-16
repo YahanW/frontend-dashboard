@@ -15,7 +15,7 @@ function CheckOut() {
     const [event, setEvent] = useState([]);
     const eventType = ["Wedding","Birthday", "Business Function"];
     var price = 0;
-
+    
     const getServices = () => {
             axios.get(`https://eventeasyau.azurewebsites.net/api/eventservice/getservicesbyevent/${eventId}`)
                 .then(response => {
@@ -60,7 +60,7 @@ function CheckOut() {
                                             <h2 className="sname">{ele.services.serviceName}</h2>
                                             <div className="detail">
                                                 {/* <h3>  Quantity: 1</h3> */}
-                                                <h3>Price: {ele.services.price!=null?ele.services.price:"N/A"}</h3>
+                                                <h3>Price: ${ele.services.price!=null?ele.services.price:"N/A"}</h3>
                                             
                                                 {/* <button>remove</button> */}
                                             </div>
@@ -75,17 +75,18 @@ function CheckOut() {
                 </div>
                 <div className="paypalContainer">
                     <div className="totalPrice">
-                        <h2>Total: ${price} USD</h2>
+                        <h2>Total: ${`${price}`} AUD</h2>
                     </div>
-                    <PayPalScriptProvider>
+                    <PayPalScriptProvider options={{currency:"AUD","client-id": "test",}}>
                         <PayPalButtons
                             createOrder={(data, actions) => {
                                 return actions.order.create({
                                     purchase_units: [
                                         {
                                             amount: {
-                                                value: `${eventId}`,
-                                            },
+                                                value: price,
+                                                
+                                            } 
                                         },
                                     ],
                                 });
