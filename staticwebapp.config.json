@@ -12,7 +12,26 @@
         },
         {
             "route":"/login",
-            "rewrite":"./src/pages/Login/LoginForm.jsx"
+            "allowedRoles": ["anonymous"]
         }
-    ]
+    ],
+      "navigationFallback": {
+    "rewrite": "index.html",
+    "exclude": ["/images/*.{png,jpg,gif}", "/css/*"]
+  },
+  "responseOverrides": {
+    "400": {
+      "rewrite": "/"
+    },
+    "401": {
+      "redirect": "/login",
+      "statusCode": 302
+    },
+    "403": {
+      "rewrite": "/"
+    },
+    "404": {
+      "rewrite": "/index.html"
+    }
+  },
 }
