@@ -70,6 +70,7 @@ export default(
 
             <Route path='/result/'>
                 <Route path=':servicesId'  element={<Result/>}/>
+                <Route path='empty'  element={<Result/>}/>
             </Route>
 
             <Route path='/result/details/:serviceId' element={<ItemIntro/>}>
