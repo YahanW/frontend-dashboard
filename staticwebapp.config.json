@@ -12,7 +12,7 @@
         },
         {
             "route":"/login",
-            "rewrite":"/src/pages/Login/LoginForm.jsx"
+            "rewrite":"./src/pages/Login/LoginForm.jsx"
         }
     ]
 }
