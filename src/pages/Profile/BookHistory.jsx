@@ -1,11 +1,26 @@
-import React,{useState} from "react";
-import Header from "../../layout/Header";
+import React,{useState,useEffect} from "react";
 import './History.css';
-import {Carousel,Radio} from 'antd';
-import {Link} from 'react-router-dom';
+import {Carousel} from 'antd';
+import {Link,useParams} from 'react-router-dom';
 import Navbar from "../Home/homes/Navbar";
+import axios from "axios";
 
 function BookHsitory(){
+    const {eventId} = useParams();
+    const [eventService,setEventServices] = useState([]);
+    const getEventServices = (eventId) => {
+        axios.get(`https://eventeasyau.azurewebsites.net/api/eventservice/getservicesbyevent/${eventId}`)
+          .then(data => {
+            setEventServices(data.data.$values);
+            console.log(data.data.$values);
+          }).catch(err => {
+            console.log(err)
+          })
+      }
+    useEffect(()=>{
+        getEventServices(eventId);
+    },[])
+
     const images = [{
         id:1,
         source:"https://images.pexels.com/photos/302743/pexels-photo-302743.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
@@ -29,10 +44,24 @@ function BookHsitory(){
         <div>
             <Navbar/>
            <div className="history-book">
-            <div className="history-title">
-                <h1>KID BIRTHDAY PARTY</h1>
-                <h3>October 16,2022 9:00 AM - 7:00 PM</h3>
-            </div>   
+           
+           
+                
+
+                {
+                    eventService?
+                    eventService.map((ele,index)=>{
+                        return (
+                            <div className="history-title">
+                                <h1>{ele.services.serviceName}</h1>
+                                <h3>October 16,2022 9:00 AM - 7:00 PM</h3>
+                            </div>   
+                        )
+                    }):''
+                }
+
+                
+            
       <Carousel className="slide-show" autoplay dots={'false'}>
 
       {

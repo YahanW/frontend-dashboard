@@ -10,6 +10,19 @@ function Booking(){
     console.log(data.$values);
     
   }
+  const renderSwitch = (parameter) => {
+    switch (parameter) {
+      case 0: return "Created"; break;  
+      case 1: return "Sent"; break;     
+      case 2: return "Accepted"; break; 
+      case 3: return "Rejected"; break; 
+      case 4: return "Cancelled"; break;
+      case 5: return "AwaitPaid"; break;
+      case 6: return "Paid"; break;     
+      case 7: return "Completed"; break;
+      default: break;
+    }
+  }
   useEffect(()=>{
     getHistory();
   },[])
@@ -17,16 +30,17 @@ function Booking(){
       <div className='BookList'>
         {
           history.map((ele,index)=>{
-            return (
-              <div className='booking'>
+           if(ele.bookingStatus===7){
+              return (
+              <div className='booking' key={index}>
               <Link className='book-link' to={`/profile/booking/details/${ele.eventId}`}>
                 <h2>{ele.eventName}</h2>
-                <h3>{ele.bookingStatus}</h3>
+                <h3>{renderSwitch(ele.bookingStatus)}</h3>
                 <h4>{ele.endTime}</h4>
                 <h4>Ochre Medical Centre Hobart</h4>
               </Link>
             </div>
-            )
+            )}
           })
         }
        

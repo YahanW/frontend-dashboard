@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Modal,Form,Input,Select,InputNumber,Dropdown,Radio,Space,Pagination, message} from 'antd';
-import { Icons } from '../../../commons';
-import _ from 'lodash';
+import { Modal,Form,Input,Select,InputNumber, message} from 'antd';
 import axios from 'axios';
 class ModalForm extends Component {
 
@@ -27,31 +25,6 @@ layout={
     wrapperCol:{span:250}
 }
 
-// onTyping = (e) =>{
-//     let {value} = e.target  //event was dispatched
-//     value=_.trim(value) //remove space
-//     const tempIcons=[] //store the matched Icons
-
-//     if(value){ //non empty
-//         Icons.map(item=>{
-//             //convert all text lowercase
-//             if(_.lowerCase(item.name).indexOf(_.lowerCase(value))!==-1){ //keyword matching
-//                 tempIcons.push(item) //push to temp
-//             }
-//         })
-//         this.setState({icons:value,allIcons:tempIcons,currentIcons:tempIcons.slice(0,10)})
-//         //update displayed Icons
-//         return
-//     }
-//     this.setState({icons:value,allIcons:Icons,currentIcons:Icons.slice(0,10)})
-// }
-
-// onSelected=(e)=>{
-//     const {value}=e.target   //get select Icons value
-//     this.setState({icons:value}) //passing icons icon value
-//     //manually set input
-//     this.formRef.current.setFieldsValue({icons:value})  //forminstance
-// }
 componentDidMount(){
     this.formRef.current.setFieldsValue(this.props.data)  //forminstance
     // this.setState({icons:this.props.data.icons})
@@ -62,7 +35,7 @@ componentDidMount(){
 onSave=(values)=>{
     console.log(values)
     
-    if(this.props.title=='Add Service')
+    if(this.props.title==='Add Service')
     {
         axios.post(`https://eventeasyau.azurewebsites.net/api/services/create/`,values)
         .then(response=>{
@@ -91,8 +64,8 @@ onSave=(values)=>{
 }
 
 render() {
-    const readOnly=this.props.title=='Details'?true:false
-    const isvisable=this.props.title=='Add Service'?false:true
+    const readOnly=this.props.title==='Details'?true:false
+    //const isvisable=this.props.title==='Add Service'?false:true
     
     return (
     <Modal visible width={600} title={this.props.title}
@@ -123,7 +96,7 @@ render() {
                 <Input/>
             </Form.Item>
             <Form.Item label="Service Type" name='serviceType' 
-            onChange={()=>{ this.formRef.current.getFieldValue("serviceType")==0?this.setState({isVenue:true}):this.setState({isVenue:false}) }}
+            onChange={()=>{ this.formRef.current.getFieldValue("serviceType")===0?this.setState({isVenue:true}):this.setState({isVenue:false}) }}
                 rules={[{required:true,message: 'Please select your Service type!'}]}>
                 <Select>
                     <Select.Option value={0}>Venue</Select.Option>
@@ -155,10 +128,10 @@ render() {
                 <InputNumber/>
             </Form.Item>
             <Form.Item label="Merchant ID" name='merchantId' >
-                <Input disabled={sessionStorage.getItem('access')==1?false:true}/>
+                <Input disabled={sessionStorage.getItem('access')===1?false:true}/>
             </Form.Item>
             <Form.Item label="Merchant Name" name='introduction' >
-                <Input disabled={sessionStorage.getItem('access')==1?false:true}/>
+                <Input disabled={sessionStorage.getItem('access')===1?false:true}/>
             </Form.Item>
             <Form.Item label="Standing Capacity" name='standing' 
                 rules={[{required:this.state.isVenue,message: 'Please input Standing number'}]}>
@@ -174,37 +147,6 @@ render() {
             <Form.Item label="Location" name='location'>
                 <Input/>
             </Form.Item>
-           
-            
-            {/**Icons */}
-{/* 
-            <Form.Item label='Icons' name='icons' rules={[{required:true,message: 'Please select your Icon!'}]}> 
-                <Dropdown 
-                    trigger={['click']} 
-                    overlayStyle={{background:'#fff',padding:10}}
-                    overlay={ 
-                    <> 
-                        <Radio.Group onChange={this.onSelected}>
-                            <Space direction='vertical'>
-                            {this.state.currentIcons.map(item=>{
-                                return <Radio value={item.name}>
-                                    {React.createElement(item.renderDf)}    
-                                    <span style={{margin:5}}>{item.name}</span>
-                                </Radio>
-                            })}
-                            </Space>
-                        </Radio.Group>
-
-                        <div style={{textAlign:'right',padding:10}}>
-                            <Pagination showSizeChanger={false} size="small" total={this.state.allIcons.length}
-                            onChange={(page,pageSize)=>this.setState({
-                                currentIcons:this.state.allIcons.slice(pageSize*(page-1),pageSize*page)})}
-                            />
-                        </div>
-
-                    </>}> 
-                </Dropdown>
-            </Form.Item> */}
 
         </Form>
 
