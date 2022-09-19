@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Panel } from '../../../commons';
-import { Card, Form, Input, Button, Table, Space, Avatar, Modal, message } from 'antd';
+import { Card, Form, Button, Table, Space, Avatar, Modal, message } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { connect } from 'react-redux';
 import ModalUser from './ModalUser';
 import LevelModal from './LevelModal';
 import axios from 'axios';
 import { usePromiseTracker } from 'react-promise-tracker';
-import { ThreeDots } from 'react-loader-spinner';
-
+import { Puff } from 'react-loader-spinner';
+import { trackPromise } from 'react-promise-tracker';
 
 class User extends Component {
     constructor(props) {
@@ -17,21 +17,24 @@ class User extends Component {
             dataSource: [],
         }
     }
+    LoadingIndicator = () => {
+        const { promiseInProgress } = usePromiseTracker();
+        return (
+          promiseInProgress &&<div
+          style={{marginLeft:"14vw"}}>
+            <Puff color="#00BFFF" height={80} width={800} />
+          </div>
+        );}
     componentDidMount() {
         this.onGetUsers()  //fetching users once upon the element are rendered
     }
     onGetUsers = () => {
-
+        trackPromise(
         axios.get("https://eventeasyau.azurewebsites.net/api/user/getactiveuser")
             .then(data => {
                 this.setState({ dataSource: data.data.$values })
-            })
+            }))
     }
-
-    // onSearch=(values)=>{
-    //     this.setState({filters:values})
-    //     this.onGetUsers(values)
-    // }
 
     onAddUser = () => {
         this.props.dispatch({
@@ -44,7 +47,6 @@ class User extends Component {
         })
     }
     onView = (record) => {
-        //console.log(record)
         return () => {
             this.props.dispatch({
                 type: 'show',
@@ -91,10 +93,11 @@ class User extends Component {
         }
     }
     onSearch = (name) => {
+        trackPromise(
         axios.get(`https://eventeasyau.azurewebsites.net/api/user/searchuserbyname/${name}`)
             .then(data => {
                 this.setState({ dataSource: data.data.$values })
-            })
+            }))
     }
     onLeverage = (record) => {
         return () => {
@@ -138,7 +141,7 @@ class User extends Component {
                 title: "Access",
                 dataIndex: 'accessNumber',
                 render: (record) => {
-                    return record == 3 ? 'Merchant' : (record == 5 ? 'Customer' : record == 1 ? 'Admin' : 'Something Wrong')
+                    return record === 3 ? 'Merchant' : (record === 5 ? 'Customer' : record === 1 ? 'Admin' : 'Something Wrong')
                 }
             },
             {
@@ -176,7 +179,7 @@ class User extends Component {
 
                     <Table loading='true' className='table' {...this.layoutUserTable()} />
 
-
+                    <this.LoadingIndicator/>
                 </Card>
                 {userModal && <ModalUser {...userModal} {...this.props} />} {/**passing dispatch by props since it is in props */}
                 {levelModal && <LevelModal {...levelModal} {...this.props} />}
