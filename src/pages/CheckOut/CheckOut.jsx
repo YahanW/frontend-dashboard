@@ -7,6 +7,7 @@ import Footer from '../Home/homes/Footer';
 import Navbar from "../Home/homes/Navbar";
 import axios from "axios";
 import { getMouseEventOptions } from "@testing-library/user-event/dist/utils";
+import { StepForwardFilled } from "@ant-design/icons";
 
 
 function CheckOut() {
@@ -25,6 +26,14 @@ function CheckOut() {
     }
     const getEvent = () => {
         axios.get(`https://eventeasyau.azurewebsites.net/api/event/get/${eventId}`)
+            .then(response => {
+                setEvent(response.data)
+                console.log(response.data)
+            }).catch(err => { console.log(err) })
+    }
+    const setToPaid = () => {
+        
+        axios.put(`https://eventeasyau.azurewebsites.net/api/event/update/${eventId}`, {"status":6})
             .then(response => {
                 setEvent(response.data)
                 console.log(response.data)
@@ -94,6 +103,7 @@ function CheckOut() {
                             onApprove={(data, actions) => {
                                 return actions.order.capture().then((details) => {
                                     const name = details.payer.name.given_name;
+                                    setToPaid();
                                     alert(`Transaction completed by ${name}`);
                                 });
                             }}

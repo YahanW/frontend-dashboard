@@ -8,10 +8,10 @@ function HeroSection() {
   const getEventsNormal = () =>{
     let dateNow = new Date().toISOString().split("T")[0]
     if(date>=dateNow){
-      if(type!==-1&&date!==""&&number!==0&&budget!==0){
+      if(type!==-1&&date!==""&&number>>0&&budget>>0){
         history(`/venue/normal/${type}/${date}/${number}/${budget}`);
       }else{
-        message.error("please fills in the form")
+        message.error("please fills in the form with appropriate values")
       }
     }else{
       message.error("please select a date from today")
@@ -22,10 +22,10 @@ function HeroSection() {
     if (date >= dateNow)
     {
       console.log(date,number,budget,stand,seat)
-      if(date!==""&&number!==0&&budget!==0&&stand!==0&&seat!==0){
+      if(date!==""&&number>>0&&budget>>0&&stand>>0&&seat>>0){
         history(`/venue/advance/${type}/${date}/${number}/${budget}/${location}/${stand}/${seat}`);
       }else{
-        message.error("please fills in the form")
+        message.error("please fills in the form with appropriate values")
       }
     } else {
       message.error("please select a date from today")
