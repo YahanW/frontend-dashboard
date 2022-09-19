@@ -53,7 +53,7 @@ function Merchant() {
 		e.preventDefault()
     if(valid===true){
       trackPromise(
-        axios.post("https://eventeasynew.azurewebsites.net/api/user/create",details)
+        axios.post("https://eventeasyau.azurewebsites.net/api/user/create",details)
         .then(response => {
           console.log(response)
           sessionStorage.setItem('id',response.data.userId);

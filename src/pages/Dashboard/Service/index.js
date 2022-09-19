@@ -61,7 +61,7 @@ onCreate = () =>{
     data:{
       title:'Add Service',
       data:{ },
-      refreshList:this.onGetEvents  
+      refreshList:this.onGetServices 
       //passing service list so as to be used later
     }
   })

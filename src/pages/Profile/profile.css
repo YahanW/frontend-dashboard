@@ -33,7 +33,7 @@
 }
 .profile .desc {
     padding-left: 7vw;
-    padding-top: 7vh;
+    padding-top: 3.3vh;
     
 }
 .desc h2{
@@ -47,7 +47,7 @@
 }
 .navies{
     width: 90%;
-    height: 7vh;
+    height: 5vh;
     display: flex;
     flex-direction: row;
     
