@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import './checkout.css';
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import Header from "../../layout/Header";
 import Footer from '../Home/homes/Footer';
@@ -16,6 +16,7 @@ function CheckOut() {
     const [event, setEvent] = useState([]);
     const eventType = ["Wedding","Birthday", "Business Function"];
     var price = 0;
+    const history = useNavigate();
     
     const getServices = () => {
             axios.get(`https://eventeasyau.azurewebsites.net/api/eventservice/getservicesbyevent/${eventId}`)
@@ -33,7 +34,7 @@ function CheckOut() {
     }
     const setToPaid = () => {
         
-        axios.put(`https://eventeasyau.azurewebsites.net/api/event/update/${eventId}`, {"status":6})
+        axios.put(`https://eventeasyau.azurewebsites.net/api/event/update/${eventId}`, {"bookingStatus":6})
             .then(response => {
                 setEvent(response.data)
                 console.log(response.data)
@@ -52,8 +53,8 @@ function CheckOut() {
                 <div className="itemContainer">
                     <h1 style={{ padding: '1rem' }}>CHECK OUT</h1>
 
-                    <h1 style={{ marginLeft: '1rem' }}>EVENT NAME: {event.eventName}</h1>
-                    <h1 style={{ marginLeft: '1rem' }}>EVENT TYPE: {eventType[event.eventType]}</h1>
+                    <h2 style={{ marginLeft: '1rem' }}>EVENT NAME: {event.eventName}</h2>
+                    <h2 style={{ marginLeft: '1rem' }}>EVENT TYPE: {eventType[event.eventType]}</h2>
                     <h3 style={{ marginLeft: '1rem' }}>DATE & TIME: {event.startTime} - {event.endTime}</h3>
 
                     <div className="serList">
@@ -105,6 +106,7 @@ function CheckOut() {
                                     const name = details.payer.name.given_name;
                                     setToPaid();
                                     alert(`Transaction completed by ${name}`);
+                                    history("/");
                                 });
                             }}
                         />
