@@ -5,6 +5,9 @@ import { Panel } from '../../../commons';
 import { connect } from 'react-redux';
 import ModalForm from './ModalForm';
 import axios from 'axios';
+import { usePromiseTracker } from 'react-promise-tracker';
+import { Puff } from 'react-loader-spinner';
+import { trackPromise } from 'react-promise-tracker';
 
 class Service extends Component {
   constructor(props){
@@ -14,7 +17,14 @@ class Service extends Component {
   }
 }
 
-
+LoadingIndicator = () => {
+  const { promiseInProgress } = usePromiseTracker();
+  return (
+    promiseInProgress &&<div
+    style={{marginLeft:"14vw"}}>
+      <Puff color="#00BFFF" height={80} width={800} />
+    </div>
+  );}
   componentDidMount() {
       this.onGetServices();  //fetching users once upon the element are rendered
   }
@@ -22,11 +32,12 @@ class Service extends Component {
     
     // if admin then display all services
         if(sessionStorage.getItem("access") == 1) {
+          trackPromise(
         axios.get("https://eventeasyau.azurewebsites.net/api/services/getenableservices")
           .then(data => {
             console.log(data.data.$values)
             this.setState({ dataSource: data.data.$values })
-          })
+          }))
         }
         // if merchant then show only their services (getservicesbymerchant)
         // first get service by merchant ID
@@ -34,11 +45,12 @@ class Service extends Component {
         // then traverse serviceType: if serviceType==0 then (approve/reject)
     
         else if (sessionStorage.getItem("access") == 3) {
+          trackPromise(
           axios.get(`https://eventeasyau.azurewebsites.net/api/services/getservicesbymerchant/${sessionStorage.getItem("id")}`)
             .then(data => {
               console.log(data)
               this.setState({ dataSource: data.data.$values })
-            })
+            }))
         }
   }
 
@@ -201,6 +213,7 @@ getTableProps=()=>{
         <Card>
           {/**component */}
           <Table {...this.getTableProps()}/>
+          <this.LoadingIndicator/>
         </Card>
         {modalForm&&<ModalForm {...modalForm} {...this.props}/>}
       </Panel>

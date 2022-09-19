@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Panel } from '../../../commons';
 import { Card,Form,Input,Table,Space, Modal,Menu, message } from 'antd';
-import { SmileOutlined } from '@ant-design/icons';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import EventModal from './EventModal';
+import { usePromiseTracker } from 'react-promise-tracker';
+import { Puff } from 'react-loader-spinner';
+import { trackPromise } from 'react-promise-tracker';
 
 class Event extends Component {
     constructor(props){
@@ -13,24 +15,33 @@ class Event extends Component {
                 dataSource:[],
         }
     }
+    LoadingIndicator = () => {
+        const { promiseInProgress } = usePromiseTracker();
+        return (
+          promiseInProgress &&<div
+          style={{marginLeft:"14vw"}}>
+            <Puff color="#00BFFF" height={80} width={800} />
+          </div>
+        );}
     componentDidMount(){
         this.onGetEvents();  //fetching users once upon the element are rendered
     }
     onGetEvents=()=>{
         if(sessionStorage.getItem('access')==1){
+            trackPromise(
             axios.get("https://eventeasyau.azurewebsites.net/api/event/getallactiveevents")
-            //axios.get("https://eventeasyau.azurewebsites.net/api/event/getall")
             .then( data=>{
                 this.setState({dataSource:data.data.$values})
                 console.log(data.data.$values)
-            })
+            }))
         }
         if(sessionStorage.getItem('access')==3){
+            trackPromise(
             axios.get(`https://eventeasyau.azurewebsites.net/api/event/GetEventByMerc/${sessionStorage.getItem('id')}`)
             .then( data=>{
                 this.setState({dataSource:data.data.$values})
                 console.log(data.data.$values)
-            })
+            }))
         }
     }
     onView=(record)=>{
@@ -167,6 +178,7 @@ class Event extends Component {
         </Card>
         <Card>
             <Table {...this.layoutEventTable()}/>
+            <this.LoadingIndicator/>
         </Card>
         {eventModal&&<EventModal {...eventModal} {...this.props}/>} 
         {/**passing dispatch by props since it is in props */}
