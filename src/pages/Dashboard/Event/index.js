@@ -137,7 +137,8 @@ class Event extends Component {
                   case 3:return "Rejected"; break;
                   case 4:return "Cancelled"; break;
                   case 5:return "AwaitPaid"; break;
-                  case 6:return "Completed"; break;
+                  case 6:return "Paid"; break;
+                  case 7:return "Completed"; break;
                   default: break;
                 }
               }

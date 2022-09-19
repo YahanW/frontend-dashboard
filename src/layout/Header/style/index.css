@@ -329,3 +329,10 @@ background-color: rgb(45, 164, 204);
      }
      
 } 
+
+/* .loading{
+    position: absolute;
+    margin-top: 50vh;
+    margin-left:50vw;
+    z-index: 99;
+} */
