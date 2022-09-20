@@ -28,7 +28,7 @@ function Result() {
         console.log(response);
         setAvail(response.data.$values);
       }).catch(err=>{
-        message.error("Please Login before create an event")
+        message.error(err, " Please Login before create an event")
       });
 
 
