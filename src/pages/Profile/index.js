@@ -44,15 +44,23 @@ export default function Profile() {
   const blobUpload = (e) => {
     console.log(e)
     var blobName = buildBlobName(e.target.files[0].name)
-    console.log(formRef)
-    axios.put(`https://eventeasyau.azurewebsites.net/api/User/Update/`, { "userId": uid, "tokenNumber": blobName })
 
+    axios.put(`https://eventeasyau.azurewebsites.net/api/User/Update/`, { "userId": uid, "imagePath": blobName })
+    .then(response=>{
+      console.log("database upload response", response)
+    })
+    .catch(err=>{
+      console.log("upload image error",err)
+    })
+   
+    //console.log(formRef)
     var login = url + '/' + container + '/' + blobName + '?' + sasKey
     var blockBlobClient = new BlockBlobClient(login, new AnonymousCredential())
     blockBlobClient.uploadBrowserData(e.target.files[0]).then(
       response => {
-        console.log('upload response ', response);
+        console.log('blob upload response ', response);
         history(0);
+        //console.log(userInfo.imagePath)
       }
     ).catch(err => {
       console.log("Upload failed", err)
@@ -89,7 +97,7 @@ export default function Profile() {
         <div className='avatar'>
           <div className='ava-pic'
             style={{
-              backgroundImage: `url("https://easyevent.blob.core.windows.net/image/${userInfo.tokenNumber}")`
+              backgroundImage: `url("https://easyevent.blob.core.windows.net/image/${userInfo.imagePath}")`
             }}></div>
           <div className='changeProfile'>
             <h2>Change Profile Picture</h2>
