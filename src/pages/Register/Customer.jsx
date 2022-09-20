@@ -33,9 +33,9 @@ function Customer() {
   const url = 'https://easyevent.blob.core.windows.net'
   const container = 'image'
   const blobUpload = (e) => {
-    var blobName = this.buildBlobName(e.target.files[0].name)
-    //console.log(blobName)
-    this.formRef.current.setFieldsValue({ tokenNumber: blobName })
+    var blobName = buildBlobName(e.target.files[0].name)
+
+    setDetails({ ...details, imagePath: blobName })
 
     var login = url + '/' + container + '/' + blobName + '?' + sasKey
     var blockBlobClient = new BlockBlobClient(login, new AnonymousCredential())
@@ -108,8 +108,9 @@ function Customer() {
                 <div class="item">
                   <PasswordStrengthBar password={details.password} style={{width:'120px',marginLeft:'1vw'}}/>
                 </div>
-                <div>
-                  <input type="file" onChange={e => (this.blobUpload(e))} />
+                <div class="item">
+                  <label for="imagePath">Profile Picture</label>
+                  <input type="file" onChange={e => (blobUpload(e))} />
                 </div>
               </div>
               <div class="sending send-user">

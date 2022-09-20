@@ -43,9 +43,13 @@ export default function ShoppingCart() {
     );
   }
   const sentRequest = (ele) => {
+    const url = "https://www.google.com.au"
+    const sbj = "You Have a New Booking"
+    const msg = "<h4> You have a new booking.</h4 ><br/><br/> <h4>Please go to <a href=" + url + "></a> and go to 'Dashboard' to take further actions.</h4>" +
+    "<br><br><h4>Kind regards.</h4><h2>EventEasy Group</h2>"
     trackPromise
       (
-        axios.get(`https://eventeasyau.azurewebsites.net/api/user/sendmail/${ele.staffId}`)
+        axios.post(`https://eventeasyau.azurewebsites.net/api/user/sendmail/${ele.staffId}/${sbj}/${msg}`)
           .then(axios.put(`https://eventeasyau.azurewebsites.net/api/event/update/${ele.eventId}`, sends))
           .then(response => {
             console.log(response)

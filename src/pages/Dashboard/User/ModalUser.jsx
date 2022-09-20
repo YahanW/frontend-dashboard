@@ -23,7 +23,7 @@ class ModalUser extends Component {
 
         var blobName = this.buildBlobName(e.target.files[0].name)
         //console.log(blobName)
-        this.formRef.current.setFieldsValue({ tokenNumber: blobName })
+        this.formRef.current.setFieldsValue({ imagePath: blobName })
 
         var login = url + '/' + container + '/' + blobName + '?' + sasKey
         var blockBlobClient = new BlockBlobClient(login, new AnonymousCredential())
@@ -122,7 +122,7 @@ class ModalUser extends Component {
                     <Form.Item label='phone number' name='phoneNumber' rules={[{ required: true }]}>
                         <Input />
                     </Form.Item>
-                    <Form.Item name="tokenNumber" style={{ display: 'none' }}>
+                    <Form.Item name="imagePath" style={{ display: 'none' }}>
                         <Input />
                     </Form.Item>
                     <input type="file" onChange={e => (this.blobUpload(e))} />

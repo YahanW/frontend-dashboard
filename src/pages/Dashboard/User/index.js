@@ -124,7 +124,7 @@ class User extends Component {
                 dataIndex: 'userName',
                 render: (text, record) => {
                     return <Space>
-                        <Avatar src={`https://easyevent.blob.core.windows.net/image/${record.tokenNumber}`} />
+                        <Avatar src={`https://easyevent.blob.core.windows.net/image/${record.imagePath}`} />
                         {text}
                     </Space>
                 }
