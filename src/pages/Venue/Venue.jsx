@@ -8,37 +8,144 @@ import './Venue.css';
 import Navbar from "../Home/homes/Navbar";
 import { stringify } from "rc-field-form/es/useWatch";
 import { ConsoleSqlOutlined } from "@ant-design/icons";
+import { ContainerSASPermissions } from "@azure/storage-blob";
 
 export default function Event() {
     const [venueList, setVenueList] = useState([]);
     const [resultList, setResultList] = useState([]);
-    const serType = ["0-50", "Food", "Beverage", "Entertainment", "Florist", "Photographer","Others"];
+    const serType = ["Venue", "Food", "Beverage", "Entertainment", "Florist", "Photographer", "ALL"];
     const areType = ["All", "Hobart", "SandyBay", "Kingston", "NewTown", "South Hobart", "North Hobart", "Dynnyrne"];
     const bgtType = ["All", "$1,000", "$2,000", "$5,000", "$10,000", "10,000+"];
-    const [curType, setCurType] = useState("All");
+    const [curType, setCurType] = useState("Venue");
     const [curAre, setCurAre] = useState("All");
-    const [curBgt, setCurBgt] = useState(0);
+    const [curBgt, setCurBgt] = useState("All");
     const { type, date, guest, budget, area, stand, seat } = useParams();
     const history = useNavigate();
+    //var venues = [];
 
-    // get venues
-    const getVenue = async () => {
+    // get all services
+    const getAll = async () => {
         const { data } = await
-            axios.get("https://eventeasyau.azurewebsites.net/api/services/getservicesbytype/0");    // retrieve all venues
-        
+            axios.get("https://eventeasyau.azurewebsites.net/api/services/getallservices");    // retrieve all services
+
         setVenueList(data.$values); //store all venues
         console.log(venueList)
         setResultList(data.$values)
+        //venues = venueList;
     };
 
-    const changeBudget = (bgt) => {
-        setCurBgt(bgt);
+    // const getServices = async (ind) => {
+    //     const { data } = await
+    //         axios.get(`https://eventeasyau.azurewebsites.net/api/services/getservicesbytype/${ind}`);    // retrieve all Food
+
+    //     setVenueList(data.$values); //store all venues
+    //     console.log(venueList)
+    //     setResultList(data.$values)
+    //     //venues = venueList;
+    // };
+
+    const filterResult = (type, change) => {
+        console.log(type, change)
+        var venues = venueList.slice();
+        var ind = 0;
+        console.log("venues", venues);
+        if (type == 0) {  // change type is service
+            switch (change) {
+                case serType[0]:
+                    ind = 0;
+                    break;
+                case serType[1]:
+                    ind = 1;
+                    break;
+                case serType[2]:
+                    ind = 2;
+                    break;
+                case serType[3]:
+                    ind = 3;
+                    break;
+                case serType[4]:
+                    ind = 4;
+                    break;
+                case serType[5]:
+                    ind = 5;
+                    break;
+                case serType[6]:
+                    break;
+                default: ind = 0;
+                    break;
+            }
+            console.log(curType,curAre,curBgt);
+            venues = changeType(venues,ind);
+            venues = (changeArea(venues, curAre));
+            venues = (changeBudget(venues, curBgt));
+        }
+        if (type == 1) {   // change type is area/suburbs
+            //setCurAre(change);
+            console.log("suburb",curAre);
+            venues = (changeArea(venues, change));
+            venues = (changeBudget(venues,curBgt));
+        }
+        if (type == 2) {    // change type is budget
+            //setCurBgt(change);
+            console.log("budget", curBgt);
+            venues = (changeArea(venues, curAre));
+            venues = (changeBudget(venues, change));
+            
+        }
+        
+        console.log("venues", venues);
+        return venues;
+
+    }
+
+    const changeType = (venues, type) => {
+        if (type != 6) {
+            var newVenues = [];
+            if (venues!=null) {
+                venues.forEach(ele => {
+                    if(ele.serviceType==type){
+                        newVenues.push(ele);
+                    }
+                })
+            }
+        } else {
+            return venueList;
+        }
+        return newVenues;
+    }
+
+    const changeArea = (venues, area) => {
+        //setCurAre(area);
+        if (area != areType[0]) { //if user select any area
+            // console.log('curAre',area);  
+            // console.log('resultList',resultList);
+            var newVenues = [];
+            if (venues != null) {
+                venues.forEach(ele => {                
+                    var location = stringify(ele.serviceLocation).toLowerCase();
+                    //console.log(location);
+                    if (location.includes(area.toLowerCase())) {
+                        //console.log("keep");
+                        newVenues.push(ele);
+                    }
+                })
+            }
+            return (newVenues);
+        } else {
+            //console.log(venueList);
+            return venueList;
+        }
+    };
+
+
+    const changeBudget = (venues, bgt) => {
+        //setCurBgt(bgt);
         var newBudget = 0;
         switch (bgt) {
-            case bgtType[0]: return venueList;
+            case bgtType[0]: return venues;
 
-            case bgtType[1]:newBudget = 1000;
-                
+            case bgtType[1]: newBudget = 1000;
+
                 break;
             case bgtType[2]: newBudget = 2000;
 
@@ -57,48 +164,26 @@ export default function Event() {
         }
 
         // if (budget != areType[0]) { //if user select any area
-            console.log('curbgt', newBudget);
-            setResultList([]);
-            console.log('resultList', resultList);
-            var venues = [];
-            if (resultList != null) {
-                resultList.map((ele, index) => {
-                    var price = parseInt(ele.price);
-                    if (price<=newBudget) {
-                        console.log(ele);
-                        venues.push(ele);
-                    }
-                })
-            }
-
-            return (venues);
-    };
-
-    const changeArea = (area) => {
-        setCurAre(area);
-        if (area != areType[0]) { //if user select any area
-            // console.log('curAre',area);  
-            setResultList([]);
-            // console.log('resultList',resultList);
-            var venues = [];
-            if(resultList!=null){
-            resultList.map((ele, index) => {
-                var location = stringify(ele.serviceLocation);
-                if (location.includes(area)) {
-                    // console.log(ele);
-                    venues.push(ele);
+        //console.log('curbgt', newBudget);
+        //console.log('resultList', resultList);
+        var newVenues = [];
+        //venues = venues.filter(venue => venue.price <= newBudget);
+        if (venues != null) {
+            venues.forEach(ele => {
+                var price = parseInt(ele.price);
+                if (price <= newBudget) {
+                    //console.log("keep");
+                    newVenues.push(ele);
                 }
-            })}
-
-            return (venues);
-        } else {
-            // console.log('all areas', areType[0]);  
-            return (venueList);
+            })
         }
+
+        return (newVenues);
     };
+
 
     useEffect(() => {
-        getVenue(); //store all venues
+        getAll(); //store all venues
         console.log(type, date, guest, budget, area, stand, seat)
     }, []);
 
@@ -106,7 +191,8 @@ export default function Event() {
         return <li className="eve-row" ><div>Fetching Event Result...</div></li>
     }
 
-    console.log("render before return", resultList)
+    console.log("resultlist", resultList)
+    //console.log("venues", venues)
     return (
         <div>
             {console.log("start rendering")}
@@ -123,7 +209,7 @@ export default function Event() {
                                 {
                                     serType.map((ele, index) => {
                                         return <Radio value={ele} key={index}
-                                            onChange={() => { setCurType(ele) }}
+                                            onChange={() => { setCurType(ele); setResultList(filterResult(0, ele)) }}
 
                                         >{ele}</Radio>
                                     })
@@ -141,7 +227,7 @@ export default function Event() {
                                 {
                                     areType.map((ele, index) => {
                                         return <Radio value={ele} key={index}
-                                            onChange={() => {setResultList(changeArea(ele)); console.log("area changed to ",curAre);}}
+                                            onChange={() => { setCurAre(ele); setResultList(filterResult(1, ele))}}
                                         >{ele}</Radio>
                                     })
                                 }
@@ -157,7 +243,7 @@ export default function Event() {
                                 {
                                     bgtType.map((ele, index) => {
                                         return <Radio value={ele} key={index}
-                                            onChange={() => {setResultList(changeBudget(ele)) }}
+                                            onChange={() => { setCurBgt(ele); setResultList(filterResult(2, ele)) }}
                                         >{ele}</Radio>
                                     })
                                 }
