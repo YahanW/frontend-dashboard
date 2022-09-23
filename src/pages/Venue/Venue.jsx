@@ -270,13 +270,12 @@ export default function Event() {
                                                     <h3 style={{ color: 'white', fontSize: '2.7rem', fontFamily: `"Times New Roman", "Times", "serif"`, }}>
                                                         {ele.serviceName}
                                                     </h3>
-                                                    <h4 style={{
+                                                    <h2 style={{
                                                         color: 'white', fontSize: '1rem',
                                                         fontFamily: `"Times New Roman", "Times", "serif"`,
                                                     }}>
-                                                        {'Learn More'}
-
-                                                    </h4>
+                                                    Budget {ele.price} Rating {ele.rate}
+                                                    </h2>
                                                 </Link>
                                             </div>
                                         </li>
