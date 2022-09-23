@@ -20,6 +20,7 @@ function Booking() {
       case 5: return "AwaitPaid"; break;
       case 6: return "Paid"; break;
       case 7: return "Completed"; break;
+      case 8: return "Review Left"; break;
       default: break;
     }
   }
