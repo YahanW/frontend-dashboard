@@ -3,12 +3,18 @@
     align-items: center;
     width: 100vw;
     height: auto;
+
 }
 .checkout .itemContainer{
     width: 55%;
     height: 80vh;
     margin-left: 5%;
+    color:black;
 }
+.checkout .itemContainer h1{
+    color: black;
+}
+
 .paypalContainer{
     width: 35%;
     height: 20vh;
@@ -21,6 +27,7 @@
 }
 .itemContainer .itemTitle{
     height: 30px;
+    color: black;
 }
 .serList{
     padding-left: 1rem;padding-right: 1rem;

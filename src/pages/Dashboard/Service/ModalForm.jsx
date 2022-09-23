@@ -144,7 +144,7 @@ render() {
             <Form.Item label="Price" name='price' rules={[{required:true}]}>
                 <InputNumber/>
             </Form.Item>
-            <Form.Item label="Location" name='location'>
+            <Form.Item label="Location" name='serviceLocation'>
                 <Input/>
             </Form.Item>
 

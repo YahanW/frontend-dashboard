@@ -22,7 +22,7 @@
 .eve-col li{
     list-style: none;
     float:left;
-    width:33.333%; /*three ele each row*/
+    width:33.333%; 
     padding: .75rem;
     margin-bottom: 2rem;
     text-align: center;

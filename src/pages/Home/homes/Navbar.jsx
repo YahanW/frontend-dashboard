@@ -133,13 +133,13 @@ function Navbar() {
                             )
 
                             :
-                            <li className='nav-item'>
-                                <a className='nav-links' onMouseEnter={setSelection}
+                            <li className='nav-item' onMouseEnter={setSelection} onMouseLeave={setSelection}>
+                                <a className='nav-links' 
                                     style={{ display: selectShow ? '' : 'none'}}>
                                     Sign Up
                                 </a>
                                 <div className="register" style={{ height: selectShow ? '0vh' : 'fit-content' }} 
-                                onMouseLeave={setSelection}>
+                                >
 
                                     <Link to='/sign-user'
                                         className=' reg-it' onClick={closeMobileMenu}

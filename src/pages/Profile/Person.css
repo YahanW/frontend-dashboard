@@ -1,16 +1,18 @@
 .PersonList{
     margin-left: 5.5vw;
     width: 90%;
-    height: auto;
+    height: 35vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     background-color: #908ea760;
+    border-radius: 10px;
     align-items: center;
+    padding-top: 5vh;
 }
 .List{
-    width: 100%;
-    height: 80%;
+    width: 50vw;
+    height: 30vh;
     display: flex;
 }
 

@@ -11,7 +11,7 @@
 .regiBox{
 	display: flex;
 	width: 64%;
-	height: 85%;
+	height: 90%;
 	background: #FFFFFF;
 	border: .4rem solid #efefef;
 }
@@ -30,11 +30,11 @@
 }
 .regiBox .f-user{
 	margin-top: 4vh;
-	margin-bottom: 3vh;
+	margin-bottom: 2vh;
 }
 .regiBox .right .form{
-	overflow: scroll;
-	height: 45vh;
+	overflow-y: scroll;
+	height: 50vh;
 	padding: 2vh;
 }
 .regiBox .form .item{

@@ -27,6 +27,32 @@ function Customer() {
       </div>
             
     );}
+
+  const { BlockBlobClient, AnonymousCredential } = require('@azure/storage-blob');
+  const sasKey = `?sv=2021-06-08&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2022-09-30T11:42:53Z&st=2022-09-03T03:42:53Z&spr=https,http&sig=ZUKmAOkmWjgmj4%2BnEzXOXkYMP%2BRbnOw1HsAnLDFnIuk%3D`
+  const url = 'https://easyevent.blob.core.windows.net'
+  const container = 'image'
+  const blobUpload = (e) => {
+    var blobName = buildBlobName(e.target.files[0].name)
+
+    setDetails({ ...details, imagePath: blobName })
+
+    var login = url + '/' + container + '/' + blobName + '?' + sasKey
+    var blockBlobClient = new BlockBlobClient(login, new AnonymousCredential())
+    blockBlobClient.uploadBrowserData(e.target.files[0]).then(
+      response => {
+        console.log(response)
+      }
+    )
+  }
+
+  const buildBlobName = (name) => {
+    var filename = name.substring(0, name.lastIndexOf('.'))
+    var ext = name.substring(name.lastIndexOf('.'))
+    return filename + '_' + Math.random().toString(16).slice(2) + ext
+
+  }
+
 	const submitHandler = e =>{
 		e.preventDefault()
     trackPromise(
@@ -81,6 +107,10 @@ function Customer() {
                 </div>
                 <div class="item">
                   <PasswordStrengthBar password={details.password} style={{width:'120px',marginLeft:'1vw'}}/>
+                </div>
+                <div class="item">
+                  <label for="imagePath">Profile Picture</label>
+                  <input type="file" onChange={e => (blobUpload(e))} />
                 </div>
               </div>
               <div class="sending send-user">
