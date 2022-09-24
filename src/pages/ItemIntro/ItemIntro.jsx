@@ -1,11 +1,10 @@
 import React , {useState,useEffect} from "react";
 import FormControl from '@mui/material/FormControl';
-import Header from "../../layout/Header";
-import {Button, Select, message} from 'antd';
+
+import { Select, message} from 'antd';
 import {Link, Outlet,useParams, useNavigate} from 'react-router-dom';
 import './ItemIntro.css'
 import axios from "axios";
-import FormItem from "antd/lib/form/FormItem";
 import Navbar from "../Home/homes/Navbar";
 function ItemIntro(){
     //const docRef = React.createRef();
@@ -56,7 +55,7 @@ function ItemIntro(){
                 console.log(response);
                 message.success("Service added successfully");
             }).catch(err => {
-                if ((err.response.status)==409)
+                if ((err.response.status)===409)
                     message.error("This service already exists.");
             })  
     }
@@ -87,7 +86,7 @@ function ItemIntro(){
                                     {
                                         avail?
                                         avail.map((ele)=>{
-                                            if (ele.bookingStatus==0){
+                                            if (ele.bookingStatus===0){
                                             return(
                                                 <Select.Option key={ele.eventId} value={ele.eventId}>
                                                     {ele.eventName} 

@@ -117,6 +117,7 @@ const requestSwitch = (parameter) => {
       <Link to='/checkout' style={{ color: '#ffffff' }}>Checkout</Link></button>; break;  // checkout
     case 6: return <p>No Action</p>; break;       // no use
     case 7: return <p>No Action</p>; break;  // no use
+    case 8: return <p>No Action</p>; break; // no use
     default: break;
   }
 }
