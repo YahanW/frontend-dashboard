@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Button, Card, Table, Space, Modal, message, Switch } from 'antd';
+import { Button, Card, Table, Space, Modal, message} from 'antd';
 import {PlusOutlined} from '@ant-design/icons';
-import { Panel } from '../../../commons';
 import { connect } from 'react-redux';
 import ModalForm from './ModalForm';
 import axios from 'axios';
@@ -205,7 +204,7 @@ getTableProps=()=>{
     return (
       //this.props.isLogged == true
       
-      <Panel title="Service List">
+      <div>
         <div className='m-operate'>
           <Button type='primary' icon={<PlusOutlined/>} onClick={this.onCreate}>ADD</Button>
             {/** <Button type='primary' icon={<PlusOutlined/>} onClick={this.onCreate()}>ADD</Button> */}
@@ -216,7 +215,7 @@ getTableProps=()=>{
           <this.LoadingIndicator/>
         </Card>
         {modalForm&&<ModalForm {...modalForm} {...this.props}/>}
-      </Panel>
+      </div>
       
     )
   }

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Panel } from '../../../commons';
 import { Card, Form, Button, Table, Space, Avatar, Modal, message } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { connect } from 'react-redux';
@@ -166,7 +165,7 @@ class User extends Component {
 
         return (
 
-            <Panel title="User">
+            <div>
 
                 <Card >
                     <Form className='functions' layout="inline" style={{width:'75vw'}}>
@@ -183,7 +182,7 @@ class User extends Component {
                 </Card>
                 {userModal && <ModalUser {...userModal} {...this.props} />} {/**passing dispatch by props since it is in props */}
                 {levelModal && <LevelModal {...levelModal} {...this.props} />}
-            </Panel>
+            </div>
 
 
         )
