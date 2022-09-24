@@ -5,34 +5,72 @@ import './feedback.css';
 import Navbar from "../Home/homes/Navbar";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { TeamOutlined } from "@ant-design/icons";
 
 export default function MakeReview() {
-    const { servicesId } = useParams();
+    const { sId } = useParams();
     const { eventId } = useParams();
     const [event, setEvent] = useState([]);
     const [review, setReview] = useState({
         rate: 0,
         description: '',
-        servicesId: servicesId,
+        servicesId: sId,
         eventId: eventId,
-        userId: sessionStorage.getItem("id")
+        userId: sessionStorage.getItem("id"),
+        date: Date.now()
     })
     const history = useNavigate();
     const getEvent = async () => {
         const { data } = await axios.get(`https://eventeasyau.azurewebsites.net/api/event/get/${eventId}`);
         ///setEvent(data.$values)
         setEvent(data)
+        console.log(data);
     }
-    const submitReview = () => {
-        axios.post('https://eventeasyau.azurewebsites.net/api/reviews/postreview', review).then(
-            //axios.put(`https://eventeasyau.azurewebsites.net/api/services/update/${servicesId}`, {"isReviewed": true }).then(
+    const submitReview = async () => {
+        if (sId == 0) {
+            var temp = review;
+            //bulk review
+            
+            axios.get(`https://eventeasyau.azurewebsites.net/api/eventservice/getservicesbyevent/${eventId}`)
+                .then( res =>  {
+                    console.log("service list", res.data.$values); //get all services
+                    
+                    res.data.$values.forEach(async service => {
+                        //setReview({ ...review, servicesId: service.servicesId });
+                        temp.servicesId = service.servicesId;
+                        console.log("review", temp.servicesId);
+                        await axios.post('https://eventeasyau.azurewebsites.net/api/reviews/postreview', temp)
+                        .catch(err=>{console.log(err)})
+                        //axios.put(`https://eventeasyau.azurewebsites.net/api/services/update/${service.servicesId}`, {"isReviewed": true })
+                    })
+                    
+                }).then(
+                    //axios.put(`https://eventeasyau.azurewebsites.net/api/services/update/${servicesId}`, {"isReviewed": true }).then(
+                    res => {
+                        console.log(res);
+                        message.success('Review Success');
+                        history(-1);
+                    }
+                    //)
+                )
+            //const allServices = [];
+            //allServices.push()
+            axios.post('https://eventeasyau.azurewebsites.net/api/reviews/postreview', review)
+
+        }
+        else {
+            console.log("serviceId not equals 0", sId);
+            //single review
+            axios.post('https://eventeasyau.azurewebsites.net/api/reviews/postreview', review).then(
+                //axios.put(`https://eventeasyau.azurewebsites.net/api/services/update/${servicesId}`, {"isReviewed": true }).then(
                 res => {
                     console.log(res);
                     message.success('Review Success');
                     history(-1);
                 }
-            //)
-        )
+                //)
+            )
+        }
     }
 
     useEffect(() => {

@@ -13,7 +13,7 @@ function BookHsitory() {
     const eventType = ["Wedding", "Birthday", "Business Function"];
     var price = 0;
     const history = useNavigate();
-
+    
     const getServices = () => {
         axios.get(`https://eventeasyau.azurewebsites.net/api/eventservice/getservicesbyevent/${eventId}`)
             .then(response => {
@@ -43,7 +43,8 @@ function BookHsitory() {
                     <h2 style={{ marginLeft: '1rem' }}>EVENT NAME: {event.eventName}</h2>
                     <h2 style={{ marginLeft: '1rem' }}>EVENT TYPE: {eventType[event.eventType]}</h2>
                     <h3 style={{ marginLeft: '1rem' }}>DATE & TIME: {event.startTime} - {event.endTime}</h3>
-                    <button > Leave Review for All</button>
+                    <Link to={`/profile/booking/review/${event.eventId}/0`}><button > Leave Bulk Review for All Services</button></Link>
+                    
 
                     <div className="items">
 
@@ -62,7 +63,7 @@ function BookHsitory() {
                                             !ele.isReviewd?
                                                 <Link to={`/profile/booking/review/${ele.eventId}/${ele.servicesId}`}><button>Write Review</button></Link>
                                                 :
-                                                <Link to=''><button>View Your Review</button></Link>
+                                                <Link to={``}><button>View Your Review</button></Link>
 
                                         }
                                         

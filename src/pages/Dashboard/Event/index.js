@@ -26,7 +26,8 @@ class Event extends Component {
         this.onGetEvents();  //fetching users once upon the element are rendered
     }
     onGetEvents=()=>{
-        if(sessionStorage.getItem('access')===1){
+        if(sessionStorage.getItem('access')==1){
+            console.log("get all active events");
             trackPromise(
             axios.get("https://eventeasyau.azurewebsites.net/api/event/getallactiveevents")
             .then( data=>{
@@ -34,7 +35,8 @@ class Event extends Component {
                 console.log(data.data.$values)
             }))
         }
-        if(sessionStorage.getItem('access')===3){
+        if(sessionStorage.getItem('access')==3){
+            console.log("get events by merchant ID");
             trackPromise(
             axios.get(`https://eventeasyau.azurewebsites.net/api/event/GetEventByMerc/${sessionStorage.getItem('id')}`)
             .then( data=>{
@@ -43,16 +45,19 @@ class Event extends Component {
             }))
         }
     }
-    onView=(record)=>{
-        return ()=>{
+    onView =  (record)=>{
+        
+        return async ()=>{
+            const { data } = await axios.get(`https://eventeasyau.azurewebsites.net/api/eventservice/getservicesbyevent/${record.eventId}`)
             this.props.dispatch({
                 type:'show',
                 data:{
                     title:'Event Details',
-                    data:record
-                }
-            })
+                    data:record,
+                    serviceList:data.$values
+                }})
         }
+        
     }
     onEdit=(record)=>{
         return ()=>{
