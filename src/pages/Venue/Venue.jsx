@@ -268,6 +268,7 @@ export default function Event() {
                                                     <h3>
                                                         {ele.serviceName.toUpperCase()}
                                                     </h3>
+
                                                 </Link>
                                                 
                                                     <h4 style={{
@@ -285,6 +286,12 @@ export default function Event() {
                                                     </h4>
                                                 <Link to="">
                                                     Read Reviews
+                                                    <h2 style={{
+                                                        color: 'white', fontSize: '1rem',
+                                                        fontFamily: `"Times New Roman", "Times", "serif"`,
+                                                    }}>
+                                                    Budget {ele.price} Rating {ele.rate}
+                                                    </h2>
                                                 </Link>
                                             </div>
                                         </li>

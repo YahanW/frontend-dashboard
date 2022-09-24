@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Panel } from '../../../commons';
 import { Card,Form,Input,Table,Space, Modal,Menu, message } from 'antd';
 import { connect } from 'react-redux';
 import axios from 'axios';
@@ -169,7 +168,7 @@ class Event extends Component {
   render() {
     const {eventModal}=this.props.eventState
     return (
-        <Panel title="Event">
+    <div>
         <Card className='m-filter'>
             <Form layout="inline" //onFinish={this.onSearch}
             >
@@ -184,7 +183,7 @@ class Event extends Component {
         </Card>
         {eventModal&&<EventModal {...eventModal} {...this.props}/>} 
         {/**passing dispatch by props since it is in props */}
-    </Panel>
+    </div>
     )
   }
 }
