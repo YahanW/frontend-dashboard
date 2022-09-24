@@ -26,7 +26,7 @@ class Event extends Component {
         this.onGetEvents();  //fetching users once upon the element are rendered
     }
     onGetEvents=()=>{
-        if(sessionStorage.getItem('access')==1){
+        if(sessionStorage.getItem('access')===1){
             trackPromise(
             axios.get("https://eventeasyau.azurewebsites.net/api/event/getallactiveevents")
             .then( data=>{
@@ -34,7 +34,7 @@ class Event extends Component {
                 console.log(data.data.$values)
             }))
         }
-        if(sessionStorage.getItem('access')==3){
+        if(sessionStorage.getItem('access')===3){
             trackPromise(
             axios.get(`https://eventeasyau.azurewebsites.net/api/event/GetEventByMerc/${sessionStorage.getItem('id')}`)
             .then( data=>{
@@ -138,6 +138,7 @@ class Event extends Component {
                   case 5:return "AwaitPaid"; break;
                   case 6:return "Paid"; break;
                   case 7:return "Completed"; break;
+                  case 8:return "Review Left"; break;
                   default: break;
                 }
               }

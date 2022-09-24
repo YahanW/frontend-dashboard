@@ -76,7 +76,7 @@ class User extends Component {
                 title: 'Warning',
                 content: 'Are you sure to delete this record?',
                 onOk: () => {
-                    axios.delete(`https://eventeasyau.azurewebsites.net/api/user/deleteuser/${record.userId}`,
+                    axios.delete(`https://eventeasyau.azurewebsites.net/api/user/delete/${record.userId}`,
                     )
                         .then(data => {
                             console.log(data)
