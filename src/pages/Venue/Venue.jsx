@@ -264,7 +264,7 @@ export default function Event() {
                                                 style={{
                                                     background: `url(${ele.imagePath})`
                                                 }}>
-                                                <Link className="getService" to={`/result/${ele.servicesId}`}>
+                                                <Link className="getService" to={`/result/${ele.servicesId}/intro`}>
                                                     <h3>
                                                         {ele.serviceName.toUpperCase()}
                                                     </h3>

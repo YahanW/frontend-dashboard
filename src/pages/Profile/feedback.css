@@ -31,10 +31,13 @@
     text-align: left;
     width: 30vw;
 }
-.comment input{
+.comment textarea{
     width: 75vw;
     height: 15vh;
     border-radius: 5px;
+    line-height: 2.5vh;
+    font-size: medium;
+    padding: 1vw;
 }
 .review-title,.marking{
     display: flex;

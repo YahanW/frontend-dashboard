@@ -7,9 +7,9 @@ import { render } from 'react-dom';
 
 export default function Intro() {
   const [details,setDetails] = useState([]);
-  const {serviceId} = useParams();
+  const {servicesId} = useParams();
   const getDetail = async ()=>{
-    const {data} = await axios.get(`https://eventeasyau.azurewebsites.net/api/services/getservices/${serviceId}`)
+    const {data} = await axios.get(`https://eventeasyau.azurewebsites.net/api/services/getservices/${servicesId}`)
     setDetails(data);
   }
 

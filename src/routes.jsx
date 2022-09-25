@@ -19,13 +19,11 @@ import Venue from './pages/Venue/Venue';
 
 //Service result related
 import Result from "./pages/Result/Result";
-import ItemIntro from "./pages/ItemIntro/ItemIntro";
 import Intro from "./pages/ItemIntro/Intro";
 import Review from "./pages/ItemIntro/Review";
 
 //profile related
 import Profile from "./pages/Profile";
-import Personals from "./pages/Profile/Personals";
 import Booking from "./pages/Profile/Booking";
 import BookHsitory from "./pages/Profile/BookHistory";
 import MakeReview from "./pages/Profile/MakeReview";
@@ -53,7 +51,6 @@ export default(
 
             <Route path='/profile' element={<Profile/>}> 
                 <Route index element={<Booking/>}/>
-                <Route path='/profile/personal' element={<Personals/>}/>
             </Route>
      
             <Route path='/profile/booking/details/:eventId' element={<BookHsitory/>}/>
@@ -69,16 +66,11 @@ export default(
                 <Route path='advance/:type/:date/:guest/:budget/:area/:stand/:seat' element={<Venue/>}/>
             </Route>
 
-            <Route path='/result/'>
-                <Route path=':servicesId'  element={<Result/>}/>
-                <Route path='empty'  element={<Result/>}/>
+            <Route path='/result/' element={<Result/>}>
+                <Route path=":servicesId/intro" element={<Intro/>}/>
+                <Route path=':servicesId/review' element={<Review/>}/>
             </Route>
 
-            <Route path='/result/details/:serviceId' element={<ItemIntro/>}>
-                <Route  index element={<Intro/>}/>
-                <Route path='review' element={<Review/>}/>
-            </Route>
-       
             <Route path="/checkout/:eventId" element={<CheckOut/>}></Route>
             <Route path='/service' element={<HomeService/>}/>
             <Route path='/sign-user' element={<Register/>}/>

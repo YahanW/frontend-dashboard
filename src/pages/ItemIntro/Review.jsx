@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Review.css';
-import { Tag, Rate,Checkbox } from 'antd';
+import { Tag, Rate, Checkbox } from 'antd';
+import { useParams, useNavigate } from "react-router-dom";
+import { usePromiseTracker } from 'react-promise-tracker';
+import { Puff } from 'react-loader-spinner';
+import { trackPromise } from 'react-promise-tracker';
+import axios from 'axios';
 
 export default function Review() {
   const options = [
@@ -13,29 +18,37 @@ export default function Review() {
       value: 'image',
     },
     {
-      label: 'Video',value: 'video',},];
-  const reviewList = [
-    {
-      content:'Absolutely fantastic',
-      date:'04-03-2022',
-      username:'S***n (anonymous)'
+      label: 'Video',
+      value: 'video',
     },
-    {
-      content:'Yes so much we say out of all the art galleries I’ve ever visited this one stands out is quite unique, varied, diverse, and really quite engaging. I would highly recommend you come visit this place, if not for the art just the hospitality itself is worth the visit alone. Do you check this out if you ever in the area, you will not be disappointed.',
-      date:'04-03-2022',
-      username:'G***l (anonymous)'
-    },
-    {
-      content:'Lots of interesting pieces to look at and even some to buy! Nice spaces that have been tastefully fitted out to show off some wonderful art - the shop also has some amazing Tasmania items to buy!',
-      date:'04-03-2022',
-      username:'G***l (anonymous)'
-    },
-  ]
+  ];
+
+  const [reviewList, setReviewList] = useState([]);
+  const { servicesId } = useParams();
+
+
+  const getReviews = async () => {
+    const data = await axios.get(`https://eventeasyau.azurewebsites.net/api/reviews/getreviewbyservice/${servicesId}`)
+          .catch(err => {
+        console.log(err)
+      })
+    console.log(data.data.$values)
+    setReviewList(data.data.$values);
+
+  }
+
+  useEffect(() => {
+    getReviews();
+    // console.log(reviewList);
+  }, []
+  )
+
+
   return (
     <div className='review'>
       <div className='cate-review'>
         <div className='total'>
-          <Rate defaultValue={4.5}/>
+          <Rate defaultValue={4.5} />
           <h2>4.5</h2>
         </div>
         <div className='marks'>
@@ -47,7 +60,7 @@ export default function Review() {
             <Tag className="review-tag">Not Feeling Good</Tag>
           </div>
         </div>
-       
+
       </div>
       <div className="type-three">
         <Checkbox.Group options={options} />
@@ -55,22 +68,26 @@ export default function Review() {
       <div className='review-container'>
         <ul>
           {
-            reviewList.map((ele,index)=>{
-              return <li key={index}>
-                <div className='rates'>
-                  <div className='left'>
-                    <p className='content'>{ele.content}</p>
-                    <h4 className='date'>{ele.date}</h4>
-                  </div>
-                  <div className='right'>
-                    <h5>{ele.date}</h5>
-                    <h3>{ele.username}</h3>
+            reviewList.map((ele, index) => {
+              return (
+                <li key={index}>
+                  <div className='rates'>
+                    <div className='left'>
+                      <p className='content'>{ele.description}</p>
+                      <h4 className='date'>{ele.date}</h4>
+                    </div>
+                    <div className='right'>
+                      <Rate defaultValue={ele.rate} style={{display:"flex", flexDirection:"row",border:'0',width:'50%'}}
+                      disabled={true}/>
+                      <h3>Username: {ele.user.userName}</h3>
+                    </div>
+
                   </div>
                   
-                </div>
-            </li>
-          })
-        }
+                </li>
+              )
+            })
+          }
         </ul>
 
       </div>

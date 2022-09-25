@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../../layout/Header';
 import './Result.css';
 import { useState, useEffect } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams, useNavigate,Outlet } from 'react-router-dom';
 import axios from 'axios';
 import Footer from '../Home/homes/Footer';
 import { Modal, Form, Input, Select, InputNumber, message, DatePicker, Rate } from 'antd';
@@ -12,6 +12,7 @@ import { FormControl } from '@mui/material';
 function Result() {
   const formRef = React.createRef();
   const history = useNavigate();
+  const [reviewOrSale,setRS] = useState(true);
   const { servicesId } = useParams();
   const [record, setRecord] = useState([]);
   const [eventVisible, setEventVisible] = useState(false);
@@ -47,7 +48,7 @@ function Result() {
       })
     getData();
   }
-
+  const changeRS = () => { setRS(!reviewOrSale); }
   const onClick = () => {
 
     axios.post("https://eventeasyau.azurewebsites.net/api/eventService/create", newService)
@@ -78,7 +79,7 @@ function Result() {
               if (ele.servicesId == servicesId) { //only want the last venue service
                 return (
                   <>
-                    <div className='intro-img' key={index}>
+                    <div className='intro-img' key={index} style={{backgroundImage: `url(${ele.imagePath})`}}>
                       <h2>{ele.serviceName}</h2>
                       <h3>PRICES START AT ${ele.price} </h3>
                       <div className='actions'>
@@ -175,10 +176,10 @@ function Result() {
                               <InputNumber />
                             </Form.Item>
                             <Form.Item label="Start Time" name="startTime">
-                              <DatePicker showTime />
+                              <DatePicker format={'YYYY/MM/DD'} />
                             </Form.Item>
                             <Form.Item label="End Time" name="endTime" >
-                              <DatePicker showTime />
+                              <DatePicker format={'YYYY/MM/DD'} />
                             </Form.Item>
                           </Form>
                         </Modal>
@@ -211,9 +212,21 @@ function Result() {
               } else { return null }
             }) : ''} {/**if not match then don't return */}
       </div>
-
+      <div className="detail-review">
+                <div className='dr-sub'
+                style={{backgroundColor:reviewOrSale?'':'bisque',}}
+                >
+                    <Link onClick={changeRS} to={`/result/${servicesId}/intro`}>DETAILS</Link>
+                </div>
+                <div className='dr-sub'
+                style={{ backgroundColor:reviewOrSale?'bisque':'',}}
+                >
+                    <Link onClick={changeRS} to={`/result/${servicesId}/review`}>REVIEWS</Link>
+                </div>
+            </div>
+      <Outlet/>
       {/**All other services */}
-      <div className='itemList'>
+      {/* <div className='itemList'>
         {
           record.map((ele, index) => {
             if (ele.serviceType !== 0) {
@@ -243,7 +256,7 @@ function Result() {
             } else { return null }
           })
         }
-      </div>
+      </div> */}
       <Footer />
     </div>
   )

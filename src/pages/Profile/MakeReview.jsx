@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Footer from '../Home/homes/Footer';
-import { Rate, message } from "antd";
+import { Rate, message,Input } from "antd";
 import './feedback.css';
 import Navbar from "../Home/homes/Navbar";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { TeamOutlined } from "@ant-design/icons";
 
 export default function MakeReview() {
     const { sId } = useParams();
@@ -17,7 +16,8 @@ export default function MakeReview() {
         servicesId: sId,
         eventId: eventId,
         userId: sessionStorage.getItem("id"),
-        date: Date.now()
+        date: new Date().toISOString().split("T")[0],
+        Anonymous: false
     })
     const history = useNavigate();
     const getEvent = async () => {
@@ -29,16 +29,16 @@ export default function MakeReview() {
     const submitReview = async () => {
         if (sId == 0) {
             var temp = review;
+
             //bulk review
-            
             axios.get(`https://eventeasyau.azurewebsites.net/api/eventservice/getservicesbyevent/${eventId}`)
                 .then( res =>  {
-                    console.log("service list", res.data.$values); //get all services
+                    //console.log("service list", res.data.$values); //get all services
                     
                     res.data.$values.forEach(async service => {
                         //setReview({ ...review, servicesId: service.servicesId });
                         temp.servicesId = service.servicesId;
-                        console.log("review", temp.servicesId);
+                        //console.log("review", temp.servicesId);
                         await axios.post('https://eventeasyau.azurewebsites.net/api/reviews/postreview', temp)
                         .catch(err=>{console.log(err)})
                         //axios.put(`https://eventeasyau.azurewebsites.net/api/services/update/${service.servicesId}`, {"isReviewed": true })
@@ -47,7 +47,7 @@ export default function MakeReview() {
                 }).then(
                     //axios.put(`https://eventeasyau.azurewebsites.net/api/services/update/${servicesId}`, {"isReviewed": true }).then(
                     res => {
-                        console.log(res);
+                        //console.log(res);
                         message.success('Review Success');
                         history(-1);
                     }
@@ -60,11 +60,12 @@ export default function MakeReview() {
         }
         else {
             console.log("serviceId not equals 0", sId);
+            console.log("review",review)
             //single review
             axios.post('https://eventeasyau.azurewebsites.net/api/reviews/postreview', review).then(
                 //axios.put(`https://eventeasyau.azurewebsites.net/api/services/update/${servicesId}`, {"isReviewed": true }).then(
                 res => {
-                    console.log(res);
+                    //console.log(res);
                     message.success('Review Success');
                     history(-1);
                 }
@@ -94,14 +95,15 @@ export default function MakeReview() {
                 }
                 <div className="marking">
                     <h3>How satisfied with this event</h3>
-                    <Rate defaultValue={0} onChange={e => setReview({ ...review, rate: e.target.value })} />
+                    {/* { } */}
+                    <Rate onChange={e => {setReview({ ...review, rate: e})} }/>
                 </div>
                 <div className="comment">
                     <h3>Leave some comments</h3>
-                    <input type='text' onChange={e => setReview({ ...review, description: e.target.value })} />
+                    <textarea col="20" row="10" type='text' onChange={e => setReview({ ...review, description: e.target.value })} />
                 </div>
                 <div className="uploads">
-                    <h3>Upload Picture or Videos <p>function coming soon</p></h3>
+                    <h3>Upload Picture or Videos <p>(function coming soon)</p></h3>
                 </div>
                 <div className="finish">
                     <button onClick={submitReview}>SUBMIT YOUR REVIEW</button>

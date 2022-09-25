@@ -57,7 +57,7 @@
 .review-container li{
     height: auto;
     list-style: none;
-    border: 1px solid rgb(102, 104, 164);
+    /* border: 1px solid rgb(102, 104, 164); */
     width: 90%;
     margin-bottom: 1vh;
     margin-top: .5vh;
@@ -71,6 +71,5 @@
     padding: 1rem;
 }
 .rates .right{
-    width: 45%;
-    padding: 1rem;
+    width: 55%;
 }
