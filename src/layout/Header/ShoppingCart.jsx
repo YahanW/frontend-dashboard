@@ -211,7 +211,7 @@ return (
                   <h2>You have no services in your cart</h2><br />
                 </div>
                 <div>
-                  <Link to="/result/empty">Click here to browse services</Link>
+                  <Link to="/venue/empty/0/0/0/999999">Click here to browse services</Link>
                 </div>
               </li>
           }

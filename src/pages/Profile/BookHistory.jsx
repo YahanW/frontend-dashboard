@@ -66,10 +66,13 @@ function BookHsitory() {
                                             <h3>Location: {ele.services.serviceLocation != null ? ele.services.serviceLocation : "1 Sandbay Road"}</h3>
                                         </div>
                                         {
-                                            !ele.isReviewd?
+                                            //checkinf if the service has been reviewed
+                                            !ele.isReviewed?
                                                 <Link to={`/profile/booking/review/${ele.eventId}/${ele.servicesId}`}><button>Write Review</button></Link>
                                                 :
-                                                <Link to={``}><button>View Your Review</button></Link>
+                                                 <Link to={``}>
+                                                    <button>View Your Review</button>
+                                                 </Link>
 
                                         }
                                         

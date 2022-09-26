@@ -45,8 +45,10 @@
 .review .review-container{
     width: 90%;
     border: 1px solid orange;
-    height: auto;
+    height: 50vh;
     background-color: #ffffff;
+    overflow-y: scroll;
+
 }
 .review-container ul{
     display: flex;
@@ -55,14 +57,19 @@
 }
 
 .review-container li{
-    height: auto;
     list-style: none;
     /* border: 1px solid rgb(102, 104, 164); */
     width: 90%;
     margin-bottom: 1vh;
     margin-top: .5vh;
-   
 }
+.review-container li .line{
+    border-bottom: 1px solid rgb(132, 131, 131);
+    width:85%;
+    height:0.5vh;
+}
+
+       
 .rates{
     display: flex;
 }
@@ -72,4 +79,5 @@
 }
 .rates .right{
     width: 55%;
+    padding-left: 15vw;
 }

@@ -56,11 +56,12 @@ export default(
             <Route path='/profile/booking/details/:eventId' element={<BookHsitory/>}/>
 
             <Route path='/profile/booking/review/:eventId/:sId' element={<MakeReview/>}/>
-            <Route path='/profile/booking/cancel' element={<CancelEvent/>}/>
+            <Route path='/event/cancel' element={<CancelEvent/>}/>
 
 
             <Route path='/geo' element={<GeoCheck/>}/>
             <Route path='/venue/' >
+                <Route path='empty/:type/:date/:guest/:budget' element={<Venue/>}/>
                 <Route path='normal/:type/:date/:guest/:budget' element={<Venue/>}/>
                 <Route path='name/:type/:area/:budget/:name' element={<Venue/>}/>
                 <Route path='advance/:type/:date/:guest/:budget/:area/:stand/:seat' element={<Venue/>}/>

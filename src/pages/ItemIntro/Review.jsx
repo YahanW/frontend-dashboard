@@ -88,9 +88,10 @@ export default function Review() {
                       disabled={true}/>
                       <h3>Username: {ele.user.userName}</h3>
                     </div>
+                    
 
                   </div>
-                  
+                  <div className='line'/>
                 </li>
               )
             })

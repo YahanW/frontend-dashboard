@@ -1,0 +1,76 @@
+.sample-content {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: start;
+    width:85%;
+}
+.sample-content .sample-title{
+    margin-left: 13vw;
+    margin-top: 5vh;
+    font-size: large;
+}
+.sample-content .sample-background1 {
+    background-image: url("https://images.pexels.com/photos/933118/pexels-photo-933118.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+    background-position: center;
+    background-size: 84%;
+    background-repeat: no-repeat;
+    height: 50vh;
+    padding-top: 5vh;
+    padding-bottom:5vh;
+    margin-left: 7vw;
+}
+.sample-content .sample-service{
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+.sample-content .sample-service .sample-service-background{
+    background-image: url("https://images.pexels.com/photos/4181659/pexels-photo-4181659.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width:50vw;
+    height:40vh;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    margin-left: 13vw;
+}
+.sample-content .sample-service .sample-service-detail{
+    margin-top: 5vh;
+    margin-left: -15vw;
+    line-height: 3vh;
+    font-size: large;
+}
+.sample-content .sample-fac {
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.sample-content .sample-fac .sample-fac-detail {
+    margin-top: 5vh;
+    margin-left: 13vw;
+    line-height: 3vh;
+    font-size: large;
+    width: 50vw;
+}
+
+.sample-content .sample-fac .sample-fac-background {
+    background-image: url("https://images.pexels.com/photos/57980/pexels-photo-57980.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 50vw;
+    height: 40vh;
+    padding-top: 5vh;
+    padding-bottom: 5vh;
+    margin-left: 0vw;
+}
+
+
+
+.sample-content .sample-1{
+    margin-bottom: 5vh;
+}
+

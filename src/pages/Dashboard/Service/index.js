@@ -23,8 +23,10 @@ class Service extends Component {
 }
 
 LoadingIndicator = () => {
-  const { promiseInProgress } = usePromiseTracker();
+  const { promiseInProgress } = usePromiseTracker();  
+  //declare a usePromiseTracker and waiting for promise running
   return (
+    //this is saying, when promise is working when return all element after &&
     promiseInProgress &&<div
     style={{marginLeft:"14vw"}}>
       <Puff color="#00BFFF" height={80} width={800} />
@@ -34,7 +36,6 @@ LoadingIndicator = () => {
       this.onGetServices();  //fetching users once upon the element are rendered
   }
   onGetServices = () => { //ok
-    
     // if admin then display all services
         if(sessionStorage.getItem("access") == 1) {
           trackPromise(
@@ -121,8 +122,8 @@ onDelete=(record)=>{
   }
 }
 
-getTableProps=()=>{
-  return {
+getTableProps=()=>({
+  
     pagination:{
       pageSize:7,
       showTotal:()=>`total ${this.state.dataSource.length} Service records`
@@ -159,12 +160,9 @@ getTableProps=()=>{
         dataIndex:'serviceType',
         render: (record) => {
           switch (record) {
-            case 0:
-              return "Venue"; break;
-            case 1:
-              return "Food";  break;
-            case 2:
-              return "Beverage"; break;
+            case 0:return "Venue"; break;
+            case 1:return "Food";  break;
+            case 2:return "Beverage"; break;
             case 3: return "Entertainment";break;
             case 4: return "Florist";break;
             case 5: return "Photographer";break;
@@ -200,10 +198,8 @@ getTableProps=()=>{
       }
     ],
     dataSource:this.state.dataSource||[],
-    rowKey:'servicetId',
-    pagination:true
-  }
-}
+  
+})
 
   render() {
     const {modalForm}=this.props.serviceState
@@ -226,6 +222,8 @@ getTableProps=()=>{
     )
   }
 }
+
+//these are fixed code for building redux
 const mapStateToProps=(store)=>({serviceState:store.service})
 const mapDispatchToProps=(dispatch)=>({dispatch})
 export default connect(mapStateToProps,mapDispatchToProps)(Service)

@@ -11,20 +11,18 @@ import axios from 'axios';
 export default class EventModal extends Component {
 
     formRef = React.createRef()
-    layout = {
+    layout = {  //layout for modal internal distance
         labelCol: { span: 8 },
         wrapperCol: { span: 20 },
     }
-
+    /**
+     * this function will be call after all elements were rendered
+     * setFieldsValue will find where reactRef is used then assign value to same attribute name
+     */
     componentDidMount() {
-        // axios.get(`https://eventeasyau.azurewebsites.net/api/eventservice/getservicesbyevent/${this.props.data.eventId}`)
-        // .then(res=>{
-
-        //this.setState({serviceList:res.data.$values})
-        console.log("service list", this.props);
-        // })
-
+        //console.log("service list", this.props);
         this.formRef.current.setFieldsValue(this.props.data)
+        //value this.props.data is passed by using dispatch
     }
     onCancel = () => {
         this.props.dispatch({
@@ -32,28 +30,32 @@ export default class EventModal extends Component {
         })
     }
     onSave = (values) => {
-        console.log(values)
+        //onSave is a function provided by antd Form so that operate on values after user submit
         axios.put(`https://eventeasyau.azurewebsites.net/api/event/update/${this.props.data.eventId}`, values)
             .then(response => {
                 console.log(response)
                 this.onCancel(); //close modal
-                message.success('Event updated Successfully');
-                this.props.refreshList();
-
-
+                message.success('Event updated Successfully');  ///tell user success
+                this.props.refreshList();   
+                //refreshList is a function passed from index.js same with getEvent();
+                //so this is fetching all / update events again
             }).catch(err => {
+                //catch error if there any
                 console.log(err)
             })
     }
     render() {
-        const readOnly = this.props.title === 'Event Details' ? true : false
+        const readOnly = this.props.title === 'Event Details' ? true : false;
+        //accroding to the title passing by dispatch to show different status of modal
+        //readOnly will be used later combined with css to show element or not
         return (
 
             <Modal visible title={this.props.title}
                 onOk={() => this.formRef.current.submit()} onCancel={this.onCancel}
-                className={readOnly ? 'm-readonly-modal' : ''}
-            >
+                className={readOnly ? 'm-readonly-modal' : ''}>
+
                 <Form {...this.layout} onFinish={this.onSave} ref={this.formRef}>
+                    {/* put react.ref variable here so values could be assigned when running componentDidMount */}
                     <Form.Item name="eventName" label="Event Name">
                         <Input />
                     </Form.Item>
@@ -81,6 +83,8 @@ export default class EventModal extends Component {
                         console.log("here", ele.services.serviceName);
                         return (
                             <>
+                            {/* whenevenr react run, there could be only one root element  */}
+                            {/* <></> is not same with <div></div>, it is not shown when try to console all tags, div does */}
                                 <Form.Item label="Service">
                                     <Input value={ele.services.serviceName} />
 

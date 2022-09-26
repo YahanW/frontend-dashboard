@@ -25,7 +25,7 @@ function Result() {
   const CancelVisible = () => { setEventVisible(false); }
   //const [events, setEvents] = useState([]);
   const [avail, setAvail] = useState([]);
-  const [newService, setNewService] = useState({ eventId: 0, servicesId: servicesId });
+  const [newService, setNewService] = useState({ eventId: 0, servicesId: servicesId, isReviewed:false });
   const getData = async () => {
     const { data } = await axios.get(`https://eventeasyau.azurewebsites.net/api/services/getallservices`);
     setRecord(data.$values);
@@ -218,14 +218,14 @@ function Result() {
               } else { return null }
             }) : ''} {/**if not match then don't return */}
       </div>
-      <div className="detail-review">
+      <div className="detail-review" style={{display:'flex',flexDirection:'row',paddingLeft:'1vw'}}>
                 <div className='dr-sub'
-                style={{backgroundColor:reviewOrSale?'':'bisque',}}
+                style={{backgroundColor:reviewOrSale?'':'bisque',width:'5vw'}}
                 >
                     <Link onClick={changeRS} to={`/result/${servicesId}/intro`}>DETAILS</Link>
                 </div>
                 <div className='dr-sub'
-                style={{ backgroundColor:reviewOrSale?'bisque':'',}}
+                style={{ backgroundColor:reviewOrSale?'bisque':'',width:'5vw'}}
                 >
                     <Link onClick={changeRS} to={`/result/${servicesId}/review`}>REVIEWS</Link>
                 </div>

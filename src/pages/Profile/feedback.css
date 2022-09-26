@@ -26,7 +26,7 @@
     border-radius: 5px;
 }
 .comment h3{
-    font-size: 1.45rem;
+    font-size: 2.45rem;
     margin-right: 10vw;
     text-align: left;
     width: 30vw;
@@ -65,4 +65,15 @@
     border: none;
     font-size: 1.4rem;
     cursor: pointer;
+}
+.review-content .background1{
+    background-image: url("https://images.pexels.com/photos/1779414/pexels-photo-1779414.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+    background-position: bottom;
+    background-size: 70%;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30vh;
+    margin-left: -10vw;
 }

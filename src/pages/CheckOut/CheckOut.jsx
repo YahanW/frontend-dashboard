@@ -13,9 +13,6 @@ import Header from "../../layout/Header";
 import Footer from '../Home/homes/Footer';
 import Navbar from "../Home/homes/Navbar";
 import axios from "axios";
-import { getMouseEventOptions } from "@testing-library/user-event/dist/utils";
-import { StepForwardFilled } from "@ant-design/icons";
-
 
 function CheckOut() {
     const { eventId } = useParams();
@@ -26,6 +23,7 @@ function CheckOut() {
     const history = useNavigate();
     
     const getServices = () => {
+        //get all services to render and calculate the sum of all services
             axios.get(`https://eventeasyau.azurewebsites.net/api/eventservice/getservicesbyevent/${eventId}`)
                 .then(response => {
                     setEventService(response.data.$values)
@@ -33,14 +31,15 @@ function CheckOut() {
                 }).catch(err => { console.log(err) })
     }
     const getEvent = () => {
+        //get event by the eventId provided by the user
         axios.get(`https://eventeasyau.azurewebsites.net/api/event/get/${eventId}`)
             .then(response => {
-                setEvent(response.data)
+                setEvent(response.data) 
                 console.log(response.data)
             }).catch(err => { console.log(err) })
     }
     const setToPaid = () => {
-        
+        //once payment approved, set event status to be Paid, so the event could appear user booking history
         axios.put(`https://eventeasyau.azurewebsites.net/api/event/update/${eventId}`, {"bookingStatus":6})
             .then(response => {
                 setEvent(response.data)
@@ -49,8 +48,9 @@ function CheckOut() {
     }
 
     useEffect(() => {
-        getServices()
-        getEvent()
+        //useEffect is a default function called same as componentDidMount
+        getServices(); 
+        getEvent();
     }, []);
 
     return (
@@ -92,8 +92,9 @@ function CheckOut() {
                 </div>
                 <div className="paypalContainer">
                     <div className="totalPrice">
-                        <h2>Total: ${`${price}`} AUD</h2>
+                        <h2>Total: ${`${price}`} AUD</h2>   {/* display user total fees */}
                     </div>
+                    {/* to use paypal must warp all tag with PayPalScriptProvider */}
                     <PayPalScriptProvider options={{currency:"AUD","client-id": "test",}}>
                         <PayPalButtons
                             createOrder={(data, actions) => {
@@ -101,7 +102,7 @@ function CheckOut() {
                                     purchase_units: [
                                         {
                                             amount: {
-                                                value: price,
+                                                value: price,   //paypal pay total price
                                                 
                                             } 
                                         },
@@ -111,9 +112,9 @@ function CheckOut() {
                             onApprove={(data, actions) => {
                                 return actions.order.capture().then((details) => {
                                     const name = details.payer.name.given_name;
-                                    setToPaid();
+                                    setToPaid();    //set status to be paid
                                     alert(`Transaction completed by ${name}`);
-                                    history("/");
+                                    history("/");   //go to home page
                                 });
                             }}
                         />

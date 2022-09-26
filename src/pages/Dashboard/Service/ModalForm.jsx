@@ -39,14 +39,15 @@ componentDidMount(){
  * make http request and send data to database
  */
 onSave=(values)=>{
-    console.log(values)
-    
+    //console.log(values)
+    //checking the title from dispatch is it add or update
     if(this.props.title==='Add Service')
     {
+        //post a set of data for a new service
         axios.post(`https://eventeasyau.azurewebsites.net/api/services/create/`,values)
         .then(response=>{
-            console.log(response)
-            message.success('Service Add Success');
+            //console.log(response)
+            message.success('Service Add Success'); //tell user success
             this.onCancel() //close modal
             this.props.refreshList()  //reloading data
         }).catch(err=>{
@@ -55,11 +56,11 @@ onSave=(values)=>{
     }
     else
     {
-       
+       //update selected service
         axios.put(`https://eventeasyau.azurewebsites.net/api/services/update/${this.props.data.servicesId}`,values)
         .then(response=>{
-            console.log(response)
-            message.success('Service Update Success');
+            //console.log(response)
+            message.success('Service Update Success');  //tell user update success
             this.onCancel() //close modal
             this.props.refreshList()  //reloading data
         }).catch(err=>{
@@ -81,7 +82,8 @@ render() {
     >
             
         <Form {...this.layout} ref={this.formRef} onFinish={this.onSave}
-                fields={
+                fields={ 
+                    //there is the only place to give fields default value in antd
                 [
                     {
                     name: ["merchantId"],

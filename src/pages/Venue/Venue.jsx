@@ -281,17 +281,12 @@ export default function Event() {
                                                     <h4 style={{
                                                         fontFamily: `"Times New Roman", "Times", "serif"`,
                                                     }}>
-                                                        Rating: {ele.rate}
+                                                        Rating: {ele.rate==null?"N/A":ele.rate}
 
                                                     </h4>
                                                 <Link to="">
                                                     Read Reviews
-                                                    <h2 style={{
-                                                        color: 'white', fontSize: '1rem',
-                                                        fontFamily: `"Times New Roman", "Times", "serif"`,
-                                                    }}>
-                                                    Budget {ele.price} Rating {ele.rate}
-                                                    </h2>
+                                                    
                                                 </Link>
                                             </div>
                                         </li>

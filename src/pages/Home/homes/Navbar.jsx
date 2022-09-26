@@ -82,7 +82,7 @@ function Navbar() {
                                     className='nav-links'
                                     onClick={closeMobileMenu}
                                 >
-                                    Services
+                                    Past Events
                                 </Link>
                             </li>
                     }
