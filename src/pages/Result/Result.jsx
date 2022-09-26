@@ -1,5 +1,11 @@
+/*
+This file displays the service page with subrouting to itemintro
+
+Created by Mingke Deng, and Hans Wang
+Last Modified: 25/09/2022
+*/
+
 import React from 'react';
-import Header from '../../layout/Header';
 import './Result.css';
 import { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate,Outlet } from 'react-router-dom';

@@ -1,3 +1,9 @@
+/*
+This file shows the Home page
+
+Created by Mingke Deng, and Hans Wang
+Last Modified: 23/09/2022
+*/
 import React from 'react';
 import './home.css'
 import Navbar from './homes/Navbar';

@@ -1,5 +1,10 @@
+/*
+This file handles 404 within the website
+
+Created by Mingke Deng, and Hans Wang
+Last Modified: 23/09/2022
+*/
 import React, { Component } from 'react';
-import Header from '../../layout/Header';
 import { Link } from 'react-router-dom';
 import './NotFound.css';
 import Navbar from '../Home/homes/Navbar';

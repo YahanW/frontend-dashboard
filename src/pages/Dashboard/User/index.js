@@ -1,3 +1,9 @@
+/*
+This file shows the user dashboard
+
+Created by Mingke Deng, and Hans Wang
+Last Modified: 23/09/2022
+*/
 import React, { Component } from 'react';
 import { Card, Form, Button, Table, Space, Avatar, Modal, message } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';

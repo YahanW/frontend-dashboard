@@ -1,3 +1,10 @@
+/*
+This file shows the footer, links and functions are 
+displaying only.
+
+Created by Mingke Deng, and Hans Wang
+Last Modified: 23/09/2022
+*/
 import React from 'react'
 import { Button } from 'antd';
 import { Link } from 'react-router-dom'

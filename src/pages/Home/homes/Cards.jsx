@@ -1,3 +1,11 @@
+/*
+This file shows some of the successful events
+as card section. 
+
+Created by Mingke Deng, and Hans Wang
+Last Modified: 23/09/2022
+*/
+
 import React from 'react'
 import CardItem from './CardItem'
 import "./Cards.css"

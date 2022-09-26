@@ -1,5 +1,10 @@
+/*
+This file needs a purpose
+
+Created by Mingke Deng, and Hans Wang
+Last Modified: 25/09/2022
+*/
 import React,{useState} from "react";
-import Header from "../../layout/Header";
 import Footer from '../Home/homes/Footer';
 import Navbar from "../Home/homes/Navbar";
 import './feedback.css';

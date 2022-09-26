@@ -1,3 +1,10 @@
+/*
+This file is the navbar that appears all 
+across the website
+
+Created by Mingke Deng, and Hans Wang
+Last Modified: 23/09/2022
+*/
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import axios from 'axios'

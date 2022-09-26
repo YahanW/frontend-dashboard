@@ -1,3 +1,9 @@
+/*
+This file shows booking histories
+
+Created by Mingke Deng, and Hans Wang
+Last Modified: 25/09/2022
+*/
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';

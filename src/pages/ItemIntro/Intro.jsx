@@ -1,3 +1,10 @@
+/*
+This file displays the service details. 
+Hardcoded for now. 
+
+Created by Mingke Deng, and Hans Wang
+Last Modified: 25/09/2022
+*/
 import React,{useState,useEffect} from 'react';
 import './Intro.css';
 import { Divider } from 'antd';

@@ -1,3 +1,9 @@
+/*
+This file shows the modal for events (viewing/editing)
+
+Created by Mingke Deng, and Hans Wang
+Last Modified: 26/09/2022
+*/
 import React, { Component, setState } from 'react';
 import { Modal, Form, Input, InputNumber, Select, message } from 'antd';
 import axios from 'axios';

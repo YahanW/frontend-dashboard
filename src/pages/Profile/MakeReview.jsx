@@ -1,3 +1,9 @@
+/*
+This file write review and send to the service
+
+Created by Mingke Deng, and Hans Wang
+Last Modified: 25/09/2022
+*/
 import React, { useState, useEffect } from "react";
 import Footer from '../Home/homes/Footer';
 import { Rate, message,Input } from "antd";

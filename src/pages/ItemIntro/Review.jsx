@@ -1,3 +1,10 @@
+/*
+This file shows the reviews recieved for a service
+
+Created by Mingke Deng, and Hans Wang
+Last Modified: 25/09/2022
+*/
+
 import React, { useState, useEffect } from 'react';
 import './Review.css';
 import { Tag, Rate, Checkbox } from 'antd';

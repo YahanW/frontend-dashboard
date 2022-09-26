@@ -1,3 +1,9 @@
+/*
+This file shows the modal for leveling up a user
+
+Created by Mingke Deng, and Hans Wang
+Last Modified: 23/09/2022
+*/
 import React from "react";
 import { Modal,Button,message } from "antd";
 import { AlignCenterOutlined } from "@ant-design/icons";

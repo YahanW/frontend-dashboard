@@ -1,3 +1,9 @@
+/*
+This file shows the booking history
+
+Created by Mingke Deng, and Hans Wang
+Last Modified: 25/09/2022
+*/
 import React, { useState, useEffect } from "react";
 import './History.css';
 import { Carousel } from 'antd';

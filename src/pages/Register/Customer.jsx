@@ -1,3 +1,9 @@
+/*
+This file register user as a customer
+
+Created by Mingke Deng, and Hans Wang
+Last Modified: 23/09/2022
+*/
 import React, { useState }  from 'react'
 import axios from "axios";
 import './register.css';

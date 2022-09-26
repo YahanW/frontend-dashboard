@@ -1,3 +1,10 @@
+/*
+This file displays the event dashboard
+
+Created by Mingke Deng, and Hans Wang
+Last Modified: 26/09/2022
+*/
+
 import React, { Component } from 'react';
 import { Card,Form,Input,Table,Space, Modal,Menu, message } from 'antd';
 import { connect } from 'react-redux';

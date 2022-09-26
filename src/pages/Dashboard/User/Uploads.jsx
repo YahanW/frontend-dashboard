@@ -1,3 +1,9 @@
+/*
+This file allows upload image
+
+Created by Mingke Deng, and Hans Wang
+Last Modified: 23/09/2022
+*/
 import React, { Component } from 'react'
 import { Upload ,Space, message,Modal} from 'antd'
 import { PlusOutlined } from '@ant-design/icons'

@@ -1,3 +1,10 @@
+/*
+This file displays the section that user do the 
+search function. 
+
+Created by Mingke Deng, and Hans Wang
+Last Modified: 23/09/2022
+*/
 import React,{useState} from 'react';
 import { useNavigate } from "react-router-dom";
 import './HeroSection.css';

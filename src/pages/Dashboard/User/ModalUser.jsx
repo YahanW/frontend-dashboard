@@ -1,3 +1,9 @@
+/*
+This file shows a modal for viewing/editing user
+
+Created by Mingke Deng, and Hans Wang
+Last Modified: 23/09/2022
+*/
 import React, { Component } from 'react'
 import { Modal, Form, Input, message } from 'antd'
 import axios from 'axios'

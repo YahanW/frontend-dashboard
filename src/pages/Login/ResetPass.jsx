@@ -1,3 +1,10 @@
+/*
+This file allows user to reset password 
+!!!still in progress.!!! 
+
+Created by Mingke Deng, and Hans Wang
+Last Modified: 23/09/2022
+*/
 import React,{useState} from "react";
 import "./Reset.css";
 

@@ -1,3 +1,9 @@
+/*
+This file shows some successful events examples
+
+Created by Mingke Deng, and Hans Wang
+Last Modified: 23/09/2022
+*/
 import React, { useState } from 'react';
 import './HomeService.css';
 import NavBar from './homes/Navbar';

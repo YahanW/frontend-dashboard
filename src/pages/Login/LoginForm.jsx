@@ -1,3 +1,9 @@
+/*
+This file logs people in
+
+Created by Mingke Deng, and Hans Wang
+Last Modified: 23/09/2022
+*/
 import React, { useState } from "react";
 import axios from "axios";
 import {Modal} from 'antd';

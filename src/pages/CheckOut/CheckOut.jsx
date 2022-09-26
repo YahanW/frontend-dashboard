@@ -1,3 +1,10 @@
+/*
+This file allows user to checkout an event and pay
+
+Created by Mingke Deng, and Hans Wang
+Last Modified: 26/09/2022
+*/
+
 import React, { useEffect, useState } from "react";
 import './checkout.css';
 import { useNavigate, useParams } from "react-router-dom";

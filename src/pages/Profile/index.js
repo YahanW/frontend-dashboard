@@ -1,6 +1,11 @@
+/*
+This file is the base of the profile page
+
+Created by Mingke Deng, and Hans Wang
+Last Modified: 25/09/2022
+*/
 import React, { useState, useEffect, useRef } from 'react';
 import axios from "axios";
-import Header from "../../layout/Header";
 import { Link, Outlet, useLocation, useOutlet, useNavigate } from "react-router-dom";
 import './profile.css';
 import './Person.css';
