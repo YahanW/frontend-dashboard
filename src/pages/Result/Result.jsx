@@ -8,7 +8,7 @@ Last Modified: 25/09/2022
 import React from 'react';
 import './Result.css';
 import { useState, useEffect } from 'react';
-import { Link, useParams, useNavigate,Outlet } from 'react-router-dom';
+import { Link, useParams, useNavigate, Outlet } from 'react-router-dom';
 import axios from 'axios';
 import Footer from '../Home/homes/Footer';
 import { Modal, Form, Input, Select, InputNumber, message, DatePicker, Rate } from 'antd';
@@ -18,14 +18,14 @@ import { FormControl } from '@mui/material';
 function Result() {
   const formRef = React.createRef();
   const history = useNavigate();
-  const [reviewOrSale,setRS] = useState(true);
+  const [reviewOrSale, setRS] = useState(true);
   const { servicesId } = useParams();
   const [record, setRecord] = useState([]);
   const [eventVisible, setEventVisible] = useState(false);
   const CancelVisible = () => { setEventVisible(false); }
   //const [events, setEvents] = useState([]);
   const [avail, setAvail] = useState([]);
-  const [newService, setNewService] = useState({ eventId: 0, servicesId: servicesId, isReviewed:false });
+  const [newService, setNewService] = useState({ eventId: 0, servicesId: servicesId, isReviewed: false });
   const getData = async () => {
     const { data } = await axios.get(`https://eventeasyau.azurewebsites.net/api/services/getallservices`);
     setRecord(data.$values);
@@ -34,7 +34,7 @@ function Result() {
       .then(response => {
         console.log(response);
         setAvail(response.data.$values);
-      }).catch(err=>{
+      }).catch(err => {
         message.error(err, " Please Login before create an event")
       });
 
@@ -43,16 +43,26 @@ function Result() {
   useEffect(() => { getData(); }, []);
 
   const onSave = (value) => {
-    console.log(value);
-    axios.post("https://eventeasyau.azurewebsites.net/api/event/create", value)
-      .then(response => {
-        console.log(response);
-        message.success("Event created successfully");
-        CancelVisible();
-      }).catch(err => {
-        console.log(err)
-      })
-    getData();
+    let dateNow = new Date().toISOString().split("T")[0]
+    console.log(value.startTime.toISOString().split("T")[0], dateNow);
+    if (value.startTime.toISOString().split("T")[0] > dateNow &&
+      value.endTime.toISOString().split("T")[0] > dateNow) {
+      if (value.guest > 0) {
+        axios.post("https://eventeasyau.azurewebsites.net/api/event/create", value)
+          .then(response => {
+            console.log(response);
+            message.success("Event created successfully");
+            CancelVisible();
+          }).catch(err => {
+            console.log(err)
+          })
+        getData();
+      } else {
+        message.error("please enter a valid guest number")
+      }
+    } else {
+      message.error("please select a valid date")
+    }
   }
   const changeRS = () => { setRS(!reviewOrSale); }
   const onClick = () => {
@@ -85,18 +95,18 @@ function Result() {
               if (ele.servicesId == servicesId) { //only want the last venue service
                 return (
                   <>
-                    <div className='intro-img' key={index} style={{backgroundImage: `url(${ele.imagePath})`}}>
+                    <div className='intro-img' key={index} style={{ backgroundImage: `url(${ele.imagePath})` }}>
                       <h2>{ele.serviceName}</h2>
                       <h3>PRICES START AT ${ele.price} </h3>
                       <div className='actions'>
                         <div className='createNew'>
                           <div>
-                          <h3>
-                            Create a new event 
-                          </h3>
+                            <h3>
+                              Create a new event
+                            </h3>
                           </div>
                           <div>
-                          <button onClick={() => { sessionStorage.getItem('id') ? setEventVisible(true) : history("/login") }}>Create Event</button>
+                            <button onClick={() => { sessionStorage.getItem('id') ? setEventVisible(true) : history("/login") }}>Create Event</button>
                           </div>
                         </div>
                         <div>
@@ -218,19 +228,19 @@ function Result() {
               } else { return null }
             }) : ''} {/**if not match then don't return */}
       </div>
-      <div className="detail-review" style={{display:'flex',flexDirection:'row',paddingLeft:'1vw'}}>
-                <div className='dr-sub'
-                style={{backgroundColor:reviewOrSale?'':'bisque',width:'5vw'}}
-                >
-                    <Link onClick={changeRS} to={`/result/${servicesId}/intro`}>DETAILS</Link>
-                </div>
-                <div className='dr-sub'
-                style={{ backgroundColor:reviewOrSale?'bisque':'',width:'5vw'}}
-                >
-                    <Link onClick={changeRS} to={`/result/${servicesId}/review`}>REVIEWS</Link>
-                </div>
-            </div>
-      <Outlet/>
+      <div className="detail-review" style={{ display: 'flex', flexDirection: 'row', paddingLeft: '1vw' }}>
+        <div className='dr-sub'
+          style={{ backgroundColor: reviewOrSale ? '' : 'bisque', width: '5vw' }}
+        >
+          <Link onClick={changeRS} to={`/result/${servicesId}/intro`}>DETAILS</Link>
+        </div>
+        <div className='dr-sub'
+          style={{ backgroundColor: reviewOrSale ? 'bisque' : '', width: '5vw' }}
+        >
+          <Link onClick={changeRS} to={`/result/${servicesId}/review`}>REVIEWS</Link>
+        </div>
+      </div>
+      <Outlet />
       {/**All other services */}
       {/* <div className='itemList'>
         {
