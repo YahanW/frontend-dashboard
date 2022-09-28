@@ -12,7 +12,7 @@ function ResetPass(){
     const [email,setEmail] = useState("");
     return(
         <div >
-            <h2>RESET PASSWORD</h2>
+            <h2>RESET PASSWORD COMING SOON ...</h2>
             <div className="resForm">
                 <div>
                     <label>Email</label>

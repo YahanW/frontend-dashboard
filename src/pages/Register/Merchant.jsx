@@ -77,8 +77,7 @@ function Merchant() {
             })
         })
         .catch(error=>{
-          console.log(error)
-          alert("Something went wrong");
+          message.error("username or email already exist");
         }))
 
     }else{

@@ -67,13 +67,15 @@ class Event extends Component {
         
     }
     onEdit=(record)=>{
-        return ()=>{
+        return async ()=>{
+            const { data } = await axios.get(`https://eventeasyau.azurewebsites.net/api/eventservice/getservicesbyevent/${record.eventId}`)
             this.props.dispatch({
                 type:'show',
                 data:{
                     title:'Edit',
                     data:record,
-                    refreshList:this.onGetEvents
+                    refreshList:this.onGetEvents,
+                    serviceList: data.$values
                 }
             })
         }
@@ -119,7 +121,7 @@ class Event extends Component {
     layoutEventTable=()=>({
     pagination:{
         pageSize:7,
-        showTotal:()=>`total ${this.state.dataSource.length} user records`
+        showTotal:()=>`total ${this.state.dataSource.length} event records`
     },
     columns:[
         {

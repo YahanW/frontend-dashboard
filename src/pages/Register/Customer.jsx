@@ -7,7 +7,7 @@ Last Modified: 23/09/2022
 import React, { useState }  from 'react'
 import axios from "axios";
 import './register.css';
-import {Modal} from 'antd';
+import {message, Modal} from 'antd';
 import {CheckOutlined} from '@ant-design/icons';
 import { Link,useNavigate } from 'react-router-dom';
 import PasswordStrengthBar from 'react-password-strength-bar';
@@ -79,7 +79,7 @@ function Customer() {
 			  })
 		})
 		.catch(error=>{
-			console.log(error)
+			message.error("username or email already exist");
 		}));
 	}
 

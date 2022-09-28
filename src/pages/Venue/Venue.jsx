@@ -12,6 +12,9 @@ import axios from "axios";
 import './Venue.css';
 import Navbar from "../Home/homes/Navbar";
 import { stringify } from "rc-field-form/es/useWatch";
+import { usePromiseTracker } from 'react-promise-tracker';
+import { Puff } from 'react-loader-spinner';
+import { trackPromise } from 'react-promise-tracker';
 
 export default function Event() {
     const [venueList, setVenueList] = useState([]);
@@ -23,18 +26,34 @@ export default function Event() {
     const [curAre, setCurAre] = useState("All");
     const [curBgt, setCurBgt] = useState("All");
     const { type, date, guest, budget, area, stand, seat } = useParams();
-
+   
     // get all services
-    const getAll = async () => {
-        const { data } = await
-            axios.get("https://eventeasyau.azurewebsites.net/api/services/getEnableservices");    // retrieve all active services
+    const getAll =() => {
+        trackPromise(
+            axios.get("https://eventeasyau.azurewebsites.net/api/services/getEnableservices")
+            .then(res=>{
+                 setVenueList(res.data.$values); //store all venues
+                 console.log(venueList)
+                 setResultList(res.data.$values)
+               
+            })
+            
+        )    // retrieve all active services
 
-        setVenueList(data.$values); //store all venues
-        console.log(venueList)
-        setResultList(data.$values)
+        // setVenueList(data.$values); //store all venues
+        // console.log(venueList)
+        // setResultList(data.$values)
         //venues = venueList;
     };
-
+    const LoadingIndicator = () => {
+        const { promiseInProgress } = usePromiseTracker();
+        return (
+            promiseInProgress && <div
+                style={{ marginLeft: "14vw" }}>
+                <Puff color="#00BFFF" height={80} width={800} />
+            </div>
+        );
+    }
 
     const filterResult = (type, change) => {
         console.log(type, change)
@@ -182,9 +201,9 @@ export default function Event() {
         console.log(type, date, guest, budget, area, stand, seat)
     }, []);
 
-    if (!venueList) {
-        return <li className="eve-row" ><div>Fetching Event Result...</div></li>
-    }
+    // if (!venueList) {
+    //     return <li className="eve-row" ><div>Fetching Event Result...</div></li>
+    // }
 
     console.log("resultlist", resultList)
     //console.log("venues", venues)
@@ -252,7 +271,7 @@ export default function Event() {
             <div className="events">
                 <ul className="eve-col">
                     {
-                        resultList //is there any data remains
+                        (resultList.length!=0) //is there any data remains
                             ?
                             resultList.map((ele, index) => {
                                 if (ele.price <= budget && Math.max(ele.guestAmount, ele.seated, ele.standing) >= guest) {
@@ -281,7 +300,7 @@ export default function Event() {
                                                     <h4 style={{
                                                         fontFamily: `"Times New Roman", "Times", "serif"`,
                                                     }}>
-                                                        Rating: {ele.rate==null?"N/A":ele.rate}
+                                                        Rating: {(ele.rate==null||ele.rate==0)?"N/A":ele.rate}
 
                                                     </h4>
                                                 <Link to="">
@@ -297,9 +316,11 @@ export default function Event() {
                             <li className="eve-row">
                                 {'No Relavent Result ...'}
                             </li>
+                          
                     }
                 </ul>
             </div>
+            <LoadingIndicator/>
             <Footer />
         </div>
     )

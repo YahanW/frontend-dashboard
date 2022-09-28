@@ -83,6 +83,8 @@ function LoginForm(){
 				<div class="logSend">
 					<button type="submit" class="submit">Login</button>
 					<p class="desc"><Link to='/reset'>forget password?</Link></p>
+					<p class="desc"><Link to='/sign-merchant'>Register Merchant?</Link></p>
+					<p class="desc"><Link to='/sign-user'>Register User?</Link></p>
 				</div>
 				<LoadingIndicator/>
 			</form>

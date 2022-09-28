@@ -64,15 +64,15 @@ export default class EventModal extends Component {
                     </Form.Item>
                     <Form.Item name="bookingStatus" label="Status">
                         <Select>
-                            <Select.Option value={0} disabled={sessionStorage.getItem('access') === 1 ? false : true}>Created</Select.Option>
-                            <Select.Option value={1} disabled={sessionStorage.getItem('access') === 1 ? false : true}>Waiting</Select.Option>
+                            <Select.Option value={0} disabled={sessionStorage.getItem('access') == 1 ? false : true}>Created</Select.Option>
+                            <Select.Option value={1} disabled={sessionStorage.getItem('access') == 1 ? false : true}>Waiting</Select.Option>
                             <Select.Option value={2} >Accepted</Select.Option>
                             <Select.Option value={3} >Rejected</Select.Option>
-                            <Select.Option value={4} disabled={sessionStorage.getItem('access') === 1 ? false : true}>Cancelled</Select.Option>
-                            <Select.Option value={5} disabled={sessionStorage.getItem('access') === 1 ? false : true}>AwaitPayment</Select.Option>
-                            <Select.Option value={6} disabled={sessionStorage.getItem('access') === 1 ? false : true}>Paid</Select.Option>
-                            <Select.Option value={7} disabled={sessionStorage.getItem('access') === 1 ? false : true}>Completed</Select.Option>
-                            <Select.Option value={8} disabled={sessionStorage.getItem('access') === 1 ? false : true}>Review Left</Select.Option>
+                            <Select.Option value={4} disabled={sessionStorage.getItem('access') == 1 ? false : true}>Cancelled</Select.Option>
+                            <Select.Option value={5} disabled={sessionStorage.getItem('access') == 1 ? false : true}>AwaitPayment</Select.Option>
+                            <Select.Option value={6} disabled={sessionStorage.getItem('access') == 1 ? false : true}>Paid</Select.Option>
+                            <Select.Option value={7} disabled={sessionStorage.getItem('access') == 1 ? false : true}>Completed</Select.Option>
+                            <Select.Option value={8} disabled={sessionStorage.getItem('access') == 1 ? false : true}>Review Left</Select.Option>
                         </Select>
                     </Form.Item>
                     <Form.Item name="customerId" label="Customer ID">
