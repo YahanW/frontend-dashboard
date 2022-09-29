@@ -22,7 +22,7 @@ export default function Event() {
     const serType = ["Venue", "Food", "Beverage", "Entertainment", "Florist", "Photographer", "ALL"];
     const areType = ["All", "Hobart", "SandyBay", "Kingston", "NewTown", "South Hobart", "North Hobart", "Dynnyrne"];
     const bgtType = ["All", "$1,000", "$2,000", "$5,000", "$10,000", "10,000+"];
-    const [curType, setCurType] = useState("Venue");
+    const [curType, setCurType] = useState("ALL");
     const [curAre, setCurAre] = useState("All");
     const [curBgt, setCurBgt] = useState("All");
     const { type, date, guest, budget, area, stand, seat } = useParams();

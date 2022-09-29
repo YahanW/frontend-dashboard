@@ -154,7 +154,7 @@
 
 .service-list li .avatar {
     width: 130px;
-    background-image: url('https://images.squarespace-cdn.com/content/v1/585a6e76b3db2b19a94d4553/706b772c-47e0-46ce-b302-9cd9032f9087/IMG-2353.jpg');
+    /* background-image: url('https://images.squarespace-cdn.com/content/v1/585a6e76b3db2b19a94d4553/706b772c-47e0-46ce-b302-9cd9032f9087/IMG-2353.jpg'); */
     background-size: cover;
     height: 100%;
     display: flex;

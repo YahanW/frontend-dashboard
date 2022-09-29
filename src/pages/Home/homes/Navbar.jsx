@@ -12,6 +12,7 @@ import ShoppingCart from '../../../layout/Header/ShoppingCart';
 import './Navbar.css';
 import { useNavigate } from "react-router-dom";
 
+
 function Navbar() {
     const history = useNavigate();
     const [click, setClick] = useState(false);

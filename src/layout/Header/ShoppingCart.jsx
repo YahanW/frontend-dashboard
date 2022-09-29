@@ -192,7 +192,8 @@ return (
             eventServices.length !== 0 ?
               eventServices.map((ele, index) => {
                 return (
-                  <li><div className='avatar'></div>
+                  <li><div className='avatar' style={{backgroundImage:`url(${ele.services.imagePath})`}}></div>
+                    {console.log(ele)}
                     <div className='left'>
                       <h3>{ele.services.serviceName}</h3>
                       <h4>{sType[ele.services.serviceType]}</h4>

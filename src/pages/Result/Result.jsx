@@ -218,6 +218,12 @@ function Result() {
                         <h2>Capacity</h2>
                         <h3> Seated: {ele.seated} </h3><br /><h3>Standing: {ele.standing}</h3>
                       </div>
+                      <div className='list-locate' >
+                        <h2>Virtual Reality</h2>
+                        <a href="https://showroom.littleworkshop.fr/">
+                          <button>3D View</button>
+                          </a>
+                      </div>
                     </div>
                     <div className='divider'></div>
                     <div className='intro-desc'>
