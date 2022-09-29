@@ -33,193 +33,214 @@ export default function ShoppingCart() {
     "Taxi",
     "Firework"];
 
- const LoadingIndicator = () => {
+  const LoadingIndicator = () => {
     const { promiseInProgress } = usePromiseTracker();
     return (
       promiseInProgress && <div className="loading"
-        style={{ marginLeft: "45%"}}>
+        style={{ marginLeft: "45%" }}>
         <ThreeDots color="#00BFFF" height={30} width={80} />
-      </div>   
+      </div>
     );
   }
   const sentRequest = (ele) => {
     const url = "https://www.google.com.au"
     const sbj = "You Have a New Booking"
     const msg = "<h4> You have a new booking.</h4 ><br/><br/> <h4>Please go to <a href=" + url + "></a> and go to 'Dashboard' to take further actions.</h4>" +
-    "<br><br><h4>Kind regards.</h4><h2>EventEasy Group</h2>"
+      "<br><br><h4>Kind regards.</h4><h2>EventEasy Group</h2>"
     trackPromise
       (
-        axios.post(`https://eventeasyau.azurewebsites.net/api/user/sendmail/${ele.staffId}/${sbj}/${msg}`)
-          .then(axios.put(`https://eventeasyau.azurewebsites.net/api/event/update/${ele.eventId}`, sends))
+        axios.put(`https://eventeasyau.azurewebsites.net/api/event/update/${ele.eventId}`, sends)
           .then(response => {
+            CancelCheck()
             console.log(response)
             message.success('Request has been sent');
-            CancelCheck();
+           
           }).catch(err => {
             console.log(err)
-        })
+          })
       )
-}
-const cancelEvent = (ele) => {
-  axios.put(`https://eventeasyau.azurewebsites.net/api/event/update/${ele.eventId}`, init)
-    .then(response=> {
-      console.log(response)
-      message.success('Request has been cancelled');
-      CancelCheck();
-
-    }).catch(err=>{
-      console.log(err)
-    })
-}
-
-
-const [eventServices, setEventServices] = useState([])
-const [events, setEvents] = useState([])
-const getEvents = async () => {
-  const { data } = await axios.get(`https://eventeasyau.azurewebsites.net/api/event/getactiveeventbyuser/${sessionStorage.getItem("id")}`)
-  setEvents(data.$values)
-  console.log(data.$values)
-
-}
-const getEventServices = (eventId) => {
-  axios.get(`https://eventeasyau.azurewebsites.net/api/eventservice/getservicesbyevent/${eventId}`)
-    .then(data => {
-      setEventServices(data.data.$values);
-      console.log(data.data.$values);
-    }).catch(err => {
-      console.log(err)
-    })
-}
-
-const renderSwitch = (parameter) => {
-  switch (parameter) {
-    case 0: return "Created"; break;
-    case 1: return "Sent"; break;
-    case 2: return "Accepted"; break;
-    case 3: return "Rejected"; break;
-    case 4: return "Cancelled"; break;
-    case 5: return "AwaitPaid"; break;
-    case 6: return "Paid"; break;
-    case 7: return "Completed"; break;
-    default: break;
   }
-}
-const requestSwitch = (parameter) => {
+  const cancelEvent = (ele) => {
+    trackPromise(
+    axios.put(`https://eventeasyau.azurewebsites.net/api/event/update/${ele.eventId}`, init)
+      .then(response => {
+        console.log(response)
+        message.success('Request has been cancelled');
 
-  switch (parameter.bookingStatus) {
-    case 0: return <button onClick={() => { sentRequest(parameter) }}>Send Request</button>; break;    // request 
-    case 1: return <button onClick={() => { cancelEvent(parameter) }}>Cancel</button>; break;       // cancel 
-    case 2: return <button onClick={console.log("checkout")}>
-      <Link to={`/checkout/${parameter.eventId}`} style={{ color: '#ffffff' }}>Checkout</Link></button>; break;   // checkout
-    case 3: return <p>No Action</p>; break;   // no use
-    case 4: return <p>No Action</p>; break;  // no use
-    case 5: return <button onClick={console.log("checkout")}>
-      <Link to='/checkout' style={{ color: '#ffffff' }}>Checkout</Link></button>; break;  // checkout
-    case 6: return <p>No Action</p>; break;       // no use
-    case 7: return <p>No Action</p>; break;  // no use
-    case 8: return <p>No Action</p>; break; // no use
-    default: break;
+      }).catch(err => {
+        console.log(err)
+      }))
   }
-}
 
-const onDelete = (eId, sId) => {
-  axios.delete(`https://eventeasyau.azurewebsites.net/api/EventService/Remove/${eId}/${sId}`)
-    .then(() => {
-    message.success("service removed");
-    CancelService();
 
-  }).catch(err => {
-    console.log(err)
-  })
-}
-useEffect(() => {
-  getEvents();
-}, [])
-
-//console.log(events);
-return (
-  <div className='nav-links' onClick={() => { getEvents() }}>
+  const [eventServices, setEventServices] = useState([])
+  const [events, setEvents] = useState([])
+  const [eventBookingStatus, setEventBookingStatus] = useState(99)
+  const getEvents = async () => {
+      const { data } = await axios.get(`https://eventeasyau.azurewebsites.net/api/event/getactiveeventbyuser/${sessionStorage.getItem("id")}`)
     
-    <a onClick={showModalCheck} className="tro-item">Shopping Cart</a>
-    
-    <div className="cartSection">
-      <Modal title="EVENT TROLLEY" mask={false} width={950}
-        visible={isModalVisible} footer={false} onCancel={CancelCheck}
-        className="shop-list"
-      >
-        <LoadingIndicator />
-        <ul>
-        
-          {
-            events.map((ele, index) => {
-              if (ele.bookingStatus <= 6) {
-                return (
-                  <li >
-                    <div className='avatar' onClick={() => { getEventServices(ele.eventId); setServiceVisible(true); }}>
-                      Services
-                    </div>
-                    <div className='left'>
-                      <h3 onClick={() => { getEventServices(ele.eventId); setServiceVisible(true); }}>{ele.eventName}</h3>
-                      {/* <h5>{ele.staff}</h5> */}
-                      <h4 style={{ color: ele.bookingStatus == 2 ? 'green' : 'red' }}>
+      setEvents(data.$values)
+    console.log(data.$values)
+
+  }
+  const getEventServices = (eventId) => {
+    axios.get(`https://eventeasyau.azurewebsites.net/api/eventservice/getservicesbyevent/${eventId}`)
+      .then(data => {
+        setEventServices(data.data.$values);
+        console.log(data.data.$values);
+      }).catch(err => {
+        console.log(err)
+      })
+  }
+
+  const deleteEvent = (e) => {
+    trackPromise(
+    axios.delete(`https://eventeasyau.azurewebsites.net/api/event/delete/${e.eventId}`).then(
+      res=>{
+        message.success("event has been deleted");
+        CancelCheck();
+      }
+    ).catch(err=>{
+      message.error("there was an error during the deletion")
+    })
+    )
+  }
+  const renderSwitch = (parameter) => {
+    switch (parameter) {
+      case 0: return "Created"; break;
+      case 1: return "Sent"; break;
+      case 2: return "Accepted"; break;
+      case 3: return "Rejected"; break;
+      case 4: return "Cancelled"; break;
+      case 5: return "AwaitPaid"; break;
+      case 6: return "Paid"; break;
+      case 7: return "Completed"; break;
+      default: break;
+    }
+  }
+  const requestSwitch = (parameter) => {
+
+    switch (parameter.bookingStatus) {
+      case 0: return <><button onClick={() => { sentRequest(parameter) }}>Send Request</button>
+        <button onClick={() => { deleteEvent(parameter) }}>Delete</button></>; break;    // request 
+      case 1: return <button onClick={() => { cancelEvent(parameter) }}>Cancel</button>; break;       // cancel 
+      case 2: return <button onClick={console.log("checkout")}>
+        <Link to={`/checkout/${parameter.eventId}`} style={{ color: '#ffffff' }}>Checkout</Link></button>; break;   // checkout
+      case 3: return <p>No Action</p>; break;   // no use
+      case 4: return <p>No Action</p>; break;  // no use
+      case 5: return <button onClick={console.log("checkout")}>
+        <Link to='/checkout' style={{ color: '#ffffff' }}>Checkout</Link></button>; break;  // checkout
+      case 6: return <p>No Action</p>; break;       // no use
+      case 7: return <p>No Action</p>; break;  // no use
+      case 8: return <p>No Action</p>; break; // no use
+      default: break;
+    }
+  }
+
+  const onDelete = (eId, sId) => {
+    axios.delete(`https://eventeasyau.azurewebsites.net/api/EventService/Remove/${eId}/${sId}`)
+      .then(() => {
+        message.success("service removed");
+        CancelService();
+
+      }).catch(err => {
+        console.log(err)
+      })
+  }
+  useEffect(() => {
+    getEvents();
+  }, [])
+
+  //console.log(events);
+  return (
+    <div className='nav-links' onClick={() => { getEvents() }}>
+
+      <a onClick={showModalCheck} className="tro-item">Shopping Cart</a>
+
+      <div className="cartSection">
+        <Modal title="EVENT TROLLEY" mask={false} width={950}
+          visible={isModalVisible} footer={false} onCancel={CancelCheck}
+          className="shop-list"
+        >
+          <LoadingIndicator />
+          <ul>
+
+            {
+              events.map((ele, index) => {
+                if (ele.bookingStatus <= 6) {
+                  return (
+                    <li >
+                      <div className='avatar' onClick={() => { setEventBookingStatus(ele.bookingStatus); getEventServices(ele.eventId); setServiceVisible(true); }}>
+                        Services
+                      </div>
+                      <div className='left'>
+                        <h3 onClick={() => { setEventBookingStatus(ele.bookingStatus); getEventServices(ele.eventId); setServiceVisible(true); }}>{ele.eventName}</h3>
+                        {/* <h5>{ele.staff}</h5> */}
+                        <h4 style={{ color: ele.bookingStatus == 2 ? 'green' : 'red' }}>
+                          {
+                            renderSwitch(ele.bookingStatus)
+                          }
+                        </h4>
+                      </div>
+                      <div className='right' >
                         {
-                          renderSwitch(ele.bookingStatus)
+                          requestSwitch(ele)
                         }
-                      </h4>
-                    </div>
-                    <div className='right' >
-                      {
-                        requestSwitch(ele)
-                      }
-                    </div>
-                  </li>
-                )
-              }
-              // else{
-              //   return null
-              // }
-            })
-          }
-        </ul>
-      </Modal>
+                      </div>
+                    </li>
+                  )
+                }
 
-    
-      <Modal title="Services" width={850}
-        visible={isServiceVisible} footer={false} onCancel={CancelService}
-        className="service-list">
-        <ul>
-          {
-            eventServices.length !== 0 ?
-              eventServices.map((ele, index) => {
-                return (
-                  <li><div className='avatar' style={{backgroundImage:`url(${ele.services.imagePath})`}}></div>
-                    {console.log(ele)}
-                    <div className='left'>
-                      <h3>{ele.services.serviceName}</h3>
-                      <h4>{sType[ele.services.serviceType]}</h4>
-                      <h4>Price: ${ele.services.price}</h4>
-                    </div>
-                    <div className='right'>
-                      <button onClick={() => { onDelete(ele.eventId, ele.servicesId) }}>Remove</button>
-                    </div>
-                  </li>
-                )
               })
-              :
-              // 请在这里写一个path, 引导用户到service列表
-              <li className="addService">
-                <div>
-                  <h2>You have no services in your cart</h2><br />
-                </div>
-                <div>
-                  <Link to="/venue/empty/0/0/0/999999">Click here to browse services</Link>
-                </div>
-              </li>
-          }
-        </ul>
-      </Modal>
+            }
+          </ul>
+        </Modal>
 
+
+        <Modal title="Services" width={850}
+          visible={isServiceVisible} footer={false} onCancel={CancelService}
+          className="service-list">
+          <ul>
+            {
+              eventServices.length !== 0 ?
+                eventServices.map((ele, index) => {
+                  return (
+                    <li><div className='avatar' style={{ backgroundImage: `url(${ele.services.imagePath})` }}></div>
+                      {console.log(ele)}
+                      <div className='left'>
+                        <h3>{ele.services.serviceName}</h3>
+                        <h4>{sType[ele.services.serviceType]}</h4>
+                        <h4>Price: ${ele.services.price}</h4>
+                      </div>
+                      {eventBookingStatus == 0 ?
+                        <div className='right'>
+                          <button onClick={() => { onDelete(ele.eventId, ele.servicesId) }}>Remove</button>
+                        </div>
+                        :
+                        // <div className='right'>
+                        //   <button onClick={() => { onDelete(ele.eventId, ele.servicesId) }}>Remove</button>
+                        // </div>
+                        console.log(eventBookingStatus)
+                      }
+
+                    </li>
+                  )
+                })
+                :
+                // 请在这里写一个path, 引导用户到service列表
+                <li className="addService">
+                  <div>
+                    <h2>You have no services in your cart</h2><br />
+                  </div>
+                  <div>
+                    <Link to="/venue/empty/0/0/0/999999">Click here to browse services</Link>
+                  </div>
+                </li>
+            }
+          </ul>
+        </Modal>
+
+      </div>
     </div>
-  </div>
-)
+  )
 }

@@ -145,6 +145,7 @@
 .service-list li {
     margin-bottom: 1rem;
     display: flex;
+    /* flex-wrap: wrap; */
     /* width: 30vw; */
     height: 15vh;
     border: 2px solid #efefef;
@@ -164,11 +165,14 @@
 }
 
 .service-list li .left {
-    padding: 10px;
+    padding-left: 10px;
     width: 20vw;
     height: 100%;
     display: flex;
+    /* flex-wrap: wrap; */
     flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
 }
 
 .service-list li .right button {
@@ -179,15 +183,20 @@
 }
 
 .service-list li .left h3 {
-    height: 8vh;
+    min-height: 5vh;
     font-size: 1.5rem;
     font-weight: 400;
+    overflow: hidden;
 }
 .service-list li .left h4{
+    min-height: 3vh;
+    /* font-size: 1.5rem; */
+    /* font-weight: 400; */
+    overflow: hidden;
     display: flex ;
 }
 .service-list li .left h4 :last-child {
-    
+    background-color: red;
     margin-left: 5vw;
     
 }

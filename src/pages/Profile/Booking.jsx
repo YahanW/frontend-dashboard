@@ -41,6 +41,7 @@ function Booking() {
           <th>Event Status</th>
           <th>Start Time</th>
           <th>End Time</th>
+          <th>Budget</th>
         </tr>
         {
           history.map((ele, index) => {
@@ -54,7 +55,7 @@ function Booking() {
                   <td>{renderSwitch(ele.bookingStatus)}</td>
                   <td>{ele.startTime}</td>
                   <td>{ele.endTime}</td>
-
+                  <td>{ele.budget?ele.budget:'N/A'}</td>
                 
               </tr>
             );

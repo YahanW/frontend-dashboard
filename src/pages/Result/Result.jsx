@@ -53,6 +53,7 @@ function Result() {
             console.log(response);
             message.success("Event created successfully");
             CancelVisible();
+            history(0);
           }).catch(err => {
             console.log(err)
           })
