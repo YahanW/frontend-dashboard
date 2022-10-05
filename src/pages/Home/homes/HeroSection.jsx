@@ -50,7 +50,7 @@ function HeroSection() {
   return (
     <div className='hero-container'>
       <h1>Event Easy</h1>
-      <p>Making events easy.</p>
+      <p>Where amazing events started.</p>
       <Form className='search' onFinish={getEventsNormal} ref={formRef}>
         <Form.Item>
           <select className="requires eventType" onChange={(event) => setType(event.target.value)}>
