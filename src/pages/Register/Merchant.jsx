@@ -130,8 +130,8 @@ return(
                   value={details.password} onChange={e=>setDetails({...details,password:e.target.value})} required/>
                 </div>
                 <div class="item">
-                  <label for="abn">ABN</label>
-                  <input name="abn" type="nubmer" placeholder="11 digit identifier" 
+              <label for="abn">ABN (digits only, no spaces.)</label>
+              <input name="abn" type="nubmer" 
                   value={details.abn} onChange={e=>{setDetails({...details,abn:e.target.value});setValid(false);}} required/>
               
                 </div>

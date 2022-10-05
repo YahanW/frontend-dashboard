@@ -121,12 +121,13 @@ function Result() {
                               {
                                 avail ?
                                   avail.map((ele) => {
+                                    if (ele.bookingStatus==0){ 
                                     return (
                                       <Select.Option key={ele.eventId} value={ele.eventId}>
                                         {ele.eventName}
                                       </Select.Option>
-                                    )
-                                  }) : 'You have no event yet.'
+                                    )} 
+                                  }) : 'You have no event.'
                               }
                             </Select>
 
