@@ -70,7 +70,7 @@ function BookHsitory() {
                                             !ele.isReviewed?
                                                 <Link to={`/profile/booking/review/${ele.eventId}/${ele.servicesId}`}><button>Write Review</button></Link>
                                                 :
-                                                 <Link to={``}>
+                                                <Link to={`/result/${ele.servicesId}/review`}>
                                                     <button>View Your Review</button>
                                                  </Link>
 
