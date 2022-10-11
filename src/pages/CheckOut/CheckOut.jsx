@@ -71,7 +71,7 @@ function CheckOut() {
                                 price += ele.services.price;
                                 return (
                                     <div className="service" key={index}>
-                                        <div className="icon">
+                                        <div className="icon" style={{backgroundImage:`url(${ele.services.imagePath})`}}>
                                         </div>
                                         <div className="left">
                                             <h2 className="sname">{ele.services.serviceName}</h2>
