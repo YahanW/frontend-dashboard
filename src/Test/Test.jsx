@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 
 export default function Test() {
   const {BlockBlobClient, AnonymousCredential } = require('@azure/storage-blob');
@@ -32,7 +31,7 @@ export default function Test() {
     console.log('picture', picture);
     
   }
- 
+
     return (
     <div>
       <input type="file" onChange={onChangePicture} />

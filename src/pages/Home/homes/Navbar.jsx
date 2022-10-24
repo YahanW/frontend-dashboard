@@ -6,13 +6,12 @@ Created by Mingke Deng, and Hans Wang
 Last Modified: 23/09/2022
 */
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'
-import axios from 'axios'
+import { Link } from 'react-router-dom';
 import ShoppingCart from '../../../layout/Header/ShoppingCart';
 import './Navbar.css';
 import { useNavigate } from "react-router-dom";
-
-
+import { Drawer } from 'antd';
+import { AppstoreTwoTone } from '@ant-design/icons';
 function Navbar() {
     const history = useNavigate();
     const [click, setClick] = useState(false);
@@ -28,7 +27,15 @@ function Navbar() {
             setButton(true);
         }
     };
-
+    const [open, setOpen] = useState(false);
+    const showDrawer = () => {
+        setOpen(true);
+      };
+    
+      const onClose = () => {
+        setOpen(false);
+      };
+    
     useEffect(() => {
         showButton();
     }, []);
@@ -43,7 +50,6 @@ function Navbar() {
     }
 
     return (
-
         <div className='navbar'>
             <div className='navbar-container'>
                 <Link to='/' className='navbar-logo' onClick={closeMobileMenu}>
@@ -171,11 +177,19 @@ function Navbar() {
 
 
                     }
-
+                <button type="nav-links" onClick={showDrawer} style={{backgroundColor:'black',cursor:'pointer'}}>
+                    <AppstoreTwoTone/>
+                </button>
+                <Drawer title="Basic Drawer" placement="right" onClose={onClose} visible={open}>
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                    <p>Some contents...</p>
+                </Drawer>
                 </ul>
                 {/* button && <Button buttonStyle='btn--outline'>SIGN UP</Button> */}
             </div>
         </div>
+     
     )
 }
 
